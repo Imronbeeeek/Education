@@ -1,730 +1,869 @@
 <title>Imronbek's Admissions Atlas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: an admissions dossier — sticky section tabs, a working desk of tables and timelines, one column of reading width for prose */
+/* Layout: a registrar's working desk — situation controls on top drive every list; sticky section tabs; cards for decisions, dense lists for scanning */
 :root{
-  --bg:#f3f5f6; --paper:#ffffff; --ink:#15202b; --muted:#5b6873; --line:#d8dee3; --soft:#e9eef1;
-  --accent:#0f5f6b; --accent-ink:#ffffff; --accent-soft:#dcecee;
-  --a:#1f7a4d; --a-bg:#e1f2e8; --b:#2457a6; --b-bg:#e3ebf8; --c:#9a6200; --c-bg:#fbefd6; --d:#b3322b; --d-bg:#f8e1df;
-  --warn:#9a3d00; --warn-bg:#fdeadb;
-  --f-display:"Instrument Serif", Georgia, "Times New Roman", serif;
-  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
-  color-scheme: light;
+  --bg:#f3f5f8; --surface:#ffffff; --sunk:#e9edf2; --ink:#131c2b; --muted:#566476; --line:#d7dde5;
+  --accent:#33409a; --accent-ink:#ffffff; --accent-soft:#e3e6f7;
+  --ok:#1a7347; --ok-bg:#dff1e7; --reach:#0d6b86; --reach-bg:#dcf0f5; --bridge:#9b5b00; --bridge-bg:#fbedd3; --closed:#b0302a; --closed-bg:#f8e0de;
+  --bar-fnd:#d38a1c; --bar-deg:#33409a;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r:12px;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0f1519; --paper:#161e24; --ink:#e5ecf0; --muted:#9aa8b2; --line:#2a353d; --soft:#1d272e;
-  --accent:#5cc0c9; --accent-ink:#082126; --accent-soft:#1a3438;
-  --a:#6fd3a0; --a-bg:#173528; --b:#8fb4f2; --b-bg:#1b2a44; --c:#f0c060; --c-bg:#3a2e14; --d:#f08a82; --d-bg:#3e1d1b;
-  --warn:#ffb074; --warn-bg:#3b2414; color-scheme: dark; } }
+  --bg:#0e131b; --surface:#151c27; --sunk:#1b2330; --ink:#e6ebf2; --muted:#9aa6b6; --line:#283243;
+  --accent:#9aa6ff; --accent-ink:#0f1430; --accent-soft:#232b52;
+  --ok:#6fd49c; --ok-bg:#163526; --reach:#6cc9e2; --reach-bg:#14313a; --bridge:#f2b45a; --bridge-bg:#3a2a12; --closed:#f28b84; --closed-bg:#3d1c1a;
+  --bar-fnd:#e9a640; --bar-deg:#8e9bff; color-scheme: dark; } }
 :root[data-theme="dark"]{
-  --bg:#0f1519; --paper:#161e24; --ink:#e5ecf0; --muted:#9aa8b2; --line:#2a353d; --soft:#1d272e;
-  --accent:#5cc0c9; --accent-ink:#082126; --accent-soft:#1a3438;
-  --a:#6fd3a0; --a-bg:#173528; --b:#8fb4f2; --b-bg:#1b2a44; --c:#f0c060; --c-bg:#3a2e14; --d:#f08a82; --d-bg:#3e1d1b;
-  --warn:#ffb074; --warn-bg:#3b2414; color-scheme: dark; }
+  --bg:#0e131b; --surface:#151c27; --sunk:#1b2330; --ink:#e6ebf2; --muted:#9aa6b6; --line:#283243;
+  --accent:#9aa6ff; --accent-ink:#0f1430; --accent-soft:#232b52;
+  --ok:#6fd49c; --ok-bg:#163526; --reach:#6cc9e2; --reach-bg:#14313a; --bridge:#f2b45a; --bridge-bg:#3a2a12; --closed:#f28b84; --closed-bg:#3d1c1a;
+  --bar-fnd:#e9a640; --bar-deg:#8e9bff; color-scheme: dark; }
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;}
-header.top{padding-block:28px 18px;}
-.eyebrow{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1{font:400 clamp(34px,6vw,56px)/1.02 var(--f-display);margin:.25em 0 .2em;text-wrap:balance}
-h1 em{color:var(--accent)}
-.lede{max-width:68ch;color:var(--muted);margin:0}
-.idcard{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font:13px/1.4 var(--f-mono);color:var(--muted)}
-.idcard b{color:var(--ink);font-weight:500}
-nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
-nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body)}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:20px}
+a{color:var(--accent)}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5.5vw,54px);line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.4vw,34px);line-height:1.1}
+h3{font:600 16px/1.3 var(--f-body);margin:0}
+p{margin:0}
+.eyebrow{font:500 11px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.mono{font-family:var(--f-mono)}
+.nums{font-variant-numeric:tabular-nums}
+
+/* Header & situation */
+header.top{padding-block:26px 18px;display:grid;gap:14px}
+.lede{max-width:70ch;color:var(--muted)}
+.situation{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:10px}
+.situation .head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;justify-content:space-between}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.ctl{display:grid;gap:4px;min-width:0}
+.ctl label{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+select,input[type=search]{font:14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0}
+.linkbtn{font:500 13px var(--f-body);color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* Tabs */
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 nav.tabs button{font:500 14px var(--f-body);color:var(--muted);background:none;border:0;padding:13px 12px 11px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
 nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
-nav.tabs button:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-main{padding-block:26px 60px}
-section.panel{display:grid;gap:28px}
-h2{font:400 34px/1.1 var(--f-display);margin:0;text-wrap:balance}
-h3{font:600 16px/1.3 var(--f-body);margin:0 0 8px}
-p{margin:0}
-.muted{color:var(--muted)}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+main{padding-block:26px 64px}
+.panel{display:grid;gap:30px}
+.section-head{display:grid;gap:6px;max-width:78ch}
 .grid{display:grid;gap:16px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
-.box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
-.alert{background:var(--warn-bg);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:10px;padding:18px}
-.alert h3{color:var(--warn)}
-ol.steps{margin:0;padding-left:1.3em;display:grid;gap:8px}
-ol.steps li::marker{font-family:var(--f-mono);color:var(--warn)}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
-.kv dt{color:var(--muted)} .kv dd{margin:0}
-.pill{display:inline-block;font:600 11px/1 var(--f-mono);padding:4px 7px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
-.cA{background:var(--a-bg);color:var(--a)} .cB{background:var(--b-bg);color:var(--b)} .cC{background:var(--c-bg);color:var(--c)} .cD{background:var(--d-bg);color:var(--d)}
-.stars{font-family:var(--f-mono);color:var(--accent);letter-spacing:1px;white-space:nowrap}
-.stars i{font-style:normal;color:var(--line)}
-.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13px;color:var(--muted)}
-.legend span{display:inline-flex;gap:6px;align-items:center}
-.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
-.filters label{display:grid;gap:4px;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.filters select,.filters input{font:14px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:8px 10px;min-width:0}
-.filters input[type=search]{width:min(260px,100%)}
-.chk{display:inline-flex!important;grid-auto-flow:column;align-items:center;gap:6px;text-transform:none!important;font:14px var(--f-body)!important;letter-spacing:0!important;color:var(--ink)!important;padding-bottom:8px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0;display:grid;gap:10px;align-content:start}
+.card.emph{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.urgent{background:var(--closed-bg);border:1px solid color-mix(in srgb,var(--closed) 35%,transparent);border-radius:var(--r);padding:18px;display:grid;gap:10px}
+.urgent h3{color:var(--closed)}
+ol.steps{margin:0;padding-left:1.4em;display:grid;gap:8px}
+ol.steps li::marker{font:600 13px var(--f-mono);color:var(--closed)}
+ul.plain{margin:0;padding-left:1.1em;display:grid;gap:6px}
+
+/* Stat tiles */
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:4px;border-top:4px solid var(--c)}
+.tile .n{font:400 42px/1 var(--f-display);color:var(--c)}
+.tile .l{font-weight:600}
+.tile .d{font-size:13px;color:var(--muted)}
+
+/* Status chips */
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 11.5px/1 var(--f-body);padding:5px 9px;border-radius:999px;white-space:nowrap}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-ok{color:var(--ok);background:var(--ok-bg)} .s-reach{color:var(--reach);background:var(--reach-bg)}
+.s-bridge{color:var(--bridge);background:var(--bridge-bg)} .s-closed{color:var(--closed);background:var(--closed-bg)}
+.tag{display:inline-block;font:500 11px var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 6px;white-space:nowrap}
+.tag.spring{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.tag.home{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.fit{font:500 13px var(--f-mono);color:var(--accent);white-space:nowrap}
+.fit i{font-style:normal;color:var(--line)}
+
+/* Filters & lists */
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px;align-items:end}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;padding-bottom:8px}
+.check input{accent-color:var(--accent);width:16px;height:16px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.seg button{font:500 13px var(--f-body);background:none;border:0;padding:8px 12px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 .count{font:13px var(--f-mono);color:var(--muted)}
-.tablebox{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.list{display:grid;gap:8px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;border-left:4px solid var(--sc,var(--line))}
+.item summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1.4fr) auto auto;gap:6px 16px;align-items:center;padding:12px 14px}
+.item summary::-webkit-details-marker{display:none}
+.item .nm{font-weight:600;line-height:1.3}
+.item .sub{font-size:12.5px;color:var(--muted)}
+.item .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.item .body{border-top:1px dashed var(--line);padding:12px 14px 14px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.item .body dl{margin:0;display:grid;gap:3px}
+.item .body dt{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.item .body dd{margin:0;font-size:14px}
+.miss{display:flex;flex-wrap:wrap;gap:6px}
+.miss span{font-size:12.5px;padding:3px 8px;border-radius:6px;background:var(--sunk)}
+@media (max-width:760px){ .item summary{grid-template-columns:minmax(0,1fr) auto} .item summary .prog{grid-column:1/-1} .item summary .dl{grid-column:1/-1} }
+.st-ok{--sc:var(--ok)} .st-reach{--sc:var(--reach)} .st-bridge{--sc:var(--bridge)} .st-closed{--sc:var(--closed)}
+
+/* Tables */
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
 th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
-th{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--soft);position:sticky;top:0;white-space:nowrap}
+th{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--sunk);white-space:nowrap}
 tbody tr:last-child td{border-bottom:0}
-td.inst b{display:block;font-weight:600} td.inst span{color:var(--muted);font-size:12.5px}
-#uniTable{min-width:1040px}
-#ctryTable{min-width:900px}
-.nums{font-variant-numeric:tabular-nums}
-.timeline{display:grid;gap:22px}
-.month{display:grid;grid-template-columns:150px 1fr;gap:16px}
-@media (max-width:640px){.month{grid-template-columns:1fr}}
-.month h3{font:400 24px/1.1 var(--f-display);margin:0}
-.month .tag{font:12px var(--f-mono);color:var(--muted)}
-.tasks{display:grid;gap:8px;list-style:none;margin:0;padding:0}
-.tasks li{display:grid;grid-template-columns:auto 96px 1fr;gap:10px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
-@media (max-width:640px){.tasks li{grid-template-columns:auto 1fr}.tasks li .when{grid-column:2}.tasks li .what{grid-column:2}}
-.tasks input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px}
+
+/* Time chart */
+.tchart{display:grid;gap:10px}
+.trow{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:12px;align-items:center}
+@media (max-width:640px){.trow{grid-template-columns:1fr}}
+.trow .lab{font-size:13.5px;line-height:1.3}
+.trow .lab b{display:block}
+.track{position:relative;height:22px;background:var(--sunk);border-radius:6px}
+.seg-f,.seg-d{position:absolute;top:3px;bottom:3px;border-radius:4px}
+.seg-f{background:var(--bar-fnd)} .seg-d{background:var(--bar-deg)}
+.track .end{position:absolute;top:-1px;font:500 11px var(--f-mono);color:var(--muted);transform:translateX(6px);white-space:nowrap;line-height:24px}
+.axis{position:relative;height:18px;margin-left:calc(min(230px,100%) + 12px)}
+@media (max-width:640px){.axis{margin-left:0}}
+.axis span{position:absolute;font:11px var(--f-mono);color:var(--muted);transform:translateX(-50%)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+
+/* Score bars */
+.score{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.sbar{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.sbar div{height:100%;background:var(--accent)}
+
+/* Roadmap */
+.rm-filters{display:flex;flex-wrap:wrap;gap:8px}
+.rm-filters button{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:7px 12px;border-radius:999px;cursor:pointer}
+.rm-filters button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.month{display:grid;grid-template-columns:170px 1fr;gap:16px}
+@media (max-width:680px){.month{grid-template-columns:1fr}}
+.month h3{font:400 24px/1.1 var(--f-display)}
+.tasks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tasks li{display:grid;grid-template-columns:auto 92px minmax(0,1fr) auto;gap:10px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+@media (max-width:680px){.tasks li{grid-template-columns:auto minmax(0,1fr)}.tasks li .when,.tasks li .what,.tasks li .rt{grid-column:2}}
+.tasks input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent)}
 .tasks .when{font:500 12.5px var(--f-mono);color:var(--accent);padding-top:2px}
-.tasks li.done .what{text-decoration:line-through;color:var(--muted)}
-.tasks .src{font-size:12px;color:var(--muted)}
-.progress{height:6px;background:var(--soft);border-radius:99px;overflow:hidden}
-.progress div{height:100%;background:var(--accent);width:0}
-.next{display:grid;gap:10px}
-.next .row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px}
-.next .row:last-child{border-bottom:0;padding-bottom:0}
+.tasks li.done .what label{text-decoration:line-through;color:var(--muted)}
+.tasks .note{font-size:12.5px;color:var(--muted)}
+.progress{height:6px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress div{height:100%;background:var(--accent);width:0;transition:width .25s}
+.next .row{display:flex;justify-content:space-between;gap:12px;padding-block:7px;border-bottom:1px dashed var(--line);font-size:14px}
+.next .row:last-child{border-bottom:0}
 .next .d{font:500 13px var(--f-mono);color:var(--accent);white-space:nowrap}
-.btn{font:500 13px var(--f-body);background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:8px 12px;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.note{font-size:13px;color:var(--muted);max-width:80ch}
-footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);font-size:13px}
-ul.plain{margin:0;padding-left:1.1em;display:grid;gap:5px}
-.scen td:first-child{white-space:nowrap;font-weight:600}
-@media (prefers-reduced-motion:no-preference){ .panel{animation:fade .25s ease} @keyframes fade{from{opacity:.4}to{opacity:1}} }
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin:0}
+.kv dt{color:var(--muted)} .kv dd{margin:0}
+.note{font-size:13px;color:var(--muted);max-width:85ch}
+footer{border-top:1px solid var(--line);padding-block:22px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:no-preference){.panel{animation:fade .2s ease}@keyframes fade{from{opacity:.5}to{opacity:1}}}
 </style>
 
 <header class="top wrap">
-  <div class="eyebrow">Admissions dossier · prepared 2 Oct 2026 · Fall 2027 primary · Spring 2027 secondary</div>
-  <h1>Imronbek's <em>Admissions</em> Atlas</h1>
-  <p class="lede">Your plan, every university route across 33 countries, the dated roadmap, test targets and paperwork. The ratings are built from your real documents: an 11-year Uzbek Attestat with straight 5s and IELTS 7.5 (Writing 5.5).</p>
-  <div class="idcard">
-    <span>Attestat <b>UM № 1506508</b> · 17.06.2022</span>
-    <span>Grades <b>22/22 at 5/5</b></span>
-    <span>IELTS <b>7.5</b> (L8 R8.5 <b>W5.5</b> S7.5)</span>
-    <span>Age <b>22</b> → 23 on 08 Jul 2027</span>
-    <span>Passport expires <b>21 Sep 2027</b></span>
+  <div class="eyebrow">Admissions dossier · updated 2 Oct 2026 · target Fall 2027, backup Spring 2027</div>
+  <h1>Imronbek's Admissions Atlas</h1>
+  <p class="lede">Every route open to you across 33 countries, including foundation years. Set your situation below and every list recalculates: what is open now, what one score unlocks, and what needs a bridge year first.</p>
+  <div class="situation" aria-label="Your situation">
+    <div class="head">
+      <h3>Your situation</h3>
+      <span class="small muted">Saved in this browser · <button class="linkbtn" id="resetSit" type="button">Reset to today's facts</button></span>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="sHist">Study since 2022</label>
+        <select id="sHist"><option value="s1">No university study</option><option value="s2">Finished 1 full year at university</option><option value="s3">Started university, didn't finish a year</option></select></div>
+      <div class="ctl"><label for="sDtm">Uzbek entrance test (DTM)</label>
+        <select id="sDtm"><option value="no">No result / not sure</option><option value="yes">Have a passing result</option></select></div>
+      <div class="ctl"><label for="sW">IELTS Writing band</label>
+        <select id="sW"><option value="5.5">5.5 (current)</option><option value="6">6.0</option><option value="6.5">6.5</option><option value="7">7.0+</option></select></div>
+      <div class="ctl"><label for="sSat">SAT score</label>
+        <select id="sSat"><option value="0">Not taken yet</option><option value="1100">~1100</option><option value="1250">1250–1340</option><option value="1350">1350–1440</option><option value="1450">1450–1490</option><option value="1500">1500+</option></select></div>
+      <div class="ctl"><label for="sFnd">Foundation year</label>
+        <select id="sFnd"><option value="no">Not done</option><option value="yes">Completed (planning for 2028)</option></select></div>
+    </div>
   </div>
 </header>
 
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
-    <button role="tab" data-tab="plan" aria-selected="true">My plan</button>
+    <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+    <button role="tab" data-tab="routes" aria-selected="false">Routes &amp; foundations</button>
     <button role="tab" data-tab="unis" aria-selected="false">Universities</button>
-    <button role="tab" data-tab="countries" aria-selected="false">Countries</button>
     <button role="tab" data-tab="roadmap" aria-selected="false">Roadmap</button>
     <button role="tab" data-tab="tests" aria-selected="false">Tests</button>
-    <button role="tab" data-tab="docs" aria-selected="false">Documents &amp; visas</button>
+    <button role="tab" data-tab="papers" aria-selected="false">Papers &amp; visas</button>
   </div>
 </nav>
 
 <main class="wrap">
 
-<!-- PLAN -->
-<section class="panel" id="plan" data-panel="plan">
+<!-- OVERVIEW -->
+<section class="panel" data-panel="overview">
+  <div class="grid g4" id="tiles"></div>
+
   <div class="grid g2">
-    <div class="alert">
-      <h3>Do these this week</h3>
+    <div class="urgent">
+      <h3>Do these in the next 7 days</h3>
       <ol class="steps">
-        <li><b>Renew your passport.</b> It expires 21 Sep 2027, so no embassy will give you a multi-year student visa on it.</li>
-        <li><b>Book an IELTS retake</b> (computer-delivered). Target Writing 6.5+. Register with your passport this time.</li>
-        <li><b>Register for the SAT on 7 Nov 2026.</b> Registration closes 23 Oct. Backup sitting 5 Dec (register by 20 Nov).</li>
-        <li><b>Find your 2022 national entrance-test (DTM) result</b>, if you sat it. Austria, KU Leuven, VILNIUS TECH and CUHK/PolyU use it.</li>
-        <li><b>Start apostille and legalisation</b> of the Attestat. UAE, Qatar, Kuwait, Jordan and Malaysia need consular legalisation instead.</li>
-        <li><b>Check GKS-U University Track calls</b> (Korea, open Sep–Nov 2026). You are under the age-25 limit.</li>
+        <li><b>Apply for a new passport.</b> FA6404602 expires 21 Sep 2027. Every student visa, including Australian foundation visas for February, needs a passport that outlasts the course.</li>
+        <li><b>Book a computer-delivered IELTS</b> for late October. Target Writing 6.5. It is the single change that moves the most universities to "open now". Register with your passport.</li>
+        <li><b>Register for the 7 Nov SAT before 23 Oct.</b></li>
+        <li><b>Decide on a Spring 2027 foundation now.</b> UQ College (15 Feb start, apply by 11 Jan), Monash College (22 Feb), Trinity Melbourne (Jan/Feb), Holland ISC (January) and Heriot-Watt Dubai (January) all accept your profile. Visas take 6–10 weeks.</li>
+        <li><b>Look for your 2022 DTM result</b> and order apostilles of the Attestat (consular legalisation for the UAE and Malaysia).</li>
+        <li><b>Korea spring round:</b> HUFS and Chung-Ang take spring applications 12–30 Oct.</li>
       </ol>
     </div>
-    <div class="box">
-      <h3>Coming up next</h3>
+    <div class="card">
+      <h3>Next deadlines</h3>
       <div class="next" id="nextList"></div>
-      <p class="note" style="margin-top:10px">Counted from today's date on your device.</p>
+      <p class="note">Counted from your device's date. Full list in the Roadmap tab.</p>
     </div>
   </div>
 
-  <div>
-    <h2>The strategy in one page</h2>
-    <p class="muted" style="max-width:72ch;margin-top:6px">Your grades are perfect. What limits you is that your school system ran 11 years, while many countries count to 12. The plan is to apply where 11 years is accepted, fix the one weak score (IELTS Writing), and use a one-year bridge only for countries that demand 12.</p>
+  <div class="section-head">
+    <div class="eyebrow">Recommended strategy</div>
+    <h2>Run two tracks at once</h2>
+    <p class="muted">Your grades are perfect; the limit is 11 years of school where many systems count 12. The strongest plan applies directly where 11 years is accepted <em>and</em> starts a foundation in February as a parallel track. A guaranteed-progression foundation finishes at about the same time as a direct start, so it is a real option, not a fallback.</p>
   </div>
-
   <div class="grid g3">
-    <div class="box">
-      <span class="pill cA">DIRECT ENTRY</span>
-      <h3 style="margin-top:10px">17 countries accept you now</h3>
-      <p class="muted">USA, Türkiye, UAE, Sweden, Hungary, Finland, Hong Kong, South Korea, China, Canada, Latvia, Lithuania, Portugal, Spain, France (private schools), Belgium (Flanders), Netherlands (applied-sciences universities). Plus US branch campuses in Qatar.</p>
+    <div class="card emph">
+      <span class="eyebrow">Track 1 · main</span>
+      <h3>Direct entry, Fall 2027</h3>
+      <p class="muted small">Apply to 15–20 programmes where 11 years is accepted: US (incl. Columbia GS), UAE (AUS, Khalifa), Türkiye (Koç, Sabancı, Bilkent, METU), Hong Kong (HKU, HKBU), Korea, Sweden, Finland, Hungary, Baltics, Portugal, Canada.</p>
+      <p class="small"><b>Depends on:</b> Writing 6.5 and SAT 1350+ by December.</p>
     </div>
-    <div class="box">
-      <span class="pill cC">ONE-YEAR BRIDGE</span>
-      <h3 style="margin-top:10px">10 countries want 12 years</h3>
-      <p class="muted">Germany (Studienkolleg), Italy, Norway, Denmark, Dutch research universities, Malta, Iceland, Malaysian public universities (except UUM), Singapore, most of Australia. A foundation year, or one year of university, opens them.</p>
+    <div class="card emph">
+      <span class="eyebrow">Track 2 · parallel</span>
+      <h3>Foundation from February 2027</h3>
+      <p class="muted small">Australia (UQ College Accelerated, Monash College, Trinity Fast Track) leads to a guaranteed Go8 place in Feb 2028 and a degree finished by late 2030, about when a US degree from Sept 2027 would end. Alternatives: Holland ISC (Jan → Hanze), Heriot-Watt Dubai (Jan).</p>
+      <p class="small"><b>Depends on:</b> new passport, offer by mid-December, student visa in January.</p>
     </div>
-    <div class="box">
-      <span class="pill cD">CLOSED FOR 2027</span>
-      <h3 style="margin-top:10px">Skip these fees</h3>
-      <p class="muted">Sciences Po, NYU Abu Dhabi, University of Bahrain, Kuwait University scholarships, Saudi government universities (after ~17 Jun 2027), University of Luxembourg, Qatar University, Jordan, Türkiye Bursları, Texas A&amp;M Qatar, women-only universities.</p>
+    <div class="card">
+      <span class="eyebrow">Track 3 · safety</span>
+      <h3>Bridge year for 2028</h3>
+      <p class="muted small">If 2027 offers disappoint: NCUK Foundation at STARS (Tashkent, no visa, guaranteed partners incl. UNSW, UWA, RMIT, Alberta), FH Aachen English Freshman Program (Germany), Pavia Foundation (Italy), or Year 1 at a direct-entry university and reapply with 1 year done.</p>
     </div>
   </div>
+
+  <div class="card">
+    <div class="toolbar"><h3>When would you graduate? Routes drawn to scale</h3>
+      <div class="legend"><span><i style="background:var(--bar-fnd)"></i>Foundation / bridge</span><span><i style="background:var(--bar-deg)"></i>Bachelor's degree</span></div></div>
+    <div class="tchart" id="tchart"></div>
+    <p class="note">Approximate start and finish months from published intakes. Australian degrees are 3 years; most US and Dutch applied-sciences degrees are 4; German applied-sciences degrees 3.5.</p>
+  </div>
+
+  <div class="card">
+    <h3>How admissions offices read your file</h3>
+    <div class="tablebox" style="border:0">
+      <table>
+        <thead><tr><th>Factor</th><th>You</th><th>Consequence</th></tr></thead>
+        <tbody>
+          <tr><td>Grades</td><td>22/22 subjects at 5/5</td><td>Top of every scale: 100%, US 4.0, German 1.0. Meets every grade threshold found, including Trinity Fast Track (average 5) and UQ Accelerated (5 in top four subjects).</td></tr>
+          <tr><td>School length</td><td>11 years (post-2017 system)</td><td>Accepted directly in about 17 countries. Elsewhere it needs one bridge year. Many foreign "Uzbekistan" pages still describe the old 12-year lyceum system, so say explicitly that yours is the 11-year school certificate.</td></tr>
+          <tr><td>English</td><td>IELTS 7.5, Writing 5.5</td><td>Passes overall and "no band below 5.5" rules. Fails "no band below 6.0" (Toronto, UBC, McGill, Helsinki, Aalto, Australian degrees, UIUC). Foundations accept you now (most need 5.0–5.5 per band). Expires 2 Sep 2027.</td></tr>
+          <tr><td>Time since school</td><td>Graduated June 2022</td><td>Closes Sciences Po, NYU Abu Dhabi, University of Bahrain, Kuwait University scholarships and most Saudi state universities. Everywhere else, explain the gap month by month.</td></tr>
+          <tr><td>Age</td><td>22 (23 in July 2027)</td><td>Within GKS (&lt;25), CSC (&lt;25), Peking University (18–25), Saudi (17–25). Too old for Türkiye Bursları (&lt;21).</td></tr>
+          <tr><td>Languages</td><td>Uzbek, Russian, English</td><td>Russian opens Shenzhen MSU-BIT University; Uzbek makes Turkish quick to learn.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTES & FOUNDATIONS -->
+<section class="panel" data-panel="routes" hidden>
+  <div class="section-head">
+    <div class="eyebrow">Routes compared</div>
+    <h2>Which route is worth a year of your life?</h2>
+    <p class="muted">Each route scored 1–5 on six criteria, weighted by what matters most for you: time to degree and certainty count triple, access to strong universities, visa load and how widely the result is recognised count double, the language you would still need to learn counts once.</p>
+  </div>
+  <div class="grid g3" id="routeCards"></div>
 
   <div class="grid g2">
-    <div class="box">
-      <h3>Fall 2027 application portfolio (main choice)</h3>
-      <p class="muted" style="margin-bottom:10px">Apply to 18–25 programmes spread across these tiers so one bad outcome does not sink the year.</p>
-      <ul class="plain">
-        <li><b>Reach:</b> Columbia School of General Studies (built for a 1+ year break), MIT/Stanford/Ivies, HKU, KAIST, MBZUAI, Koç, Boğaziçi/METU.</li>
-        <li><b>Target:</b> AUS and Khalifa (UAE), HKBU, CUHK-Shenzhen, Yonsei UIC, Corvinus, ELTE, Aalto/Helsinki (after Writing 6.0), Tampere, Jönköping, Nova SBE, IE University, Alberta, UofT/UBC/McGill (after Writing 6.0), US flagships and liberal arts colleges.</li>
-        <li><b>Safety:</b> Sabancı/Bilkent/Bahçeşehir, RTU and University of Latvia, Vilnius University and KTU, Linnaeus, Debrecen, Finnish UAS (Metropolia, Haaga-Helia), Dutch UAS (Saxion, Hanze), University of Sharjah.</li>
-        <li><b>Bridge backup:</b> Trinity College Foundation Fast Track (Melbourne), FH Aachen Freshman Program (Germany), Pavia Foundation (Italy).</li>
+    <div class="card">
+      <h3>A foundation year is worth it when…</h3>
+      <ul class="plain small">
+        <li>It comes with <b>guaranteed progression</b> to a named university (UQ College → UQ, Monash College → Monash, Trinity → Melbourne, Holland ISC → partners, NCUK → 80+ partners).</li>
+        <li>The target country counts it as the missing 12th year: <b>Australia, Italy</b> (Ministry rule explicitly accepts a foundation), <b>Malta, Malaysia, UK-model campuses in Dubai</b>, Canada's UTP colleges.</li>
+        <li>For Germany, it ends in the <b>state Feststellungsprüfung</b> (FH Aachen, CBS Prep4University). That opens every German university; a private foundation opens only its own.</li>
+        <li>It starts in <b>February 2027</b>, so you lose almost no time (see the chart on Overview).</li>
       </ul>
     </div>
-    <div class="box">
-      <h3>Spring 2027 options (second choice)</h3>
-      <p class="muted" style="margin-bottom:10px">Visas take 4–10 weeks, so only these are realistic. Apply in October–November 2026.</p>
-      <ul class="plain">
-        <li><b>UAE, January:</b> AUS, University of Sharjah, Abu Dhabi University, UOWD, Heriot-Watt Dubai.</li>
-        <li><b>Malaysia, Feb–Mar:</b> UUM direct entry (your certificate is valid until 2027), or foundation at Monash (MUFY), Taylor's, APU, Nottingham.</li>
-        <li><b>Australia, Feb–Mar:</b> Trinity Fast Track, UNSW College, Monash College foundations.</li>
-        <li><b>Türkiye, February:</b> private (foundation) universities' spring semester.</li>
-        <li><b>South Korea, March:</b> mid-tier universities still taking spring applications, or a university Korean-language institute.</li>
-        <li><b>Check this week:</b> Dutch UAS February intakes, Latvian/Lithuanian February intakes, IE University January.</li>
+    <div class="card">
+      <h3>…and wasted when</h3>
+      <ul class="plain small">
+        <li>The country already accepts you directly (US, Sweden, Finland, Hungary, Türkiye, UAE, Korea, Hong Kong…).</li>
+        <li><b>Norway</b> requires one year of <em>higher education</em>; a foundation does not count. <b>Denmark</b> likewise wants university study or Danish A/B-level courses.</li>
+        <li><b>Erasmus Rotterdam and Tilburg</b> state that foundation certificates are not accepted (except possibly through their Holland ISC partner route; confirm).</li>
+        <li><b>NTU/NUS Singapore</b> want AP or A-level exams, not a foundation.</li>
+        <li>Closed or unsuitable: <b>Twente Pathway College</b> took its last intake in Sept 2026; <b>VU's VASVU</b> is taught in Dutch for EU/resident students; <b>Debrecen's foundation</b> asks for 12 years (and Debrecen admits you directly anyway).</li>
       </ul>
     </div>
   </div>
 
-  <div class="box">
-    <h3>Your profile, read the way admissions offices read it</h3>
-    <div class="tablebox" style="border:0">
-    <table>
-      <thead><tr><th>Factor</th><th>Your evidence</th><th>Effect</th></tr></thead>
-      <tbody>
-        <tr><td>Grades</td><td>22/22 subjects at 5/5</td><td>Top of every scale (100%, GPA 4.0, German 1.0). A major strength.</td></tr>
-        <tr><td>Length of schooling</td><td>11 years (post-2017 Uzbek school)</td><td>The main constraint. Triggers bridge years in 12-year countries.</td></tr>
-        <tr><td>English</td><td>IELTS 7.5, Writing 5.5</td><td>Passes overall minimums and "no band below 5.5" (Sweden, HKU). Fails "no band below 6.0" (Toronto, UBC, McGill, Helsinki, Aalto, most Australian degrees).</td></tr>
-        <tr><td>Time since school</td><td>Graduated June 2022</td><td>Triggers recency limits at Sciences Po, NYUAD, Bahrain, Kuwait, Saudi universities. Elsewhere you must explain the gap.</td></tr>
-        <tr><td>Age</td><td>22, turning 23 in July 2027</td><td>Fits GKS (&lt;25), CSC (&lt;25), Peking University (18–25), Saudi (17–25). Too old for Türkiye Bursları (&lt;21). Makes you eligible for the Dutch 21+ entrance exam route.</td></tr>
-        <tr><td>Languages</td><td>Uzbek, Russian, English</td><td>Russian opens Shenzhen MSU-BIT University. Uzbek speeds up learning Turkish.</td></tr>
-      </tbody>
-    </table>
-    </div>
+  <div class="section-head">
+    <div class="eyebrow">Foundation & pathway programmes</div>
+    <h2>Foundations that accept your Attestat</h2>
   </div>
-
-  <div class="box">
-    <h3>What changes if your 2022–2026 history differs</h3>
-    <p class="muted" style="margin-bottom:10px">Everything on this site assumes S1. Tell your advisor which row is true for you.</p>
-    <div class="tablebox" style="border:0">
-    <table class="scen">
-      <thead><tr><th>Scenario</th><th>Meaning</th><th>Effect</th></tr></thead>
-      <tbody>
-        <tr><td>S1</td><td>No university study since 2022</td><td>As shown on this site. US: first-year applicant.</td></tr>
-        <tr><td>S2</td><td>Completed 1 full year at a university, all exams passed</td><td>Germany, Italy, Norway, Denmark, Dutch research universities and Australia become direct entry. US: you apply as a transfer.</td></tr>
-        <tr><td>S3</td><td>Enrolled but did not finish a year</td><td>No European benefit. US: still a transfer applicant. You must disclose it.</td></tr>
-        <tr><td>+DTM</td><td>You hold a national entrance-test result</td><td>Austria, KU Leuven, VILNIUS TECH and CUHK/PolyU move up a category.</td></tr>
-      </tbody>
-    </table>
-    </div>
+  <div class="filters">
+    <div class="ctl"><label for="ffCountry">Country</label><select id="ffCountry"><option value="">All</option></select></div>
+    <div class="ctl"><label for="ffGuar">Progression</label><select id="ffGuar"><option value="">Any</option><option value="g">Guaranteed to a university</option><option value="n">Nationwide recognition</option></select></div>
+    <label class="check" for="ffSpring"><input type="checkbox" id="ffSpring"> Starts Jan–Mar 2027</label>
+    <label class="check" for="ffHome"><input type="checkbox" id="ffHome"> Study from Tashkent</label>
   </div>
+  <div class="count" id="fCount"></div>
+  <div class="list" id="fList"></div>
 </section>
 
 <!-- UNIVERSITIES -->
-<section class="panel" id="unis" data-panel="unis" hidden>
-  <div>
-    <h2>University list</h2>
-    <p class="muted" style="max-width:74ch;margin-top:6px">Named institutions and routes across all 33 countries, rated for your exact profile. Rules apply by institution type, so a university not listed follows the rule of its country and type (see the Countries tab).</p>
+<section class="panel" data-panel="unis" hidden>
+  <div class="section-head">
+    <div class="eyebrow">University list</div>
+    <h2>Every named route, rated for your situation</h2>
+    <p class="muted">Status recalculates from the "Your situation" panel. Open a row to see the rule, what you are missing, the deadline and the next step. A university not listed follows its country's rule (switch to "By country").</p>
   </div>
-  <div class="legend">
-    <span><span class="pill cA">A</span> Direct entry now</span>
-    <span><span class="pill cB">B</span> Needs a score, exam or document</span>
-    <span><span class="pill cC">C</span> Bridge year first</span>
-    <span><span class="pill cD">D</span> Not eligible</span>
-    <span><span class="stars">★★★★★</span> Fit, 1–5</span>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="View"><button type="button" data-view="inst" aria-pressed="true">By university</button><button type="button" data-view="ctry" aria-pressed="false">By country</button></div>
+    <div class="legend"><span class="chip s-ok">Open now</span><span class="chip s-reach">Needs a score or document</span><span class="chip s-bridge">Bridge year first</span><span class="chip s-closed">Closed</span></div>
   </div>
-  <div class="filters">
-    <label for="fSearch">Search<input type="search" id="fSearch" placeholder="University, programme…"></label>
-    <label for="fRegion">Region<select id="fRegion"><option value="">All regions</option></select></label>
-    <label for="fCountry">Country<select id="fCountry"><option value="">All countries</option></select></label>
-    <label for="fCat">Category<select id="fCat"><option value="">All</option><option value="A">A · Direct</option><option value="B">B · Conditional</option><option value="C">C · Bridge</option><option value="D">D · Ineligible</option></select></label>
-    <label for="fFit">Min fit<select id="fFit"><option value="0">Any</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select></label>
-    <label class="chk" for="fSpring"><input type="checkbox" id="fSpring"> Spring 2027 start possible</label>
-    <button class="btn ghost" id="fReset" type="button">Reset</button>
+  <div id="instView" class="grid" style="gap:14px">
+    <div class="filters">
+      <div class="ctl"><label for="uQ">Search</label><input type="search" id="uQ" placeholder="University or programme"></div>
+      <div class="ctl"><label for="uRegion">Region</label><select id="uRegion"><option value="">All regions</option><option>Europe</option><option>Asia &amp; Middle East</option><option>Americas &amp; Oceania</option></select></div>
+      <div class="ctl"><label for="uCountry">Country</label><select id="uCountry"><option value="">All countries</option></select></div>
+      <div class="ctl"><label for="uStatus">Status</label><select id="uStatus"><option value="">Any status</option><option value="ok">Open now</option><option value="reach">Needs a score or document</option><option value="bridge">Bridge year first</option><option value="closed">Closed</option></select></div>
+      <div class="ctl"><label for="uSort">Sort</label><select id="uSort"><option value="status">Status, then fit</option><option value="fit">Fit</option><option value="country">Country</option></select></div>
+      <label class="check" for="uSpring"><input type="checkbox" id="uSpring"> Spring 2027 start possible</label>
+    </div>
+    <div class="count" id="uCount"></div>
+    <div class="list" id="uList"></div>
   </div>
-  <div class="count" id="uniCount"></div>
-  <div class="tablebox">
-    <table id="uniTable">
-      <thead><tr><th>University</th><th>Country</th><th>Programme / track</th><th>Cat.</th><th>Key eligibility rule</th><th>Tests: now → needed</th><th>Gap / age</th><th>Deadline</th><th>Fit</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-</section>
-
-<!-- COUNTRIES -->
-<section class="panel" id="countries" data-panel="countries" hidden>
-  <div>
-    <h2>All 33 countries</h2>
-    <p class="muted" style="max-width:74ch;margin-top:6px">How each country treats an 11-year Uzbek Attestat, sorted by fit. This rule covers every institution of that type in the country, including ones not named in the University list.</p>
-  </div>
-  <div class="tablebox">
-    <table id="ctryTable">
-      <thead><tr><th>Country</th><th>Cat.</th><th>How your Attestat is treated</th><th>Main blocker</th><th>Spring 2027</th><th>Fall 2027 deadline</th><th>Fit</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <div class="box">
-    <h3>Five ways countries handle an 11-year certificate</h3>
-    <ul class="plain">
-      <li><b>Accepted if it opens university at home:</b> Sweden, Finland, Hungary, Latvia, Lithuania, Portugal, Flanders, France, Türkiye, UAE, Korea, China, Hong Kong, USA, Canada.</li>
-      <li><b>Accepted with the national entrance-test result:</b> Austria, KU Leuven, VILNIUS TECH, CUHK/PolyU.</li>
-      <li><b>Counted to 12 years, bridge needed:</b> Italy, Luxembourg, Norway, Germany, Denmark, Dutch research universities, Malta, Iceland, Qatar University, Jordan, Malaysian public universities, Singapore, most of Australia, UK-model branch campuses.</li>
-      <li><b>Homologation decision:</b> Spain (likely approved, not guaranteed).</li>
-      <li><b>Certificate too old:</b> Sciences Po, NYUAD, University of Bahrain, Kuwait University scholarships, Saudi government universities.</li>
-    </ul>
+  <div id="ctryView" hidden>
+    <div class="tablebox">
+      <table style="min-width:980px">
+        <thead><tr><th>Country</th><th>Best status for you</th><th>How your 11-year Attestat is treated</th><th>Does a foundation help?</th><th>Spring 2027</th><th>Fall 2027 deadline</th><th>Fit</th></tr></thead>
+        <tbody id="cBody"></tbody>
+      </table>
+    </div>
   </div>
 </section>
 
 <!-- ROADMAP -->
-<section class="panel" id="roadmap" data-panel="roadmap" hidden>
-  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:end">
-    <div>
-      <h2>Roadmap, Oct 2026 → Sep 2027</h2>
-      <p class="muted" style="margin-top:6px">Tick tasks as you finish them. Progress is saved in this browser only.</p>
-    </div>
-    <div style="min-width:220px;display:grid;gap:6px">
-      <div class="count" id="progText"></div>
-      <div class="progress"><div id="progBar"></div></div>
-    </div>
+<section class="panel" data-panel="roadmap" hidden>
+  <div class="toolbar">
+    <div class="section-head"><div class="eyebrow">Oct 2026 → Sep 2027</div><h2>Roadmap</h2><p class="muted">Tick tasks off as you go. Ticks are saved in this browser only.</p></div>
+    <div style="min-width:240px;display:grid;gap:6px"><div class="count" id="progText"></div><div class="progress"><div id="progBar"></div></div></div>
   </div>
-  <div class="timeline" id="timeline"></div>
-  <div class="box">
-    <h3>Plan B for 2028 entry</h3>
-    <ul class="plain">
-      <li>Do a bridge year in 2027/28: FH Aachen Freshman Program or Constructor Foundation (Germany), Pavia or Ca' Foscari Foundation (Italy), Holland ISC (Netherlands), Trinity, UNSW College or Monash College (Australia).</li>
-      <li>Or finish year 1 at a direct-entry university (Hungary, Türkiye, Baltics, Korea) and reapply in 2028 as S2, which opens Germany, Italy, Norway, Denmark and Australia directly.</li>
-      <li>For Singapore (NTU/NUS): take 3 AP exams in May 2027 (order by mid-Nov 2026) plus SAT 1250+.</li>
-      <li>Sit the Uzbek national entrance test in summer 2027 to unlock Austria, KU Leuven and VILNIUS TECH for 2028.</li>
-    </ul>
+  <div class="rm-filters" role="group" aria-label="Filter tasks">
+    <button type="button" data-rf="" aria-pressed="true">All tasks</button>
+    <button type="button" data-rf="admin" aria-pressed="false">Paperwork</button>
+    <button type="button" data-rf="test" aria-pressed="false">Tests</button>
+    <button type="button" data-rf="direct" aria-pressed="false">Direct applications</button>
+    <button type="button" data-rf="fnd" aria-pressed="false">Foundations</button>
   </div>
+  <div class="grid" style="gap:24px" id="timeline"></div>
 </section>
 
 <!-- TESTS -->
-<section class="panel" id="tests" data-panel="tests" hidden>
-  <h2>Tests: what each score unlocks</h2>
-  <div class="tablebox">
-    <table style="min-width:760px">
-      <thead><tr><th>Score rule</th><th>Who uses it</th><th>Now (W 5.5)</th><th>With W 6.0</th><th>With W 6.5</th></tr></thead>
-      <tbody>
-        <tr><td>Overall only (6.0–7.0)</td><td>Most US universities, UAE, Türkiye, Korea, China, Malaysia, Hungary, Portugal, Baltics, WU Vienna</td><td><span class="pill cA">PASS</span></td><td><span class="pill cA">PASS</span></td><td><span class="pill cA">PASS</span></td></tr>
-        <tr><td>No band below 5.5</td><td>Sweden (English 6), HKU, Tampere, many Finnish UAS</td><td><span class="pill cA">PASS</span></td><td><span class="pill cA">PASS</span></td><td><span class="pill cA">PASS</span></td></tr>
-        <tr><td>No band below 6.0</td><td>Toronto, UBC, McGill, Helsinki, Aalto, UIUC, most Australian degrees, many Dutch and UK-model programmes</td><td><span class="pill cD">FAIL</span></td><td><span class="pill cA">PASS</span></td><td><span class="pill cA">PASS</span></td></tr>
-        <tr><td>Writing 6.5</td><td>Waterloo (also Speaking 6.5), selective Dutch and French programmes</td><td><span class="pill cD">FAIL</span></td><td><span class="pill cD">FAIL</span></td><td><span class="pill cA">PASS</span></td></tr>
-        <tr><td>Valid at programme start</td><td>Netherlands, Australian visa, Helsinki</td><td><span class="pill cD">EXPIRES 2 SEP 2027</span></td><td colspan="2">A new test resets the 2-year clock</td></tr>
-      </tbody>
-    </table>
+<section class="panel" data-panel="tests" hidden>
+  <div class="section-head"><div class="eyebrow">Scores</div><h2>What each score unlocks</h2>
+    <p class="muted">Counts below come from the university list. Change Writing or SAT in "Your situation" to watch them move.</p></div>
+  <div class="grid g2">
+    <div class="card"><h3>Effect of your IELTS Writing band</h3><div id="wImpact" class="grid" style="gap:10px"></div></div>
+    <div class="card"><h3>Effect of your SAT score</h3><div id="satImpact" class="grid" style="gap:10px"></div></div>
   </div>
   <div class="grid g2">
-    <div class="box">
-      <h3>IELTS Writing plan (target 6.5+)</h3>
-      <ul class="plain">
-        <li>Task 2 is two-thirds of the band. Answer every part of the question; that is the usual reason for 5.5.</li>
-        <li>Task 1 needs a clear overview sentence, or the band is capped at 5.</li>
-        <li>Fewer mistakes beat rare words. Aim for more than half your sentences error-free.</li>
-        <li>Two full timed writing tests a week with examiner-style feedback.</li>
-        <li>Computer-delivered IELTS allows a One Skill Retake of Writing within 60 days. Check that your target schools accept it.</li>
-        <li>Alternatives if Writing stalls: TOEFL iBT, Duolingo English Test, PTE Academic.</li>
+    <div class="card">
+      <h3>IELTS Writing: getting from 5.5 to 6.5</h3>
+      <ul class="plain small">
+        <li><b>Task 2 is two-thirds of the band.</b> 5.5 usually means part of the question went unanswered. Plan four paragraphs: clear position, two developed reasons with examples, conclusion. 260–290 words.</li>
+        <li><b>Task 1 needs an overview sentence.</b> Without it, that task is capped at band 5.</li>
+        <li><b>Accuracy beats rare words.</b> Aim for more than half of your sentences error-free.</li>
+        <li>Two timed practice tests a week with examiner-style feedback, typed if you sit the computer test.</li>
+        <li><b>Safety net:</b> the computer-delivered test allows a One Skill Retake of Writing within 60 days. Check that your targets accept it.</li>
+        <li>If Writing stalls: TOEFL iBT, Duolingo (most US schools), PTE (Australia).</li>
       </ul>
     </div>
-    <div class="box">
+    <div class="card">
       <h3>SAT plan</h3>
       <dl class="kv">
-        <dt>Dates</dt><dd class="nums">7 Nov 2026 (reg. 23 Oct) · 5 Dec 2026 (reg. 20 Nov) · 6 Mar 2027 (reg. 19 Feb)</dd>
-        <dt>1250</dt><dd>NTU, UNSW, ANU minimums</dd>
-        <dt>1300–1400</dt><dd>METU, Boğaziçi, Koç; Aalto range; strong US public universities</dd>
-        <dt>1450–1550</dt><dd>Top 30 US, HKU/HKUST engineering and business</dd>
-        <dt>Math 700+</dt><dd>Khalifa University; Aalto preference</dd>
+        <dt>Dates</dt><dd class="nums">7 Nov 2026 (register by 23 Oct) · 5 Dec 2026 (by 20 Nov) · 6 Mar 2027 (by 19 Feb)</dd>
+        <dt>1200–1250</dt><dd>Koç general minimum; NTU/UNSW/ANU floors</dd>
+        <dt>1300–1400</dt><dd>METU, ITU, Boğaziçi; Aalto range; CUHK/HKUST evidence</dd>
+        <dt>1450–1550</dt><dd>Top-30 US, MIT, Ivies</dd>
+        <dt>Math 700+</dt><dd>Khalifa (advised); Aalto preference</dd>
       </dl>
     </div>
   </div>
   <div class="tablebox">
     <table style="min-width:720px">
-      <thead><tr><th>Other exam</th><th>Used by</th><th>When</th></tr></thead>
+      <thead><tr><th>Other test</th><th>Who uses it</th><th>When</th></tr></thead>
       <tbody>
+        <tr><td>FH Aachen Freshman entrance exam</td><td>German English-track Studienkolleg</td><td class="nums">Register by 12 Nov 2026 · exam 3 Dec 2026 (or TestAS by 15 Jul 2027)</td></tr>
         <tr><td>TR-YÖS 2027/1</td><td>Turkish public universities</td><td class="nums">Apply 1–15 Mar 2027 · exam 16 May · results 10 Jun</td></tr>
-        <tr><td>TOPIK</td><td>Korean-taught programmes; TOPIK 4 for the visa at non-certified universities</td><td>~6 sittings a year, including Tashkent</td></tr>
-        <tr><td>HSK 4/5</td><td>Chinese-taught degrees (or take a preparatory year)</td><td>Monthly</td></tr>
-        <tr><td>TestAS</td><td>Constructor University foundation (score ≥190)</td><td>Several a year</td></tr>
-        <tr><td>AP exams (3 subjects, 4–5)</td><td>NTU/NUS Singapore; Malta</td><td>May 2027 → 2028 entry</td></tr>
-        <tr><td>Uzbek national entrance test</td><td>Austria, KU Leuven, VILNIUS TECH, CUHK/PolyU</td><td>Summer each year</td></tr>
-        <tr><td>University tests</td><td>Hungary, RTU Latvia, Finnish entrance exams, Tsinghua/PKU, Bocconi, IE, WU Vienna</td><td>Per university</td></tr>
+        <tr><td>TestAS</td><td>Constructor foundation (≥190); FH Aachen alternative route</td><td>Several sittings a year</td></tr>
+        <tr><td>TOPIK</td><td>Korean-taught programmes; TOPIK 4 for the visa at non-certified universities</td><td>About 6 sittings a year, including Tashkent</td></tr>
+        <tr><td>HSK 4/5</td><td>Chinese-taught degrees</td><td>Monthly</td></tr>
+        <tr><td>AP exams (3 subjects, 4–5)</td><td>NTU/NUS Singapore</td><td>May 2027 → 2028 entry</td></tr>
+        <tr><td>Uzbek entrance test (DTM)</td><td>Austria, KU Leuven, VUB, VILNIUS TECH, CUHK/PolyU</td><td>Summer each year</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- DOCS -->
-<section class="panel" id="docs" data-panel="docs" hidden>
-  <h2>Documents &amp; visas</h2>
+<!-- PAPERS -->
+<section class="panel" data-panel="papers" hidden>
+  <div class="section-head"><div class="eyebrow">Paperwork</div><h2>Papers &amp; visas</h2></div>
   <div class="grid g2">
-    <div class="box">
-      <h3>Your document kit</h3>
-      <ul class="plain">
-        <li>Attestat + supplement, apostilled or legalised, with 5–8 certified copies. The QR code lets schools verify it online.</li>
-        <li>Grade 9–11 transcripts from School No. 42, Uchkuprik.</li>
-        <li>A school letter describing your Algebra &amp; Analysis, Physics, Chemistry and Informatics courses.</li>
-        <li>National entrance-test (DTM) certificate, if one exists.</li>
-        <li>New passport (old one expires 21 Sep 2027).</li>
-        <li>New IELTS and SAT score reports.</li>
-        <li>CV plus a month-by-month account of 2022–2026, with proof (job letters, certificates).</li>
-        <li>2–3 recommendation letters.</li>
-        <li>Military-registration or deferment document from your district defence office.</li>
+    <div class="card">
+      <h3>Document kit</h3>
+      <ul class="plain small">
+        <li>Attestat + supplement, apostilled or legalised, with 5–8 certified copies. The QR code allows online verification.</li>
+        <li>Grade 9–11 transcripts from School No. 42, Uchkuprik (needed by Spain, Corvinus, Nova, AUS, foundations asking for "last 2 years").</li>
+        <li>School letter describing Algebra &amp; Analysis, Physics, Chemistry and Informatics content (for maths prerequisites).</li>
+        <li>DTM certificate, if one exists.</li>
+        <li>New passport; new IELTS and SAT reports.</li>
+        <li>CV plus a month-by-month account of 2022–2026 with proof. Visa officers (especially Australia's Genuine Student test) will ask.</li>
+        <li>2–3 recommendation letters; military registration or deferment document.</li>
+        <li>Use the passport spelling KHAYDAROV IMRONBEK on every form and translation.</li>
       </ul>
-      <p class="note" style="margin-top:10px">Use the passport spelling KHAYDAROV IMRONBEK everywhere, and ask translators to match it exactly.</p>
     </div>
-    <div class="box">
-      <h3>Legalisation by destination</h3>
-      <dl class="kv">
-        <dt>Apostille</dt><dd>All 18 European countries, USA, Canada, Australia, Korea, China, Hong Kong, Türkiye, Saudi Arabia, Bahrain</dd>
-        <dt>Consular</dt><dd>UAE, Qatar, Kuwait, Jordan, Malaysia (Uzbek MFA → their embassy → their MFA). Allow 3–6 weeks.</dd>
+    <div class="card">
+      <h3>Legalisation</h3>
+      <dl class="kv small">
+        <dt>Apostille</dt><dd>All European countries, US, Canada, Australia, Korea, China, Hong Kong, Türkiye, Saudi Arabia, Bahrain</dd>
+        <dt>Consular</dt><dd>UAE, Qatar, Kuwait, Jordan, Malaysia: Uzbek MFA → their embassy → their MFA. Allow 3–6 weeks.</dd>
       </dl>
-      <h3 style="margin-top:16px">Recognition bodies</h3>
-      <dl class="kv">
-        <dt>Germany</dt><dd>uni-assist</dd>
-        <dt>Italy</dt><dd>CIMEA + Universitaly</dd>
+      <h3>Recognition offices</h3>
+      <dl class="kv small">
+        <dt>Italy</dt><dd>CIMEA or Declaration of Value + Universitaly (Pavia Foundation also asks for the Declaration of Value)</dd>
+        <dt>Germany</dt><dd>uni-assist / Studienkolleg</dd>
         <dt>Spain</dt><dd>Homologation → UNEDasiss</dd>
         <dt>Türkiye</dt><dd>MEB Denklik</dd>
         <dt>UAE</dt><dd>Ministry equivalency (online)</dd>
-        <dt>Latvia</dt><dd>AIC (~1 month)</dd>
-        <dt>Lithuania</dt><dd>SKVC or university</dd>
+        <dt>Latvia / Lithuania</dt><dd>AIC / SKVC or university</dd>
         <dt>Malta</dt><dd>MQRIC</dd>
-        <dt>Luxembourg</dt><dd>Ministry (needs 12 years)</dd>
       </dl>
     </div>
   </div>
   <div class="tablebox">
-    <table style="min-width:720px">
-      <thead><tr><th>Visa</th><th>What to watch</th></tr></thead>
+    <table style="min-width:760px">
+      <thead><tr><th>Visa</th><th>Watch for</th></tr></thead>
       <tbody>
-        <tr><td>USA (F-1)</td><td>Uzbekistan is not on the Jan 2026 entry-ban list. It is on the immigrant-visa pause, which does not affect students. Interview in Tashkent; public social media; passport valid 6+ months beyond the stay.</td></tr>
-        <tr><td>Canada</td><td>Provincial Attestation Letter needed for undergraduates (2027 cap: 150,000 new students). Québec also needs a CAQ.</td></tr>
-        <tr><td>Australia (500)</td><td>Genuine Student answers must explain the 5-year gap. English test under 2 years old at lodgement.</td></tr>
-        <tr><td>Schengen countries</td><td>Long appointment queues in Tashkent (especially Germany). Book as soon as you are admitted.</td></tr>
-        <tr><td>South Korea (D-2)</td><td>KDB Bank Uzbekistan deposit, TB certificate, notarised family documents, TOPIK 4 at non-certified universities.</td></tr>
+        <tr><td>Australia (500)</td><td>One visa can cover foundation + degree (packaged CoE). Genuine Student answers must explain the 5-year gap. National planning level 295,000 for 2026 and 2027; apply early. English test under 2 years old.</td></tr>
+        <tr><td>USA (F-1)</td><td>Uzbekistan is not on the Jan 2026 entry-restriction list. It is on the immigrant-visa pause, which does not affect students. Interview in Tashkent; passport valid 6+ months beyond the stay.</td></tr>
+        <tr><td>Canada</td><td>Provincial Attestation Letter for undergraduates and pathway colleges (2027 target: 150,000 new students). Québec also needs a CAQ.</td></tr>
+        <tr><td>Netherlands / Germany / Italy</td><td>Residence permit or national visa via the institution. German embassy queues in Tashkent are long. Italian consulates may ask for Italian B1 for the Pavia Foundation.</td></tr>
+        <tr><td>South Korea (D-2 / D-4)</td><td>KDB Bank Uzbekistan deposit, TB certificate, notarised family documents; TOPIK 4 at non-certified universities.</td></tr>
+        <tr><td>UAE / Malaysia</td><td>University-sponsored residence / EMGS (4–8 weeks).</td></tr>
         <tr><td>China (X1)</td><td>JW202 form plus a medical exam under 6 months old.</td></tr>
-        <tr><td>Malaysia</td><td>EMGS approval takes 4–8 weeks.</td></tr>
-        <tr><td>Italy</td><td>Universitaly pre-enrolment; visa by 31 Oct 2027 at the latest.</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="note">Rules were researched in October 2026, partly from search extracts of official pages. Get written confirmation from each admissions office before paying a fee, especially for Dutch research universities, Denmark, Australia, Spanish homologation and Gulf private universities.</p>
+  <p class="note">Researched October 2026 from official pages and search extracts of official pages. Confirm in writing before paying fees, especially: Uzbek-specific rules at Dutch research universities, Denmark and Australian universities; Spanish homologation; Gulf private universities; NCUK and Holland ISC intake dates; whether Erasmus/Tilburg accept Holland ISC progression in 2027.</p>
 </section>
 
 </main>
-<footer><div class="wrap">Built for Imronbek Khaydarov · Full written dossier with sources is in the Education repository (strategy/ and countries/ folders).</div></footer>
+<footer><div class="wrap">Prepared for Imronbek Khaydarov. The written dossier with sources per country is in the Education repository (strategy/ and countries/).</div></footer>
 
 <script>
-// [country, institution, type, programme, cat, fit, rule, tests, gap, springPossible, deadline]
+/* ---------- Data ---------- */
+// Requirement codes: w=IELTS Writing min · sat=SAT min · dtm=needs DTM result · ev=SAT 1300+ or DTM · br=bridge (foundation or 1 yr uni) · yr1=1 yr university only (foundation doesn't count) · ap=3 AP exams · lang=other language · D=closed
+// [country, name, type, programme, fit, req, why, deadline, spring]
 const U = [
-// USA
-["USA","Columbia University – School of General Studies","Private (Ivy)","BA/BS in any Columbia major","A",5,"For students with a 1+ year break in education","IELTS ✔ · SAT recommended","Built for your gap",false,"EA 1 Mar 2027 (F-1)"],
-["USA","MIT","Private","SB (CS, Math, EECS)","B",3,"Holistic; tests required","SAT needed (1520+)","First-year if no college since 2022",false,"EA 1 Nov / RD 1 Jan"],
-["USA","Harvard / Yale / Princeton / Stanford","Private","AB/BS","B",3,"Holistic; check test policy","SAT 1500+","First-year ✔",false,"RD 1–5 Jan 2027"],
-["USA","Penn / Cornell / Brown / Dartmouth","Private (Ivy)","BA/BS","B",3,"Tests required (verify)","SAT 1480+","First-year ✔",false,"RD ~5 Jan 2027"],
-["USA","NYU / USC / Northeastern / Boston University","Private","BA/BS/BBA","A",4,"Holistic","IELTS 7.0–7.5 ✔ · SAT helps","✔",false,"EA 1 Nov / RD 1 Jan"],
-["USA","Grinnell / Macalester / Davidson / Colby / Hamilton","Private liberal arts","BA","A",4,"Holistic; strong for internationals","IELTS ✔ · SAT advised","✔",false,"RD 1–15 Jan 2027"],
-["USA","University of Illinois Urbana-Champaign","Public","BS CS / Engineering / Business","B",4,"IELTS 6.5 + 6.0 each band","W 5.5 → 6.0","✔",false,"EA 5 Nov / RD 5 Jan"],
-["USA","Purdue / Georgia Tech / UT Austin","Public","BS Engineering / CS","B",4,"Tests required (verify)","SAT 1400+","✔",false,"EA 1 Nov / RD Jan"],
-["USA","Michigan / UVA / UNC Chapel Hill","Public","BA/BS/BBA","A",4,"Holistic","SAT optional (check)","✔",false,"EA 1 Nov / RD Jan"],
-["USA","University of California (9 campuses)","Public","BA/BS","A",4,"One UC application","IELTS 6.5 ✔","✔",false,"30 Nov 2026"],
-["USA","Arizona State / Iowa State / Kansas State / Utah","Public","BS CS, Engineering, Business","A",5,"Admitted on GPA (100% ✔)","IELTS ✔","✔",true,"Rolling; spring possible"],
-["USA","Santa Monica College / De Anza (2+2 transfer)","Community college","AA/AS → UC/CSU transfer","A",4,"Open admission; I-20 issued","IELTS ✔","✔",true,"Rolling; January start"],
-["USA","Service academies (West Point, Annapolis…)","Military","—","D",1,"Foreign cadets only by government nomination","—","—",false,"—"],
-["USA","Women's colleges (Wellesley, Smith, Barnard…)","Private","—","D",1,"Women only","—","—",false,"—"],
-// Canada
-["Canada","University of Alberta","Public","BSc CS / BCom / Engineering","A",5,"Accepts the Uzbek certificate + transcript","IELTS 6.5, bands ≥5.0 ✔","OK · PAL needed",false,"~1 Mar 2027"],
-["Canada","University of Toronto","Public","Rotman Commerce / CS / Engineering","B",4,"Grade-12 equivalence; ask about 11-year Attestat","W 5.5 → 6.0","OK · PAL",false,"~15 Jan 2027"],
-["Canada","University of British Columbia","Public","BSc / BCom / BA","B",4,"University-prep programme; case-by-case","W 5.5 → 6.0","OK · PAL",false,"15 Jan 2027"],
-["Canada","McGill University","Public","BCom / BSc / BA","B",4,"CIS attestats listed (Uzbek: ask)","W 5.5 → 6.0","OK · CAQ + PAL",false,"15 Jan 2027"],
-["Canada","University of Waterloo","Public","CS / Math / Engineering","B",3,"Very competitive; strong maths","Writing 6.5 and Speaking 6.5","OK · PAL",false,"~1 Feb 2027"],
-["Canada","Western University","Public","BMOS / Science / Engineering","B",3,"Lists the old Academic Lyceum diploma; confirm","W → 6.0+","OK · PAL",false,"~15 Jan 2027"],
-["Canada","Humber / Seneca / Sheridan / BCIT","Public college","Bachelor's degrees and diplomas","A",4,"College admission","IELTS 6.0–6.5, bands 5.5 ✔","OK · PAL",false,"Rolling to ~Apr"],
-["Canada","Royal Military College","Military","—","D",1,"Canadian citizens only","—","—",false,"—"],
-// Australia
-["Australia","University of Melbourne (Trinity Foundation Fast Track)","Public (Go8)","Foundation → BCom / BSc / BDes","C",4,"Russian-style Attestat accepted; Fast Track needs avg 5 ✔","Foundation ✔ · degree W 6.0","Explain gap in visa",true,"Oct–Nov 2026 for Feb/Mar"],
-["Australia","UNSW Sydney (UNSW College)","Public (Go8)","Foundation → BCom / BE / CS","C",4,"Foundation by default; SAT 1250 may allow direct","W 5.5 → 6.0+","Explain gap",true,"Oct–Nov 2026"],
-["Australia","Monash University (Monash College)","Public (Go8)","Foundation / Diploma → degree","C",4,"Foundation entry with Attestat","Foundation ✔","Explain gap",true,"Oct–Nov 2026"],
-["Australia","University of Queensland (UQ College)","Public (Go8)","Foundation → degree","C",3,"Grade 4+ in top four subjects ✔","IELTS ✔","Explain gap",true,"Rolling"],
-["Australia","University of Sydney (Taylors College)","Public (Go8)","Foundation → degree","C",3,"Foundation","W 6.0 for degree","Explain gap",true,"Rolling"],
-["Australia","UTS (UTS College)","Public","Diploma → Year 2","C",3,"Needs 1 year of university for direct entry","IELTS ✔ for diploma","Explain gap",true,"Rolling"],
-["Australia","RMIT / Deakin / Griffith / La Trobe / Macquarie","Public","Foundation or diploma → degree","C",3,"Foundation or diploma","IELTS ✔","Explain gap",true,"Rolling"],
-["Australia","ANU (ANU College)","Public (Go8)","Foundation → degree","C",3,"Russian-type certificate not on direct list","SAT 1250+ if direct allowed","Explain gap",true,"Rolling"],
-// UK-free: Europe
-["Sweden","Jönköping University (JIBS)","Private, state-recognised","BSc International Management / Economics","A",5,"Uzbek Shahodatnoma meets general entry","English 6 ✔ (W 5.5 is the minimum)","OK",false,"15 Jan 2027"],
-["Sweden","Jönköping University (JTH)","Private, state-recognised","BSc Computer Engineering","A",4,"Maths 3c / Physics 1 equivalents","IELTS ✔","OK",false,"15 Jan 2027"],
-["Sweden","Linnaeus University","Public","BSc Software Technology / Peace & Development","A",5,"General entry ✔","IELTS ✔","OK",false,"15 Jan 2027"],
-["Sweden","Malmö University","Public","BA International Relations / BSc CS","A",4,"General entry ✔","IELTS ✔","OK",false,"15 Jan 2027"],
-["Sweden","Blekinge Institute of Technology","Public","BSc Software Engineering","A",4,"Maths requirements","IELTS ✔","OK",false,"15 Jan 2027"],
-["Sweden","Stockholm School of Economics","Private","BSc Business & Economics","B",3,"Own admission","SAT needed (check)","OK",false,"Check"],
-["Finland","Aalto University","Public","BSc Science & Technology / Economics & Business","B",4,"SAT required for your diploma type","W 5.5 → 6.0 · SAT 1300–1450","OK",false,"7–21 Jan 2027"],
-["Finland","University of Helsinki","Public","Bachelor's in Science (EN)","B",4,"Entrance exam","W 5.5 → 6.0","OK",false,"7–21 Jan 2027"],
-["Finland","Tampere University","Public","BSc Science & Engineering","A",4,"Eligible by home-country access","IELTS ✔ (W 5.5 per sources)","OK",false,"7–21 Jan 2027"],
-["Finland","LUT University","Public","BSc Technology / Business","A",4,"Eligible","IELTS ✔","OK",false,"7–21 Jan 2027"],
-["Finland","University of Vaasa","Public","BSc Business Studies","A",4,"Eligible","IELTS ✔","OK",false,"7–21 Jan 2027"],
-["Finland","Metropolia / Haaga-Helia / TAMK / JAMK / Turku UAS","Public UAS","Engineering, Business IT, International Business","A",5,"UAS Exam","IELTS ✔","OK",false,"7–21 Jan 2027"],
-["Finland","National Defence University / Police University College","Military/police","—","D",1,"Finnish citizens","—","—",false,"—"],
-["Hungary","Corvinus University of Budapest","Public","BSc International Business / Economics / IR","A",5,"11 years accepted where national standard","IELTS ✔ (6.0)","OK",false,"Rolling; SH ~15 Jan"],
-["Hungary","ELTE","Public","BSc Computer Science","A",5,"Maths entrance","IELTS ✔","OK",false,"30 Apr 2027"],
-["Hungary","Budapest University of Technology (BME)","Public","BSc Engineering / CS","A",5,"Entrance exam","IELTS ✔","OK",false,"Spring 2027"],
-["Hungary","University of Debrecen","Public","Business / IT / Engineering / Medicine","A",5,"Entrance exam or interview","IELTS ✔","OK",true,"Rolling; medicine 15 May"],
-["Hungary","Semmelweis University","Public","General Medicine (6 yrs)","B",4,"Biology + chemistry/physics test","IELTS ✔","OK",false,"31 May 2027"],
-["Hungary","Budapest Business University","Public","BA International Business Economics","A",4,"Interview","IELTS ✔","OK",false,"Spring 2027"],
-["Hungary","Stipendium Hungaricum (any of the above)","Scholarship","Bachelor (EN)","A",4,"Uzbek ministry nominates; no programme age cap","IELTS ✔","Check Uzbek criteria",false,"~15 Jan 2027"],
-["Latvia","Riga Technical University","Public","BSc Computer Systems / Aviation / Business","A",5,"AIC recognition; online maths test","IELTS ✔","OK",true,"1 Jul 2027"],
-["Latvia","University of Latvia","Public","BSc CS / Business Admin","A",5,"Uzbek attestat named in country list","IELTS ✔","OK",true,"~Jun 2027"],
-["Latvia","Rīga Stradiņš University","Public","Medicine / International Relations","A",4,"Entrance exams for health fields","IELTS ✔","OK",false,"Spring 2027"],
-["Latvia","Stockholm School of Economics in Riga","Private","BSc Economics & Business","B",4,"Own entrance exams","IELTS ✔","OK",false,"Spring 2027"],
-["Latvia","RISEBA / Turība / TSI","Private","BBA / CS / Tourism","A",3,"AIC recognition; check accreditation","IELTS ✔","OK",true,"Rolling"],
-["Lithuania","Vilnius University","Public","Software Engineering / Business / Economics","A",5,"Secondary that opens university at home","IELTS ✔","OK",false,"~May–Jul 2027"],
-["Lithuania","Kaunas University of Technology","Public","Software Systems / International Business","A",5,"SKVC recognition","IELTS ✔","OK",true,"~May–Jul 2027"],
-["Lithuania","VILNIUS TECH","Public","IT / Aviation / Business","B",4,"Needs Uzbek national-exam results","IELTS ✔ · DTM certificate","OK",false,"~May–Jul 2027"],
-["Lithuania","ISM University","Private","BBA / Economics & Data Analytics","A",5,"Holistic + interview","IELTS ✔","OK",true,"Rolling"],
-["Lithuania","LCC International University","Private (US-style)","BA International Business / Psychology","A",4,"US-style admission","IELTS ✔","OK",false,"Rolling"],
-["Portugal","Nova SBE","Public","BSc Economics / Management / Finance","A",5,"Own international call; no SAT","IELTS ✔ (6.0)","OK",false,"Rounds Nov 2026–spring 2027"],
-["Portugal","Católica Lisbon SBE","Private","BSc Management / Economics","A",5,"Own call","IELTS ✔","OK",false,"Rounds to spring 2027"],
-["Portugal","ISCTE / Universidade Europeia","Public / Private","English bachelor's","A",4,"International student contest","IELTS ✔","OK",false,"Jan–Jun 2027"],
-["Portugal","University of Porto / Coimbra / Lisbon","Public","Portuguese-taught licenciatura","B",2,"International contest + entrance exams","Portuguese B2 needed","OK",false,"Jan–Jun 2027"],
-["Spain","IE University","Private","Business / IR / CS & AI","A",5,"Enrol while homologation is pending","IELTS ✔ · IE test or SAT","OK",true,"Rounds Oct 2026–spring"],
-["Spain","ESADE","Private","BBA / Global Governance","A",4,"Admission test + homologation","IELTS ✔","OK",false,"Rounds to spring"],
-["Spain","Universidad Europea / Saint Louis University Madrid","Private","BA/BSc (EN)","A",4,"Own admission","IELTS ✔","OK",true,"Rolling; January intake"],
-["Spain","Carlos III Madrid (UC3M) / Pompeu Fabra (UPF)","Public","Economics, Business, Global Studies (EN groups)","A",3,"Homologation + UNEDasiss (approval likely, not certain)","IELTS ✔","OK",false,"Jun–Jul 2027"],
-["France","ESSEC / ESCP / EDHEC / emlyon","Private (grande école)","BBA / Bachelor in Management","A",4,"Dossier + interview; Études en France","IELTS ✔ (some want 6.0 per band)","Explain gap",true,"Rounds Nov 2026–May 2027"],
-["France","SKEMA / NEOMA / KEDGE / Grenoble EM","Private","Global / International BBA","A",4,"Dossier + interview","IELTS ✔","OK",true,"Rolling"],
-["France","American University of Paris","Private (US)","BA/BS","A",4,"US-style","IELTS ✔","OK",true,"Rolling; January"],
-["France","Public universities (Sorbonne, Paris-Saclay…)","Public","Licence 1 (French)","B",2,"DAP procedure","French B2 (TCF-DAP)","OK",false,"15 Dec 2026"],
-["France","Sciences Po","Public-private","Undergraduate College","D",1,"Diploma must date from Oct 2025 or later","—","2022 diploma too old",false,"—"],
-["France","École Polytechnique Bachelor","Public","Bachelor of Science","D",1,"For recent graduates only","—","Likely too old",false,"—"],
-["Netherlands","Saxion UAS","Public HBO","International Business / Mechatronics","A",4,"HAVO-level diploma accepted","Some need W 6.0; new IELTS needed","IELTS must be valid at start",true,"Feb intake: check now · Fall ~1 May"],
-["Netherlands","Hanze / The Hague UAS / Breda UAS / HvA","Public HBO","Business, Engineering, Tourism, Games","A",4,"HAVO-level","IELTS 6.0 (check bands)","Same",true,"~1 Apr–1 May 2027"],
-["Netherlands","Hotelschool The Hague","Public HBO","International Hospitality Management","A",4,"Selection days","IELTS ✔","Same",false,"Spring 2027"],
-["Netherlands","Amsterdam / Groningen / Maastricht / Delft","Public research","BSc programmes","C",2,"Research universities need +1 year or foundation","IELTS 6.5, bands 6.0","21+ entrance exam route (mostly Dutch)",false,"~1 Apr 2027"],
-["Belgium","Vrije Universiteit Brussel (VUB)","Public (Flemish)","Business Economics / Engineering (EN)","A",4,"Proof of university access in Uzbekistan","IELTS ✔ (check bands)","OK",false,"31 Mar 2027"],
-["Belgium","KU Leuven","Public (Flemish)","Philosophy / Business Administration (EN)","B",3,"Attestat + entrance-exam results","IELTS ✔ · DTM certificate","OK",false,"~1 Mar 2027"],
-["Belgium","Ghent University","Public (Flemish)","Bachelor of Social Sciences (EN)","A",3,"Individual assessment","IELTS ✔","OK",false,"~1 Mar 2027"],
-["Belgium","ULB / UCLouvain / ULiège","Public (French)","French-taught bachelor's","C",2,"Equivalence + French","French B2/C1","OK",false,"Equivalence by Jul 2027"],
-["Austria","WU Vienna","Public","BSc Business & Economics (EN)","B",4,"Needs DTM proof + spring selection test","IELTS ✔ (6.0)","OK",false,"~Mar 2027 registration"],
-["Austria","JKU Linz","Public","BSc Artificial Intelligence (EN)","B",4,"Needs DTM proof","IELTS ✔","OK",false,"Spring 2027"],
-["Austria","Central European University (Vienna)","Private","BA PPE / Culture, Politics & Society / Data Science","A",4,"Holistic","IELTS ✔","OK",false,"Rounds to spring"],
-["Austria","Webster Vienna / Modul University","Private","BA/BS, BBA","A",4,"Own admission","IELTS ✔","OK",true,"Rolling"],
-["Austria","University of Vienna and other public universities","Public","German-taught bachelor's","C",2,"Supplementary exams via VWU without DTM proof","German C1","OK",false,"—"],
-["Germany","FH Aachen Freshman Program","Public UAS","English track → BSc Engineering","C",4,"Your Attestat gives access to a Studienkolleg only","IELTS ✔ (4.5–5.5)","Explain gap",false,"Spring 2027"],
-["Germany","CBS Prep4University (Cologne)","Private Studienkolleg","W/T course, English track","C",4,"Leads to Feststellungsprüfung","IELTS ✔","OK",false,"Spring 2027"],
-["Germany","Constructor University (Bremen)","Private","International Foundation Year → BSc","C",4,"TestAS ≥190 to progress","IELTS ✔","OK",false,"Rolling"],
-["Germany","Any public university (TUM, RWTH, LMU…)","Public","BSc via Studienkolleg","C",2,"German-taught Studienkolleg","German B1–B2","OK",false,"Jan–Jul 2027"],
-["Italy","University of Pavia","Public","Foundation Year → any Italian degree","C",4,"Fills the missing 12th year","Italian taught in programme","OK",false,"Mar–Jun 2027"],
-["Italy","Ca' Foscari Venice / Perugia & Siena Stranieri","Public","Foundation / preparatory year","C",3,"Fills the 12th year","—","OK",false,"Spring 2027"],
-["Italy","Bocconi","Private","BSc Economics / IPG / CS & AI","C",3,"11-year needs foundation or 1 year of university","SAT ≥1040 (520 per section)","OK",false,"After foundation"],
-["Italy","Politecnico di Milano / Bologna / Tor Vergata","Public","English bachelor's","C",3,"12-year rule","IELTS ✔ · TOL/TOLC","OK",false,"After foundation"],
-["Italy","John Cabot University / American University of Rome","Private (US)","BA/BS (US degree)","A",4,"US-style; 11 years fine","IELTS ✔","OK",true,"Rolling; January"],
-["Denmark","Copenhagen Business School / Aarhus / DTU / ITU","Public","English BSc","C",2,"Likely needs +1 year of university","IELTS ✔","OK",false,"15 Mar 2027"],
-["Denmark","EAAA / Cphbusiness / KEA / VIA","Public academies","AP degree / professional bachelor's","B",3,"May accept your level (verify)","IELTS ✔","OK",false,"15 Mar 2027"],
-["Norway","BI / NTNU / University of Agder","Private / Public","English bachelor's","C",2,"Official list: Attestat + 1 year of university","IELTS ✔","OK",false,"Dec 2026–Mar 2027"],
-["Malta","American University of Malta","Private (US)","BSc CS / BBA / Engineering","A",3,"US-style","IELTS ✔","OK",true,"Rolling"],
-["Malta","University of Malta","Public","Foundation Studies → degree","C",2,"Matriculation-level needed","IELTS (check bands)","OK",false,"Spring–summer 2027"],
-["Iceland","Reykjavík University","Private","BSc Computer Science","C",2,"Matriculation-equivalent; individual check","IELTS ✔ (6.5)","OK",false,"Spring 2027"],
-["Iceland","University of Iceland","Public","English bachelor's (few)","C",1,"Matriculation-equivalent","IELTS ✔","OK",false,"1 Feb 2027"],
-["Luxembourg","University of Luxembourg","Public","Any bachelor","D",1,"Ministry needs 12 consecutive years","—","—",false,"—"],
-["Luxembourg","LUNEX University","Private","Sport management / Physiotherapy","B",2,"Own admission (verify recognition)","IELTS ✔","OK",false,"Check"],
-// Asia & ME
-["Türkiye","Koç University","Foundation (private)","CS / Economics / Business (EN)","B",5,"SAT accepted; general minimum ~1200","SAT needed · IELTS ✔","OK",false,"Rolling Jan–Jul 2027"],
-["Türkiye","Sabancı University","Foundation","Engineering / Management (EN)","B",5,"SAT in place of YÖS","SAT needed","OK",false,"Rolling"],
-["Türkiye","Bilkent University","Foundation","CS / Economics / IR (EN)","B",5,"SAT/ACT accepted","SAT needed","OK",false,"Rolling"],
-["Türkiye","METU (ODTÜ)","Public","Computer Eng. / Economics (EN)","B",4,"International quota; SAT or TR-YÖS","SAT 1350–1450 · W 6.5 to skip prep","OK",false,"Jun–Aug 2027"],
-["Türkiye","Boğaziçi University","Public","CS / Economics / Management (EN)","B",4,"Same","SAT 1400+","OK",false,"Jun–Aug 2027"],
-["Türkiye","Istanbul Technical University","Public","Engineering","B",4,"SAT or TR-YÖS","SAT / TR-YÖS","OK",false,"Jun–Aug 2027"],
-["Türkiye","Bahçeşehir / Istanbul Aydın / Altınbaş / Medipol","Foundation","Many English bachelor's","A",5,"Admitted on diploma grade (need 50%; you have 100%)","IELTS ✔ or prep year","OK",true,"Spring: Dec–Jan · Fall rolling"],
-["Türkiye","Türkiye Bursları scholarship","Government","—","D",1,"Applicants must be under 21","—","Too old",false,"—"],
-["UAE","American University of Sharjah","Private","BS CS / Engineering / BBA / Economics","A",5,"Ministry accepts the 11-year CIS certificate; ≥80% ✔","IELTS 6.5 ✔","OK",true,"Spring: Oct–Nov · Fall: Feb–May"],
-["UAE","Khalifa University","Public","BSc Engineering / CS / Physics","A",5,"Equivalency + science background","IELTS ✔ · SAT Math 700 advised","OK",false,"~Jan–Apr 2027"],
-["UAE","MBZUAI","Public","BSc Artificial Intelligence","B",4,"Equivalency; ~5% acceptance","SAT / strong maths evidence helps","OK",false,"Check"],
-["UAE","University of Sharjah / Abu Dhabi University / Ajman","Semi-public / Private","BSc / BBA","A",4,"Equivalency","IELTS ✔","OK",true,"Rolling; January intake"],
-["UAE","UOWD / Heriot-Watt Dubai / Middlesex Dubai","Branch campus","Business / CS / Engineering","B",4,"May require their own foundation year","IELTS 6.0–6.5 (W 5.5 borderline)","OK",true,"Rolling; January intake"],
-["UAE","NYU Abu Dhabi","Private (US)","BA/BS","D",1,"Graduates 2+ years ago discouraged","—","Too long since school",false,"—"],
-["South Korea","Yonsei – Underwood International College","Private","English BA/BS","A",4,"Foreign-national track","IELTS ✔ · SAT helps","OK",false,"~Mar–May 2027"],
-["South Korea","Korea University (international)","Private","International Studies / Business","A",4,"Foreign-national track","IELTS ✔","OK",false,"Spring 2027"],
-["South Korea","KAIST","Public institute","BS (all majors, English)","A",4,"International admission","IELTS ✔ · strong maths","OK",false,"~Oct 2026–Jan 2027"],
-["South Korea","Woosong University – SolBridge","Private","BBA (all English)","A",5,"Spring and fall intakes","IELTS ✔","OK",true,"Spring: Oct–Nov 2026"],
-["South Korea","Sun Moon / Hanseo / Dongseo","Private","English or Korean tracks","A",4,"International rounds","IELTS ✔ or TOPIK 3","OK",true,"Spring: Oct–Nov 2026"],
-["South Korea","GKS-U 2027, University Track","Scholarship","Korean language year + degree","A",4,"Under 25 ✔, GPA 80%+ ✔","IELTS/TOPIK bonus","✔",false,"Sep–Nov 2026 (by university)"],
-["South Korea","Ewha / Sookmyung / other women's universities","Private","—","D",1,"Women only","—","—",false,"—"],
-["China","Tsinghua University","Public (C9)","Undergraduate","B",4,"Written tests + interview; age 18+","HSK 5–6 or IELTS for English tracks","No upper age limit",false,"20 Nov 2026 (round 1)"],
-["China","Peking University","Public (C9)","Undergraduate","B",4,"Age 18–25 ✔","HSK or IELTS; tests","23 at entry ✔",false,"~Dec 2026–Feb 2027"],
-["China","Zhejiang / Fudan / Shanghai Jiao Tong","Public (C9)","English-taught bachelor's","A",4,"Own tests or interviews","IELTS ✔","OK",false,"Nov 2026–Apr 2027"],
-["China","CUHK-Shenzhen","Public-private","20+ English bachelor's","A",5,"International admissions + interview","IELTS ✔","OK",false,"Rounds to spring 2027"],
-["China","NYU Shanghai / Duke Kunshan","Sino-US","BA/BS (US degree)","A",4,"US-style application","IELTS ✔ · SAT optional","First-year if no college since 2022",false,"Nov 2026–Jan 2027"],
-["China","Shenzhen MSU-BIT University","Sino-Russian","Russian/Chinese-medium bachelor","A",4,"Entrance tests in Russian and maths","Russian ✔","OK",false,"Spring 2027"],
-["China","Chinese Government Scholarship (CSC)","Scholarship","Any bachelor + preparatory year","A",4,"Under 25 ✔","HSK / IELTS","✔",true,"~31 Mar 2027"],
-["Hong Kong","Hong Kong Baptist University","Public","BBA / BSc CS / Social Sciences","A",5,"Uzbek Attestat explicitly accepted","IELTS ✔ (check sub-scores)","OK",false,"Rounds to Jan 2027"],
-["Hong Kong","University of Hong Kong","Public","Economics & Finance / Engineering / BBA","A",4,"Individual merit","IELTS 6.0, no band below 5.5 ✔ · SAT 1450+ helps","OK",false,"26 Nov 2026 (first round)"],
-["Hong Kong","CUHK","Public","BBA / BSc / Engineering","B",4,"Comparable rule: avg 4.5/5 + national exam","SAT or DTM result advised","OK",false,"12 Nov 2026 / 7 Jan 2027"],
-["Hong Kong","HKUST","Public","BSc / BEng / BBA","B",4,"International review","SAT strongly advised","OK",false,"25 Nov 2026 priority"],
-["Hong Kong","PolyU / CityU","Public","BSc / BBA / BEng","B",3,"Attestat + national test (comparable rule)","IELTS ✔","OK",false,"Rounds to spring"],
-["Hong Kong","HKMU / Hang Seng University","Self-financing","BBA / BSc","A",4,"Own review","IELTS ✔","OK",false,"Rounds to spring"],
-["Malaysia","Universiti Utara Malaysia (UUM)","Public","BBA / IT / Economics","A",4,"Accepts 11–12 years; certificate valid 5 years (to 2027)","IELTS ✔","Feb 2027 ✔ · Sep 2027 borderline",true,"Apply now for Feb 2027"],
-["Malaysia","Universiti Malaya","Public","BSc / BBA / BEng","C",3,"Needs 12 years","IELTS ✔ (5.0)","OK",true,"8 Sep 2026–30 Jan 2027 (Mar intake)"],
-["Malaysia","Monash University Malaysia (MUFY at Sunway)","Branch campus","Foundation → CS / Commerce / Engineering","C",4,"Foundation entry with Attestat","IELTS ✔","OK",true,"Rolling; Jan–Mar"],
-["Malaysia","Taylor's / APU / Nottingham Malaysia","Private / Branch","Foundation → degree","C",4,"Foundation","IELTS ✔","OK",true,"Rolling; Jan–Mar"],
-["Malaysia","UiTM / UPNM","Public","—","D",1,"Bumiputera-only / defence university","—","—",false,"—"],
-["Singapore","Nanyang Technological University","Public","Any bachelor","C",2,"CIS certificates (incl. Uzbek) not accepted alone","3 AP (4–5) + SAT ≥1250","OK",false,"15 Oct 2026–20 Jan 2027 (2028 realistic)"],
-["Singapore","National University of Singapore","Public","Any bachelor","C",2,"Needs 12 years of schooling","SAT / AP advised","OK",false,"Oct 2026–Feb 2027"],
-["Singapore","SIM Global Education / JCU Singapore / Curtin","Private","Foundation or diploma → degree","C",3,"Partner university rules","IELTS ✔","OK",true,"Rolling"],
-["Qatar","Carnegie Mellon University in Qatar","US branch","CS / Business / Information Systems","A",4,"US-style review","IELTS ✔ · SAT helpful","First-year if no college since 2022",false,"~Dec 2026–Feb 2027"],
-["Qatar","Georgetown SFS in Qatar","US branch","BS Foreign Service","A",4,"Holistic + interview","IELTS ✔","Same",false,"~Dec 2026–Feb 2027"],
-["Qatar","Northwestern in Qatar / Weill Cornell Medicine-Qatar","US branch","Journalism / Six-year Medicine","A",3,"Holistic; medicine very selective","IELTS ✔ · SAT advised","Same",false,"~Dec 2026–Feb 2027"],
-["Qatar","Qatar University","Public","Any bachelor","D",1,"Needs 12 years of formal education","—","—",false,"—"],
-["Qatar","Texas A&M University at Qatar","US branch","—","D",1,"No longer admitting undergraduates","—","—",false,"—"],
-["Saudi Arabia","Islamic University of Madinah","Public (scholarship)","Sharia / Arabic / Engineering / CS","B",2,"Age 17–25 ✔; certificate under 5 years old","Arabic prep year","Window closes ~17 Jun 2027",false,"Early 2027 only"],
-["Saudi Arabia","Alfaisal / Prince Sultan University","Private","Engineering / Business / CS (EN)","B",2,"Saudi equivalency; check recency rule","IELTS ✔","Verify",false,"Check"],
-["Saudi Arabia","King Saud University and most government universities","Public","—","D",1,"Certificate older than allowed (3–5 years)","—","Too old",false,"—"],
-["Bahrain","University of Bahrain","Public","—","D",1,"Graduation within 2 years only","—","Too old",false,"—"],
-["Bahrain","American University of Bahrain / Ahlia","Private","BSc / BA","B",2,"Bahrain equivalency of 11 years unconfirmed","IELTS ✔","OK",false,"Rolling"],
-["Kuwait","Kuwait University","Public","—","D",1,"Scholarship certificate must be under 2 years old","—","Too old",false,"—"],
-["Kuwait","AUK / GUST / AUM","Private","Business / CS / Engineering","B",2,"Kuwait equivalency of 11 years unconfirmed; student visa via university","IELTS ✔","OK",false,"Rolling"],
-["Jordan","All Jordanian universities","Public / Private","—","D",1,"Equivalency needs proof of 12 years","—","—",false,"—"]
+["USA","Columbia University – School of General Studies","Private, Ivy League","BA/BS in any Columbia major",5,"","Designed for students with a break of 1+ year in education. You qualify; F-1 students study full time.","Priority 15 Jan · EA 1 Mar 2027 (best for F-1)",0],
+["USA","MIT","Private","SB in CS, Maths, EECS",3,"sat1500","Holistic; tests required. Your maths strength matters most.","EA 1 Nov · RD 1 Jan",0],
+["USA","Harvard · Yale · Princeton · Stanford","Private","AB/BS",3,"sat1500","Holistic; most now require test scores. Extremely selective.","RD 1–5 Jan 2027",0],
+["USA","Penn · Cornell · Brown · Dartmouth","Private, Ivy League","BA/BS",3,"sat1450","Tests required (verify each).","RD ~5 Jan 2027",0],
+["USA","NYU · USC · Northeastern · Boston University","Private","BA/BS/BBA",4,"","Holistic; test policies vary. A strong SAT helps with an unfamiliar curriculum.","EA 1 Nov · RD 1 Jan",0],
+["USA","Grinnell · Macalester · Davidson · Colby · Hamilton","Liberal arts colleges","BA",4,"","Holistic and international-friendly.","RD 1–15 Jan 2027",0],
+["USA","University of Illinois Urbana-Champaign","Public","BS CS, Engineering, Business",4,"w6","IELTS 6.5 overall with at least 6.0 in each section.","EA 5 Nov · RD 5 Jan",0],
+["USA","Purdue · Georgia Tech · UT Austin","Public","BS Engineering / CS",4,"sat1350","Test scores required (verify).","EA 1 Nov · RD Jan",0],
+["USA","Michigan · Virginia · UNC Chapel Hill","Public","BA/BS/BBA",4,"","Holistic; check test policy.","EA 1 Nov · RD Jan",0],
+["USA","University of California (9 campuses)","Public","BA/BS",4,"","One application covers all UC campuses.","30 Nov 2026",0],
+["USA","Arizona State · Iowa State · Kansas State · Utah","Public","BS CS, Engineering, Business",5,"","Admission mainly on grades (yours: 100%).","Rolling; January start possible",1],
+["USA","Santa Monica College · De Anza (2+2 transfer)","Community college","Associate → UC/CSU transfer",4,"","Open admission with an I-20; guaranteed-transfer agreements to UC.","Rolling; January start",1],
+["USA","US service academies","Military","—",1,"D","Foreign cadets only by government nomination.","—",0],
+["USA","Women's colleges (Wellesley, Smith, Barnard…)","Private","—",1,"D","Women only.","—",0],
+["Canada","University of Alberta","Public","BSc CS, BCom, Engineering",5,"","Accepts the Uzbek certificate + transcript; IELTS bands only need 5.0+.","~1 Mar 2027 · PAL needed",0],
+["Canada","University of Toronto","Public","Rotman Commerce, CS, Engineering",4,"w6","IELTS 6.5 with no band below 6.0. Ask how they rate the 11-year Attestat.","~15 Jan 2027",0],
+["Canada","University of British Columbia","Public","BSc, BCom, BA",4,"w6","IELTS 6.5, no band below 6.0.","15 Jan 2027",0],
+["Canada","McGill University","Public","BCom, BSc, BA",4,"w6","Lists Russian/Kazakh attestats; ask about Uzbek. Québec CAQ needed.","15 Jan 2027",0],
+["Canada","University of Waterloo","Public","CS, Maths, Engineering",3,"w6.5","Writing 6.5 and Speaking 6.5 required. Very competitive.","~1 Feb 2027",0],
+["Canada","Simon Fraser University (via Fraser International College)","Pathway college","UTP Stage I → SFU Year 2",4,"","Accepts completed Year 11; IELTS 6.0 with no band below 5.5.","Intakes Jan, May, Sep",1],
+["Canada","University of Manitoba (via International College of Manitoba)","Pathway college","UTP Stage I → U of Manitoba",3,"","Accepts completed Year 11; IELTS 5.5, bands 5.0+.","Intakes Jan, May, Sep",1],
+["Canada","Humber · Seneca · Sheridan · BCIT","Public colleges","Bachelor's degrees and diplomas",4,"","College admission; IELTS 6.0–6.5 with 5.5 bands.","Rolling to ~Apr · PAL needed",0],
+["Australia","University of Melbourne","Public, Go8","BCom, BSc, BDes",5,"br;w6","Degree needs Year 12 level. Trinity Foundation accepts your Attestat now (average 5 qualifies for Fast Track) with a guaranteed place.","Trinity intakes 12 Jan / 8 Feb / Jul 2027",1],
+["Australia","University of Queensland","Public, Go8","Any UQ degree",5,"br;w6","UQ College Accelerated Foundation needs grade 5 in top four subjects (you have it).","UQ College: start 15 Feb 2027, apply by 11 Jan",1],
+["Australia","Monash University","Public, Go8","Any Monash degree",5,"br;w6","Monash College Foundation (IELTS 5.5, bands 5.0) or Diploma Part 1 (accepts Year 11) → Year 2.","Monash College: start 22 Feb 2027",1],
+["Australia","University of Sydney","Public, Go8","Any Sydney degree",4,"br;w6","Taylors College Foundation: Year 11 average 65% (Standard) or 70% (Intensive).","Taylors: start 11 Jan 2027 or July",1],
+["Australia","UNSW Sydney","Public, Go8","BCom, BE, BSc CS",4,"br;w6","UNSW College Foundation, or NCUK Foundation in Tashkent (UNSW is an NCUK partner).","UNSW College: several intakes",1],
+["Australia","University of Western Australia","Public, Go8","Any UWA degree",4,"br;w6","NCUK partner; Taylors College Perth foundation.","Rolling",1],
+["Australia","Australian National University","Public, Go8","Any ANU degree",3,"br;w6","Russian-type certificate not on ANU's direct list; ANU College foundation.","Rolling",1],
+["Australia","UTS · RMIT · Deakin · Macquarie · Griffith","Public","Diploma → Year 2 or foundation",4,"br","Pathway colleges (UTS College, RMIT UP, Deakin College) accept Year 11; RMIT is an NCUK partner.","Rolling; Feb/Mar intakes",1],
+["Australia","ADFA (UNSW Canberra)","Military","—",1,"D","Australian citizens only.","—",0],
+["Sweden","Jönköping University – International Business School","Private, state-recognised","BSc International Management / Economics",5,"","Uzbek Shahodatnoma meets general entry. Your IELTS meets English 6 (no band below 5.5).","15 Jan 2027",0],
+["Sweden","Jönköping University – School of Engineering","Private, state-recognised","BSc Computer Engineering",4,"","Maths/physics requirements checked from your transcript.","15 Jan 2027",0],
+["Sweden","Linnaeus University","Public","BSc Software Technology; Peace & Development",5,"","General entry met.","15 Jan 2027",0],
+["Sweden","Malmö University","Public","BA International Relations; BSc CS",4,"","General entry met.","15 Jan 2027",0],
+["Sweden","Blekinge Institute of Technology","Public","BSc Software Engineering",4,"","Maths requirements checked.","15 Jan 2027",0],
+["Sweden","Stockholm School of Economics","Private","BSc Business & Economics",3,"sat1300","Own admission; SAT used.","Check SSE dates",0],
+["Finland","Aalto University","Public","BSc Science & Technology; Economics & Business",4,"w6;sat1300","IELTS 6.5 with Writing 6.0 (official). SAT required for your diploma type.","7–21 Jan 2027",0],
+["Finland","University of Helsinki","Public","Bachelor's in Science (EN)",4,"w6","Writing 6.0 required; entrance exam.","7–21 Jan 2027",0],
+["Finland","Tampere University","Public","BSc Science & Engineering",4,"","IELTS 6.5 with no section below 5.5.","7–21 Jan 2027",0],
+["Finland","LUT · University of Vaasa","Public","BSc Technology / Business",4,"","Eligible through home-country access.","7–21 Jan 2027",0],
+["Finland","Metropolia · Haaga-Helia · TAMK · JAMK · Turku UAS","Applied sciences","Engineering, Business IT, International Business",5,"","UAS Exam; IELTS typically 6.0 with 5.5 bands.","7–21 Jan 2027",0],
+["Hungary","Corvinus University of Budapest","Public","BSc International Business, Economics, IR",5,"","Accepts 11 years where that is the national standard; IELTS 6.0.","Rolling; Stipendium Hungaricum ~15 Jan",0],
+["Hungary","ELTE","Public","BSc Computer Science",5,"","Maths entrance test.","30 Apr 2027",0],
+["Hungary","Budapest University of Technology (BME)","Public","BSc Engineering, CS",5,"","Entrance exam.","Spring 2027",0],
+["Hungary","University of Debrecen","Public","Business, IT, Engineering, Medicine",5,"","Entrance exam or interview; direct entry, no foundation needed.","Rolling; medicine 15 May",1],
+["Hungary","Semmelweis University","Public","General Medicine",4,"","Biology plus chemistry or physics test.","31 May 2027",0],
+["Latvia","Riga Technical University","Public","BSc Computer Systems, Aviation, Business",5,"","Recognition by AIC (~1 month) and an online maths test.","1 Jul 2027",1],
+["Latvia","University of Latvia","Public","BSc CS, Business",5,"","Uzbek attestat named in its country list.","~Jun 2027",1],
+["Latvia","Stockholm School of Economics in Riga","Private","BSc Economics & Business",4,"","Own entrance exams.","Spring 2027",0],
+["Lithuania","Vilnius University","Public","Software Engineering, Business, Economics",5,"","Secondary that opens university at home.","~May–Jul 2027",0],
+["Lithuania","Kaunas University of Technology","Public","Software Systems, International Business",5,"","SKVC recognition.","~May–Jul 2027",1],
+["Lithuania","VILNIUS TECH","Public","IT, Aviation, Business",4,"dtm","Requires Uzbek national entrance-test results.","~May–Jul 2027",0],
+["Lithuania","ISM University","Private","BBA, Economics & Data Analytics",5,"","Holistic plus interview.","Rolling",1],
+["Portugal","Nova SBE","Public","BSc Economics, Management, Finance",5,"","Own international call; IELTS 6.0; no SAT.","Rounds Nov 2026–spring 2027",0],
+["Portugal","Católica Lisbon SBE","Private","BSc Management, Economics",5,"","Own call.","Rounds to spring 2027",0],
+["Spain","IE University","Private","Business, IR, CS & AI",5,"","Enrol while homologation is pending.","Rounds from Oct 2026; January intake",1],
+["Spain","ESADE","Private","BBA, Global Governance",4,"","Admission test plus homologation.","Rounds to spring",0],
+["Spain","Carlos III Madrid · Pompeu Fabra","Public","Economics, Business, Global Studies (EN groups)",3,"","Needs Ministry homologation (likely approved, not guaranteed) and UNEDasiss.","Jun–Jul 2027",0],
+["France","ESSEC · ESCP · EDHEC · emlyon","Private","BBA / Bachelor in Management",4,"","Dossier + interview; Études en France for the visa.","Rounds Nov 2026–May 2027",1],
+["France","American University of Paris","Private (US)","BA/BS",4,"","US-style admission.","Rolling; January",1],
+["France","Public universities (Licence 1)","Public","French-taught licence",2,"lang:French B2 (TCF-DAP)","DAP procedure.","15 Dec 2026",0],
+["France","Sciences Po","Public-private","Undergraduate College",1,"D","Diploma must date from Oct 2025 or later.","—",0],
+["France","École Polytechnique Bachelor","Public","Bachelor of Science",1,"D","For recent school graduates only.","—",0],
+["Netherlands","Saxion · Hanze · The Hague UAS · Breda UAS · HvA","Applied sciences","Business, Engineering, Tourism, Games",4,"","Accept HAVO-level diplomas. Your IELTS must be valid on the start date, so take the new test.","Feb intake: check now · Fall ~1 Apr–1 May",1],
+["Netherlands","Vrije Universiteit Amsterdam · University of Groningen","Public research","BSc programmes",3,"br;w6","Research universities need +1 year; Holland ISC foundation progresses to both.","Holland ISC Sept 2027",0],
+["Netherlands","Erasmus Rotterdam · Tilburg","Public research","BSc programmes",2,"yr1;w6","Both reject independent foundation certificates. Erasmus accepts a Kazakh attestat + national test + maths exam; ask whether Uzbek + DTM works. Holland ISC lists both as partners; confirm.","~1 Apr 2027",0],
+["Netherlands","University of Twente","Public research","BSc programmes",2,"br;w6","States the Uzbek Attestat is not VWO-level. Its own pathway college closes after the 2026 intake; Holland ISC lists Twente as a partner.","~1 Apr 2027",0],
+["Belgium","Vrije Universiteit Brussel","Public (Flemish)","Business Economics, Engineering (EN)",4,"dtm","Needs proof you could enter university in Uzbekistan.","31 Mar 2027",0],
+["Belgium","KU Leuven","Public (Flemish)","Philosophy, Business Administration (EN)",3,"dtm","Attestat + entrance-exam results.","~1 Mar 2027",0],
+["Belgium","Ghent University","Public (Flemish)","Bachelor of Social Sciences (EN)",3,"","Individual assessment.","~1 Mar 2027",0],
+["Austria","WU Vienna","Public","BSc Business & Economics (EN)",4,"dtm","Proof of university access in Uzbekistan + spring selection test.","~Mar 2027 registration",0],
+["Austria","Central European University (Vienna)","Private","BA PPE; Culture, Politics & Society; Data Science",4,"","Holistic admission.","Rounds to spring",0],
+["Austria","Webster Vienna · Modul University","Private","BA/BS, BBA",4,"","Own admission.","Rolling",1],
+["Germany","Any public university (TUM, RWTH, LMU, Heidelberg…)","Public","Bachelor's",3,"br","Your Attestat gives Studienkolleg access only. English-track Studienkollegs: FH Aachen, CBS Prep4University. 1 year of university gives direct entry.","Studienkolleg deadlines Nov 2026–May 2027",0],
+["Germany","Hochschule Rhein-Waal · English BSc in North Rhine-Westphalia","Public applied sciences","International Business, Mechatronics (EN)",4,"br","The English Feststellungsprüfung from FH Aachen/CBS is accepted for English degrees in NRW.","After Studienkolleg",0],
+["Germany","Constructor University (Bremen)","Private","BSc CS, Data Science, Economics",3,"br","Own International Foundation Year leads in; TestAS 190 on the qualification pathway.","Foundation starts late Aug 2027",0],
+["Italy","Bocconi","Private","BSc Economics, IPG, CS & AI",3,"br;sat1040","11 years needs a foundation or 1 year of university, then SAT or Bocconi test.","After foundation",0],
+["Italy","Politecnico di Milano · Bologna · Tor Vergata · Padua","Public","English bachelor's",4,"br","Ministry 12-year rule; the Pavia Foundation accepts 11 years and fills the gap.","Pavia foundation windows from Oct",0],
+["Italy","John Cabot University · American University of Rome","Private (US)","BA/BS (US degree)",4,"","US-style admission; 11 years fine.","Rolling; January",1],
+["Denmark","Copenhagen Business School · Aarhus · DTU · ITU","Public","English BSc",2,"yr1","Needs higher-education study or Danish A/B subject courses. A foundation is unlikely to count.","15 Mar 2027",0],
+["Norway","BI · NTNU · University of Agder","Public / Private","English bachelor's",2,"yr1","Official list: Attestat + 1 year of higher education. A foundation does not count.","Dec 2026–Mar 2027",0],
+["Malta","University of Malta","Public","Degree after Foundation Studies",3,"br","Its own Foundation Studies (IELTS 5.5, writing 5.0) leads in.","Foundation starts Oct",0],
+["Malta","American University of Malta","Private (US)","BSc CS, BBA, Engineering",3,"","US-style admission.","Rolling",1],
+["Iceland","Reykjavík University","Private","BSc Computer Science",2,"br","Needs matriculation-level equivalence.","Spring 2027",0],
+["Luxembourg","University of Luxembourg","Public","Any bachelor",1,"D","Ministry requires 12 consecutive years of school.","—",0],
+["Türkiye","Koç University","Private (foundation)","CS, Economics, Business (EN)",5,"sat1200","SAT general minimum about 1200.","Rolling Jan–Jul 2027",0],
+["Türkiye","Sabancı · Bilkent","Private (foundation)","Engineering, CS, Economics (EN)",5,"sat1200","SAT accepted in place of YÖS.","Rolling",0],
+["Türkiye","METU · Boğaziçi · ITU","Public","Engineering, CS, Economics (EN)",4,"sat1350","International quotas ranked by SAT or TR-YÖS; Writing 6.5 skips the English prep year.","Jun–Aug 2027",0],
+["Türkiye","Bahçeşehir · Istanbul Aydın · Altınbaş · Medipol · Özyeğin","Private (foundation)","Many English bachelor's",5,"","Admission on diploma grade (needs 50%; you have 100%).","Spring: Dec–Jan · Fall rolling",1],
+["Türkiye","Türkiye Bursları scholarship","Government","—",1,"D","Undergraduate applicants must be under 21.","—",0],
+["UAE","American University of Sharjah","Private","BS CS, Engineering, BBA, Economics",5,"","Ministry explicitly accepts the 11-year CIS certificate; IELTS 6.5 met.","Spring: Oct–Nov · Fall: Feb–May",1],
+["UAE","Khalifa University","Public","BSc Engineering, CS, Physics",5,"","Equivalency + science background; SAT Math 700 advised.","~Jan–Apr 2027",0],
+["UAE","MBZUAI","Public","BSc Artificial Intelligence",4,"ev","About 5% acceptance; strong maths evidence needed.","Check",0],
+["UAE","University of Sharjah · Abu Dhabi University · Ajman","Semi-public / private","BSc, BBA",4,"","Equivalency.","Rolling; January intake",1],
+["UAE","Heriot-Watt Dubai · UOWD · Middlesex Dubai","Branch campuses","Business, CS, Engineering",4,"","May place you in their own foundation first (Heriot-Watt: IELTS 5.5, Jan/Sep starts).","Rolling; January intake",1],
+["UAE","NYU Abu Dhabi","Private (US)","BA/BS",1,"D","Applicants who left school 2+ years ago are discouraged.","—",0],
+["South Korea","Hankuk University of Foreign Studies · Chung-Ang","Private","English or Korean tracks",4,"","Spring 2027 international round open 12–30 Oct 2026.","12–30 Oct 2026 (spring)",1],
+["South Korea","Woosong University – SolBridge","Private","BBA (all English)",5,"","Spring and fall intakes.","Spring: Oct–Nov 2026",1],
+["South Korea","Yonsei UIC · Korea University (international)","Private","English BA/BS",4,"","Foreign-national track; spring rounds closed, fall ~Mar–May 2027.","~Mar–May 2027",0],
+["South Korea","KAIST","Public institute","BS (English)",4,"","International admission for fall.","~Oct 2026–Jan 2027",0],
+["South Korea","GKS-U 2027 University Track","Scholarship","Korean language year + degree",4,"","Under 25 and GPA 80%+ met.","Sep–Nov 2026 by university",0],
+["South Korea","Women's universities (Ewha, Sookmyung…)","Private","—",1,"D","Women only.","—",0],
+["China","Tsinghua · Peking University","Public (C9)","Undergraduate",4,"lang:HSK 5 or written tests","Tsinghua: age 18+, no upper limit. PKU: 18–25.","Tsinghua 20 Nov 2026 · PKU ~Dec–Feb",0],
+["China","CUHK-Shenzhen","Public-private","20+ English bachelor's",5,"","International admission + interview.","Rounds to spring 2027",0],
+["China","NYU Shanghai · Duke Kunshan","Sino-US","BA/BS (US degree)",4,"","US-style application.","Nov 2026–Jan 2027",0],
+["China","Shenzhen MSU-BIT University","Sino-Russian","Russian/Chinese-medium bachelor",4,"","Tests in Russian and maths; your Russian is an advantage.","Spring 2027",0],
+["Hong Kong","Hong Kong Baptist University","Public","BBA, BSc CS, Social Sciences",5,"","Lists the Uzbek Attestat by name.","Rounds to Jan 2027",0],
+["Hong Kong","University of Hong Kong","Public","Economics & Finance, Engineering, BBA",4,"","IELTS 6.0 with no band below 5.5 (met). SAT 1450+ strengthens.","26 Nov 2026 first round",0],
+["Hong Kong","CUHK · HKUST · PolyU","Public","BBA, BSc, BEng",4,"ev","For similar certificates they ask for national exam results; SAT 1300+ or your DTM serves.","CUHK 12 Nov / 7 Jan · HKUST 25 Nov",0],
+["Malaysia","Universiti Utara Malaysia","Public","BBA, IT, Economics",4,"","Accepts 11–12 years; certificate valid 5 years (yours to 2027).","Apply now for Feb 2027",1],
+["Malaysia","Universiti Malaya","Public","BSc, BBA, BEng",3,"br","Requires 12 years.","8 Sep 2026–30 Jan 2027 (March intake)",1],
+["Malaysia","Monash Malaysia · Taylor's · Nottingham Malaysia","Branch / private","Degree after foundation",4,"br","Foundations (MUFY, Taylor's) accept you now; IELTS 5.5.","Foundation intakes Jan–Mar",1],
+["Singapore","NTU · NUS","Public","Any bachelor",2,"ap;sat1250","CIS certificates (Uzbek included) not accepted alone: 3 AP exams at 4–5 or A-levels, plus SAT 1250+.","NTU 15 Oct 2026–20 Jan 2027 (2028 realistic)",0],
+["Singapore","SIM Global Education · JCU Singapore · Curtin Singapore","Private","Foundation/diploma → partner degree",3,"br","Partner-university rules.","Rolling",1],
+["Qatar","Carnegie Mellon Qatar · Georgetown Qatar","US branch","CS, Business, Foreign Service",4,"","US-style review.","~Dec 2026–Feb 2027",0],
+["Qatar","Qatar University","Public","Any bachelor",1,"D","Requires 12 years of formal education.","—",0],
+["Qatar","Texas A&M Qatar","US branch","—",1,"D","No longer admits undergraduates.","—",0],
+["Saudi Arabia","Islamic University of Madinah","Public (scholarship)","Sharia, Arabic, Engineering, CS",2,"lang:Arabic (prep year)","Age 17–25 met; certificate must be under 5 years old, so apply before ~17 Jun 2027.","Early 2027 only",0],
+["Saudi Arabia","King Saud University and most state universities","Public","—",1,"D","Certificate older than their limit (3–5 years).","—",0],
+["Bahrain","University of Bahrain","Public","—",1,"D","Only graduates of the last 2 years.","—",0],
+["Kuwait","Kuwait University","Public","—",1,"D","Scholarship certificates must be under 2 years old.","—",0],
+["Kuwait","AUK · GUST · AUM","Private","Business, CS, Engineering",2,"","Kuwait equivalency of an 11-year certificate unconfirmed.","Rolling",0],
+["Jordan","All Jordanian universities","Public / private","—",1,"D","Equivalency requires proof of 12 years.","—",0]
 ];
-const REGION = c => ({"USA":"Americas & Oceania","Canada":"Americas & Oceania","Australia":"Americas & Oceania","Türkiye":"Asia & Middle East","UAE":"Asia & Middle East","South Korea":"Asia & Middle East","China":"Asia & Middle East","Hong Kong":"Asia & Middle East","Malaysia":"Asia & Middle East","Singapore":"Asia & Middle East","Qatar":"Asia & Middle East","Saudi Arabia":"Asia & Middle East","Bahrain":"Asia & Middle East","Kuwait":"Asia & Middle East","Jordan":"Asia & Middle East"}[c] || "Europe");
 
-// [country, cat, rule, blocker, spring, fallDeadline, fit]
+// Foundations: [name, provider/city, country, feeds, guarantee g|n|o, accepts, english, intakes, applyBy, length, spring, home, fit, note]
+const F = [
+["UQ College – Foundation Program (Accelerated)","Brisbane","Australia","University of Queensland, entering the next semester","g","Yes: Russian-type Year 11 needs grade 5 in top four subjects","Check; Foundation English levels apply","15 Feb 2027 · 6 Sep 2027","11 Jan 2027 (Feb) · 2 Aug 2027 (Sep)","~8–11 months",1,0,5,"Best fit for a February start. Some UQ degrees start only in Semester 1."],
+["Trinity College Foundation Studies","Melbourne (Parkville/Carlton)","Australia","University of Melbourne course of your choice, if prerequisites and scores met","g","Yes: Russian Attestat average 4 (Standard), 5 (Fast Track). You qualify for Fast Track","Check per stream","Comprehensive 12 Jan 2027 · Standard 8 Feb 2027 · July 2027","Apply by Nov–Dec 2026 for Jan/Feb","Fast Track shorter; Standard ~1 year",1,0,5,"Strongest brand; Fast Track can shorten the bridge."],
+["Monash College – Foundation Year","Melbourne","Australia","Guaranteed first year at Monash with required score","g","Yes: Year 11 or equivalent","IELTS 5.5, no band below 5.0 (you meet it)","22 Feb 2027 · Aug 2027","Apply Nov–Dec 2026 for Feb","~1 year",1,0,5,"13 subject choices into all 10 Monash faculties."],
+["Monash College – Diploma (Part 1 → Part 2)","Melbourne","Australia","Second year of a related Monash degree","g","Yes: Part 1 is for Year 11 holders","IELTS 5.5, no band below 5.0 (met)","Feb, Jun, Oct (check)","~2–3 months before start","Part 1 + Part 2 ≈ 12–16 months",1,0,4,"Skips first year of the degree; faster than foundation + year 1."],
+["Taylors College – University of Sydney Foundation","Sydney","Australia","University of Sydney","g","Yes: Year 11 average 65% (Standard) / 70% (Intensive)","Check","11 Jan 2027 · July 2027","Nov–Dec 2026 for January","~40 weeks",1,0,4,"January start; tight visa timing."],
+["UNSW College – Foundation Studies","Sydney","Australia","UNSW Sydney","g","Year 11 with strong results (check country table)","Check","Several intakes in 2027","Check","~1 year",1,0,4,"UNSW also takes NCUK graduates."],
+["NCUK International Foundation Year at STARS International University","Tashkent","Uzbekistan (home)","Guaranteed place at an NCUK partner: 80+ incl. UNSW, UWA, RMIT, Alberta and UK universities","g","Designed for national school leavers; confirm entry with STARS","Foundation-level English (you are well above)","Check January and September starts","Ask STARS now","~9 months",0,1,4,"No visa while studying; then one visa for the degree. Ask whether a January 2027 start exists."],
+["WIUT – Certificate in International Foundation Studies","Tashkent","Uzbekistan (home)","WIUT degrees; University of Westminster award accepted by UK and many other universities","o","Yes: school certificate, normally 70% average, plus maths test","IELTS 6.0 with Writing 5.0 (met)","September","~15 Jul 2027","1 year",0,1,3,"For 2028 entry. Italy's Ministry rule accepts foreign foundation years; confirm per university."],
+["Holland ISC – University of Applied Sciences Foundation","Groningen","Netherlands","Hanze University of Applied Sciences","g","Yes: high-school diploma, age 17+","IELTS 5.5 with Writing 5.5 (met exactly)","January–July 2027","Apply by ~Nov 2026","~6 months",1,0,4,"January start, degree from September 2027 with almost no time lost."],
+["Holland ISC – Business & Management / Science & Engineering","Amsterdam / Groningen","Netherlands","Partners incl. VU Amsterdam, University of Twente, The Hague UAS; also listed: Erasmus, Tilburg, Groningen","g","Yes: high-school diploma, age 17+","IELTS 5.0, Writing 5.0 (met)","September 2027–July 2028","Spring 2027","~10 months",0,0,4,"Confirm 2027 partner list; Erasmus and Tilburg reject other foundations."],
+["FH Aachen – Freshman Program (English Track FeP)","Aachen","Germany","State Feststellungsprüfung → English bachelor's in North Rhine-Westphalia; English-to-German track guaranteed at FH Aachen, Duisburg-Essen, FH Dortmund","n","Yes: completed high school + entrance test or TestAS","~IELTS 5.0 (met)","1 Oct 2027–31 Jul 2028","Entrance exam: register by 12 Nov 2026, exam 3 Dec 2026 · TestAS route: 15 Jul 2027","10 months",0,0,4,"A state exam, so it counts like a Studienkolleg, not a private certificate."],
+["CBS Prep4University (state-recognised Studienkolleg)","Cologne","Germany","Feststellungsprüfung → English degrees in NRW and states accepting the English FSP","n","Attestat → Studienkolleg access (anabin)","IELTS 6.0 (met overall)","August 2027 (W and T courses)","15 May 2027 for visa applicants","2 semesters",0,0,4,"English track; no German needed at entry."],
+["Constructor University – International Foundation Year","Bremen","Germany","Constructor University (qualification pathway needs TestAS 190)","g","Yes: high-school certificate","B1 / IELTS 4.5 (met)","Late August 2027","Spring 2027","1 year",0,0,3,"Narrow: leads mainly to Constructor."],
+["University of Pavia – Foundation Year","Pavia","Italy","Fills the Ministry's missing 12th year → any Italian university","n","Yes: explicitly for 11 years of schooling","Italian/English (Italian taught in programme; consulate may ask Italian B1)","October–June","Application windows open 1–15 October; check the current cycle now","~9 months",0,0,4,"Needs Declaration of Value + apostilled, translated Attestat."],
+["Ca' Foscari Venice – Foundation Year","Venice","Italy","Fills the 12th year → Italian universities","n","Yes: for students lacking 12 years","Check","Autumn","Ask foundation.cfsie@unive.it","1 year",0,0,3,"Contact for current dates."],
+["University of Malta – Foundation Studies","Msida","Malta","University of Malta degrees (6 streams incl. Business, ICT, Science, Medical)","g","Yes: for systems not comparable to Malta's","IELTS 5.5, reading/writing 5.0 (met)","October","Spring–summer 2027","1 year (62 ECTS)",0,0,3,"EU degree; English-taught."],
+["Monash University Foundation Year at Sunway College","Kuala Lumpur","Malaysia","Monash Malaysia / Monash Australia and many others","g","Accepted as O-level/SPM-equivalent; confirm","IELTS 5.5, no band below 5.0 (met)","January · July · August","Nov–Dec 2026 for January","12 months",1,0,4,"Cheaper route to a Monash degree."],
+["Taylor's University – Foundation (Business, Science, Engineering, Computing)","Subang Jaya","Malaysia","Taylor's degrees and partners","g","SPM/O-level equivalent; confirm","IELTS required","Feb · Apr · Sep (approx.)","Rolling","~1 year",1,0,4,""],
+["Heriot-Watt University Dubai – Degree Entry (Foundation)","Dubai","UAE","Heriot-Watt degrees in Dubai, Edinburgh, Malaysia","g","Assessed individually (equivalency needed)","IELTS 5.5, no score lower (met exactly)","January · September","Rolling","1 year",1,0,4,"UK degree with campus mobility."],
+["Fraser International College – UTP Stage I","Burnaby, BC","Canada","Simon Fraser University (transfer with credits)","g","Yes: completed Year 11","IELTS 6.0, no band below 5.5 (met)","January · May · September","~2–3 months before (PAL needed)","8 months",1,0,4,"Study permit + PAL required."],
+["International College of Manitoba – UTP Stage I","Winnipeg","Canada","University of Manitoba","g","Yes: completed Year 11","IELTS 5.5, bands 5.0 (met)","January · May · September","~2–3 months before","~8 months",1,0,3,""],
+["Korea University – Korean Language Center (D-4)","Seoul","South Korea","Korean-taught degrees after TOPIK 3–4","o","Yes","None (Korean taught from zero)","Spring: 18 Mar 2027","7 Dec 2026–22 Jan 2027","10-week terms",1,0,3,"Language route, not an academic foundation."],
+["University of Pécs – Preparatory course for medical studies","Pécs","Hungary","Pécs Medicine, Dentistry, Pharmacy","o","Yes: completed secondary","No requirement; length depends on your level","September","Spring 2027","Up to 15 months",0,0,3,"Only useful for medicine."],
+["SIM Global Education – Foundation / Diploma","Singapore","Singapore","Partner degrees (University of London, RMIT, others)","g","Assessed individually","Check","Several","Rolling","~1 year",1,0,3,"Does not lead to NTU/NUS."]
+];
+
+// Routes for decision model: [name, desc, scores{time,access,cert,visa,lang,breadth}]
+const ROUTES = [
+["Direct entry, Fall 2027","US, UAE, Türkiye, HK, Korea, Nordics, Hungary, Baltics, Canada",[5,4,4,3,5,5]],
+["Australian foundation, Feb 2027","UQ College, Monash College, Trinity → guaranteed Go8 place",[4,5,5,2,5,3]],
+["Holland ISC / Dubai foundation, Jan 2027","Hanze from Sep 2027, or Heriot-Watt degree",[4,3,4,3,5,3]],
+["Home foundation in Tashkent","NCUK at STARS or WIUT, then degree abroad",[2,4,4,5,5,4]],
+["Year 1 at a direct-entry university","Then reapply with 1 year done; opens Germany, Italy, Norway, Denmark",[3,4,4,3,5,5]],
+["German English-track Studienkolleg","FH Aachen or CBS → state exam → German degree",[1,3,3,2,3,4]],
+["Italian foundation (Pavia)","Fills the 12th year → any Italian university",[2,3,4,3,2,4]]
+];
+const CRIT = [["Time to degree",3],["Access to strong universities",2],["Certainty of admission",3],["Easy visa & paperwork",2],["Little new language to learn",1],["Recognition breadth",2]];
+
+// Time chart rows: [label, sub, fStart, fEnd, dStart, dEnd] as decimal years
+const TL = [
+["Direct, US 4-year","Sep 2027 → May 2031",null,null,2027.67,2031.38],
+["Direct, Sweden/Hungary 3-year","Sep 2027 → Jun 2030",null,null,2027.67,2030.46],
+["UQ College → UQ","Feb 2027 foundation → Nov 2030",2027.12,2027.85,2028.15,2030.9],
+["Monash Diploma → Monash Year 2","Feb 2027 → ~Nov 2029",2027.15,2028.2,2028.2,2029.9],
+["Holland ISC → Hanze","Jan 2027 → Jul 2031",2027.0,2027.55,2027.67,2031.55],
+["FH Aachen → German degree","Oct 2027 → ~Mar 2032",2027.75,2028.58,2028.75,2032.2],
+["Pavia Foundation → Italian degree","Oct 2027 → Jul 2031",2027.75,2028.5,2028.7,2031.55]
+];
+
+// Countries: [country, rule, foundation help, spring, fall deadline, fit]
 const C = [
-["USA","A","No 12-year rule; holistic review","SAT for selective schools; F-1 interview","Some publics & community colleges","EA 1 Nov · RD 1–15 Jan",5],
-["Türkiye","A","Admission on diploma grade (≥50%; medicine ≥85%) or SAT/TR-YÖS","MEB equivalence certificate","Private universities, Feb","Rolling Jan–Aug 2027",4.5],
-["UAE","A","Ministry explicitly accepts the 11-year CIS certificate","Consular legalisation","Yes, January","Rolling; Khalifa ~Jan–Apr",4.5],
-["Sweden","A","Uzbek Shahodatnoma meets general entry","Programme maths requirements","Closed","15 Jan 2027",4.5],
-["Hungary","A","11 years accepted where national standard","Entrance exam/interview","Limited, February","Rolling; SH ~15 Jan",4.5],
-["Finland","A","Eligible if it opens university at home","Writing 6.0 at Helsinki/Aalto; SAT for Aalto","Closed","7–21 Jan 2027",4],
-["Hong Kong","A","HKBU lists Uzbek Attestat; HKU case by case","National test or SAT at CUHK/HKUST/PolyU","No","HKU 26 Nov · CUHK 7 Jan",4],
-["South Korea","A","Ministry recognises full schooling in 11-grade countries","TOPIK; visa deposit","Yes, mid-tier March","~Mar–May 2027",4],
-["China","A","No year rule; age windows instead","HSK for Chinese-taught; elite tests","Language year only","Tsinghua 20 Nov · most Nov–Apr",4],
-["Canada","A","Most provinces accept; Alberta lists Uzbek certificate","IELTS band floors; study-permit cap (PAL)","No","~15 Jan–1 Mar 2027",4],
-["Latvia","A","Uzbek attestat named; AIC recognition","~1 month recognition","February intakes (check)","RTU 1 Jul 2027",4],
-["Lithuania","A","Opens university at home; VILNIUS TECH wants DTM","DTM result at VILNIUS TECH","A few February intakes","~May–Jul 2027",4],
-["Portugal","A","International Student Statute","Portuguese for most public programmes","Limited","Rounds Nov–Jun",4],
-["Netherlands","A","Applied-sciences unis accept HAVO-level; research unis need +1 year","IELTS valid at start; WO bridge","HBO February (check now)","~1 Apr–1 May 2027",3.5],
-["Spain","A","Homologation to Bachiller (likely approved)","Homologation risk and time","Private, January","Privates rolling; public Jun–Jul",3.5],
-["France","A","Private schools direct; public L1 via DAP in French","French for public; Sciences Po closed","Some BBAs, January","DAP 15 Dec · BBAs rolling",3.5],
-["Australia","C","Foundation or +1 year at most universities","Writing 6.0 for degrees; Genuine Student test","Foundation Feb–Mar","Foundation rolling",3.5],
-["Malaysia","C","12 years needed; UUM accepts 11 years","Foundation year; UUM 5-year validity","Yes, Feb–Mar","Rolling",3],
-["Austria","C","Needs proof of passing Uzbek entrance test","DTM result","Limited","WU ~Mar 2027",3],
-["Belgium","B","Flanders: home-access proof; French Community: equivalence + French","DTM proof; French","No","1–31 Mar 2027",3],
-["Germany","C","Attestat → Studienkolleg; +1 year → direct","Studienkolleg (English tracks exist)","Some private foundations","Studienkolleg Jan–Jul",3],
-["Italy","C","Ministry requires 12 years","Foundation year","US-degree schools in Rome","Foundation Mar–Jun",3],
-["Qatar","A","US branch campuses use US rules; Qatar University needs 12 years","QU closed; TAMUQ closed","No","~Dec 2026–Feb 2027",3],
-["Denmark","C","Usually +1 year of university","Supplementation","No","15 Mar 2027",2],
-["Singapore","C","12 years; NTU rejects CIS certificates alone","3 AP exams + SAT (2028)","Private only","NTU 20 Jan 2027",2],
-["Norway","C","Official list: Attestat + 1 year of university","+1 year","No","Dec 2026–Mar 2027",2],
-["Malta","C","Matriculation-level needed; AUM direct","Foundation at UM","AUM only","Spring–summer 2027",2.5],
-["Saudi Arabia","D","Certificate under 5 years (some 3); age 17–25","Certificate age; Arabic","No","Early 2027 only (IUM)",1.5],
-["Luxembourg","D","Needs 12 consecutive years","12-year rule","No","—",1.5],
-["Bahrain","D","University of Bahrain: graduation within 2 years","Recency; equivalency","No","Private rolling",1.5],
-["Kuwait","D","KU scholarships: certificate under 2 years","Recency; equivalency","No","Private rolling",1.5],
-["Iceland","C","Matriculation-equivalent required","Equivalence; Icelandic language","No","UI 1 Feb 2027",1.5],
-["Jordan","D","Equivalency needs proof of 12 years","12-year rule","No","—",1]
+["USA","No 12-year rule; holistic","Not needed","Some publics & community colleges","EA 1 Nov · RD 1–15 Jan",5],
+["Türkiye","Diploma grade (≥50%), SAT or TR-YÖS","Not needed (English prep year built in)","Private universities, Feb","Rolling Jan–Aug",4.5],
+["UAE","Ministry accepts the 11-year CIS certificate","Only at UK/Australian branches","Yes, January","Rolling",4.5],
+["Sweden","Shahodatnoma meets general entry","Not needed","Closed","15 Jan 2027",4.5],
+["Hungary","11 years accepted where national standard","Not needed","Limited","Rolling; SH ~15 Jan",4.5],
+["Australia","Foundation or +1 year at most universities","Yes, the main route (guaranteed progression)","Yes, Feb–Mar foundations","Foundation rolling",4.5],
+["Finland","Eligible if it opens university at home","Not needed","Closed","7–21 Jan 2027",4],
+["Hong Kong","HKBU lists Uzbek Attestat; others want extra evidence","No","No","HKU 26 Nov · CUHK 7 Jan",4],
+["South Korea","Full 11-year schooling recognised","Language institute for Korean tracks","Yes, mid-tier March","~Mar–May 2027",4],
+["China","No year rule; age windows","Chinese preparatory year for Chinese tracks","Language year only","Nov 2026–Apr 2027",4],
+["Canada","Most accept; band floors bite","UTP colleges (FIC, ICM)","Pathway colleges, January","~15 Jan–1 Mar",4],
+["Latvia","Uzbek attestat named; AIC recognition","Not needed","Some February intakes","RTU 1 Jul",4],
+["Lithuania","Opens university at home; VILNIUS TECH wants DTM","Not needed","A few February intakes","~May–Jul",4],
+["Portugal","International Student Statute","Not needed","Limited","Rounds Nov–Jun",4],
+["Netherlands","Applied sciences: direct. Research: +1 year","Only via Holland ISC partners; Erasmus/Tilburg reject others","HBO Feb / Holland ISC Jan","~1 Apr–1 May",3.5],
+["Spain","Homologation to Bachiller (likely)","Not needed","Private, January","Privates rolling",3.5],
+["France","Private schools direct; public in French","Not needed","Some BBAs, January","DAP 15 Dec · rolling",3.5],
+["Malaysia","12 years; UUM accepts 11","Yes (MUFY, Taylor's)","Yes","Rolling",3.5],
+["Germany","Attestat → Studienkolleg","Yes, if it ends in the state exam (FH Aachen, CBS)","No","Studienkolleg Nov–May",3],
+["Italy","Ministry requires 12 years","Yes, explicitly (Pavia accepts 11 years)","US-degree schools only","Foundation from Oct",3],
+["Austria","Needs proof of Uzbek university access","No","Limited","WU ~Mar",3],
+["Belgium","Flanders: home-access proof","No","No","1–31 Mar",3],
+["Qatar","Education City (US rules) yes; Qatar University no","No","No","~Dec–Feb",3],
+["Malta","Matriculation-level needed","Yes, UM Foundation Studies","AUM only","Spring–summer",2.5],
+["Denmark","Usually +1 year of higher education","Unlikely to count","No","15 Mar 2027",2],
+["Norway","Attestat + 1 year of higher education","Does not count","No","Dec–Mar",2],
+["Singapore","12 years; NTU rejects CIS certificates alone","No (needs AP/A-levels)","Private only","NTU 20 Jan",2],
+["Saudi Arabia","Certificate under 5 years; age 17–25","No","No","Early 2027 only",1.5],
+["Iceland","Matriculation-equivalent","Possibly","No","1 Feb 2027",1.5],
+["Kuwait","KU: certificate under 2 years","No","No","Private rolling",1.5],
+["Bahrain","UoB: last 2 years only","No","No","Private rolling",1.5],
+["Luxembourg","12 consecutive years","Unclear","No","—",1],
+["Jordan","Proof of 12 years","Unclear","No","—",1]
 ];
 
-// Roadmap: [isoDate, label, task, note]
+// Roadmap: [date, label, task, note, route]
 const R = [
-["2026-10-09","This week","Apply for a new passport","Current one expires 21 Sep 2027"],
-["2026-10-09","This week","Book IELTS retake (computer-delivered), target Writing 6.5+","Register with your passport"],
-["2026-10-09","This week","Request apostille / consular legalisation of Attestat","Make 5–8 certified copies"],
-["2026-10-09","This week","Ask School No. 42 for grade 9–11 transcripts and a course letter",""],
-["2026-10-09","This week","Find your 2022 DTM entrance-test result",""],
-["2026-10-10","10 Oct","Check open GKS-U University Track calls (Korea)","Window Sep–Nov 2026"],
-["2026-10-15","15 Oct","Submit Spring 2027 applications: UAE, Malaysia (UUM), Australia foundations, Korea spring, Türkiye spring","Pick 2–3"],
-["2026-10-16","16 Oct","Sweden application round opens",""],
-["2026-10-23","23 Oct","SAT registration deadline for 7 Nov",""],
-["2026-10-31","Late Oct","Sit IELTS retake",""],
-["2026-10-31","Oct–Nov","Ask for 2–3 recommendation letters","Teachers or employer"],
-["2026-11-01","1 Nov","US Early Action / Early Decision deadlines",""],
-["2026-11-07","7 Nov","Sit the SAT",""],
-["2026-11-12","12 Nov","CUHK advance round deadline",""],
-["2026-11-20","20 Nov","Tsinghua round 1 closes · SAT 5 Dec registration deadline",""],
-["2026-11-25","25 Nov","HKUST priority round deadline",""],
-["2026-11-26","26 Nov","HKU first-round deadline (12:00 noon)",""],
-["2026-11-30","30 Nov","University of California deadline · Spain homologation filed","Stipendium Hungaricum call opens"],
-["2026-12-05","5 Dec","Backup SAT sitting",""],
-["2026-12-15","15 Dec","France DAP deadline (only if you have French B2)",""],
-["2026-12-31","December","Columbia GS application opens · Peking University cycle opens",""],
-["2027-01-07","7 Jan","CUHK regular round deadline",""],
-["2027-01-15","1–15 Jan","US Regular Decision deadlines",""],
-["2027-01-15","15 Jan","Sweden deadline · Columbia GS priority · UofT, UBC, McGill · Stipendium Hungaricum",""],
-["2027-01-21","7–21 Jan","Finland joint application","€100 fee"],
-["2027-02-01","1 Feb","Sweden documents due · Waterloo",""],
-["2027-02-19","19 Feb","Registration for 6 Mar SAT (last useful sitting)",""],
-["2027-03-01","1 Mar","Columbia GS Early Action (best for F-1) · KU Leuven, UGent · Alberta",""],
-["2027-03-15","1–15 Mar","TR-YÖS registration · WU Vienna selection registration · Denmark deadline",""],
-["2027-03-31","31 Mar","VUB deadline · CSC scholarship",""],
-["2027-04-08","8 Apr","Sweden results · US decisions arrive · Dutch non-EU deadlines (1 Apr)",""],
-["2027-04-30","30 Apr","ELTE Computer Science deadline",""],
-["2027-05-01","1 May","Choose and pay US deposit · Studielink latest",""],
-["2027-05-16","16 May","TR-YÖS exam · Columbia GS RD (15 May)",""],
-["2027-06-10","10 Jun","TR-YÖS results → Turkish public university calls",""],
-["2027-06-30","Apr–Jul","Apply for visa with the new passport","F-1, Schengen D, D-2, X1, PAL/permit, UAE residence"],
-["2027-07-01","1 Jul","RTU Latvia regular deadline (safety)",""],
-["2027-08-21","21 Aug","HKU final deadline",""],
-["2027-09-01","Aug–Sep","Travel, register, residence permit",""]
+["2026-10-09","This week","Apply for a new passport","Current one expires 21 Sep 2027","admin"],
+["2026-10-09","This week","Book a computer-delivered IELTS; target Writing 6.5","Register with your passport","test"],
+["2026-10-09","This week","Order apostille / legalisation of the Attestat; request grade 9–11 transcripts","5–8 certified copies","admin"],
+["2026-10-09","This week","Look for your 2022 DTM entrance-test result","","admin"],
+["2026-10-12","12 Oct","Contact STARS (NCUK) and Holland ISC about January 2027 starts; check Pavia's October window","","fnd"],
+["2026-10-16","16 Oct","Sweden application round opens","","direct"],
+["2026-10-23","23 Oct","SAT registration deadline for 7 Nov","","test"],
+["2026-10-30","12–30 Oct","Korea spring round: HUFS, Chung-Ang (and SolBridge)","","direct"],
+["2026-10-31","Late Oct","Sit the IELTS retake","","test"],
+["2026-11-01","1 Nov","US Early Action / Early Decision","","direct"],
+["2026-11-07","7 Nov","Sit the SAT","","test"],
+["2026-11-12","12 Nov","FH Aachen Freshman entrance-exam registration · CUHK advance round","","fnd"],
+["2026-11-15","Mid-Nov","Apply to Australian foundations (UQ College, Monash College, Trinity) and Holland ISC January","Allow 6–10 weeks for CoE and visa","fnd"],
+["2026-11-20","20 Nov","Tsinghua round 1 closes · SAT 5 Dec registration","","direct"],
+["2026-11-26","25–26 Nov","HKUST priority (25 Nov) · HKU first round (26 Nov)","","direct"],
+["2026-11-30","30 Nov","University of California deadline","","direct"],
+["2026-12-03","3 Dec","FH Aachen Freshman entrance exam (online)","","fnd"],
+["2026-12-05","5 Dec","Backup SAT","","test"],
+["2026-12-15","Mid-Dec","Lodge Australian student visa (foundation + degree package) with the new passport","","fnd"],
+["2027-01-07","7 Jan","CUHK regular round","","direct"],
+["2027-01-11","11 Jan","UQ College offshore deadline for the 15 Feb start","","fnd"],
+["2027-01-15","1–15 Jan","US Regular Decision · Sweden · Columbia GS priority · Toronto, UBC, McGill · Stipendium Hungaricum","","direct"],
+["2027-01-21","7–21 Jan","Finland joint application","€100 fee","direct"],
+["2027-01-22","22 Jan","Korea University Korean Language Center spring application closes (18 Mar start)","","fnd"],
+["2027-02-15","15–22 Feb","Australian foundations begin (UQ College 15 Feb, Monash College 22 Feb)","","fnd"],
+["2027-03-01","1 Mar","Columbia GS Early Action · KU Leuven · Alberta","","direct"],
+["2027-03-15","1–15 Mar","TR-YÖS registration · WU Vienna selection · Denmark","","direct"],
+["2027-03-31","31 Mar","VUB deadline · CSC scholarship","","direct"],
+["2027-04-08","8 Apr","Sweden results; US decisions arrive","","direct"],
+["2027-05-01","1 May","Choose and pay a deposit (US); Studielink latest date","","direct"],
+["2027-05-15","15 May","CBS Prep4University deadline for visa applicants","","fnd"],
+["2027-06-10","10 Jun","TR-YÖS results; Turkish public calls open","","direct"],
+["2027-06-30","Apr–Jul","Visas for Fall 2027 with the new passport","","admin"],
+["2027-07-15","15 Jul","FH Aachen TestAS route · WIUT Foundation (for 2028 entry)","","fnd"],
+["2027-08-02","2 Aug","UQ College September intake, offshore deadline","","fnd"],
+["2027-08-21","21 Aug","HKU final deadline","","direct"],
+["2027-09-01","Aug–Sep","Travel, register, residence permit","","admin"]
 ];
 
+/* ---------- Helpers ---------- */
 const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
-const stars = n => { const f = Math.floor(n), h = n - f >= .5; return "★".repeat(f) + (h ? "½" : "") + "<i>" + "★".repeat(5 - f - (h?1:0)) + "</i>"; };
-const pill = c => `<span class="pill c${c}">${c}</span>`;
 const store = { get(k,d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }, set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} } };
+const REGION = c => ["USA","Canada","Australia"].includes(c) ? "Americas & Oceania" : ["Türkiye","UAE","South Korea","China","Hong Kong","Malaysia","Singapore","Qatar","Saudi Arabia","Bahrain","Kuwait","Jordan"].includes(c) ? "Asia & Middle East" : "Europe";
+const fitHtml = n => { const f = Math.floor(n), h = n - f >= .5; return `<span class="fit" aria-label="Fit ${n} of 5">${"★".repeat(f)}${h?"½":""}<i>${"★".repeat(5-f-(h?1:0))}</i></span>`; };
+const STATUS = {ok:["Open now","s-ok","st-ok"], reach:["Needs a score or document","s-reach","st-reach"], bridge:["Bridge year first","s-bridge","st-bridge"], closed:["Closed","s-closed","st-closed"]};
+const chip = s => `<span class="chip ${STATUS[s][1]}">${STATUS[s][0]}</span>`;
 
-// Tabs
-const tabs = [...document.querySelectorAll("nav.tabs button")];
-function show(id){
-  tabs.forEach(b => b.setAttribute("aria-selected", b.dataset.tab === id));
-  document.querySelectorAll("[data-panel]").forEach(p => p.hidden = p.dataset.panel !== id);
-  store.set("atlas.tab", id);
+/* ---------- Situation ---------- */
+const DEF = {hist:"s1", dtm:"no", w:"5.5", sat:"0", fnd:"no"};
+let S = Object.assign({}, DEF, store.get("atlas.sit", {}));
+const SIT = {hist:"#sHist", dtm:"#sDtm", w:"#sW", sat:"#sSat", fnd:"#sFnd"};
+Object.entries(SIT).forEach(([k,sel]) => { $(sel).value = S[k]; $(sel).addEventListener("change", e => { S[k] = e.target.value; store.set("atlas.sit", S); renderAll(); }); });
+$("#resetSit").addEventListener("click", () => { S = Object.assign({}, DEF); Object.entries(SIT).forEach(([k,sel]) => $(sel).value = S[k]); store.set("atlas.sit", S); renderAll(); });
+
+/* ---------- Eligibility engine ---------- */
+function parseReq(s){ const r = {}; (s||"").split(";").filter(Boolean).forEach(p => { if(p==="D"||p==="dtm"||p==="ev"||p==="br"||p==="yr1"||p==="ap") r[p]=true; else if(p.startsWith("w")) r.w=+p.slice(1); else if(p.startsWith("sat")) r.sat=+p.slice(3); else if(p.startsWith("lang:")) r.lang=p.slice(5); }); return r; }
+function evaluate(row, st = S){
+  const r = parseReq(row[5]); const miss = [];
+  if (r.D) return {s:"closed", miss:["Excluded by rule"]};
+  const w = +st.w, sat = +st.sat, s2 = st.hist === "s2", fnd = st.fnd === "yes";
+  if (r.yr1 && !s2) miss.push(["bridge","1 year of university (a foundation does not count)"]);
+  if (r.br && !s2 && !fnd) miss.push(["bridge","Foundation year or 1 year of university"]);
+  if (r.ap) miss.push(["bridge","3 AP exams at 4–5 (May 2027 → 2028 entry)"]);
+  if (r.w && w < r.w) miss.push(["score",`IELTS Writing ${r.w.toFixed(1)}+ (you: ${w.toFixed(1)})`]);
+  if (r.sat && sat < r.sat) miss.push(["score",`SAT ${r.sat}+${sat ? " (you: ~"+sat+")" : " (not taken)"}`]);
+  if (r.dtm && st.dtm !== "yes") miss.push(["score","Uzbek entrance-test (DTM) result"]);
+  if (r.ev && !(sat >= 1300 || st.dtm === "yes")) miss.push(["score","SAT 1300+ or DTM result as extra evidence"]);
+  if (r.lang) miss.push(["score",r.lang]);
+  const s = miss.some(m => m[0]==="bridge") ? "bridge" : miss.length ? "reach" : "ok";
+  return {s, miss: miss.map(m => m[1])};
 }
-tabs.forEach(b => b.addEventListener("click", () => { show(b.dataset.tab); window.scrollTo({top: document.querySelector("nav.tabs").offsetTop}); }));
-const startTab = (location.hash || "").slice(1);
-show(tabs.some(b => b.dataset.tab === startTab) ? startTab : store.get("atlas.tab","plan"));
+const ORDER = {ok:0, reach:1, bridge:2, closed:3};
 
-// University table
-const countries = [...new Set(U.map(r => r[0]))].sort();
-const regions = ["Europe","Asia & Middle East","Americas & Oceania"];
-regions.forEach(r => $("#fRegion").insertAdjacentHTML("beforeend", `<option>${r}</option>`));
-countries.forEach(c => $("#fCountry").insertAdjacentHTML("beforeend", `<option>${esc(c)}</option>`));
-function renderUnis(){
-  const q = $("#fSearch").value.trim().toLowerCase(), rg = $("#fRegion").value, ct = $("#fCountry").value, cat = $("#fCat").value, fit = +$("#fFit").value, sp = $("#fSpring").checked;
-  const rows = U.filter(r => (!q || (r[1]+" "+r[3]+" "+r[0]).toLowerCase().includes(q)) && (!rg || REGION(r[0]) === rg) && (!ct || r[0] === ct) && (!cat || r[4] === cat) && r[5] >= fit && (!sp || r[9]))
-    .sort((a,b) => "ABCD".indexOf(a[4]) - "ABCD".indexOf(b[4]) || b[5]-a[5] || a[0].localeCompare(b[0]));
-  $("#uniTable tbody").innerHTML = rows.map(r => `<tr><td class="inst"><b>${esc(r[1])}</b><span>${esc(r[2])}</span></td><td>${esc(r[0])}</td><td>${esc(r[3])}</td><td>${pill(r[4])}</td><td>${esc(r[6])}</td><td>${esc(r[7])}</td><td>${esc(r[8])}</td><td class="nums">${esc(r[10])}${r[9] ? '<br><span class="pill cA" style="margin-top:4px">SPRING OK</span>' : ''}</td><td class="stars">${stars(r[5])}</td></tr>`).join("") || `<tr><td colspan="9" class="muted">No universities match these filters. Try clearing one.</td></tr>`;
-  $("#uniCount").textContent = `${rows.length} of ${U.length} entries shown`;
+/* ---------- Tabs ---------- */
+const tabs = $$("nav.tabs button");
+function show(id){ tabs.forEach(b => b.setAttribute("aria-selected", b.dataset.tab === id)); $$("[data-panel]").forEach(p => p.hidden = p.dataset.panel !== id); store.set("atlas.tab", id); }
+tabs.forEach(b => b.addEventListener("click", () => { show(b.dataset.tab); const nav = $("nav.tabs"); if (window.scrollY > nav.offsetTop) window.scrollTo({top: nav.offsetTop}); }));
+const startTab = (location.hash||"").slice(1);
+show(tabs.some(b => b.dataset.tab === startTab) ? startTab : store.get("atlas.tab","overview"));
+
+/* ---------- Overview ---------- */
+function renderTiles(){
+  const cnt = {ok:0,reach:0,bridge:0,closed:0}; U.forEach(r => cnt[evaluate(r).s]++);
+  const desc = {ok:"Apply as you are", reach:"One score or document away", bridge:"Foundation or 1 year first", closed:"Rules exclude you"};
+  const col = {ok:"var(--ok)", reach:"var(--reach)", bridge:"var(--bridge)", closed:"var(--closed)"};
+  $("#tiles").innerHTML = Object.keys(cnt).map(k => `<div class="tile" style="--c:${col[k]}"><div class="n nums">${cnt[k]}</div><div class="l">${STATUS[k][0]}</div><div class="d">${desc[k]} · of ${U.length} routes</div></div>`).join("");
 }
-["#fSearch","#fRegion","#fCountry","#fCat","#fFit","#fSpring"].forEach(s => $(s).addEventListener("input", renderUnis));
-$("#fReset").addEventListener("click", () => { $("#fSearch").value=""; $("#fRegion").value=""; $("#fCountry").value=""; $("#fCat").value=""; $("#fFit").value="0"; $("#fSpring").checked=false; renderUnis(); });
-renderUnis();
-
-// Country table
-$("#ctryTable tbody").innerHTML = C.map(r => `<tr><td><b>${esc(r[0])}</b></td><td>${pill(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td>${esc(r[4])}</td><td class="nums">${esc(r[5])}</td><td class="stars">${stars(r[6])}</td></tr>`).join("");
-
-// Roadmap
-const done = store.get("atlas.done", {});
-const months = {};
-R.forEach((r,i) => { const k = r[0].slice(0,7); (months[k] ||= []).push([i, ...r]); });
-const mName = k => new Date(k+"-15").toLocaleDateString("en-GB",{month:"long",year:"numeric"});
-const phase = k => k <= "2026-10" ? "Unblock & Spring sprint" : k <= "2026-11" ? "Early rounds" : k <= "2027-01" ? "Main deadlines" : k <= "2027-03" ? "Late rounds & exams" : k <= "2027-06" ? "Decisions & visas" : "Enrolment";
-$("#timeline").innerHTML = Object.keys(months).map(k => `<div class="month"><div><h3>${mName(k)}</h3><div class="tag">${phase(k)}</div></div><ul class="tasks">${months[k].map(([i,d,label,task,note]) => `<li class="${done[i]?'done':''}"><input type="checkbox" id="t${i}" data-i="${i}" ${done[i]?'checked':''} aria-label="Mark done: ${esc(task)}"><span class="when">${esc(label)}</span><span class="what"><label for="t${i}">${esc(task)}</label>${note?`<div class="src">${esc(note)}</div>`:''}</span></li>`).join("")}</ul></div>`).join("");
-function prog(){ const n = Object.values(done).filter(Boolean).length; $("#progText").textContent = `${n} of ${R.length} tasks done`; $("#progBar").style.width = (100*n/R.length)+"%"; }
-$("#timeline").addEventListener("change", e => { if(!e.target.dataset.i) return; done[e.target.dataset.i] = e.target.checked; e.target.closest("li").classList.toggle("done", e.target.checked); store.set("atlas.done", done); prog(); });
-prog();
-
-// Next deadlines
+function renderChart(){
+  const x0 = 2027, x1 = 2032.5, pct = v => ((v - x0) / (x1 - x0) * 100).toFixed(2) + "%";
+  const rows = TL.map(([l,sub,fs,fe,ds,de]) => `<div class="trow"><div class="lab"><b>${esc(l)}</b><span class="muted small">${esc(sub)}</span></div><div class="track" role="img" aria-label="${esc(l)}: ${esc(sub)}">${fs!==null?`<div class="seg-f" style="left:${pct(fs)};width:calc(${pct(fe)} - ${pct(fs)})"></div>`:""}<div class="seg-d" style="left:${pct(ds)};width:calc(${pct(de)} - ${pct(ds)})"></div></div></div>`).join("");
+  const ticks = [2027,2028,2029,2030,2031,2032].map(y => `<span style="left:${pct(y)}">${y}</span>`).join("");
+  $("#tchart").innerHTML = rows + `<div class="axis">${ticks}</div>`;
+}
 const today = new Date(); today.setHours(0,0,0,0);
-const upcoming = R.filter(r => new Date(r[0]) >= today).slice(0,6);
-$("#nextList").innerHTML = (upcoming.length ? upcoming : R.slice(-3)).map(r => { const days = Math.round((new Date(r[0]) - today)/864e5); return `<div class="row"><span>${esc(r[2])}</span><span class="d">${days <= 0 ? "now" : days + " days"}</span></div>`; }).join("");
+function renderNext(){
+  const up = R.filter(r => new Date(r[0]) >= today).slice(0,7);
+  $("#nextList").innerHTML = (up.length ? up : R.slice(-3)).map(r => { const d = Math.round((new Date(r[0]) - today)/864e5); return `<div class="row"><span>${esc(r[2])}</span><span class="d">${d<=0?"now":d+" d"}</span></div>`; }).join("");
+}
+
+/* ---------- Routes ---------- */
+function renderRoutes(){
+  const maxW = CRIT.reduce((a,c) => a + c[1]*5, 0);
+  const scored = ROUTES.map(([n,d,sc]) => ({n,d,sc,t: sc.reduce((a,v,i) => a + v*CRIT[i][1], 0)})).sort((a,b) => b.t - a.t);
+  $("#routeCards").innerHTML = scored.map((r,i) => `<div class="card${i<2?" emph":""}"><div class="toolbar"><span class="eyebrow">#${i+1} · score ${r.t}/${maxW}</span></div><h3>${esc(r.n)}</h3><p class="muted small">${esc(r.d)}</p><div class="score small">${r.sc.map((v,j) => `<span>${CRIT[j][0]} <span class="muted">×${CRIT[j][1]}</span></span><span class="mono">${v}/5</span><div class="sbar" style="grid-column:1/-1"><div style="width:${v*20}%"></div></div>`).join("")}</div></div>`).join("");
+}
+const fc = [...new Set(F.map(f => f[2]))];
+fc.forEach(c => $("#ffCountry").insertAdjacentHTML("beforeend", `<option>${esc(c)}</option>`));
+function renderFoundations(){
+  const c = $("#ffCountry").value, g = $("#ffGuar").value, sp = $("#ffSpring").checked, hm = $("#ffHome").checked;
+  const rows = F.filter(f => (!c || f[2]===c) && (!g || f[4]===g) && (!sp || f[10]) && (!hm || f[11])).sort((a,b) => b[12]-a[12]);
+  const gl = {g:"Guaranteed progression", n:"Nationwide recognition", o:"Own/partner recognition"};
+  $("#fList").innerHTML = rows.map(f => `<details class="item st-ok"><summary><div><div class="nm">${esc(f[0])}</div><div class="sub">${esc(f[1])} · ${esc(f[2])}</div></div><div class="prog small">→ ${esc(f[3])}</div><div class="meta"><span class="tag">${gl[f[4]]}</span>${f[10]?'<span class="tag spring">Starts Jan–Mar</span>':''}${f[11]?'<span class="tag home">No visa</span>':''}</div><div>${fitHtml(f[12])}</div></summary><div class="body"><dl><dt>Accepts your Attestat?</dt><dd>${esc(f[5])}</dd></dl><dl><dt>English</dt><dd>${esc(f[6])}</dd></dl><dl><dt>Intakes</dt><dd>${esc(f[7])}</dd></dl><dl><dt>Apply by</dt><dd>${esc(f[8])}</dd></dl><dl><dt>Length</dt><dd>${esc(f[9])}</dd></dl>${f[13]?`<dl><dt>Why it matters</dt><dd>${esc(f[13])}</dd></dl>`:""}</div></details>`).join("") || `<p class="muted">No foundations match. Clear a filter.</p>`;
+  $("#fCount").textContent = `${rows.length} of ${F.length} programmes`;
+}
+["#ffCountry","#ffGuar","#ffSpring","#ffHome"].forEach(s => $(s).addEventListener("input", renderFoundations));
+
+/* ---------- Universities ---------- */
+[...new Set(U.map(r => r[0]))].sort().forEach(c => $("#uCountry").insertAdjacentHTML("beforeend", `<option>${esc(c)}</option>`));
+function renderUnis(){
+  const q = $("#uQ").value.trim().toLowerCase(), rg = $("#uRegion").value, ct = $("#uCountry").value, st = $("#uStatus").value, sort = $("#uSort").value, sp = $("#uSpring").checked;
+  let rows = U.map(r => ({r, e: evaluate(r)})).filter(({r,e}) => (!q || (r[1]+" "+r[3]+" "+r[0]).toLowerCase().includes(q)) && (!rg || REGION(r[0])===rg) && (!ct || r[0]===ct) && (!st || e.s===st) && (!sp || r[8]));
+  rows.sort((a,b) => sort==="fit" ? b.r[4]-a.r[4] : sort==="country" ? a.r[0].localeCompare(b.r[0]) || b.r[4]-a.r[4] : ORDER[a.e.s]-ORDER[b.e.s] || b.r[4]-a.r[4]);
+  const transfer = S.hist !== "s1";
+  $("#uList").innerHTML = rows.map(({r,e}) => {
+    const extra = r[0]==="USA" && transfer && e.s!=="closed" ? "<dl><dt>Your application type</dt><dd>Transfer applicant (you enrolled at a university after school).</dd></dl>" : "";
+    return `<details class="item ${STATUS[e.s][2]}"><summary><div><div class="nm">${esc(r[1])}</div><div class="sub">${esc(r[0])} · ${esc(r[2])}</div></div><div class="prog small">${esc(r[3])}</div><div class="meta">${chip(e.s)}${r[8]?'<span class="tag spring">Spring 2027</span>':''}</div><div>${fitHtml(r[4])}</div></summary><div class="body"><dl><dt>The rule</dt><dd>${esc(r[6])}</dd></dl><dl><dt>${e.s==="ok"?"Missing":"What you still need"}</dt><dd>${e.miss.length?`<div class="miss">${e.miss.map(m=>`<span>${esc(m)}</span>`).join("")}</div>`:"Nothing. You can apply as you are."}</dd></dl><dl><dt>Deadline / intake</dt><dd>${esc(r[7])}</dd></dl>${extra}</div></details>`;
+  }).join("") || `<p class="muted">No universities match these filters.</p>`;
+  $("#uCount").textContent = `${rows.length} of ${U.length} routes shown`;
+}
+["#uQ","#uRegion","#uCountry","#uStatus","#uSort","#uSpring"].forEach(s => $(s).addEventListener("input", renderUnis));
+function renderCountries(){
+  $("#cBody").innerHTML = C.map(([c,rule,fh,sp,dl,fit]) => {
+    const evs = U.filter(r => r[0]===c).map(r => evaluate(r).s);
+    const best = evs.length ? evs.sort((a,b) => ORDER[a]-ORDER[b])[0] : "closed";
+    return `<tr><td><b>${esc(c)}</b></td><td>${chip(best)}</td><td>${esc(rule)}</td><td>${esc(fh)}</td><td>${esc(sp)}</td><td>${esc(dl)}</td><td>${fitHtml(fit)}</td></tr>`;
+  }).join("");
+}
+$$(".seg button").forEach(b => b.addEventListener("click", () => { $$(".seg button").forEach(x => x.setAttribute("aria-pressed", x===b)); $("#instView").hidden = b.dataset.view !== "inst"; $("#ctryView").hidden = b.dataset.view !== "ctry"; }));
+
+/* ---------- Tests impact ---------- */
+function impactRows(key, vals, label){
+  return vals.map(v => { const st = Object.assign({}, S, {[key]: String(v)}); const n = U.filter(r => evaluate(r, st).s === "ok").length; return {v, n, label: label(v)}; });
+}
+function renderImpact(){
+  const total = U.length;
+  const bar = (rows, cur) => rows.map(x => `<div class="score small"><span>${x.label}${String(x.v)===String(cur)?" <b>(you)</b>":""}</span><span class="mono">${x.n} open</span><div class="sbar" style="grid-column:1/-1"><div style="width:${(x.n/total*100).toFixed(1)}%"></div></div></div>`).join("");
+  $("#wImpact").innerHTML = bar(impactRows("w",[5.5,6,6.5,7], v => "Writing "+(+v).toFixed(1)), S.w);
+  $("#satImpact").innerHTML = bar(impactRows("sat",[0,1250,1350,1450,1500], v => v ? "SAT "+v+"+" : "No SAT"), S.sat);
+}
+
+/* ---------- Roadmap ---------- */
+const done = store.get("atlas.done2", {});
+let rf = "";
+function renderRoadmap(){
+  const months = {};
+  R.forEach((r,i) => { if (rf && r[4] !== rf) return; const k = r[0].slice(0,7); (months[k] ||= []).push([i, ...r]); });
+  const mName = k => new Date(k+"-15").toLocaleDateString("en-GB",{month:"long",year:"numeric"});
+  const RT = {admin:"Paperwork", test:"Test", direct:"Direct", fnd:"Foundation"};
+  $("#timeline").innerHTML = Object.keys(months).map(k => `<div class="month"><h3>${mName(k)}</h3><ul class="tasks">${months[k].map(([i,d,label,task,note,rt]) => `<li class="${done[i]?"done":""}"><input type="checkbox" id="t${i}" data-i="${i}" ${done[i]?"checked":""}><span class="when">${esc(label)}</span><span class="what"><label for="t${i}">${esc(task)}</label>${note?`<div class="note">${esc(note)}</div>`:""}</span><span class="rt"><span class="tag">${RT[rt]}</span></span></li>`).join("")}</ul></div>`).join("");
+  const n = Object.values(done).filter(Boolean).length;
+  $("#progText").textContent = `${n} of ${R.length} tasks done`; $("#progBar").style.width = (100*n/R.length)+"%";
+}
+$("#timeline").addEventListener("change", e => { const i = e.target.dataset.i; if (i === undefined) return; done[i] = e.target.checked; store.set("atlas.done2", done); renderRoadmap(); });
+$$(".rm-filters button").forEach(b => b.addEventListener("click", () => { rf = b.dataset.rf; $$(".rm-filters button").forEach(x => x.setAttribute("aria-pressed", x===b)); renderRoadmap(); }));
+
+/* ---------- Boot ---------- */
+function renderAll(){ renderTiles(); renderUnis(); renderCountries(); renderImpact(); }
+renderChart(); renderNext(); renderRoutes(); renderFoundations(); renderRoadmap(); renderAll();
 </script>

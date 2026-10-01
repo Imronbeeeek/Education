@@ -90,3 +90,9 @@
 | Fall 2027 | **Numerus-fixus programmes: 15 Jan 2027.** Non-EU: often **1 Apr 2027** (VU, CD routes) and at the latest **1 May 2027** (Studielink) | **Main target (HBO)** |
 
 **Sources:** [UvA – PPLE entry requirements per diploma](https://pple.uva.nl/how-to-apply/entry-requirements/requirements-per-diploma-type/your-entry-requirements.html) (Russia/Kazakhstan); [Saxion – admission & entry requirements](https://www.saxion.edu/studying-in-the-netherlands/application/admission-and-entry-requirements); [Tilburg University – diploma requirements](https://www.tilburguniversity.edu/education/bachelors-programs/application-and-admission/diploma-requirements); [RUG – Colloquium Doctum (21+)](https://www.rug.nl/fse/education/admission-and-application/admission-application/apply-bsc/nl-diploma/toelating-inschrijving-deels-gekoppeld-met-nieuw/zonder-toelatingsdiploma-21?lang=en); [EUR – Colloquium Doctum](https://www.eur.nl/en/education/practical-matters/admission/colloquium-doctum); [VU – apply bachelor's](https://vu.nl/en/education/more-about/apply-bachelors-programme).
+
+## Update (Oct 2026 research)
+- **University of Twente** states explicitly that the Uzbek *Umumiy o'rta ta'lim to'g'risida attestat* is **not VWO-equivalent**. Its own Twente Pathway College took its **final intake in September 2026**.
+- **Erasmus University Rotterdam** and **Tilburg University** state that **foundation-year certificates are not accepted**. Erasmus accepts the Kazakh Attestat together with the UNT and a maths deficiency exam; ask whether the Uzbek Attestat plus a DTM result is treated the same way.
+- **VU Amsterdam's VASVU** foundation is taught in Dutch and limited to EU/resident students.
+- **Holland ISC** (Amsterdam/Groningen) remains the partner foundation route. UAS Foundation Jan–Jul 2027 → Hanze; Business & Management / Science & Engineering Sep 2027 → VU, Twente, The Hague UAS (Erasmus, Tilburg and Groningen are also listed as partners; confirm for 2027).
