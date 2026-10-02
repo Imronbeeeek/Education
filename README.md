@@ -51,6 +51,9 @@
 | [`strategy/03-roadmap.md`](strategy/03-roadmap.md) | **Deliverable 4:** dated action plan, Oct 2026 → Sep 2027, plus a 2028 fallback |
 | [`strategy/04-testing-plan.md`](strategy/04-testing-plan.md) | IELTS Writing plan, SAT targets and dates, TR-YÖS, TOPIK, HSK, TestAS, AP; which score unlocks which institution |
 | [`strategy/05-documents-and-admin.md`](strategy/05-documents-and-admin.md) | Apostille vs consular legalisation per country, equivalence bodies, visa-stage watch-list, name consistency |
+| [`strategy/06-foundation-routes.md`](strategy/06-foundation-routes.md) | When a foundation year helps or wastes time; time-to-degree comparison |
+| [`strategy/07-new-factors-oct-2026.md`](strategy/07-new-factors-oct-2026.md) | Recognition back in Uzbekistan (top-1,000 rule), military deferment, visa refusal data, 13 newly found foundation programmes |
+| [`site/index.html`](site/index.html) | Interactive website: Universities, Roadmap, Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability
 - Rules were researched in October 2026 against official university and government pages, mostly via search-engine extracts. Several official sites (anabin, Nuffic, universityadmissions.se, Maastricht, MOFA Korea) were not directly reachable from the research environment.
