@@ -410,6 +410,32 @@ footer{border-top:1px solid var(--line);padding-block:22px;color:var(--faint);fo
 .bandcol .linkbtn:hover{text-decoration:underline;color:var(--accent)}
 .sv{color:var(--accent);font-size:11px}
 @media (max-width:640px){table.stack thead{display:none}table.stack,table.stack tbody,table.stack tr,table.stack td{display:block;width:100%}table.stack tr{padding:10px 14px;border-bottom:1px solid var(--line)}table.stack tbody tr:last-child{border-bottom:0}table.stack td{border:0;padding:2px 0}table.stack td[data-l]::before{content:attr(data-l);display:block;font:500 10px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-top:6px}table.stack .tag{white-space:normal}tbody tr:hover td{background:none}}
+.segs{display:flex;flex-wrap:wrap;gap:6px;padding:2px 2px 0}
+.segb{background:var(--surface);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 11px;font:600 12.5px var(--f-body);cursor:pointer;white-space:nowrap}
+.segb span{font:500 11px var(--f-mono);color:var(--faint);margin-left:4px}
+.segb:hover{color:var(--ink);background:var(--hover)}
+.segb[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.segb[aria-pressed="true"] span{color:var(--accent)}
+.morebar{display:flex;justify-content:center;padding:4px 0 2px}
+.schrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;width:100%}
+.schl{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);min-width:96px}
+.schip .faint{font:500 11px var(--f-mono);margin-left:2px}
+.schip[aria-selected="true"] .faint{color:var(--muted)}
+.schips{row-gap:8px}
+table.score td{vertical-align:middle}
+table.score .why{min-width:220px;max-width:380px}
+.sc{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;font:600 12px var(--f-mono);border:1px solid var(--line-2);color:var(--ink)}
+.sc.s5{background:rgba(91,210,156,.22);border-color:rgba(91,210,156,.5)}
+.sc.s4{background:rgba(108,199,232,.18);border-color:rgba(108,199,232,.45)}
+.sc.s3{background:var(--well)}
+.sc.s2{background:rgba(242,182,92,.16);border-color:rgba(242,182,92,.45)}
+.sc.s1{background:rgba(240,132,121,.16);border-color:rgba(240,132,121,.45)}
+.tot{display:grid;gap:4px;min-width:64px}
+.tot b{font:700 15px var(--f-mono)}
+.tot i{display:block;height:4px;background:var(--well);border-radius:2px;overflow:hidden}
+.tot u{display:block;height:100%;background:var(--accent);text-decoration:none}
+@media (max-width:640px){table.score tr{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px 4px;padding:12px 14px}table.score td{padding:0!important;margin:0!important}table.score td.rk{display:none!important}table.score td.cn{grid-column:1/6;grid-row:1;align-self:center}table.score td.tt{grid-column:6/8;grid-row:1;justify-self:end;align-self:center}table.score td.f{grid-row:2}table.score td.tt::before,table.score td.why::before{display:none!important}table.score td.f{display:grid!important;justify-items:center;gap:3px;width:auto!important}table.score td.f::before{content:attr(data-s)!important;display:block;margin:0!important;font-size:9px;letter-spacing:.03em}table.score td.why{grid-column:1/-1;grid-row:3;max-width:none}.tot{min-width:52px}.schl{min-width:0;width:100%}}
+.ccard .acts{display:flex;flex-wrap:wrap;gap:8px}
 @media (prefers-reduced-motion:no-preference){.panel,.subview{animation:fade .2s ease}@keyframes fade{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}}
 </style>
 
@@ -463,7 +489,7 @@ footer{border-top:1px solid var(--line);padding-block:22px;color:var(--faint);fo
 
   <div class="subnav" role="tablist" aria-label="Views" id="subnav">
     <button type="button" role="tab" data-sub="prog" aria-selected="true">Programmes<span class="n" id="nProg"></span></button>
-    <button type="button" role="tab" data-sub="strat" aria-selected="false"><span class="lgl">Strategy &amp; chances</span><span class="sml">Strategy</span><span class="n">10</span></button>
+    <button type="button" role="tab" data-sub="strat" aria-selected="false"><span class="lgl">Strategy &amp; chances</span><span class="sml">Strategy</span><span class="n" id="nStrat"></span></button>
     <button type="button" role="tab" data-sub="ctry" aria-selected="false"><span class="lgl">Countries &amp; systems</span><span class="sml">Countries</span><span class="n" id="nCtry"></span></button>
     <button type="button" role="tab" data-sub="course" aria-selected="false"><span class="lgl">Courses guide</span><span class="sml">Courses</span><span class="n">10</span></button>
     <button type="button" role="tab" data-sub="gloss" aria-selected="false">Glossary<span class="n" id="nGloss"></span></button>
@@ -510,8 +536,9 @@ footer{border-top:1px solid var(--line);padding-block:22px;color:var(--faint);fo
 
   <!-- Strategy -->
   <div class="subview grid" style="gap:16px" id="vStrat" hidden>
-    <p class="muted small" style="max-width:80ch">How each Tier 1 country will judge your file, your chances, the risks and a dated plan, with a suggested shortlist. Chance bands are estimates from admission rates (international rates are often lower) and how well you meet each rule.</p>
+    <p class="muted small" style="max-width:80ch">A scorecard ranking all Tier 1 and Tier 2 countries for your profile, then one page per country: how they will judge your file, your chances, the risks, a dated plan and a suggested shortlist. Chance bands are estimates from admission rates (international rates are often lower) and how well you meet each rule.</p>
     <section class="card" id="balance"></section>
+    <section class="card" id="score"></section>
     <div class="schips" role="tablist" aria-label="Country" id="sChips"></div>
     <div id="stratOut"></div>
   </div>
@@ -1483,6 +1510,1196 @@ const US_STORY = [
   "Columbia GS and Yale EWSP ask directly why now. Answer with what changed and why you are ready."
 ];
 
+/* ===================== v7 · DIRECTORIES (8 Oct 2026) =====================
+   Compact rows expanded into U_RAW. Each directory row gets a chance band (SEL)
+   and a segment (SEG) used to split big countries into sections.
+   Directory dates are typical for the institution type: confirm on the website. */
+const SEG = {};
+const DIRN = {};   /* country -> number of rows added by the directories */
+const fitOfSel = s => ({x:3, h:3, m:4, o:4}[s] || 3);
+function addRows(country, dlt, rows, base){
+  rows.forEach(r => {
+    const [id, name, city, type, band, sel, fields, courses, req, rule, dl, seg, web, also, fit] = r;
+    const d = dlt[dl] || dlt._;
+    const text = [base && base[seg] || "", rule || ""].filter(Boolean).join(" ");
+    U_RAW.push([id, country, name, city, type, band, fields, courses, req || "", text, d[0], d[1], d[2], d[3], fit || fitOfSel(sel), web || "", also || ""]);
+    if (sel) SEL[id] = sel;
+    if (seg) SEG[id] = seg;
+    DIRN[country] = (DIRN[country] || 0) + 1;
+  });
+}
+function patchRows(map){
+  const C = {name:2, city:3, type:4, band:5, fields:6, courses:7, req:8, rule:9, win:10, sug:11, fin:12, spring:13, fit:14, web:15, also:16};
+  U_RAW.forEach(r => { const p = map[r[0]]; if (p) Object.entries(p).forEach(([k,v]) => { if (k === "sel") SEL[r[0]] = v; else if (k === "seg") SEG[r[0]] = v; else r[C[k]] = v; }); });
+}
+const segAll = (ids, seg) => ids.split(" ").forEach(id => SEG[id] = seg);
+
+/* ---------- USA ---------- */
+/* [id, name, city, control, band, sel, fields, strengths, test, IELTS, deadline code, segment, website, note] */
+const US_DL = {
+  E1:["EA/ED 1 Nov · RD ~1–5 Jan 2027","2026-12-18","2027-01-05",0],
+  E15:["EA 1 Nov · RD ~15 Jan 2027","2026-12-18","2027-01-15",0],
+  F1:["EA 1 Nov · RD ~1 Feb 2027","2027-01-15","2027-02-01",0],
+  D1:["~1 Dec 2026","2026-11-20","2026-12-01",0],
+  D15:["EA 1 Nov · RD ~15 Dec 2026","2026-12-05","2026-12-15",0],
+  N15:["~15 Nov 2026","2026-11-08","2026-11-15",0],
+  M1:["Priority ~1 Dec–15 Jan · final ~1 Mar 2027","2027-01-15","2027-03-01",0],
+  R:["Rolling · priority ~1 Dec–1 Feb · international final ~1 Apr–1 Jun 2027 · January starts too","2027-01-15","2027-04-01",1],
+  CSU:["Cal State application 1 Oct–1 Dec 2026","2026-11-20","2026-12-01",0],
+  UC:["UC application 1–30 Nov 2026","2026-11-20","2026-11-30",0]
+};
+const US_TESTTXT = {R:"SAT or ACT required.", "R?":"SAT/ACT reported as required (confirm).", O:"Test-optional.", B:"SAT not used (test-blind).", C:"Test-optional for you (scores are required only below a GPA threshold)."};
+const US_SATMIN = {x:1450, h:1350, m:1250, o:1100};
+const US_DUO = {"6":105, "6.5":115, "7":120, "7.5":130};
+function addUS(rows){
+  rows.forEach(r => {
+    const [id, name, city, ctrl, band, sel, fields, courses, test, eng, dl, seg, web, note] = r;
+    const d = US_DL[dl] || US_DL.R;
+    const req = test === "R" || test === "R?" ? "sat" + US_SATMIN[sel] : "";
+    const rule = [US_TESTTXT[test] || "", eng ? `English: usually IELTS ${eng}+ or Duolingo ${US_DUO[eng] || 115}+ (check section minimums).` : "", note || ""].filter(Boolean).join(" ");
+    U_RAW.push([id, "USA", name, city, ctrl, band, fields, courses, req, rule, d[0] + " (typical; confirm)", d[1], d[2], d[3], fitOfSel(sel), web || "", ""]);
+    SEL[id] = sel; SEG[id] = seg; DIRN.USA = (DIRN.USA || 0) + 1;
+  });
+}
+
+/* Segments for big countries (key, label) */
+const SEGS = {
+  "USA":[["ivy","Most selective"],["spr","Selective private"],["lac","Liberal arts colleges"],["flag","Public flagships & research"],["pub","Other public universities"],["pri","Other private universities"],["route","Special routes"]],
+  "Canada":[["u15","Research-intensive"],["comp","Comprehensive"],["small","Smaller & regional"],["coll","Colleges"],["fr","French-language"]],
+  "Spain":[["priv","Private (direct admission)"],["pub","Public (homologation + PCE)"]],
+  "Hong Kong":[["ugc","Public (UGC-funded)"],["self","Self-financing"]],
+  "China":[["jv","Sino-foreign & joint"],["top","Leading universities"],["more","More universities"],["med","Medicine (MBBS)"],["sch","Scholarships & Chinese-taught"]],
+  "Türkiye":[["fdn","Foundation (private)"],["pub","Public"],["sch","Scholarships & closed"]],
+  "France":[["bba","Business schools"],["tech","Engineering & tech"],["us","American-style"],["pub","Public universities (French)"],["cl","Closed"]],
+  "Italy":[["us","US-accredited (2027)"],["pub","Public (after a bridge year)"],["priv","Private (after a bridge year)"],["art","Art & design"]],
+  "Saudi Arabia":[["pub","Public (scholarship)"],["priv","Private & closed"]],
+  "Australia":[["g8","Group of Eight"],["other","Other universities"]],
+  "Netherlands":[["wo","Research universities"],["hbo","Applied sciences (direct)"]],
+  "Sweden":[["big","Large universities"],["eng","Smaller, more English"]],
+  "Finland":[["uni","Universities"],["uas","Applied sciences"]],
+  "Germany":[["pub","Public universities"],["priv","Private universities"]],
+  "UAE":[["loc","UAE universities"],["br","Branch campuses"],["cl","Closed"]],
+  "Malaysia":[["pub","Public"],["priv","Private & branch campuses"]]
+};
+
+/* ---------- USA directory ---------- */
+/* Grouped rows become single universities (ids kept so saved items stay valid) */
+patchRows({
+  us8d:{name:"University of California, Davis", city:"Davis, CA", band:"200", fields:"eng cs sci eco bus", courses:"Engineering, computer science, biology, agriculture & environmental science, economics", rule:"One UC application covers every campus; SAT not used. IELTS 6.5; the One Skill Retake is not accepted.", web:"ucdavis.edu", also:"", sel:"m"},
+  us11h:{req:"sat1250", rule:"SAT or ACT required at the Columbus campus (reinstated from the 2026 cycle). IELTS 6.5 overall.", sel:"m"},
+  us11v:{name:"University of Houston", city:"Houston, TX", fields:"eng cs bus hos", courses:"Engineering, computer science, Bauer business, Hilton College of hotel & restaurant management", web:"uh.edu", also:""},
+  us11x:{name:"Florida State University", city:"Tallahassee, FL", band:"1000", fields:"bus cs art soc sci", courses:"Business, computer science, film, music, social sciences", req:"sat1250", rule:"SAT, ACT or CLT required (Florida rule). Its 1 Dec deadline comes before 5 Dec SAT scores: sit 7 Nov or ask about late scores.", win:"EA 15 Oct · RD ~1 Dec 2026 (typical; confirm)", sug:"2026-11-20", fin:"2026-12-01", spring:0, web:"fsu.edu", also:"", sel:"h"},
+  us11z:{name:"Virginia Tech", city:"Blacksburg, VA", fields:"eng cs bus sci", courses:"Engineering, computer science, Pamplin business, architecture", rule:"Test-optional.", win:"EA 1 Nov · RD 15 Jan 2027", web:"vt.edu", also:"", sel:"m"},
+  us12b:{name:"University of Arizona", city:"Tucson, AZ", band:"500", fields:"sci eng bus cs", courses:"Optical sciences, astronomy, management information systems, engineering, business", rule:"Admission mainly on grades; test-optional. January starts too.", web:"arizona.edu", also:""},
+  us12c:{name:"George Mason University", city:"Fairfax, VA (near Washington)", fields:"cs eng bus ir eco", courses:"Computer science, cyber security, engineering, business, public policy, economics", rule:"Admission mainly on grades; test-optional. Accepts the IELTS One Skill Retake; conditional admission through INTO Mason.", web:"gmu.edu", also:""},
+  us5i:{also:"Wentworth, Quinnipiac, Ithaca College, Marist, Fairleigh Dickinson, Long Island University, Adelphi, Drew, Suffolk, Lesley, Endicott, Saint Joseph's, La Salle, Widener, Mercer, Stetson, Rollins, Belmont, Lipscomb, Samford, Trinity University (TX), University of St. Thomas (MN), University of the Pacific, Willamette, University of Puget Sound, University of Portland, Xavier, John Carroll, Bradley, Valparaiso, Drake, Butler, Westminster"},
+  us7:{name:"More liberal arts colleges", also:"Hobart & William Smith, Ursinus, Muhlenberg, St. Lawrence, Wheaton (MA), Holy Cross, Providence College, Sarah Lawrence, Bennington, Goucher, Washington College, St. Mary's College of Maryland, Randolph-Macon, Wofford, Austin College, Southwestern, Hope, Kalamazoo, Albion, DePauw, Coe, Cornell College, Whittier, Linfield, Lewis & Clark, Puget Sound"},
+  us11b:{also:"University of Mississippi, Mississippi State, Montana State, University of Montana, University of Idaho, Boise State, University of Wyoming, North Dakota State, South Dakota State, University of Maine, University of Alaska Fairbanks, Wichita State, Ball State, Bowling Green, University of Toledo, Wright State, Old Dominion, James Madison, Towson, Montclair State, UW–Milwaukee, Western Washington, Texas State, Appalachian State, East Carolina, University of Nevada Reno, Utah State, New Mexico State, Southern Illinois, Northern Illinois"}
+});
+segAll("us2 us2b us3 us3b us3c us3d us4 us4b us4c us4d us4e us5 us5b us5c us5d us5e us5f us5g us5h us5j us5k us6 us6b us6c us6e", "ivy");
+segAll("us5l us5m us5n us5o us5p us5q us5r us5s us5t us5u us5v us6d us6f", "spr");
+segAll("us5i us5w us13", "pri");
+segAll("us7 us16", "lac");
+segAll("us8 us8b us8c us8d us9 us10 us10b us10c us11 us11b us11c us11d us11e us11f us11g us11h us11i us11j us11k us11l us11m us11n us11o us11p us11q us11r us11s us11t us11u us11v us11w us11x us11y us11z us12 us12b us12c", "flag");
+segAll("us1 us1b us1c us1d us12d us12e us14 us15", "route");
+
+addUS([
+/* Selective private universities */
+["u_wake","Wake Forest University","Winston-Salem, NC","Private","?","h","bus eco soc sci","Business, economics, politics, health sciences; small classes","O","7","E1","spr","wfu.edu",""],
+["u_lehigh","Lehigh University","Bethlehem, PA","Private","?","m","eng bus cs eco","Engineering, finance, business, computer science","O","6.5","E1","spr","lehigh.edu",""],
+["u_villa","Villanova University","Villanova, PA (Philadelphia)","Private","?","h","bus eng soc med","Villanova School of Business, engineering, nursing","O","7","E15","spr","villanova.edu",""],
+["u_miami","University of Miami","Coral Gables, FL","Private","500","h","bus med sci art eng","Business, marine science, music, nursing, engineering, architecture","R?","6.5","E1","spr","miami.edu",""],
+["u_pepp","Pepperdine University","Malibu, CA","Private","?","m","bus soc art ir","Business administration, communication, international studies","O","6.5","E15","spr","pepperdine.edu",""],
+["u_scu","Santa Clara University","Santa Clara, CA (Silicon Valley)","Private","?","m","bus eng cs","Leavey business, engineering, computer science","O","6.5","E1","spr","scu.edu",""],
+["u_ford","Fordham University","New York, NY","Private","?","m","bus soc art ir","Gabelli business, communication, international political economy","O","6.5","E1","spr","fordham.edu",""],
+["u_amer","American University","Washington, DC","Private","?","m","ir soc bus","School of International Service, public affairs, communication, business","O","6.5","E15","spr","american.edu",""],
+["u_smu","Southern Methodist University","Dallas, TX","Private","?","m","bus eng art","Cox business, Lyle engineering, Meadows arts","O","6.5","E15","spr","smu.edu",""],
+["u_baylor","Baylor University","Waco, TX","Private","?","m","bus med sci","Hankamer business, health sciences, pre-medicine","O","6.5","F1","spr","baylor.edu",""],
+["u_tcu","Texas Christian University","Fort Worth, TX","Private","?","m","bus soc art","Neeley business, communication, nursing","O","6.5","F1","spr","tcu.edu",""],
+["u_howard","Howard University","Washington, DC","Private","?","m","bus med soc","Business, health sciences, communications, political science","O","6.5","E15","spr","howard.edu",""],
+["u_babson","Babson College","Wellesley, MA (Boston)","Private","u","h","bus","Entrepreneurship and business (top-ranked for entrepreneurship)","O","7","E1","spr","babson.edu",""],
+["u_emerson","Emerson College","Boston, MA","Private","u","m","art soc","Film, journalism, marketing communication, performing arts","O","6.5","E15","spr","emerson.edu",""],
+["u_risd","Rhode Island School of Design (RISD)","Providence, RI","Private","u","h","art","Art and design; portfolio required","O","7","E15","spr","risd.edu",""],
+["u_newsch","The New School (Parsons School of Design)","New York, NY","Private","u","m","art bus soc","Parsons design and fashion, liberal arts; portfolio for design","O","7","E15","spr","newschool.edu",""],
+["u_pratt","Pratt Institute","Brooklyn, NY","Private","u","m","art","Architecture, design, fine arts; portfolio required","O","6.5","E15","spr","pratt.edu",""],
+["u_berklee","Berklee College of Music","Boston, MA","Private","u","m","art","Music performance, production and business; audition required","O","6.5","E15","spr","berklee.edu",""],
+/* Other private universities: broader admission */
+["u_rit","Rochester Institute of Technology","Rochester, NY","Private","?","o","cs eng art bus","Computing, game design, cyber security, engineering, photography; co-op","O","6.5","E15","pri","rit.edu",""],
+["u_clark","Clark University","Worcester, MA","Private","?","m","soc sci bus","Psychology, geography, management; small research university","O","6.5","E15","pri","clarku.edu",""],
+["u_bentley","Bentley University","Waltham, MA (Boston)","Private","u","m","bus cs","Business, finance, accounting, data analytics","O","6.5","E1","pri","bentley.edu",""],
+["u_lmu","Loyola Marymount University","Los Angeles, CA","Private","?","m","bus art eng","Film & television, business, engineering","O","6.5","E15","pri","lmu.edu",""],
+["u_usd","University of San Diego","San Diego, CA","Private","?","m","bus eng soc ir","Business, engineering, international relations","O","6.5","E15","pri","sandiego.edu",""],
+["u_usfca","University of San Francisco","San Francisco, CA","Private","?","o","bus cs soc med","Business, computer science, nursing, international studies","O","6.5","E15","pri","usfca.edu",""],
+["u_chap","Chapman University","Orange, CA","Private","?","o","art bus soc","Dodge film school, business, communication","O","6.5","E15","pri","chapman.edu",""],
+["u_denver","University of Denver","Denver, CO","Private","?","o","bus ir soc eng","Daniels business, Korbel international studies, engineering","O","6.5","E15","pri","du.edu",""],
+["u_slu","Saint Louis University","St. Louis, MO","Private","?","o","med bus soc eng","Health sciences, business, aviation, engineering (also a Madrid campus)","O","6.5","R","pri","slu.edu",""],
+["u_luc","Loyola University Chicago","Chicago, IL","Private","?","o","bus med soc sci","Business, nursing, sciences, social work","O","6.5","R","pri","luc.edu",""],
+["u_depaul","DePaul University","Chicago, IL","Private","u","o","bus cs art soc","Business, computing & digital media, game design, film","O","6.5","R","pri","depaul.edu",""],
+["u_marq","Marquette University","Milwaukee, WI","Private","?","o","eng bus med","Engineering, business, health sciences","O","6.5","R","pri","marquette.edu",""],
+["u_creig","Creighton University","Omaha, NE","Private","?","o","med bus sci","Pre-health, nursing, business","O","6.5","R","pri","creighton.edu",""],
+["u_dayton","University of Dayton","Dayton, OH","Private","?","o","eng bus","Engineering, business","O","6","R","pri","udayton.edu",""],
+["u_duq","Duquesne University","Pittsburgh, PA","Private","?","o","med bus sci","Pharmacy, health sciences, business","O","6.5","R","pri","duq.edu",""],
+["u_elon","Elon University","Elon, NC","Private","u","o","bus soc art","Business, communications; strong study-abroad culture","O","6.5","E15","pri","elon.edu",""],
+["u_hofstra","Hofstra University","Hempstead, NY (near New York)","Private","?","o","bus soc art","Business, communication, engineering","O","6","R","pri","hofstra.edu",""],
+["u_pace","Pace University","New York, NY","Private","u","o","bus cs art","Lubin business, computer science, performing arts","O","6","R","pri","pace.edu",""],
+["u_stjohns","St. John's University","Queens, NY","Private","u","o","bus med soc","Business, pharmacy, communication","O","6","R","pri","stjohns.edu",""],
+["u_seton","Seton Hall University","South Orange, NJ (near New York)","Private","?","o","ir bus med","Diplomacy & international relations, business, nursing","O","6","R","pri","shu.edu",""],
+["u_fair","Fairfield University","Fairfield, CT","Private","u","o","bus med","Dolan business, nursing, engineering","O","6.5","E15","pri","fairfield.edu",""],
+["u_gonz","Gonzaga University","Spokane, WA","Private","u","o","bus eng","Business, engineering","O","6.5","E15","pri","gonzaga.edu",""],
+["u_seattleu","Seattle University","Seattle, WA","Private","u","o","bus cs eng","Business, computer science, engineering","O","6.5","R","pri","seattleu.edu",""],
+["u_tulsa","University of Tulsa","Tulsa, OK","Private","?","o","eng cs bus","Petroleum engineering, cyber security, business","O","6","R","pri","utulsa.edu",""],
+["u_hult","Hult International Business School","Boston, MA (also London, Dubai, San Francisco)","Private","u","o","bus","BBA with campus rotation; very international student body","O","6","R","pri","hult.edu","Rolling admission."],
+["u_erau","Embry-Riddle Aeronautical University","Daytona Beach, FL · Prescott, AZ","Private","u","o","eng","Aerospace engineering, aeronautical science (pilot training), cyber security","O","6","R","pri","erau.edu",""],
+["u_fit","Florida Institute of Technology","Melbourne, FL","Private","?","o","eng cs sci","Aerospace engineering, computer science, marine biology, aviation","O","6","R","pri","fit.edu",""],
+["u_clarkson","Clarkson University","Potsdam, NY","Private","u","o","eng bus","Engineering, business","O","6","R","pri","clarkson.edu",""],
+["u_kett","Kettering University","Flint, MI","Private","u","o","eng cs","Engineering with paid co-op from year 1","O","6","R","pri","kettering.edu",""],
+["u_rose","Rose-Hulman Institute of Technology","Terre Haute, IN","Private","u","o","eng cs","Undergraduate-focused engineering","O","6.5","R","pri","rose-hulman.edu",""],
+["u_saic","School of the Art Institute of Chicago","Chicago, IL","Private","u","o","art","Fine arts and design; portfolio required","O","6.5","R","pri","saic.edu",""],
+["u_scad","Savannah College of Art and Design (SCAD)","Savannah, GA · Atlanta","Private","u","o","art","Animation, film, fashion, game design","O","6.5","R","pri","scad.edu",""],
+/* Liberal arts colleges (usually outside global rankings: nostrification in Uzbekistan) */
+["u_williams","Williams College","Williamstown, MA","Private (liberal arts)","u","x","eco sci soc art","Economics, mathematics, political science","O","7","E1","lac","williams.edu",""],
+["u_amherst","Amherst College","Amherst, MA","Private (liberal arts)","u","x","eco sci soc","Economics, mathematics, political science; open curriculum","O","7","E1","lac","amherst.edu",""],
+["u_swat","Swarthmore College","Swarthmore, PA","Private (liberal arts)","u","x","eng eco sci soc","Engineering (rare at a liberal arts college), economics, sciences","O","7","E1","lac","swarthmore.edu",""],
+["u_pomona","Pomona College","Claremont, CA","Private (liberal arts)","u","x","eco sci cs soc","Economics, computer science, sciences; Claremont consortium","O","7","E1","lac","pomona.edu",""],
+["u_bowdoin","Bowdoin College","Brunswick, ME","Private (liberal arts)","u","x","eco sci soc","Economics, government, sciences","O","7","E1","lac","bowdoin.edu",""],
+["u_cmc","Claremont McKenna College","Claremont, CA","Private (liberal arts)","u","x","eco ir bus soc","Economics, government, finance; philosophy-politics-economics","O","7","E1","lac","cmc.edu","Scores required from Fall 2028 entry."],
+["u_colby","Colby College","Waterville, ME","Private (liberal arts)","u","x","eco sci soc","Economics, environmental science, government","O","7","E1","lac","colby.edu",""],
+["u_hmc","Harvey Mudd College","Claremont, CA","Private (liberal arts)","u","h","eng cs sci","Engineering, computer science, mathematics, physics","O","7","E1","lac","hmc.edu",""],
+["u_midd","Middlebury College","Middlebury, VT","Private (liberal arts)","u","h","ir eco soc","International & global studies, languages, economics","O","7","E1","lac","middlebury.edu",""],
+["u_carleton","Carleton College","Northfield, MN","Private (liberal arts)","u","h","cs sci eco","Computer science, sciences, economics","O","7","E15","lac","carleton.edu",""],
+["u_grinnell","Grinnell College","Grinnell, IA","Private (liberal arts)","u","h","cs eco sci soc","Computer science, economics, sciences; open curriculum","O","7","E1","lac","grinnell.edu",""],
+["u_davidson","Davidson College","Davidson, NC","Private (liberal arts)","u","h","eco sci soc","Economics, sciences, political science","O","7","E1","lac","davidson.edu",""],
+["u_hamilton","Hamilton College","Clinton, NY","Private (liberal arts)","u","h","eco soc sci","Economics, government; open curriculum","O","7","E1","lac","hamilton.edu",""],
+["u_haverford","Haverford College","Haverford, PA","Private (liberal arts)","u","h","sci eco soc","Sciences, economics; cross-registration with Bryn Mawr and Penn","O","7","E1","lac","haverford.edu",""],
+["u_vassar","Vassar College","Poughkeepsie, NY","Private (liberal arts)","u","h","soc art sci eco","Economics, psychology, film, sciences","O","7","E1","lac","vassar.edu",""],
+["u_wesleyan","Wesleyan University","Middletown, CT","Private (liberal arts)","u","h","soc art eco sci","Economics, film studies, government, sciences","O","7","E1","lac","wesleyan.edu",""],
+["u_colgate","Colgate University","Hamilton, NY","Private (liberal arts)","u","h","eco soc sci","Economics, political science, neuroscience","O","7","E15","lac","colgate.edu",""],
+["u_bates","Bates College","Lewiston, ME","Private (liberal arts)","u","h","eco sci soc","Economics, sciences, politics","O","7","E1","lac","bates.edu",""],
+["u_wlu","Washington and Lee University","Lexington, VA","Private (liberal arts)","u","h","bus eco soc","Williams School of business & economics, journalism","O","7","E1","lac","wlu.edu",""],
+["u_richmond","University of Richmond","Richmond, VA","Private (liberal arts)","u","h","bus eco ir soc","Robins business, leadership studies, international studies","O","7","E15","lac","richmond.edu",""],
+["u_cc","Colorado College","Colorado Springs, CO","Private (liberal arts)","u","h","sci eco soc","Block plan (one course at a time); sciences, economics","O","7","E15","lac","coloradocollege.edu",""],
+["u_pitzer","Pitzer College","Claremont, CA","Private (liberal arts)","u","h","soc sci","Social sciences, environmental analysis","O","7","E1","lac","pitzer.edu",""],
+["u_skid","Skidmore College","Saratoga Springs, NY","Private (liberal arts)","u","h","bus art soc","Business, arts, psychology","O","6.5","E15","lac","skidmore.edu",""],
+["u_denison","Denison University","Granville, OH","Private (liberal arts)","u","h","eco cs soc","Economics, data analytics, communication","O","6.5","E15","lac","denison.edu",""],
+["u_berea","Berea College","Berea, KY","Private (liberal arts)","u","x","soc sci bus","Every student works on campus and pays no tuition; only a few international places each year","O","6","E15","lac","berea.edu",""],
+["u_mac","Macalester College","Saint Paul, MN","Private (liberal arts)","u","m","ir eco cs soc","International studies (very international student body), economics, computer science","O","7","E15","lac","macalester.edu",""],
+["u_oberlin","Oberlin College","Oberlin, OH","Private (liberal arts)","u","m","art sci soc","Music conservatory, sciences, politics","O","7","E15","lac","oberlin.edu",""],
+["u_kenyon","Kenyon College","Gambier, OH","Private (liberal arts)","u","m","soc art eco","Writing, economics, political science","O","7","E15","lac","kenyon.edu",""],
+["u_bucknell","Bucknell University","Lewisburg, PA","Private (liberal arts)","u","m","eng bus eco","Engineering, Freeman business, economics","O","6.5","E15","lac","bucknell.edu",""],
+["u_lafayette","Lafayette College","Easton, PA","Private (liberal arts)","u","m","eng eco sci","Engineering, economics, sciences","O","6.5","E15","lac","lafayette.edu",""],
+["u_union","Union College","Schenectady, NY","Private (liberal arts)","u","m","eng sci eco","Engineering, sciences, economics","O","6.5","E15","lac","union.edu",""],
+["u_trinity","Trinity College","Hartford, CT","Private (liberal arts)","u","m","eco soc eng","Economics, public policy, engineering","O","6.5","E15","lac","trincoll.edu",""],
+["u_conn","Connecticut College","New London, CT","Private (liberal arts)","u","m","soc sci art","Interdisciplinary 'Connections' curriculum","O","6.5","E15","lac","conncoll.edu",""],
+["u_dickinson","Dickinson College","Carlisle, PA","Private (liberal arts)","u","m","ir eco soc","International business & management, global studies","O","6.5","E15","lac","dickinson.edu",""],
+["u_fandm","Franklin & Marshall College","Lancaster, PA","Private (liberal arts)","u","m","eco sci soc","Business, economics, sciences","O","6.5","E15","lac","fandm.edu",""],
+["u_gettys","Gettysburg College","Gettysburg, PA","Private (liberal arts)","u","m","eco soc sci","Economics, political science, sciences","O","6.5","E15","lac","gettysburg.edu",""],
+["u_whitman","Whitman College","Walla Walla, WA","Private (liberal arts)","u","m","sci soc eco","Sciences, politics, economics","O","6.5","E15","lac","whitman.edu",""],
+["u_oxy","Occidental College","Los Angeles, CA","Private (liberal arts)","u","m","ir eco soc","Diplomacy & world affairs, economics","O","7","E15","lac","oxy.edu",""],
+["u_reed","Reed College","Portland, OR","Private (liberal arts)","u","m","sci soc","Sciences, humanities; every student writes a thesis","O","7","E15","lac","reed.edu",""],
+["u_furman","Furman University","Greenville, SC","Private (liberal arts)","u","m","bus sci soc","Business, sciences, politics","O","6.5","E15","lac","furman.edu",""],
+["u_rhodes","Rhodes College","Memphis, TN","Private (liberal arts)","u","m","bus sci soc","Business, biology, international studies","O","6.5","E15","lac","rhodes.edu",""],
+["u_bard","Bard College","Annandale-on-Hudson, NY","Private (liberal arts)","u","m","art soc eco","Arts, social studies, economics","O","6.5","E15","lac","bard.edu",""],
+["u_soka","Soka University of America","Aliso Viejo, CA","Private (liberal arts)","u","m","soc ir","Liberal arts with a required semester abroad","O","6.5","E15","lac","soka.edu",""],
+["u_sewanee","Sewanee: The University of the South","Sewanee, TN","Private (liberal arts)","u","o","soc sci","Humanities, sciences","O","6.5","E15","lac","sewanee.edu",""],
+["u_centre","Centre College","Danville, KY","Private (liberal arts)","u","o","eco sci soc","Economics, sciences; study abroad for everyone","O","6.5","E15","lac","centre.edu",""],
+["u_lawrence","Lawrence University","Appleton, WI","Private (liberal arts)","u","o","art sci soc","Music conservatory, sciences","O","6.5","E15","lac","lawrence.edu",""],
+["u_beloit","Beloit College","Beloit, WI","Private (liberal arts)","u","o","soc eco sci","Economics, international relations","O","6","R","lac","beloit.edu",""],
+["u_knox","Knox College","Galesburg, IL","Private (liberal arts)","u","o","soc sci","Humanities, sciences","O","6","R","lac","knox.edu",""],
+["u_earlham","Earlham College","Richmond, IN","Private (liberal arts)","u","o","soc sci","Global studies, sciences","O","6","R","lac","earlham.edu",""],
+["u_wooster","The College of Wooster","Wooster, OH","Private (liberal arts)","u","o","sci soc","Independent research for every student","O","6.5","E15","lac","wooster.edu",""],
+["u_stolaf","St. Olaf College","Northfield, MN","Private (liberal arts)","u","o","sci art soc","Sciences, music, mathematics","O","6.5","E15","lac","stolaf.edu",""],
+["u_allegheny","Allegheny College","Meadville, PA","Private (liberal arts)","u","o","sci soc","Environmental science, economics","O","6","R","lac","allegheny.edu",""],
+["u_lfc","Lake Forest College","Lake Forest, IL (Chicago)","Private (liberal arts)","u","o","bus soc","Business, finance; Chicago internships","O","6","R","lac","lakeforest.edu",""],
+["u_juniata","Juniata College","Huntingdon, PA","Private (liberal arts)","u","o","sci soc","Sciences, international studies","O","6","R","lac","juniata.edu",""],
+["u_gustavus","Gustavus Adolphus College","St. Peter, MN","Private (liberal arts)","u","o","sci soc","Sciences, economics","O","6","R","lac","gustavus.edu",""],
+["u_luther","Luther College","Decorah, IA","Private (liberal arts)","u","o","sci art","Sciences, music","O","6","R","lac","luther.edu",""],
+["u_augie","Augustana College","Rock Island, IL","Private (liberal arts)","u","o","sci bus","Pre-health sciences, business","O","6","R","lac","augustana.edu",""],
+["u_hendrix","Hendrix College","Conway, AR","Private (liberal arts)","u","o","sci soc","Sciences, psychology","O","6","R","lac","hendrix.edu",""],
+/* Public flagships and research universities */
+["u_uci","University of California, Irvine","Irvine, CA","Public","500","m","cs eng bus sci med","Computer science, engineering, business, biology","B","6.5","UC","flag","uci.edu","One UC application; the One Skill Retake is not accepted."],
+["u_ucsb","University of California, Santa Barbara","Santa Barbara, CA","Public","500","m","eng sci eco soc","Engineering, physics, economics, communication","B","6.5","UC","flag","ucsb.edu","One UC application; the One Skill Retake is not accepted."],
+["u_ucsc","University of California, Santa Cruz","Santa Cruz, CA","Public","1000","o","cs sci art","Computer science, game design, marine biology","B","6.5","UC","flag","ucsc.edu","One UC application."],
+["u_ucr","University of California, Riverside","Riverside, CA","Public","1000","o","eng cs bus sci","Engineering, computer science, business","B","6.5","UC","flag","ucr.edu","One UC application."],
+["u_ucm","University of California, Merced","Merced, CA","Public","?","o","eng cs sci","Engineering, computer science, sciences","B","6.5","UC","flag","ucmerced.edu","One UC application."],
+["u_cub","University of Colorado Boulder","Boulder, CO","Public","500","o","eng sci bus cs","Aerospace engineering, physics, Leeds business, computer science","O","6.5","E15","flag","colorado.edu",""],
+["u_csu","Colorado State University","Fort Collins, CO","Public","1000","o","eng sci bus","Engineering, environmental science, business; INTO CSU pathway","O","6.5","R","flag","colostate.edu",""],
+["u_mines","Colorado School of Mines","Golden, CO","Public","?","m","eng sci","Petroleum, mining and mechanical engineering, computer science","O","6.5","E15","flag","mines.edu",""],
+["u_udel","University of Delaware","Newark, DE","Public","1000","o","eng bus sci","Chemical engineering, Lerner business, sciences","O","6.5","E15","flag","udel.edu",""],
+["u_usf","University of South Florida","Tampa, FL","Public","1000","m","eng cs bus med","Engineering, computer science, business, health sciences; INTO USF pathway","R","6.5","M1","flag","usf.edu","Florida rule: SAT, ACT or CLT."],
+["u_ucf","University of Central Florida","Orlando, FL","Public","?","m","eng cs hos bus","Engineering, computer science, Rosen hospitality, simulation & gaming","R","6.5","M1","flag","ucf.edu","Florida rule: SAT, ACT or CLT."],
+["u_fiu","Florida International University","Miami, FL","Public","?","o","bus hos eng cs","Business, hospitality, engineering, computing","R","6","M1","flag","fiu.edu","Florida rule: SAT, ACT or CLT."],
+["u_gsu","Georgia State University","Atlanta, GA","Public","?","o","bus cs soc","Robinson business, computer science, public policy","R","6","R","flag","gsu.edu","University System of Georgia rule: SAT or ACT."],
+["u_uhm","University of Hawaii at Manoa","Honolulu, HI","Public","1000","o","sci hos bus soc","Oceanography, astronomy, travel industry management, business","O","6","R","flag","manoa.hawaii.edu",""],
+["u_uic","University of Illinois Chicago","Chicago, IL","Public","1000","o","cs eng bus med","Computer science, engineering, business, health sciences","O","6.5","E15","flag","uic.edu","Has a January start (the Spring 2027 deadline, 1 Oct, has passed)."],
+["u_uiowa","University of Iowa","Iowa City, IA","Public","1000","o","bus med soc eng","Business, health sciences, creative writing, engineering","O","6","R","flag","uiowa.edu",""],
+["u_isu","Iowa State University","Ames, IA","Public","1000","o","eng sci bus","Engineering, agriculture, computer science, business","O","6","R","flag","iastate.edu",""],
+["u_ku","University of Kansas","Lawrence, KS","Public","1000","o","eng bus sci","Engineering, business, pharmacy, journalism","O","6","R","flag","ku.edu",""],
+["u_ksu","Kansas State University","Manhattan, KS","Public","?","o","eng bus sci","Engineering, agriculture, business","C","6","R","flag","k-state.edu",""],
+["u_uky","University of Kentucky","Lexington, KY","Public","1000","o","eng bus med","Engineering, business, health sciences","O","6","R","flag","uky.edu",""],
+["u_louis","University of Louisville","Louisville, KY","Public","?","o","eng bus med","Speed engineering, business, health sciences","O","6","R","flag","louisville.edu",""],
+["u_lsu","Louisiana State University","Baton Rouge, LA","Public","1000","o","eng bus sci","Petroleum engineering, business, sciences","C","6.5","R","flag","lsu.edu","From 2027, scores are required only below a 3.5 GPA, so they are optional for you."],
+["u_umbc","University of Maryland, Baltimore County (UMBC)","Baltimore, MD","Public","?","o","cs eng sci","Computer science, information systems, engineering, sciences","O","6.5","E15","flag","umbc.edu",""],
+["u_mtu","Michigan Technological University","Houghton, MI","Public","?","o","eng cs sci","Engineering, computer science, forestry","O","6.5","R","flag","mtu.edu",""],
+["u_wayne","Wayne State University","Detroit, MI","Public","1000","o","eng med bus","Engineering, health sciences, business","O","6.5","R","flag","wayne.edu",""],
+["u_mizzou","University of Missouri","Columbia, MO","Public","1000","o","soc bus eng","Journalism (the world's first school of it), business, engineering","O","6","R","flag","missouri.edu",""],
+["u_mst","Missouri University of Science and Technology","Rolla, MO","Public","?","o","eng cs","Engineering, computer science","O","6","R","flag","mst.edu",""],
+["u_unl","University of Nebraska–Lincoln","Lincoln, NE","Public","1000","o","eng bus sci","Engineering, business, agriculture","O","6","R","flag","unl.edu",""],
+["u_unh","University of New Hampshire","Durham, NH","Public","?","o","eng bus sci","Engineering, Paul College of business, marine science","O","6.5","R","flag","unh.edu",""],
+["u_njit","New Jersey Institute of Technology","Newark, NJ (near New York)","Public","1000","o","eng cs art","Computer science, engineering, architecture","O","6","R","flag","njit.edu",""],
+["u_unm","University of New Mexico","Albuquerque, NM","Public","1000","o","eng sci bus","Engineering, sciences, business","O","6","R","flag","unm.edu",""],
+["u_ncsu","North Carolina State University","Raleigh, NC","Public","500","m","eng cs bus sci","Engineering, computer science, textiles, agriculture","C","6.5","E15","flag","ncsu.edu","Test-flexible by college: confirm for your major."],
+["u_uc","University of Cincinnati","Cincinnati, OH","Public","1000","o","eng bus art med","Co-op engineering, DAAP design, business, health","O","6.5","R","flag","uc.edu","Paid co-op work terms built into many degrees."],
+["u_ou","University of Oklahoma","Norman, OK","Public","1000","o","eng sci bus","Meteorology, petroleum engineering, business","O","6.5","R","flag","ou.edu",""],
+["u_uo","University of Oregon","Eugene, OR","Public","1000","o","bus soc art sci","Lundquist business, journalism, sports business, sciences","O","6.5","E15","flag","uoregon.edu",""],
+["u_osu_or","Oregon State University","Corvallis, OR","Public","1000","o","eng cs sci","Engineering, computer science, forestry; INTO OSU pathway","O","6","R","flag","oregonstate.edu",""],
+["u_temple","Temple University","Philadelphia, PA","Public","1000","o","bus art med soc","Fox business, film & media arts, health sciences","O","6.5","R","flag","temple.edu",""],
+["u_sc","University of South Carolina","Columbia, SC","Public","1000","o","bus soc hos","International business (top-ranked), hospitality, public health","O","6.5","D1","flag","sc.edu",""],
+["u_clem","Clemson University","Clemson, SC","Public","?","m","eng bus sci","Engineering, business, agriculture","O","6.5","D1","flag","clemson.edu",""],
+["u_utk","University of Tennessee, Knoxville","Knoxville, TN","Public","1000","m","eng bus sci","Engineering, Haslam business, nuclear engineering","R","6","D15","flag","utk.edu","5 Dec SAT scores arrive after 15 Dec: sit 7 Nov or ask about late scores. Conditional admission exists."],
+["u_ua","University of Alabama","Tuscaloosa, AL","Public","?","o","bus eng soc","Culverhouse business, engineering, communication","C","6","R","flag","ua.edu","Scores required only below a 3.0 GPA for 2027. Conditional admission through its English Language Institute."],
+["u_auburn","Auburn University","Auburn, AL","Public","?","m","eng bus","Engineering, business, architecture, aviation","R","6.5","F1","flag","auburn.edu",""],
+["u_uab","University of Alabama at Birmingham (UAB)","Birmingham, AL","Public","1000","o","med sci eng","Health sciences, biomedical engineering, public health","O","6","R","flag","uab.edu",""],
+["u_uark","University of Arkansas","Fayetteville, AR","Public","?","o","bus eng","Walton business (supply chain), engineering","O","6","R","flag","uark.edu",""],
+["u_uta","University of Texas at Arlington","Arlington, TX (Dallas–Fort Worth)","Public","1000","o","eng cs bus","Engineering, computer science, business","O","6.5","R","flag","uta.edu",""],
+["u_ttu","Texas Tech University","Lubbock, TX","Public","?","o","eng bus sci","Engineering, business, agriculture, wind energy","O","6","R","flag","ttu.edu",""],
+["u_unt","University of North Texas","Denton, TX (Dallas)","Public","?","o","bus art cs","Music, business, computer science","O","6","R","flag","unt.edu",""],
+["u_utsa","University of Texas at San Antonio","San Antonio, TX","Public","?","o","cs eng bus","Cyber security (top-ranked), engineering, business","O","6","R","flag","utsa.edu",""],
+["u_utep","University of Texas at El Paso","El Paso, TX","Public","u","o","eng sci","Engineering, sciences","O","6","R","flag","utep.edu",""],
+["u_utah","University of Utah","Salt Lake City, UT","Public","500","o","eng cs med bus","Engineering, computer science, game design (EAE), health sciences","O","6.5","R","flag","utah.edu",""],
+["u_uvm","University of Vermont","Burlington, VT","Public","1000","o","sci bus med","Environmental science, business, health sciences","O","6.5","E15","flag","uvm.edu",""],
+["u_wm","William & Mary","Williamsburg, VA","Public","?","m","eco ir soc bus","Economics, government, international relations, business","O","7","E1","flag","wm.edu",""],
+["u_vcu","Virginia Commonwealth University","Richmond, VA","Public","1000","o","art bus med","VCUarts (top-ranked art school), business, health sciences","O","6","R","flag","vcu.edu",""],
+["u_wsu","Washington State University","Pullman, WA","Public","1000","o","eng bus sci hos","Engineering, hospitality, business, agriculture","O","6","R","flag","wsu.edu",""],
+["u_wvu","West Virginia University","Morgantown, WV","Public","?","o","eng bus","Engineering, business, forensic science","O","6","R","flag","wvu.edu",""],
+/* Other public universities (regional, Cal State, CUNY) */
+["u_sdsu","San Diego State University","San Diego, CA","Public","?","m","bus eng cs hos","Business, engineering, computer science, hospitality & tourism","B","6","CSU","pub","sdsu.edu","Cal State: SAT not used. Conditional admission with GPA 3.0+."],
+["u_calpoly","Cal Poly San Luis Obispo","San Luis Obispo, CA","Public","u","m","eng cs bus art","Engineering, architecture, computer science, business ('learn by doing')","B","6","CSU","pub","calpoly.edu","Cal State: SAT not used."],
+["u_sjsu","San José State University","San Jose, CA (Silicon Valley)","Public","?","o","cs eng bus art","Computer science, software and electrical engineering, business; Silicon Valley employers","B","6","CSU","pub","sjsu.edu","Cal State: SAT not used."],
+["u_csulb","California State University, Long Beach","Long Beach, CA","Public","u","m","eng bus art","Engineering, business, film & design","B","6","CSU","pub","csulb.edu","Cal State: SAT not used."],
+["u_sfsu","San Francisco State University","San Francisco, CA","Public","u","o","bus art soc cs","Business, film, international relations, computer science","B","6","CSU","pub","sfsu.edu","Cal State: SAT not used."],
+["u_cpp","Cal Poly Pomona","Pomona, CA","Public","u","o","eng hos bus","Engineering, hospitality management, business","B","6","CSU","pub","cpp.edu","Cal State: SAT not used."],
+["u_csuf","California State University, Fullerton","Fullerton, CA","Public","u","o","bus cs art","Business, computer science, communications","B","6","CSU","pub","fullerton.edu","Cal State: SAT not used."],
+["u_csun","California State University, Northridge","Los Angeles, CA","Public","u","o","eng bus art","Engineering, business, film","B","6","CSU","pub","csun.edu","Cal State: SAT not used."],
+["u_fau","Florida Atlantic University","Boca Raton, FL","Public","?","o","bus eng cs","Business, engineering, computer science","R","6","R","pub","fau.edu","Florida rule: SAT, ACT or CLT."],
+["u_ilstu","Illinois State University","Normal, IL","Public","u","o","bus soc cs","Business, education, information technology","O","6","R","pub","illinoisstate.edu",""],
+["u_umb","University of Massachusetts Boston","Boston, MA","Public","?","o","bus soc med","Business, nursing, international relations; Shorelight pathway","O","6","R","pub","umb.edu",""],
+["u_uml","University of Massachusetts Lowell","Lowell, MA","Public","?","o","eng cs bus","Engineering, computer science, business","O","6","R","pub","uml.edu",""],
+["u_wmich","Western Michigan University","Kalamazoo, MI","Public","u","o","eng bus","Aviation, engineering, business","O","6","R","pub","wmich.edu",""],
+["u_unlv","University of Nevada, Las Vegas","Las Vegas, NV","Public","?","o","hos bus eng","Hospitality (top-ranked), business, engineering","O","6","R","pub","unlv.edu",""],
+["u_rowan","Rowan University","Glassboro, NJ","Public","u","o","eng bus med","Engineering, business, health sciences","O","6","R","pub","rowan.edu","Accepts the IELTS One Skill Retake."],
+["u_albany","University at Albany (SUNY)","Albany, NY","Public","?","o","cs bus soc","Cyber security, business, public policy","O","6","R","pub","albany.edu",""],
+["u_baruch","Baruch College (CUNY)","New York, NY","Public","?","m","bus eco","Zicklin business, finance, accounting; Manhattan location","O","6.5","R","pub","baruch.cuny.edu",""],
+["u_ccny","City College of New York (CUNY)","New York, NY","Public","?","o","eng cs art","Grove engineering, computer science, architecture","O","6","R","pub","ccny.cuny.edu",""],
+["u_hunter","Hunter College (CUNY)","New York, NY","Public","?","m","soc med sci","Psychology, nursing, sciences","O","6","R","pub","hunter.cuny.edu",""],
+["u_uncc","University of North Carolina at Charlotte","Charlotte, NC","Public","?","o","cs eng bus","Computing & informatics, engineering, business","O","6","R","pub","charlotte.edu",""],
+["u_ohiou","Ohio University","Athens, OH","Public","?","o","soc bus art","Journalism, communication, business","O","6","R","pub","ohio.edu",""],
+["u_miamioh","Miami University (Ohio)","Oxford, OH","Public","?","o","bus soc","Farmer School of Business, economics, communication","O","6.5","E15","pub","miamioh.edu",""],
+["u_kent","Kent State University","Kent, OH","Public","u","o","art bus eng","Fashion, aeronautics, business","O","6","R","pub","kent.edu",""],
+["u_okstate","Oklahoma State University","Stillwater, OK","Public","?","o","eng bus","Engineering, business, agriculture","O","6","R","pub","okstate.edu",""],
+["u_pdx","Portland State University","Portland, OR","Public","u","o","bus eng soc","Business, engineering, urban studies","O","6","R","pub","pdx.edu",""],
+["u_uri","University of Rhode Island","Kingston, RI","Public","?","o","eng bus sci","Engineering, pharmacy, ocean sciences","O","6","R","pub","uri.edu",""],
+["u_memphis","University of Memphis","Memphis, TN","Public","u","o","bus eng hos","Business, engineering, hospitality","O","6","R","pub","memphis.edu",""],
+["u_nau","Northern Arizona University","Flagstaff, AZ","Public","u","o","sci hos bus","Forestry, hotel & restaurant management, business","O","6","R","pub","nau.edu",""]
+]);
+
+/* ---------- Other Tier 1 directories ---------- */
+/* rows: [id, name, city, type, band, sel, fields, courses, req, rule, deadline key, segment, website, also] */
+
+/* Canada */
+patchRows({
+  ca6h:{name:"York University", city:"Toronto", band:"1000", fields:"bus eng soc art cs", courses:"Schulich business (BBA), Lassonde engineering, liberal arts, film", rule:"Assesses the Uzbek Attestat individually. IELTS 6.5 with 6.0 bands is typical.", web:"yorku.ca", also:"", sel:"o"},
+  ca7:{name:"More smaller Canadian universities", also:"Nipissing, Algoma, Brandon, Mount Saint Vincent, Royal Roads, University of the Fraser Valley, Université Sainte-Anne (French), Athabasca (online)"}
+});
+segAll("ca2 ca3 ca4 ca5 ca1 ca6 ca6b ca6c ca6d ca6e ca6g", "u15");
+segAll("ca6f ca6h", "comp"); segAll("ca7 ca10", "small"); SEG.ca8 = "coll"; SEG.ca9 = "fr";
+const CA_DL = {
+  J15:["15 Jan 2027 (equal consideration; OUAC for Ontario)","2026-12-15","2027-01-15",0],
+  F1:["~1 Feb 2027","2027-01-15","2027-02-01",0],
+  M1:["~1 Mar 2027","2027-02-01","2027-03-01",0],
+  R:["Rolling to ~May 2027; many also start in January","2027-02-15","2027-05-01",1],
+  _:["Check the university","2027-02-01","2027-03-01",0]
+};
+const CA_ASK = "Assesses the Uzbek Attestat individually (ask before applying).";
+addRows("Canada", CA_DL, [
+["c_tmu","Toronto Metropolitan University","Toronto","Public","1000","m","bus cs eng art soc","Ted Rogers business, computer science, engineering, media & journalism","w6","Lists the Uzbek Attestat (Grade 11) on its country page. IELTS 6.5 with 6.0 bands is typical.","F1","comp","torontomu.ca",""],
+["c_carleton","Carleton University","Ottawa","Public","1000","o","ir eng cs soc","International affairs, engineering, computer science, journalism","w6",CA_ASK + " IELTS 6.5 with 6.0 bands is typical.","F1","comp","carleton.ca",""],
+["c_concordia","Concordia University","Montréal","Public","1000","o","bus eng cs art","John Molson business, engineering, computer science, fine arts (in English)","",CA_ASK + " Québec also needs a CAQ before the study permit.","M1","comp","concordia.ca",""],
+["c_guelph","University of Guelph","Guelph, ON","Public","1000","o","sci bus eng","Agriculture & food, biological sciences, business, engineering","w6",CA_ASK,"J15","comp","uoguelph.ca",""],
+["c_laurier","Wilfrid Laurier University","Waterloo, ON","Public","?","o","bus eco soc","Lazaridis business & economics (co-op), social sciences","w6",CA_ASK,"J15","comp","wlu.ca",""],
+["c_uvic","University of Victoria","Victoria, BC","Public","1000","o","eng cs sci soc","Engineering & computer science with co-op, sciences, social sciences","w6",CA_ASK,"F1","comp","uvic.ca",""],
+["c_usask","University of Saskatchewan","Saskatoon, SK","Public","1000","o","eng sci med bus","Engineering, agriculture, health sciences, Edwards business","w6",CA_ASK,"F1","u15","usask.ca",""],
+["c_umanitoba","University of Manitoba","Winnipeg, MB","Public","1000","o","eng sci bus med","Engineering, Asper business, sciences, health","w6",CA_ASK + " Country equivalencies via international.applications@umanitoba.ca.","M1","u15","umanitoba.ca",""],
+["c_mun","Memorial University of Newfoundland","St. John's, NL","Public","1000","o","eng sci bus","Ocean & naval engineering, business, sciences","",CA_ASK,"M1","comp","mun.ca",""],
+["c_unb","University of New Brunswick","Fredericton, NB","Public","?","o","eng cs bus","Engineering, computer science (cyber security), business","",CA_ASK,"M1","comp","unb.ca",""],
+["c_winnipeg","University of Winnipeg","Winnipeg, MB","Public","u","o","bus soc sci cs","Business, applied computer science, environmental studies, social sciences","","Lists the Uzbek secondary certificate with a grade of 4 or better (you have 5).","R","small","uwinnipeg.ca",""],
+["c_unbc","University of Northern British Columbia","Prince George, BC","Public","u","o","sci soc bus","Environmental science, forestry, business, health sciences","","Publishes an Uzbekistan sheet (2021): a 5 converts to about 85%.","R","small","unbc.ca",""],
+["c_brock","Brock University","St. Catharines, ON","Public","?","o","bus soc sci","Goodman business, sport management, sciences","",CA_ASK,"F1","small","brocku.ca",""],
+["c_windsor","University of Windsor","Windsor, ON","Public","?","o","eng bus cs","Engineering, Odette business, computer science","",CA_ASK,"R","small","uwindsor.ca",""],
+["c_ontech","Ontario Tech University","Oshawa, ON","Public","u","o","eng cs","Engineering, computer science, game development","",CA_ASK,"F1","small","ontariotechu.ca",""],
+["c_trent","Trent University","Peterborough, ON","Public","u","o","soc sci","Environmental studies, social sciences","",CA_ASK,"R","small","trentu.ca",""],
+["c_lakehead","Lakehead University","Thunder Bay, ON","Public","u","o","eng sci","Engineering, sciences","",CA_ASK,"R","small","lakeheadu.ca",""],
+["c_laurentian","Laurentian University","Sudbury, ON","Public","u","o","eng sci","Mining engineering, sciences","",CA_ASK,"R","small","laurentian.ca",""],
+["c_lethbridge","University of Lethbridge","Lethbridge, AB","Public","u","o","bus sci soc","Dhillon business, sciences","",CA_ASK,"R","small","ulethbridge.ca",""],
+["c_regina","University of Regina","Regina, SK","Public","u","o","eng bus soc","Engineering, business, social work","",CA_ASK,"R","small","uregina.ca",""],
+["c_macewan","MacEwan University","Edmonton, AB","Public","u","o","bus art soc","Business, design, social sciences","",CA_ASK,"R","small","macewan.ca",""],
+["c_mru","Mount Royal University","Calgary, AB","Public","u","o","bus soc","Business, aviation, communication","",CA_ASK,"R","small","mtroyal.ca",""],
+["c_tru","Thompson Rivers University","Kamloops, BC","Public","u","o","bus hos cs","Business, tourism management, computing; flexible intakes","",CA_ASK,"R","small","tru.ca",""],
+["c_kpu","Kwantlen Polytechnic University","Surrey, BC (Vancouver)","Public","u","o","bus cs art","Business, design, computing","",CA_ASK,"R","small","kpu.ca",""],
+["c_capu","Capilano University","North Vancouver, BC","Public","u","o","bus art hos","Business, film, tourism","",CA_ASK,"R","small","capilanou.ca",""],
+["c_viu","Vancouver Island University","Nanaimo, BC","Public","u","o","bus hos sci","Business, tourism, sciences","",CA_ASK,"R","small","viu.ca",""],
+["c_smu","Saint Mary's University","Halifax, NS","Public","u","o","bus sci","Sobey business, sciences","",CA_ASK,"R","small","smu.ca",""],
+["c_acadia","Acadia University","Wolfville, NS","Public","u","o","bus sci soc","Business, sciences, social sciences","",CA_ASK,"R","small","acadiau.ca",""],
+["c_stfx","St. Francis Xavier University","Antigonish, NS","Public","u","o","bus sci soc","Business, sciences, social sciences","",CA_ASK,"R","small","stfx.ca",""],
+["c_mta","Mount Allison University","Sackville, NB","Public","u","o","sci soc art","Liberal arts and sciences","",CA_ASK,"R","small","mta.ca",""],
+["c_bishops","Bishop's University","Sherbrooke, QC","Public","u","o","bus soc art","Liberal arts, Williams business (English-language, in Québec)","",CA_ASK + " Québec also needs a CAQ.","M1","small","ubishops.ca",""],
+["c_upei","University of Prince Edward Island","Charlottetown, PE","Public","u","o","sci bus","Sciences, business","",CA_ASK,"R","small","upei.ca",""],
+["c_cbu","Cape Breton University","Sydney, NS","Public","u","o","bus hos eng","Business, hospitality, engineering technology","",CA_ASK,"R","small","cbu.ca",""],
+["c_ocad","OCAD University","Toronto","Public","u","m","art","Art and design; portfolio required","",CA_ASK,"F1","small","ocadu.ca",""],
+["c_ecuad","Emily Carr University of Art + Design","Vancouver","Public","u","m","art","Art, design and media; portfolio required","",CA_ASK,"F1","small","ecuad.ca",""],
+["c_ucw","University Canada West","Vancouver","Private","u","o","bus","BBA with several intakes a year (private university)","",CA_ASK,"R","small","ucanwest.ca",""]
+]);
+
+/* Spain */
+patchRows({
+  es2f:{name:"More private institutions in Spain", also:"Abat Oliba CEU, Universidad Europea de Valencia, Universidad del Atlántico Medio, Universidad Tecnología y Empresa; EU Business School and Schiller are not official Spanish universities (check recognition)"},
+  es4:{also:"Cádiz, Córdoba, Jaén, Huelva, Almería, Pablo de Olavide, La Rioja, Pública de Navarra, Las Palmas de Gran Canaria, Extremadura, Burgos, León, Politécnica de Cartagena, UNED (distance)"}
+});
+segAll("es1 es2 es2b es2c es2d es2e es2f", "priv"); segAll("es3 es3b es3c es4", "pub");
+const ES_DL = {
+  pub:["Homologation now · PCE registration ~Mar–Apr · exams May–June · pre-enrolment late June–July 2027","2027-04-15","2027-06-30",0],
+  priv:["Rolling admission to ~June 2027 (earlier rounds have more places)","2027-02-15","2027-06-30",0]
+};
+const ES_BASE = {pub:"Public: homologate your Attestat (the filing receipt is enough), sit the UNEDasiss PCE exams, then pre-enrol in the region.", priv:"Private: own admission (grades, a test or an interview); homologation can finish after you enrol."};
+const ESL = "hom;lang:Spanish B2 for most degrees";
+addRows("Spain", ES_DL, [
+["e_ub","Universitat de Barcelona","Barcelona","Public","200","m","eco bus med sci soc","Economics, business, medicine, sciences (Catalan and Spanish)","hom;lang:Spanish or Catalan B2 for most degrees","","pub","pub","ub.edu",""],
+["e_uab","Universitat Autònoma de Barcelona","Bellaterra (Barcelona)","Public","200","m","eco bus sci soc","Economics, business & management, sciences; some degrees in English","hom","Some degrees are taught in English.","pub","pub","uab.cat",""],
+["e_ucm","Universidad Complutense de Madrid","Madrid","Public","200","m","med eco soc sci art","Medicine, economics, political science, sciences",ESL,"","pub","pub","ucm.es",""],
+["e_upm","Universidad Politécnica de Madrid","Madrid","Public","500","m","eng cs","Engineering, architecture, computer science",ESL,"","pub","pub","upm.es",""],
+["e_upc","Universitat Politècnica de Catalunya (BarcelonaTech)","Barcelona","Public","500","m","eng cs","Engineering, architecture, computer science","hom;lang:Spanish or Catalan B2 for most degrees","","pub","pub","upc.edu",""],
+["e_uv","Universitat de València","Valencia","Public","500","o","eco bus sci med soc","Economics, business, sciences, medicine",ESL,"","pub","pub","uv.es",""],
+["e_upv","Universitat Politècnica de València","Valencia","Public","500","m","eng cs art","Engineering, computer science, fine arts",ESL,"","pub","pub","upv.es",""],
+["e_ugr","Universidad de Granada","Granada","Public","500","o","cs sci soc med","Computer science, translation, sciences, medicine",ESL,"","pub","pub","ugr.es",""],
+["e_us","Universidad de Sevilla","Seville","Public","1000","o","eng eco med","Engineering, economics, health sciences",ESL,"","pub","pub","us.es",""],
+["e_usal","Universidad de Salamanca","Salamanca","Public","1000","o","soc eco med","Spain's oldest university: law, economics, Spanish studies",ESL,"","pub","pub","usal.es",""],
+["e_unizar","Universidad de Zaragoza","Zaragoza","Public","1000","o","eng eco sci","Engineering, economics, sciences",ESL,"","pub","pub","unizar.es",""],
+["e_usc","Universidade de Santiago de Compostela","Santiago de Compostela","Public","1000","o","sci med soc","Sciences, medicine, humanities (Spanish and Galician)",ESL,"","pub","pub","usc.gal",""],
+["e_ehu","University of the Basque Country (UPV/EHU)","Bilbao","Public","1000","o","eng sci eco","Engineering, sciences, economics (Spanish and Basque)",ESL,"","pub","pub","ehu.eus",""],
+["e_urjc","Universidad Rey Juan Carlos","Madrid","Public","?","o","bus cs soc hos","Business, tourism, computer science; some degrees in English","hom","Some degrees are taught in English.","pub","pub","urjc.es",""],
+["e_uah","Universidad de Alcalá","Alcalá de Henares (Madrid)","Public","1000","o","eco bus med","Economics, business, health sciences",ESL,"","pub","pub","uah.es",""],
+["e_uma","Universidad de Málaga","Málaga","Public","?","o","cs eng hos","Computer science, engineering, tourism",ESL,"","pub","pub","uma.es",""],
+["e_umu","Universidad de Murcia","Murcia","Public","?","o","med soc eco","Health sciences, economics, education",ESL,"","pub","pub","um.es",""],
+["e_ua","Universidad de Alicante","Alicante","Public","?","o","hos eco cs","Tourism, economics, computer science",ESL,"","pub","pub","ua.es",""],
+["e_uniovi","Universidad de Oviedo","Oviedo","Public","?","o","eng sci med","Engineering, sciences, medicine",ESL,"","pub","pub","uniovi.es",""],
+["e_uva","Universidad de Valladolid","Valladolid","Public","?","o","eng eco soc","Engineering, economics, humanities",ESL,"","pub","pub","uva.es",""],
+["e_unican","Universidad de Cantabria","Santander","Public","?","o","eng sci eco","Civil engineering, sciences, economics",ESL,"","pub","pub","unican.es",""],
+["e_urv","Universitat Rovira i Virgili","Tarragona","Public","?","o","eng sci hos","Chemical engineering, sciences, tourism","hom;lang:Spanish or Catalan B2 for most degrees","","pub","pub","urv.cat",""],
+["e_udg","Universitat de Girona","Girona","Public","?","o","hos sci soc","Tourism, sciences, social sciences","hom;lang:Spanish or Catalan B2 for most degrees","","pub","pub","udg.edu",""],
+["e_udl","Universitat de Lleida","Lleida","Public","?","o","sci eng soc","Agri-food engineering, sciences","hom;lang:Spanish or Catalan B2 for most degrees","","pub","pub","udl.cat",""],
+["e_uji","Universitat Jaume I","Castellón","Public","?","o","eng bus soc","Engineering, business, communication",ESL,"","pub","pub","uji.es",""],
+["e_umh","Universidad Miguel Hernández","Elche","Public","?","o","med eng bus","Health sciences, engineering, business",ESL,"","pub","pub","umh.es",""],
+["e_uclm","Universidad de Castilla-La Mancha","Ciudad Real · Toledo · Albacete","Public","?","o","eng eco soc","Engineering, economics, humanities",ESL,"","pub","pub","uclm.es",""],
+["e_uib","Universitat de les Illes Balears","Palma (Mallorca)","Public","?","o","hos eco","Tourism (strong), economics","hom;lang:Spanish or Catalan B2 for most degrees","","pub","pub","uib.eu",""],
+["e_ull","Universidad de La Laguna","Tenerife","Public","?","o","sci soc","Astrophysics, sciences, humanities",ESL,"","pub","pub","ull.es",""],
+["e_uvigo","Universidade de Vigo","Vigo","Public","?","o","eng sci","Engineering, marine sciences",ESL,"","pub","pub","uvigo.gal",""],
+["e_udc","Universidade da Coruña","A Coruña","Public","?","o","eng cs","Engineering, computer science",ESL,"","pub","pub","udc.gal",""],
+["e_comillas","Universidad Pontificia Comillas (ICADE · ICAI)","Madrid","Private","?","m","bus eng soc ir","ICADE business & law, ICAI engineering, international relations; some bilingual degrees","","Own admission test.","priv","priv","comillas.edu",""],
+["e_cunef","CUNEF Universidad","Madrid","Private","u","m","eco bus cs","Finance, economics, data science; degrees in English","","","priv","priv","cunef.edu",""],
+["e_deusto","Universidad de Deusto","Bilbao · San Sebastián","Private","?","m","bus eng soc ir","Deusto Business School, engineering, international relations; some degrees in English","","","priv","priv","deusto.es",""],
+["e_ceu","Universidad CEU San Pablo","Madrid","Private","?","o","med bus soc","Medicine, pharmacy, business, journalism; some English tracks","","","priv","priv","uspceu.com",""],
+["e_ufv","Universidad Francisco de Vitoria","Madrid","Private","?","o","med bus soc","Medicine, business, communication","","","priv","priv","ufv.es",""],
+["e_nebrija","Universidad Nebrija","Madrid","Private","u","o","bus art eng","Business, design, engineering","","","priv","priv","nebrija.com",""],
+["e_ucjc","Universidad Camilo José Cela","Madrid","Private","u","o","bus art soc","Business, design, psychology","","","priv","priv","ucjc.edu",""],
+["e_uax","Universidad Alfonso X el Sabio","Madrid","Private","u","o","med bus eng","Health sciences, business, engineering","","","priv","priv","uax.com",""],
+["e_esic","ESIC University","Madrid · Barcelona · Valencia","Private","u","o","bus","Marketing, business, digital business; some degrees in English","","","priv","priv","esic.edu",""],
+["e_uic","UIC Barcelona (Universitat Internacional de Catalunya)","Barcelona","Private","u","o","med bus art","Health sciences, business, architecture","","","priv","priv","uic.es",""],
+["e_mondragon","Mondragon Unibertsitatea","Mondragón","Private","u","o","eng bus","Engineering, team-based business programmes","","","priv","priv","mondragon.edu",""],
+["e_loyola","Universidad Loyola Andalucía","Seville · Córdoba","Private","u","o","bus eco eng","Business, economics, engineering; bilingual degrees","","","priv","priv","uloyola.es",""],
+["e_ucam","UCAM Universidad Católica de Murcia","Murcia","Private","u","o","med bus","Health sciences, sport, business; some degrees in English","","","priv","priv","ucam.edu",""],
+["e_uvic","Universitat de Vic – UCC","Vic (Barcelona)","Private","u","o","bus med soc","Business, health sciences, translation","","","priv","priv","uvic.cat",""],
+["e_unir","UNIR (online university)","Online (Logroño)","Private","u","o","bus cs soc","Recognised Spanish degrees taught online","","Online only, so there is no student visa and no campus life.","priv","priv","unir.net",""]
+], ES_BASE);
+
+/* Hong Kong */
+patchRows({hk9:{name:"More self-financing institutions", also:"Gratia Christian College, UOW College Hong Kong, HKU SPACE and CUHK School of Continuing Studies (associate degrees with progression)"}});
+segAll("hk2 hk3 hk5 hk6 hk7 hk1 hk4 hk8", "ugc"); SEG.hk9 = "self";
+const HK_DL = {self:["Rolling rounds to ~May–June 2027","2027-02-01","2027-05-31",0], ugc:["Rounds from ~Nov 2026 to ~Mar 2027","2026-12-15","2027-03-01",0]};
+addRows("Hong Kong", HK_DL, [
+["h_hkmu","Hong Kong Metropolitan University","Ho Man Tin","Self-financing","u","o","bus cs art med hos","Business, computing, creative arts, nursing","","Individual review of the Attestat; IELTS ~6.0.","self","self","hkmu.edu.hk",""],
+["h_hsu","Hang Seng University of Hong Kong","Sha Tin","Self-financing","u","o","bus eco cs","Business, finance, supply chain, data science","","Individual review of the Attestat.","self","self","hsu.edu.hk",""],
+["h_shueyan","Hong Kong Shue Yan University","North Point","Self-financing","u","o","soc art bus","Journalism, psychology, business","","Individual review of the Attestat.","self","self","hksyu.edu",""],
+["h_sfu","Saint Francis University","Tseung Kwan O","Self-financing","u","o","med bus soc","Nursing, business, social sciences","","Individual review of the Attestat.","self","self","sfu.edu.hk",""],
+["h_twc","Tung Wah College","Kowloon","Self-financing","u","o","med","Nursing and health sciences","","Individual review of the Attestat.","self","self","twc.edu.hk",""],
+["h_chuhai","Hong Kong Chu Hai College","Tuen Mun","Self-financing","u","o","eng bus art","Engineering, business, architecture","","Individual review of the Attestat.","self","self","chuhai.edu.hk",""],
+["h_thei","Technological and Higher Education Institute (THEi)","Tsing Yi","Public (VTC, self-financed degrees)","u","o","eng art hos","Engineering, design, hospitality (vocational degrees)","","Individual review of the Attestat.","self","self","thei.edu.hk",""],
+["h_hkapa","Hong Kong Academy for Performing Arts","Wan Chai","Public","u","m","art","Dance, drama, film & TV, music; audition required","","Individual review of the Attestat; audition decides.","ugc","ugc","hkapa.edu",""]
+]);
+
+/* China */
+patchRows({cn2d:{name:"More Chinese universities (CSCA)", also:"Dalian University of Technology, East China Normal, Beijing Normal, Renmin (mostly Chinese-taught), Hunan University, Soochow University, Jiangnan University, Nanjing University of Aeronautics & Astronautics, Zhengzhou University, Hohai University, China University of Petroleum, Ocean University of China and many more"}});
+segAll("cn3 cn3b cn6 cn7 cn7b cn7c cn4", "jv"); segAll("cn1 cn1b cn2 cn2b cn2c cn2e", "top"); SEG.cn2d = "more"; SEG.cn5 = "sch";
+const CN_DL = {
+  pub:["~Nov 2026–Apr 2027 (each university sets its own windows)","2027-02-15","2027-04-15",0],
+  jv:["Rounds to ~Apr–Jun 2027","2027-02-15","2027-04-30",0],
+  gz:["Priority ~25 Nov 2026 · rolling to ~30 Jun 2027 (third-party dates; confirm)","2026-11-25","2027-06-30",0]
+};
+const CN_BASE = {top:"Chinese university: CSCA required (maths plus physics or chemistry, in English for English-taught programmes). English-taught bachelor's run in selected fields only; Chinese-taught degrees need HSK 4–5. Ages usually 18–25.", more:"Chinese university: CSCA required (maths plus physics or chemistry). English-taught bachelor's in selected fields only; Chinese-taught degrees need HSK 4–5. Ages usually 18–25."};
+addRows("China", CN_DL, [
+["n_nju","Nanjing University","Nanjing","Public (C9)","200","m","sci eco soc cs","Sciences, economics, international business; mostly Chinese-taught","csca","","pub","top","nju.edu.cn",""],
+["n_ustc","University of Science and Technology of China (USTC)","Hefei","Public (C9)","200","h","sci cs eng","Physics, mathematics, computer science; mostly Chinese-taught","csca","","pub","top","ustc.edu.cn",""],
+["n_hit","Harbin Institute of Technology","Harbin (also Shenzhen, Weihai)","Public (C9)","500","m","eng cs","Engineering, computer science, aerospace; some English-taught","csca","","pub","top","hit.edu.cn",""],
+["n_whu","Wuhan University","Wuhan","Public","500","m","med cs eco","English-taught MBBS and selected programmes","csca","","pub","top","whu.edu.cn",""],
+["n_hust","Huazhong University of Science and Technology","Wuhan","Public","500","m","eng cs med","Engineering, computer science, MBBS in English","csca","","pub","top","hust.edu.cn",""],
+["n_sysu","Sun Yat-sen University","Guangzhou","Public","500","m","med bus soc","MBBS in English, business, social sciences","csca","","pub","top","sysu.edu.cn",""],
+["n_tongji","Tongji University","Shanghai","Public","500","m","eng art bus","Civil engineering, architecture & design, automotive, business; some English-taught","csca","","pub","top","tongji.edu.cn",""],
+["n_buaa","Beihang University","Beijing","Public","500","m","eng cs","Aerospace engineering, computer science; some English-taught","csca","","pub","top","buaa.edu.cn",""],
+["n_bit","Beijing Institute of Technology","Beijing","Public","500","m","eng cs bus","Mechanical & vehicle engineering, computer science, business; some English-taught","csca","","pub","top","bit.edu.cn",""],
+["n_tju","Tianjin University","Tianjin","Public","500","m","eng sci","Engineering, chemistry, architecture","csca","","pub","top","tju.edu.cn",""],
+["n_nankai","Nankai University","Tianjin","Public","500","m","eco bus soc","Economics, business, international studies","csca","","pub","top","nankai.edu.cn",""],
+["n_sdu","Shandong University","Jinan","Public","500","o","med sci soc","MBBS in English, sciences","csca","","pub","more","sdu.edu.cn",""],
+["n_scu","Sichuan University","Chengdu","Public","500","o","med sci eng","MBBS and dentistry in English, engineering","csca","","pub","more","scu.edu.cn",""],
+["n_seu","Southeast University","Nanjing","Public","500","m","eng cs med art","Engineering, architecture, MBBS in English","csca","","pub","more","seu.edu.cn",""],
+["n_xmu","Xiamen University","Xiamen","Public","500","m","eco bus sci","Economics, international business (English options), chemistry","csca","","pub","more","xmu.edu.cn",""],
+["n_jlu","Jilin University","Changchun","Public","1000","o","med eng","MBBS in English, engineering","csca","","pub","more","jlu.edu.cn",""],
+["n_scut","South China University of Technology","Guangzhou","Public","1000","o","eng cs","Engineering, computer science","csca","","pub","more","scut.edu.cn",""],
+["n_csu","Central South University","Changsha","Public","1000","o","med eng","MBBS in English, metallurgy, engineering","csca","","pub","more","csu.edu.cn",""],
+["n_cqu","Chongqing University","Chongqing","Public","1000","o","eng cs","Engineering, computer science","csca","","pub","more","cqu.edu.cn",""],
+["n_uestc","University of Electronic Science and Technology of China","Chengdu","Public","1000","m","cs eng","Electronic engineering, computer science, software; English-taught options","csca","","pub","more","uestc.edu.cn",""],
+["n_nwpu","Northwestern Polytechnical University","Xi'an","Public","1000","m","eng","Aeronautics, astronautics, marine engineering","csca","","pub","more","nwpu.edu.cn",""],
+["n_lzu","Lanzhou University","Lanzhou","Public","1000","o","sci med","Sciences, medicine","csca","","pub","more","lzu.edu.cn",""],
+["n_uibe","University of International Business and Economics (UIBE)","Beijing","Public","?","m","bus eco ir","International business, economics, finance; English-taught bachelor's for international students","csca","","pub","more","uibe.edu.cn",""],
+["n_swufe","Southwestern University of Finance and Economics (SWUFE)","Chengdu","Public","?","o","bus eco","Finance, economics, international business; English-taught programmes","csca","","pub","more","swufe.edu.cn",""],
+["n_bjtu","Beijing Jiaotong University","Beijing","Public","1000","o","eng cs eco","Transport engineering, computer science, economics","csca","","pub","more","bjtu.edu.cn",""],
+["n_shu","Shanghai University","Shanghai","Public","1000","o","eng bus art","Engineering, business, fine arts","csca","","pub","more","shu.edu.cn",""],
+["n_szu","Shenzhen University","Shenzhen","Public","1000","o","eng cs bus","Engineering, computer science, business","csca","","pub","more","szu.edu.cn",""],
+["n_mbbs","English-taught MBBS (medicine) at approved universities","Various","Public","?","m","med","6-year MBBS taught in English plus internship; HSK 4 needed before graduation","csca","Medicine in English at about 45 universities approved by China's Ministry of Education. CSCA maths plus chemistry (or physics). Check that the university is on the approved list; graduates sit licensing exams at home.","pub","med","","Capital Medical, China Medical University, Dalian Medical, Harbin Medical, Nanjing Medical, Soochow, Tianjin Medical, Zhengzhou, Chongqing Medical, Fudan, Zhejiang, Wuhan, Huazhong UST, Sun Yat-sen, Xi'an Jiaotong, Shandong, Sichuan, Southeast, Jilin, Central South, Guangxi Medical, Hebei Medical, Wenzhou Medical, Qingdao, Ningbo, Jiangsu, Fujian Medical, Kunming Medical"],
+["n_blcu","Beijing Language and Culture University","Beijing","Public","u","o","soc","Chinese language & culture; most start with a Chinese language year","lang:HSK for degree entry (a Chinese language year can come first)","Chinese-taught: most international students start with a Chinese language year, then the degree. CSCA rules apply to degree entry.","pub","sch","blcu.edu.cn",""],
+["n_hkustgz","HKUST (Guangzhou)","Guangzhou","Sino-Hong Kong university","?","m","cs eng sci","Artificial intelligence, smart manufacturing, data science; choose a major after year 2","","Lists the Uzbek general secondary certificate. IELTS 6.5 with 5.5 per section. Ask whether the CSCA applies.","gz","jv","hkust-gz.edu.cn",""],
+["n_gtiit","Guangdong Technion–Israel Institute of Technology","Shantou","Sino-foreign university","u","m","eng sci","Chemical engineering, biotechnology, materials, computer science (Technion degree)","","Taught in English; Technion degree. Ask whether the CSCA applies.","jv","jv","gtiit.edu.cn",""],
+["n_zjui","ZJU–UIUC Institute (Zhejiang University)","Haining","Sino-foreign institute","50","h","eng cs","Electrical, computer, mechanical and civil engineering in English; Illinois dual degrees","","Band shows Zhejiang University's ranking. Apply through Zhejiang University's international admissions; ask whether the CSCA applies.","jv","jv","zjui.intl.zju.edu.cn",""],
+["n_umji","UM–SJTU Joint Institute (Shanghai Jiao Tong)","Shanghai","Sino-foreign institute","50","h","eng cs","Electrical & computer and mechanical engineering in English; dual-degree option with Michigan","","Band shows SJTU's ranking. Apply through SJTU's international admissions; ask whether the CSCA applies.","jv","jv","ji.sjtu.edu.cn",""]
+], CN_BASE);
+
+/* Türkiye */
+patchRows({
+  tr4:{name:"More Turkish public universities", also:"Dicle, Fırat, İnönü, Süleyman Demirel, Mersin, Trakya, Kırıkkale, Sivas Cumhuriyet, Van Yüzüncü Yıl, Muğla Sıtkı Koçman, Manisa Celal Bayar, Kütahya Dumlupınar, Afyon Kocatepe, Bolu Abant İzzet Baysal, Zonguldak Bülent Ecevit, Recep Tayyip Erdoğan and about 90 more"},
+  tr5:{name:"More foundation (private) universities", also:"Istanbul Gelişim, Nişantaşı, Fenerbahçe, Istanbul Arel, Istanbul Esenyurt, Maltepe, Doğuş, Haliç, Ankara Medipol, Lokman Hekim, OSTİM Technical, Konya Food & Agriculture, SANKO, Toros, Çağ and about 40 more"}
+});
+segAll("tr1 tr2 tr2b tr2c tr5 tr5b", "fdn"); segAll("tr3 tr3b tr3c tr3d tr4", "pub"); SEG.tr6 = "sch";
+const TR_DL = {pub:["International quota ~Jun–Aug 2027 (each university)","2027-06-15","2027-08-15",0], fdn:["Rolling to ~Aug 2027; many also start in February","2027-03-31","2027-08-15",1]};
+const TR_BASE = {pub:"Public: international quota by SAT, TR-YÖS or diploma grade (each university sets its mix). Turkish-taught programmes need TÖMER C1 or a prep year; English-taught ones need English proof or a prep year.", fdn:"Foundation (private): admission mainly on your diploma grade (yours: 100%) or the SAT; English proof or a prep year; partial scholarships are common."};
+addRows("Türkiye", TR_DL, [
+["t_ankara","Ankara University","Ankara","Public","1000","o","med soc sci eco","Medicine, law, political science, sciences (mostly Turkish)","","","pub","pub","ankara.edu.tr",""],
+["t_istanbul","Istanbul University","Istanbul","Public","1000","o","med soc eco sci","Medicine, law, economics, sciences (mostly Turkish)","","","pub","pub","istanbul.edu.tr",""],
+["t_iuc","Istanbul University–Cerrahpaşa","Istanbul","Public","?","o","med eng","Medicine, engineering, health sciences","","","pub","pub","iuc.edu.tr",""],
+["t_marmara","Marmara University","Istanbul","Public","?","o","bus eco eng med","Business, economics, engineering (many in English)","","","pub","pub","marmara.edu.tr",""],
+["t_ytu","Yıldız Technical University","Istanbul","Public","?","o","eng cs","Engineering, architecture (some in English)","","","pub","pub","yildiz.edu.tr",""],
+["t_gazi","Gazi University","Ankara","Public","?","o","eng med soc","Engineering, medicine, education","","","pub","pub","gazi.edu.tr",""],
+["t_gtu","Gebze Technical University","Gebze (Kocaeli)","Public","?","m","eng sci cs","Engineering and sciences","","","pub","pub","gtu.edu.tr",""],
+["t_iyte","İzmir Institute of Technology","İzmir","Public","?","m","eng sci","Engineering and sciences taught in English","","","pub","pub","iyte.edu.tr",""],
+["t_ege","Ege University","İzmir","Public","?","o","med sci eng","Medicine, sciences, engineering","","","pub","pub","ege.edu.tr",""],
+["t_deu","Dokuz Eylül University","İzmir","Public","?","o","med bus eng","Medicine, business, engineering","","","pub","pub","deu.edu.tr",""],
+["t_galatasaray","Galatasaray University","Istanbul","Public","?","m","eco ir soc eng","Economics, international relations, law, engineering, taught in French","lang:French (or the university's prep year)","","pub","pub","gsu.edu.tr",""],
+["t_tau","Turkish-German University","Istanbul","Public","?","o","eng bus soc","Engineering, business, law, taught in German","lang:German (or the university's prep year)","","pub","pub","tau.edu.tr",""],
+["t_agu","Abdullah Gül University","Kayseri","Public","?","o","eng cs bus","Engineering, computer science, business taught in English","","","pub","pub","agu.edu.tr",""],
+["t_ktu","Karadeniz Technical University","Trabzon","Public","?","o","eng med","Engineering, medicine","","","pub","pub","ktu.edu.tr",""],
+["t_erciyes","Erciyes University","Kayseri","Public","?","o","med eng","Medicine, engineering","","","pub","pub","erciyes.edu.tr",""],
+["t_ataturk","Atatürk University","Erzurum","Public","?","o","med eng soc","Medicine, engineering, social sciences","","","pub","pub","atauni.edu.tr",""],
+["t_cukurova","Çukurova University","Adana","Public","?","o","med eng sci","Medicine, engineering, agriculture","","","pub","pub","cu.edu.tr",""],
+["t_uludag","Bursa Uludağ University","Bursa","Public","?","o","med eng bus","Medicine, engineering, business","","","pub","pub","uludag.edu.tr",""],
+["t_anadolu","Anadolu University","Eskişehir","Public","?","o","soc art bus","Communication, fine arts, business","","","pub","pub","anadolu.edu.tr",""],
+["t_estu","Eskişehir Technical University","Eskişehir","Public","?","o","eng","Aviation, engineering","","","pub","pub","eskisehir.edu.tr",""],
+["t_sakarya","Sakarya University","Sakarya","Public","?","o","eng bus","Engineering, business","","","pub","pub","sakarya.edu.tr",""],
+["t_kocaeli","Kocaeli University","Kocaeli","Public","?","o","eng med","Engineering, medicine","","","pub","pub","kocaeli.edu.tr",""],
+["t_akdeniz","Akdeniz University","Antalya","Public","?","o","hos med","Tourism, medicine","","","pub","pub","akdeniz.edu.tr",""],
+["t_pau","Pamukkale University","Denizli","Public","?","o","eng med","Engineering, medicine","","","pub","pub","pau.edu.tr",""],
+["t_omu","Ondokuz Mayıs University","Samsun","Public","?","o","med eng","Medicine, engineering","","","pub","pub","omu.edu.tr",""],
+["t_selcuk","Selçuk University","Konya","Public","?","o","eng med","Engineering, medicine","","","pub","pub","selcuk.edu.tr",""],
+["t_aybu","Ankara Yıldırım Beyazıt University","Ankara","Public","?","o","med eng soc","Medicine, engineering, social sciences; some English-taught","","","pub","pub","aybu.edu.tr",""],
+["t_medeniyet","Istanbul Medeniyet University","Istanbul","Public","?","o","med soc","Medicine, social sciences","","","pub","pub","medeniyet.edu.tr",""],
+["t_yeditepe","Yeditepe University","Istanbul","Private (foundation)","?","o","med eng bus soc","Medicine, dentistry, engineering, business; many in English","","","fdn","fdn","yeditepe.edu.tr",""],
+["t_bilgi","Istanbul Bilgi University","Istanbul","Private (foundation)","?","o","bus soc art cs","Business, media, law, computer science; many in English","","","fdn","fdn","bilgi.edu.tr",""],
+["t_kadirhas","Kadir Has University","Istanbul","Private (foundation)","?","o","bus eng art","Business, engineering, communication","","","fdn","fdn","khas.edu.tr",""],
+["t_mef","MEF University","Istanbul","Private (foundation)","?","o","eng bus","Engineering, business; all in English, flipped learning","","","fdn","fdn","mef.edu.tr",""],
+["t_tobb","TOBB University of Economics and Technology","Ankara","Private (foundation)","?","m","eng bus eco","Engineering, business, economics; co-op terms in every programme","","","fdn","fdn","etu.edu.tr",""],
+["t_atilim","Atılım University","Ankara","Private (foundation)","?","o","eng bus","Engineering, business","","","fdn","fdn","atilim.edu.tr",""],
+["t_cankaya","Çankaya University","Ankara","Private (foundation)","?","o","eng bus","Engineering, business","","","fdn","fdn","cankaya.edu.tr",""],
+["t_baskent","Başkent University","Ankara","Private (foundation)","?","o","med eng","Medicine, health sciences, engineering","","","fdn","fdn","baskent.edu.tr",""],
+["t_ted","TED University","Ankara","Private (foundation)","?","o","eng bus soc","Engineering, business, social sciences in English","","","fdn","fdn","tedu.edu.tr",""],
+["t_ieu","İzmir University of Economics","İzmir","Private (foundation)","?","o","bus eng art","Business, engineering, design","","","fdn","fdn","ieu.edu.tr",""],
+["t_yasar","Yaşar University","İzmir","Private (foundation)","?","o","bus eng art","Business, engineering, design","","","fdn","fdn","yasar.edu.tr",""],
+["t_altinbas","Altınbaş University","Istanbul","Private (foundation)","?","o","eng med bus","Engineering, medicine, business","","","fdn","fdn","altinbas.edu.tr",""],
+["t_aydin","Istanbul Aydın University","Istanbul","Private (foundation)","?","o","eng bus med","Engineering, business, health","","","fdn","fdn","aydin.edu.tr",""],
+["t_medipol","Istanbul Medipol University","Istanbul","Private (foundation)","?","o","med eng bus","Medicine, engineering, business","","","fdn","fdn","medipol.edu.tr",""],
+["t_istinye","İstinye University","Istanbul","Private (foundation)","?","o","med","Medicine, dentistry, health sciences","","","fdn","fdn","istinye.edu.tr",""],
+["t_acibadem","Acıbadem University","Istanbul","Private (foundation)","?","m","med","Medicine and health sciences","","","fdn","fdn","acibadem.edu.tr",""],
+["t_biruni","Biruni University","Istanbul","Private (foundation)","?","o","med","Medicine, dentistry, health sciences","","","fdn","fdn","biruni.edu.tr",""],
+["t_uskudar","Üsküdar University","Istanbul","Private (foundation)","?","o","med soc","Psychology, health sciences","","","fdn","fdn","uskudar.edu.tr",""],
+["t_okan","Istanbul Okan University","Istanbul","Private (foundation)","?","o","bus eng med","Business, engineering, health","","","fdn","fdn","okan.edu.tr",""],
+["t_kultur","Istanbul Kültür University","Istanbul","Private (foundation)","?","o","eng bus art","Engineering, business, arts","","","fdn","fdn","iku.edu.tr",""],
+["t_beykent","Beykent University","Istanbul","Private (foundation)","?","o","bus eng","Business, engineering","","","fdn","fdn","beykent.edu.tr",""],
+["t_isik","Işık University","Istanbul","Private (foundation)","?","o","eng bus","Engineering, business","","","fdn","fdn","isikun.edu.tr",""],
+["t_ibnhaldun","Ibn Haldun University","Istanbul","Private (foundation)","?","o","soc eco cs","Social sciences and computer science in English","","","fdn","fdn","ihu.edu.tr",""],
+["t_pirireis","Piri Reis University","Istanbul","Private (foundation)","?","o","eng","Maritime and ocean engineering","","","fdn","fdn","pirireis.edu.tr",""],
+["t_antalyabilim","Antalya Bilim University","Antalya","Private (foundation)","?","o","hos eng bus","Tourism, engineering, business","","","fdn","fdn","antalya.edu.tr",""],
+["t_hku","Hasan Kalyoncu University","Gaziantep","Private (foundation)","?","o","eng med bus","Engineering, health, business","","","fdn","fdn","hku.edu.tr",""]
+], TR_BASE);
+
+/* France */
+patchRows({
+  fr2:{name:"More business schools (Bachelor/BBA)", also:"ESC Clermont, EDC Paris, IPAG, ESCE, ISG, Brest BS, South Champagne BS, IDRAC, EBS Paris"},
+  fr4:{name:"More public universities (Licence 1, in French)", also:"Rennes, Lyon 2, Lyon 3, Poitiers, Tours, Caen, Rouen, Dijon, Besançon, Clermont Auvergne, Limoges, Pau, La Rochelle, Le Mans, Angers, Brest, Reims, Amiens, Orléans, Perpignan"},
+  fr7:{also:"ESILV, IPSA, ECE Paris, ESTACA, EPF, Albert School"}
+});
+segAll("fr1 fr1b fr1c fr1d fr2 fr2b", "bba"); SEG.fr7 = "tech"; SEG.fr3 = "us"; SEG.fr4 = "pub"; segAll("fr5 fr6", "cl");
+const FR_DL = {bba:["Rounds from ~Nov 2026 to ~Jun 2027","2027-01-15","2027-04-30",0], tech:["Rolling to ~Jun 2027","2027-02-15","2027-05-31",0], pub:["DAP (Études en France) 1 Oct–15 Dec 2026","2026-12-01","2026-12-15",0]};
+const FR_BASE = {bba:"Business school: dossier + interview. Check that it accepts 11 years of schooling (SKEMA asks for 12).", tech:"Private school: own admission. Check that the bachelor is state-recognised (visé).", pub:"French-taught licence through the DAP procedure (Campus France Uzbekistan)."};
+const FRL = "lang:French B2 (TCF-DAP)";
+addRows("France", FR_DL, [
+["f_neoma","NEOMA Business School – Global BBA","Reims · Rouen · Paris","Private grande école","u","m","bus","4-year Global BBA in English","","","bba","bba","neoma-bs.com",""],
+["f_kedge","KEDGE Business School – International BBA","Marseille · Bordeaux · Paris","Private grande école","u","o","bus","International BBA in English","","","bba","bba","kedge.edu",""],
+["f_gem","Grenoble Ecole de Management – Bachelor in International Business","Grenoble · Paris","Private grande école","u","m","bus","Bachelor in International Business in English","","","bba","bba","grenoble-em.com",""],
+["f_ieseg","IÉSEG School of Management – Bachelor in International Business","Lille · Paris","Private grande école","u","m","bus","Bachelor in International Business in English","","","bba","bba","ieseg.fr",""],
+["f_audencia","Audencia – Bachelor in Management","Nantes","Private grande école","u","m","bus","Bachelor in Management in English","","","bba","bba","audencia.com",""],
+["f_tbs","TBS Education – Bachelor in Management","Toulouse · Barcelona","Private grande école","u","m","bus","Bachelor in Management in English","","","bba","bba","tbs-education.com",""],
+["f_mbs","Montpellier Business School – Bachelor in International Business","Montpellier","Private grande école","u","o","bus","Bachelor in International Business","","","bba","bba","montpellier-bs.com",""],
+["f_rennes","Rennes School of Business – International Bachelor","Rennes","Private grande école","u","o","bus","International bachelor in English","","","bba","bba","rennes-sb.com",""],
+["f_essca","ESSCA – Global BBA","Angers · Paris · Lyon · Bordeaux","Private grande école","u","o","bus","Global BBA with an international track","","","bba","bba","essca.eu",""],
+["f_psb","Paris School of Business – BBA","Paris","Private","u","o","bus","BBA in English","","","bba","bba","psbedu.paris",""],
+["f_emn","EM Normandie – BBA","Caen · Le Havre · Paris","Private grande école","u","o","bus","BBA in English","","","bba","bba","em-normandie.com",""],
+["f_excelia","Excelia – Bachelor in International Business","La Rochelle · Tours · Paris","Private grande école","u","o","bus hos","International business, tourism management","","","bba","bba","excelia-group.com",""],
+["f_iscp","ISC Paris – Bachelor","Paris","Private","u","o","bus","Bachelor in business","","","bba","bba","iscparis.com",""],
+["f_icn","ICN Business School – Bachelor","Nancy · Paris","Private grande école","u","o","bus","Bachelor in management","","","bba","bba","icn-artem.com",""],
+["f_inseec","INSEEC – BBA","Paris · Lyon · Bordeaux · Chambéry","Private","u","o","bus","BBA with English tracks","","","bba","bba","inseec.com",""],
+["f_bsb","Burgundy School of Business – Bachelor","Dijon · Lyon","Private grande école","u","o","bus","Bachelor in business","","","bba","bba","bsb-education.com",""],
+["f_epita","EPITA – International Bachelor of Computer Science","Paris (Le Kremlin-Bicêtre)","Private engineering school","u","o","cs","Computer science in English","","","tech","tech","epita.fr",""],
+["f_efrei","EFREI Paris – International bachelor's","Paris (Villejuif)","Private engineering school","u","o","cs eng","Computer science, data & AI, cyber security (English tracks)","","","tech","tech","efrei.fr",""],
+["f_isep","ISEP – Bachelor in Digital Engineering","Paris (Issy-les-Moulineaux)","Private engineering school","u","o","cs eng","Digital engineering in English","","","tech","tech","isep.fr",""],
+["f_sorbonne","Sorbonne University","Paris","Public","100","m","sci soc art med","Sciences, humanities, medicine (in French)",FRL,"","pub","pub","sorbonne-universite.fr",""],
+["f_pariscite","Université Paris Cité","Paris","Public","200","m","med sci soc","Medicine, sciences, social sciences (in French)",FRL,"","pub","pub","u-paris.fr",""],
+["f_saclay","Université Paris-Saclay","Saclay (Paris)","Public","20","m","sci eng cs","Sciences, engineering, computer science (in French)",FRL,"","pub","pub","universite-paris-saclay.fr",""],
+["f_p1","Université Paris 1 Panthéon-Sorbonne","Paris","Public","500","m","eco soc ir","Economics, law, political science, history (in French)",FRL,"","pub","pub","pantheonsorbonne.fr",""],
+["f_dauphine","Université Paris Dauphine–PSL","Paris","Public","50","h","eco bus","Economics, management, applied maths (in French; band shows PSL)",FRL,"Applies through its own international platform; very selective.","pub","pub","dauphine.psl.eu",""],
+["f_amu","Aix-Marseille Université","Marseille · Aix-en-Provence","Public","500","o","sci eco soc med","Sciences, economics, humanities, medicine (in French)",FRL,"","pub","pub","univ-amu.fr",""],
+["f_unistra","Université de Strasbourg","Strasbourg","Public","500","o","sci med soc","Chemistry, sciences, medicine, humanities (in French)",FRL,"","pub","pub","unistra.fr",""],
+["f_ubx","Université de Bordeaux","Bordeaux","Public","500","o","sci med eng","Sciences, health, engineering (in French)",FRL,"","pub","pub","u-bordeaux.fr",""],
+["f_uga","Université Grenoble Alpes","Grenoble","Public","500","o","sci eng cs","Sciences, engineering, computer science (in French)",FRL,"","pub","pub","univ-grenoble-alpes.fr",""],
+["f_umontp","Université de Montpellier","Montpellier","Public","500","o","sci med","Sciences, health (in French)",FRL,"","pub","pub","umontpellier.fr",""],
+["f_lyon1","Université Claude Bernard Lyon 1","Lyon","Public","500","o","sci med eng","Sciences, health, technology (in French)",FRL,"","pub","pub","univ-lyon1.fr",""],
+["f_lille","Université de Lille","Lille","Public","1000","o","sci eco soc med","Sciences, economics, humanities, health (in French)",FRL,"","pub","pub","univ-lille.fr",""],
+["f_nantes","Nantes Université","Nantes","Public","1000","o","sci eng soc","Sciences, engineering, humanities (in French)",FRL,"","pub","pub","univ-nantes.fr",""],
+["f_uca","Université Côte d'Azur","Nice","Public","1000","o","sci eco soc","Sciences, economics, humanities (in French)",FRL,"","pub","pub","univ-cotedazur.fr",""],
+["f_lorraine","Université de Lorraine","Nancy · Metz","Public","1000","o","eng sci soc","Engineering, sciences (in French)",FRL,"","pub","pub","univ-lorraine.fr",""],
+["f_utc","Université Toulouse Capitole","Toulouse","Public","?","o","eco soc","Economics (Toulouse School of Economics), law (in French)",FRL,"","pub","pub","ut-capitole.fr",""]
+], FR_BASE);
+
+/* Italy */
+patchRows({it2g:{name:"More Italian public universities", also:"Brescia, Insubria, Ferrara, Udine, Messina, Calabria, Chieti-Pescara, L'Aquila, Sassari, Foggia, Macerata, Urbino, Camerino, Molise, Tuscia, Cassino, Basilicata, Piemonte Orientale"}});
+segAll("it3 it3b", "us"); segAll("it2 it2b it2c it2d it2e it2f it2g", "pub"); segAll("it1 it4 it5", "priv");
+const IT_DL = {br:["2028 entry after a bridge year (foundation or 1 year of university)",null,null,0]};
+const IT_BASE = {pub:"Ministry 12-year rule: a foundation year or one year of university first, then pre-enrolment through Universitaly. Many English-taught bachelor's with entrance tests (TOLC, SAT or the university's own).", priv:"Ministry 12-year rule: a foundation year or one year of university first, then the university's own test.", art:"AFAM art & design institution: the same 12-year rule applies through Universitaly."};
+addRows("Italy", IT_DL, [
+["i_pisa","University of Pisa","Pisa","Public","500","o","eng cs sci","Engineering, computer science, sciences","br","","br","pub","unipi.it",""],
+["i_trento","University of Trento","Trento","Public","500","o","cs eng eco","Computer science, economics & management in English","br","","br","pub","unitn.it",""],
+["i_turin","University of Turin","Turin","Public","500","o","eco bus sci","Business & management (English), sciences","br","","br","pub","unito.it",""],
+["i_florence","University of Florence","Florence","Public","1000","o","eco art sci","Economics, architecture, sciences","br","","br","pub","unifi.it",""],
+["i_pavia","University of Pavia","Pavia","Public","500","o","med eco eng","Medicine in English (IMAT), economics, engineering","br","","br","pub","unipv.it",""],
+["i_naples","University of Naples Federico II","Naples","Public","500","o","eng med eco","Engineering, medicine, economics","br","","br","pub","unina.it",""],
+["i_torvergata","University of Rome Tor Vergata","Rome","Public","500","o","eco bus med","Global governance, business administration & economics in English, medicine","br","","br","pub","uniroma2.it",""],
+["i_roma3","Roma Tre University","Rome","Public","1000","o","eco soc eng","Economics, humanities, engineering","br","","br","pub","uniroma3.it",""],
+["i_bicocca","University of Milano-Bicocca","Milan","Public","500","o","eco cs sci","Economics, computer science, sciences","br","","br","pub","unimib.it",""],
+["i_genoa","University of Genoa","Genoa","Public","1000","o","eng sci","Engineering, maritime science","br","","br","pub","unige.it",""],
+["i_siena","University of Siena","Siena","Public","1000","o","eco med","Economics, medicine","br","","br","pub","unisi.it",""],
+["i_cafoscari","Ca' Foscari University of Venice","Venice","Public","1000","o","eco bus soc","Economics & management, international relations in English","br","","br","pub","unive.it",""],
+["i_verona","University of Verona","Verona","Public","1000","o","eco med","Economics, medicine","br","","br","pub","univr.it",""],
+["i_trieste","University of Trieste","Trieste","Public","1000","o","sci eng","Sciences, engineering","br","","br","pub","units.it",""],
+["i_parma","University of Parma","Parma","Public","1000","o","eco sci","Economics, food science","br","","br","pub","unipr.it",""],
+["i_unimore","University of Modena and Reggio Emilia","Modena","Public","1000","o","eng eco","Engineering (automotive), economics","br","","br","pub","unimore.it",""],
+["i_bergamo","University of Bergamo","Bergamo","Public","?","o","eco eng","Economics, engineering","br","","br","pub","unibg.it",""],
+["i_bari","University of Bari","Bari","Public","1000","o","eco med","Economics, medicine","br","","br","pub","uniba.it",""],
+["i_catania","University of Catania","Catania","Public","1000","o","eng med","Engineering, medicine","br","","br","pub","unict.it",""],
+["i_palermo","University of Palermo","Palermo","Public","1000","o","eng med","Engineering, medicine","br","","br","pub","unipa.it",""],
+["i_perugia","University of Perugia","Perugia","Public","1000","o","eco sci","Economics, sciences","br","","br","pub","unipg.it",""],
+["i_cagliari","University of Cagliari","Cagliari","Public","1000","o","eng sci","Engineering, sciences","br","","br","pub","unica.it",""],
+["i_salerno","University of Salerno","Salerno","Public","1000","o","eng eco","Engineering, economics","br","","br","pub","unisa.it",""],
+["i_univpm","Marche Polytechnic University","Ancona","Public","1000","o","eng eco","Engineering, economics","br","","br","pub","univpm.it",""],
+["i_unibz","Free University of Bozen-Bolzano","Bolzano","Public (state-recognised)","?","o","eco cs","Trilingual degrees: economics, computer science","br","","br","pub","unibz.it",""],
+["i_iulm","IULM University","Milan","Private","?","o","art soc hos","Communication, tourism, fashion","br","","br","priv","iulm.it",""],
+["i_humanitas","Humanitas University","Milan","Private","?","h","med","Medicine in English","br","","br","priv","hunimed.eu",""],
+["i_sanraffaele","Vita-Salute San Raffaele University","Milan","Private","?","h","med","Medicine in English","br","","br","priv","unisr.it",""],
+["i_ucbm","Campus Bio-Medico University of Rome","Rome","Private","?","m","med eng","Medicine, biomedical engineering","br","","br","priv","unicampus.it",""],
+["i_liuc","LIUC – Università Cattaneo","Castellanza (Milan)","Private","?","o","bus eng","Business, management engineering","br","","br","priv","liuc.it",""],
+["i_unint","UNINT","Rome","Private","?","o","ir bus","International relations, business, languages","br","","br","priv","unint.eu",""],
+["i_naba","NABA – Nuova Accademia di Belle Arti","Milan · Rome","Private (AFAM)","u","o","art","Design, fashion, fine arts in English","br","","br","art","naba.it",""],
+["i_ied","IED – Istituto Europeo di Design","Milan · Rome · Florence · Turin","Private (AFAM)","u","o","art","Fashion, product, visual and interior design","br","","br","art","ied.edu",""],
+["i_domus","Domus Academy","Milan","Private (AFAM)","u","o","art","Design and fashion","br","","br","art","domusacademy.com",""],
+["i_marangoni","Istituto Marangoni","Milan · Florence","Private (AFAM)","u","o","art bus","Fashion design and fashion business","br","","br","art","istitutomarangoni.com",""]
+], IT_BASE);
+
+/* Qatar */
+const QA_DL = {q:["Spring 2027 for fall entry (check)","2027-03-01","2027-06-30",0]};
+addRows("Qatar", QA_DL, [
+["q_afg","Afg College with the University of Aberdeen","Doha","Private (UK degree)","200","o","bus cs eng","University of Aberdeen degrees in business, computing, engineering; foundation year available","ask:Confirm it admits applicants from abroad (most students are Qatar residents)","Band shows Aberdeen's ranking.","q","","afg-aberdeen.edu.qa",""],
+["q_ucalgary","University of Calgary in Qatar","Doha","Branch campus (nursing)","200","m","med","Bachelor of Nursing (University of Calgary degree)","ask:Confirm eligibility for applicants from abroad and how an 11-year certificate is assessed","Band shows Calgary's ranking.","q","","qatar.ucalgary.ca",""],
+["q_lusail","Lusail University","Lusail","Private","u","o","bus soc eng","Business, law, engineering (Arabic and English)","ask:Confirm admission of an 11-year certificate","Private Qatari university; check the language of your programme.","q","","lu.edu.qa",""]
+]);
+
+/* Saudi Arabia */
+patchRows({sa2c:{name:"More Saudi state universities (scholarships)", also:"Jazan, Najran, Al Baha, Bisha, Shaqra, Majmaah, Northern Border, Al Jouf, Hail, Tabuk, Hafr Al Batin, Princess Nourah (women)"}});
+segAll("sa1 sa2 sa2b sa2c", "pub"); segAll("sa3 sa4 sa5", "priv");
+const SA_DL = {s:["Study in Saudi window ~late Apr–May 2027 (check)","2027-04-25","2027-05-21",0]};
+const SA_BASE = {pub:"Study in Saudi scholarship route: ages 17–25 and a certificate under 5 years old; an Arabic preparatory year comes first."};
+const SAL = "lang:Arabic (preparatory year)";
+addRows("Saudi Arabia", SA_DL, [
+["s_uqu","Umm Al-Qura University","Makkah","Public (scholarship)","1000","m","soc sci med","Islamic studies, Arabic, sciences",SAL,"","s","pub","uqu.edu.sa",""],
+["s_imamu","Imam Mohammad Ibn Saud Islamic University","Riyadh","Public (scholarship)","?","m","soc","Sharia, Arabic language, social sciences",SAL,"","s","pub","imamu.edu.sa",""],
+["s_qu","Qassim University","Buraydah","Public (scholarship)","1000","m","eng sci med","Engineering, sciences, health",SAL,"","s","pub","qu.edu.sa",""],
+["s_kku","King Khalid University","Abha","Public (scholarship)","1000","m","eng sci med","Engineering, sciences, medicine",SAL,"","s","pub","kku.edu.sa",""],
+["s_taibah","Taibah University","Madinah","Public (scholarship)","?","m","sci soc","Sciences, Islamic studies",SAL,"","s","pub","taibahu.edu.sa",""],
+["s_iau","Imam Abdulrahman Bin Faisal University","Dammam","Public (scholarship)","1000","m","med eng","Medicine, engineering, architecture",SAL,"","s","pub","iau.edu.sa",""],
+["s_kfu","King Faisal University","Al-Ahsa","Public (scholarship)","1000","m","sci bus","Agriculture, sciences, business",SAL,"","s","pub","kfu.edu.sa",""],
+["s_psau","Prince Sattam bin Abdulaziz University","Al-Kharj","Public (scholarship)","1000","m","eng sci","Engineering, sciences",SAL,"","s","pub","psau.edu.sa",""],
+["s_uj","University of Jeddah","Jeddah","Public (scholarship)","1000","m","eng bus sci","Engineering, business, sciences",SAL,"","s","pub","uj.edu.sa",""],
+["s_tu","Taif University","Taif","Public (scholarship)","?","m","sci med","Sciences, medicine",SAL,"","s","pub","tu.edu.sa",""]
+], SA_BASE);
+
+/* ---------- Tier 2 directories ---------- */
+Object.assign(SEL, {au1:"m", au2:"o", au3:"o", au4:"m", au5:"m", au6:"o", au7:"o", au8:"o", se1:"o", se2:"o", se3:"o", se4:"m", se5:"h", nl1:"o", nl2:"o", nl3:"m", nl4:"o", nl5:"m", no1:"m", pt1:"m", pt2:"m", pt3:"o", ae1:"m", ae3:"x", ae8:"m", ae4:"o", ae5:"o", ae6:"o", at1:"m", at2:"o", at3:"m", at4:"o", at5:"o", be1:"o", be2:"m", be3:"o", be4:"o", dk1:"m", dk2:"o", fi1:"h", fi2:"h", fi3:"m", fi4:"o", de1:"m", de2:"o", de3:"o", hu1:"m", hu2:"o", hu3:"m", hu4:"o", hu5:"h", hu6:"o", sg1:"x", sg2:"o", bh2:"o", kw2:"o", my1:"o", my2:"o", my3:"o", my4:"o"});
+
+/* Australia */
+patchRows({
+  au6:{name:"Australian National University (ANU)", city:"Canberra", band:"50", courses:"Sciences, economics, international relations, computer science", rule:"Direct entry needs Year 12 level: start with ANU College's foundation (accepts Year 11).", web:"anu.edu.au", also:""},
+  au7:{name:"University of Technology Sydney (UTS)", city:"Sydney", band:"100", courses:"Engineering, IT, business, design", rule:"UTS College Foundation (designed for Year 11; IELTS 5.5, Writing 5.0) or a diploma into year 2.", web:"uts.edu.au", also:""},
+  au8:{name:"More Australian universities", also:"Charles Darwin, James Cook, Murdoch, Edith Cowan, Southern Cross, CQUniversity, Federation, Charles Sturt, UniSQ, New England, Sunshine Coast, Canberra, Victoria University, ACU, Notre Dame Australia, Torrens"}
+});
+segAll("au1 au2 au3 au4 au5 au6", "g8"); segAll("au7 au8 au9", "other");
+const AU_DL = {f:["Foundation intakes Feb–Oct 2027 → degree from 2028 (Feb or Jul)","2027-04-01","2027-08-15",0]};
+const AU_BASE = {g8:"Direct entry needs Year 12 level: start with the university's foundation or diploma (Year 11 accepted), with guaranteed progression at the set grades.", other:"Direct entry needs Year 12 level: start with the university's foundation or diploma (Year 11 accepted), with guaranteed progression at the set grades."};
+addRows("Australia", AU_DL, [
+["a_adelaide","Adelaide University","Adelaide","Public","100","o","eng sci bus med","Engineering, sciences, business, health (Adelaide and UniSA merged in 2026)","br;w6","Eynesbury foundation (Year 11, IELTS 5.5/5.0).","f","g8","adelaide.edu.au",""],
+["a_uwa","University of Western Australia","Perth","Public","100","o","eng sci bus","Engineering, sciences, business","br;w6","Taylors College Perth foundation.","f","g8","uwa.edu.au",""],
+["a_rmit","RMIT University","Melbourne","Public","200","o","eng cs art bus","Engineering, IT, design, business","br","RMIT foundation or UP diploma (an NCUK partner).","f","other","rmit.edu.au",""],
+["a_deakin","Deakin University","Melbourne · Geelong","Public","500","o","bus cs med sci","Business, IT, health, sciences","br","Deakin College foundation or diploma.","f","other","deakin.edu.au",""],
+["a_macq","Macquarie University","Sydney","Public","200","o","bus cs eco","Business, actuarial studies, IT, economics","br","Macquarie University College foundation.","f","other","mq.edu.au",""],
+["a_griffith","Griffith University","Brisbane · Gold Coast","Public","500","o","hos bus med","Tourism & hospitality, business, health","br","Griffith College foundation or diploma.","f","other","griffith.edu.au",""],
+["a_curtin","Curtin University","Perth","Public","200","o","eng bus sci","Mining & engineering, business, sciences","br","Curtin College diploma or foundation.","f","other","curtin.edu.au",""],
+["a_qut","Queensland University of Technology (QUT)","Brisbane","Public","200","o","eng bus cs art","Engineering, business, IT, creative industries","br","QUT International College foundation.","f","other","qut.edu.au",""],
+["a_uow","University of Wollongong","Wollongong","Public","200","o","eng bus cs","Engineering, business, computer science","br","UOW College foundation.","f","other","uow.edu.au",""],
+["a_newc","University of Newcastle","Newcastle","Public","200","o","eng med bus","Engineering, medicine, business","br","Foundation through the university's college.","f","other","newcastle.edu.au",""],
+["a_latrobe","La Trobe University","Melbourne","Public","500","o","bus sci med","Business, sciences, health","br","La Trobe College foundation or diploma.","f","other","latrobe.edu.au",""],
+["a_swin","Swinburne University of Technology","Melbourne","Public","500","o","eng cs art","Engineering, IT, design","br","Swinburne foundation or diploma.","f","other","swinburne.edu.au",""],
+["a_wsu","Western Sydney University","Sydney","Public","500","o","bus cs med","Business, IT, health","br","Western Sydney University International College.","f","other","westernsydney.edu.au",""],
+["a_utas","University of Tasmania","Hobart","Public","500","o","sci bus","Marine & Antarctic science, business","br","Foundation through the university.","f","other","utas.edu.au",""],
+["a_flinders","Flinders University","Adelaide","Public","500","o","med sci","Health, sciences","br","Flinders foundation.","f","other","flinders.edu.au",""],
+["a_bond","Bond University","Gold Coast","Private","?","o","bus soc med","Business, law, health; 2-year accelerated degrees","br","Bond College foundation.","f","other","bond.edu.au",""]
+], AU_BASE);
+
+/* Netherlands */
+patchRows({
+  nl2:{name:"Vrije Universiteit Amsterdam", city:"Amsterdam", rule:"Research university: VWO level needed, so a bridge year first (the Holland ISC foundation is accepted).", web:"vu.nl", also:""},
+  nl3:{name:"Erasmus University Rotterdam", city:"Rotterdam", rule:"Needs one year of university; independent foundation certificates are not accepted.", web:"eur.nl", also:""},
+  nl5:{name:"University of Amsterdam", city:"Amsterdam", rule:"VWO level needed: UvA asks for an Attestat-type certificate plus one year of university.", web:"uva.nl", also:""},
+  nl1:{name:"More universities of applied sciences", also:"Hogeschool Utrecht, Wittenborg, Codarts, Van Hall Larenstein, Aeres"}
+});
+segAll("nl2 nl3 nl4 nl5", "wo"); SEG.nl1 = "hbo";
+const NL_DL = {wo:["Studielink + university · non-EU deadlines ~1 Feb–1 Apr (for entry after a bridge year)","2027-02-15","2027-04-01",0], hbo:["Studielink · non-EU deadline usually ~1 Apr–1 May 2027","2027-02-15","2027-04-01",0]};
+const NL_BASE = {hbo:"Applied sciences: entry at HAVO level, which your Attestat meets; IELTS ~6.0. Degrees are outside global rankings (nostrification in Uzbekistan).", wo:"Research university: VWO level needed, so a bridge year first."};
+addRows("Netherlands", NL_DL, [
+["nl_rug","University of Groningen","Groningen","Public","200","o","eco bus sci soc","Economics & business, sciences, international relations","br;w6","The Holland ISC foundation is accepted.","wo","wo","rug.nl",""],
+["nl_tilburg","Tilburg University","Tilburg","Public","500","m","eco bus soc","Economics, business, social sciences","yr1;w6","Needs one year of university.","wo","wo","tilburguniversity.edu",""],
+["nl_leiden","Leiden University","Leiden · The Hague","Public","200","m","ir soc sci","International studies, political science, sciences","br;w6","","wo","wo","universiteitleiden.nl",""],
+["nl_utrecht","Utrecht University","Utrecht","Public","200","m","sci soc eco","Sciences, social sciences, economics","br;w6","","wo","wo","uu.nl",""],
+["nl_maastricht","Maastricht University","Maastricht","Public","500","m","bus eco med soc","Business, economics, health, European studies (problem-based learning)","br;w6","","wo","wo","maastrichtuniversity.nl",""],
+["nl_radboud","Radboud University","Nijmegen","Public","500","o","soc sci bus","Psychology, sciences, business","br;w6","","wo","wo","ru.nl",""],
+["nl_tud","Delft University of Technology","Delft","Public","100","m","eng cs","Engineering, aerospace, computer science (mostly Dutch at bachelor level)","br;w6","","wo","wo","tudelft.nl",""],
+["nl_tue","Eindhoven University of Technology","Eindhoven","Public","200","m","eng cs","Engineering, computer science","br;w6","","wo","wo","tue.nl",""],
+["nl_wur","Wageningen University & Research","Wageningen","Public","200","o","sci","Food, agriculture, environmental sciences","br;w6","","wo","wo","wur.nl",""],
+["nl_ucs","University colleges (liberal arts & sciences)","Amsterdam · Utrecht · The Hague · Rotterdam · Maastricht · Groningen","Public (honours colleges)","200","m","soc sci eco","Liberal arts & sciences BA/BSc in English","br;w6","VWO level needed.","wo","wo","","Amsterdam University College, University College Utrecht, Leiden University College, Erasmus University College, University College Maastricht, University College Groningen"],
+["nl_hhs","The Hague University of Applied Sciences","The Hague","Public (applied sciences)","u","o","bus ir soc","International business, European studies, international communication","","","hbo","hbo","thehagueuniversity.com",""],
+["nl_hva","Amsterdam University of Applied Sciences","Amsterdam","Public (applied sciences)","u","o","bus cs","International business, software engineering","","","hbo","hbo","amsterdamuas.com",""],
+["nl_hr","Rotterdam University of Applied Sciences","Rotterdam","Public (applied sciences)","u","o","bus eng","International business, logistics, engineering","","","hbo","hbo","rotterdamuas.com",""],
+["nl_saxion","Saxion University of Applied Sciences","Enschede · Deventer","Public (applied sciences)","u","o","bus hos cs","International business, hospitality, ICT","","","hbo","hbo","saxion.edu",""],
+["nl_hanze","Hanze University of Applied Sciences","Groningen","Public (applied sciences)","u","o","bus soc art","International business, communication, music","","","hbo","hbo","hanze.nl",""],
+["nl_fontys","Fontys University of Applied Sciences","Eindhoven · Venlo","Public (applied sciences)","u","o","cs bus eng","ICT & software, international business, engineering","","","hbo","hbo","fontys.nl",""],
+["nl_buas","Breda University of Applied Sciences","Breda","Public (applied sciences)","u","o","hos art cs","Games, tourism, hospitality, media","","","hbo","hbo","buas.nl",""],
+["nl_han","HAN University of Applied Sciences","Arnhem · Nijmegen","Public (applied sciences)","u","o","bus eng","International business, engineering","","","hbo","hbo","hanuniversity.com",""],
+["nl_avans","Avans University of Applied Sciences","Breda · 's-Hertogenbosch","Public (applied sciences)","u","o","bus","International business","","","hbo","hbo","avans.nl",""],
+["nl_windesheim","Windesheim University of Applied Sciences","Zwolle","Public (applied sciences)","u","o","bus","International business, global project management","","","hbo","hbo","windesheim.com",""],
+["nl_inholland","Inholland University of Applied Sciences","Amsterdam · Haarlem · Rotterdam","Public (applied sciences)","u","o","bus soc","International business, creative business","","","hbo","hbo","inholland.nl",""],
+["nl_nhlstenden","NHL Stenden University of Applied Sciences","Leeuwarden","Public (applied sciences)","u","o","hos bus","Hospitality, international business, tourism","","","hbo","hbo","nhlstenden.com",""],
+["nl_zuyd","Zuyd University of Applied Sciences","Maastricht","Public (applied sciences)","u","o","hos bus","Hotel management, international business","","","hbo","hbo","zuyd.nl",""],
+["nl_hz","HZ University of Applied Sciences","Vlissingen","Public (applied sciences)","u","o","eng bus","Engineering, water management, international business","","","hbo","hbo","hz.nl",""],
+["nl_hth","Hotelschool The Hague","The Hague · Amsterdam","Public (applied sciences)","u","m","hos","International hospitality management","","","hbo","hbo","hotelschool.nl",""]
+], NL_BASE);
+
+/* Sweden */
+patchRows({
+  se3:{name:"Linnaeus University", city:"Växjö · Kalmar", rule:"Your Shahodatnoma meets general entry; maths checked per programme. Several English-taught bachelor's.", web:"lnu.se", also:""},
+  se4:{name:"Lund University", city:"Lund", band:"100", rule:"Most bachelor's are taught in Swedish; a few English-taught ones each year.", web:"lunduniversity.lu.se", also:""}
+});
+segAll("se4", "big"); segAll("se1 se2 se3 se5", "eng");
+const SE_DL = {s:["universityadmissions.se national round 16 Oct 2026–15 Jan 2027 (documents ~1 Feb)","2026-12-15","2027-01-15",0]};
+const SE_BASE = {big:"Your Shahodatnoma meets general entry. Most bachelor's at large universities are taught in Swedish; check the English list each October.", eng:"Your Shahodatnoma meets general entry, and your IELTS meets English 6 (6.5, no band below 5.5). Maths and physics checked per programme."};
+addRows("Sweden", SE_DL, [
+["se_uu","Uppsala University","Uppsala","Public","100","m","sci soc eco","Sciences, social sciences, economics","","","s","big","uu.se",""],
+["se_su","Stockholm University","Stockholm","Public","200","m","soc sci eco","Social sciences, sciences, economics","","","s","big","su.se",""],
+["se_gu","University of Gothenburg","Gothenburg","Public","200","m","bus soc sci","School of Business, Economics and Law; social sciences","","","s","big","gu.se",""],
+["se_kth","KTH Royal Institute of Technology","Stockholm","Public","100","h","eng cs","Engineering, computer science (bachelor's mostly in Swedish)","","","s","big","kth.se",""],
+["se_chalmers","Chalmers University of Technology","Gothenburg","Public","200","h","eng cs","Engineering (bachelor's mostly in Swedish)","","","s","big","chalmers.se",""],
+["se_liu","Linköping University","Linköping","Public","500","m","eng cs med","Engineering, computer science, medicine","","","s","big","liu.se",""],
+["se_umu","Umeå University","Umeå","Public","500","o","sci soc","Sciences, social sciences","","","s","big","umu.se",""],
+["se_oru","Örebro University","Örebro","Public","1000","o","bus soc med","Business, social sciences, medicine","","","s","big","oru.se",""],
+["se_kau","Karlstad University","Karlstad","Public","?","o","bus eng","Business, engineering","","","s","big","kau.se",""],
+["se_ltu","Luleå University of Technology","Luleå","Public","1000","o","eng","Engineering, mining, space science","","","s","big","ltu.se",""],
+["se_mau","Malmö University","Malmö","Public","u","o","bus soc cs","International business, media, computer science; several English bachelor's","","","s","eng","mau.se",""],
+["se_bth","Blekinge Institute of Technology","Karlskrona","Public","u","o","cs eng","Software engineering, game development","","","s","eng","bth.se",""],
+["se_hh","Halmstad University","Halmstad","Public","u","o","bus eng","International business, engineering","","","s","eng","hh.se",""],
+["se_mdu","Mälardalen University","Västerås · Eskilstuna","Public","u","o","eng bus","Engineering, business","","","s","eng","mdu.se",""],
+["se_hig","University of Gävle","Gävle","Public","u","o","eng bus","Engineering, business","","","s","eng","hig.se",""],
+["se_his","University of Skövde","Skövde","Public","u","o","cs art","Computer game development, informatics","","","s","eng","his.se",""],
+["se_du","Dalarna University","Falun · Borlänge","Public","u","o","bus soc","Business, tourism, social sciences","","","s","eng","du.se",""],
+["se_hkr","Kristianstad University","Kristianstad","Public","u","o","bus","International business & marketing","","","s","eng","hkr.se",""],
+["se_hb","University of Borås","Borås","Public","u","o","art eng","Textile design and engineering","","","s","eng","hb.se",""],
+["se_miun","Mid Sweden University","Sundsvall · Östersund","Public","u","o","eng bus","Engineering, business, tourism","","","s","eng","miun.se",""],
+["se_sh","Södertörn University","Stockholm","Public","u","o","soc","Social sciences, international studies","","","s","eng","sh.se",""]
+], SE_BASE);
+
+/* Finland */
+patchRows({
+  fi3:{name:"Tampere University", city:"Tampere", band:"500", rule:"Eligible through home-country access; entrance exam or SAT depending on the programme. IELTS 6.5, no section below 5.5.", web:"tuni.fi", also:""},
+  fi4:{name:"More universities of applied sciences", also:"Kajaani, Lapland UAS, Satakunta (SAMK), Seinäjoki, Häme (HAMK), Humak, Diaconia"}
+});
+segAll("fi1 fi2 fi3", "uni"); SEG.fi4 = "uas";
+const FI_DL = {j:["Joint application 7–21 Jan 2027 (Studyinfo.fi); entrance exams or the UAS Exam follow","2027-01-14","2027-01-21",0]};
+const FI_BASE = {uni:"Eligible if your certificate opens university at home; entrance exam, SAT or prior grades depending on the programme. IELTS 6.5 typical.", uas:"Applied sciences: UAS Exam (online + interview); IELTS usually 6.0 with 5.5 bands."};
+addRows("Finland", FI_DL, [
+["fi_lut","LUT University","Lappeenranta · Lahti","Public","500","m","eng bus","Energy & electrical engineering, software, business","","","j","uni","lut.fi",""],
+["fi_vaasa","University of Vaasa","Vaasa","Public","?","o","bus","International business, economics","","","j","uni","uwasa.fi",""],
+["fi_oulu","University of Oulu","Oulu","Public","500","m","eng cs","Engineering, computer science","","","j","uni","oulu.fi",""],
+["fi_turku","University of Turku","Turku","Public","500","m","sci bus","Sciences, business","","","j","uni","utu.fi",""],
+["fi_jyu","University of Jyväskylä","Jyväskylä","Public","500","m","cs soc","Information technology, social sciences","","","j","uni","jyu.fi",""],
+["fi_abo","Åbo Akademi University","Turku","Public","?","o","sci bus","Sciences, business (Swedish and English)","","","j","uni","abo.fi",""],
+["fi_uef","University of Eastern Finland","Joensuu · Kuopio","Public","500","o","sci bus","Sciences, business, forestry","","","j","uni","uef.fi",""],
+["fi_metropolia","Metropolia University of Applied Sciences","Helsinki","Public (applied sciences)","u","o","eng cs","Engineering, ICT","","","j","uas","metropolia.fi",""],
+["fi_haagahelia","Haaga-Helia University of Applied Sciences","Helsinki","Public (applied sciences)","u","o","bus hos cs","International business, hospitality, IT","","","j","uas","haaga-helia.fi",""],
+["fi_laurea","Laurea University of Applied Sciences","Espoo · Vantaa","Public (applied sciences)","u","o","bus cs","Business, IT","","","j","uas","laurea.fi",""],
+["fi_arcada","Arcada University of Applied Sciences","Helsinki","Public (applied sciences)","u","o","bus eng","International business, engineering","","","j","uas","arcada.fi",""],
+["fi_tamk","Tampere University of Applied Sciences (TAMK)","Tampere","Public (applied sciences)","u","o","eng bus","Engineering, international business","","","j","uas","tamk.fi",""],
+["fi_turkuamk","Turku University of Applied Sciences","Turku","Public (applied sciences)","u","o","eng bus","Engineering, business","","","j","uas","turkuamk.fi",""],
+["fi_jamk","JAMK University of Applied Sciences","Jyväskylä","Public (applied sciences)","u","o","bus hos cs","International business, hospitality, IT","","","j","uas","jamk.fi",""],
+["fi_lab","LAB University of Applied Sciences","Lahti · Lappeenranta","Public (applied sciences)","u","o","bus eng","Business, engineering","","","j","uas","lab.fi",""],
+["fi_savonia","Savonia University of Applied Sciences","Kuopio","Public (applied sciences)","u","o","eng med","Engineering, nursing","","","j","uas","savonia.fi",""],
+["fi_karelia","Karelia University of Applied Sciences","Joensuu","Public (applied sciences)","u","o","bus","International business","","","j","uas","karelia.fi",""],
+["fi_xamk","South-Eastern Finland University of Applied Sciences (XAMK)","Kouvola · Mikkeli","Public (applied sciences)","u","o","bus eng","Business, logistics, engineering","","","j","uas","xamk.fi",""],
+["fi_centria","Centria University of Applied Sciences","Kokkola","Public (applied sciences)","u","o","eng bus","Engineering, business","","","j","uas","centria.fi",""],
+["fi_novia","Novia University of Applied Sciences","Vaasa · Turku","Public (applied sciences)","u","o","eng","Engineering, maritime studies","","","j","uas","novia.fi",""],
+["fi_vamk","Vaasa University of Applied Sciences (VAMK)","Vaasa","Public (applied sciences)","u","o","eng bus","Energy engineering, business","","","j","uas","vamk.fi",""]
+], FI_BASE);
+
+/* Germany */
+patchRows({
+  de1:{name:"More German public universities", also:"Göttingen, Münster, Frankfurt, Stuttgart, Darmstadt, Hanover, Würzburg, Erlangen-Nuremberg, Jena, Leipzig, Bremen, Kiel, Bochum, Duisburg-Essen, Dortmund, Paderborn, Siegen and about 80 more"},
+  de3:{name:"Constructor University", city:"Bremen", rule:"Private English-taught university with its own International Foundation Year, which leads mainly to Constructor itself.", web:"constructor.university", also:""}
+});
+segAll("de1 de2", "pub"); SEG.de3 = "priv";
+const DE_DL = {pub:["Studienkolleg intakes (apply ~Jan–Jul 2027) → degree from 2028",null,null,0], priv:["Own foundation or a Studienkolleg first; apply ~spring 2027","2027-03-01","2027-06-30",0]};
+const DE_BASE = {pub:"Your Attestat gives Studienkolleg access only: a preparatory year ending in the state exam (FSP), then the degree. Most bachelor's are taught in German (C1); English bachelor's are few.", priv:"Private universities also need a German university entrance qualification: their own foundation year or a Studienkolleg first."};
+addRows("Germany", DE_DL, [
+["de_tum","Technical University of Munich (TUM)","Munich","Public","50","h","eng cs sci bus","Engineering, computer science, management (some English bachelor's)","br","","pub","pub","tum.de",""],
+["de_lmu","LMU Munich","Munich","Public","100","m","sci eco soc","Sciences, economics, social sciences (mostly German)","br","","pub","pub","lmu.de",""],
+["de_heidelberg","Heidelberg University","Heidelberg","Public","100","m","sci med soc","Sciences, medicine, humanities (mostly German)","br","","pub","pub","uni-heidelberg.de",""],
+["de_rwth","RWTH Aachen University","Aachen","Public","200","m","eng cs","Engineering, computer science (FH Aachen's English Studienkolleg is nearby)","br","","pub","pub","rwth-aachen.de",""],
+["de_kit","Karlsruhe Institute of Technology (KIT)","Karlsruhe","Public","200","m","eng cs sci","Engineering, computer science, physics","br","","pub","pub","kit.edu",""],
+["de_hu","Humboldt University of Berlin","Berlin","Public","200","m","soc sci eco","Humanities, sciences, economics (German)","br","","pub","pub","hu-berlin.de",""],
+["de_fu","Freie Universität Berlin","Berlin","Public","200","m","soc sci ir","Political science, sciences, area studies (German)","br","","pub","pub","fu-berlin.de",""],
+["de_tub","Technische Universität Berlin","Berlin","Public","200","m","eng cs","Engineering, computer science","br","","pub","pub","tu.berlin",""],
+["de_hamburg","University of Hamburg","Hamburg","Public","200","m","eco sci soc","Economics, sciences, social sciences","br","","pub","pub","uni-hamburg.de",""],
+["de_tud","TU Dresden","Dresden","Public","500","m","eng cs sci","Engineering, computer science, sciences","br","","pub","pub","tu-dresden.de",""],
+["de_freiburg","University of Freiburg","Freiburg","Public","200","m","sci soc","Sciences, humanities, liberal arts college (English)","br","","pub","pub","uni-freiburg.de",""],
+["de_mannheim","University of Mannheim","Mannheim","Public","500","m","bus eco","Business administration, economics","br","","pub","pub","uni-mannheim.de",""],
+["de_cologne","University of Cologne","Cologne","Public","500","m","eco bus soc","Economics, management, social sciences (CBS Studienkolleg nearby)","br","","pub","pub","uni-koeln.de",""],
+["de_fs","Frankfurt School of Finance & Management","Frankfurt","Private","u","m","bus eco","Business administration, finance (English)","br","","priv","priv","frankfurt-school.de",""],
+["de_whu","WHU – Otto Beisheim School of Management","Vallendar · Düsseldorf","Private","u","h","bus","International business administration","br","","priv","priv","whu.edu",""],
+["de_klu","Kühne Logistics University","Hamburg","Private","u","o","bus","Management, logistics (English)","br","","priv","priv","the-klu.org",""],
+["de_mbs","Munich Business School","Munich","Private","u","o","bus","International business (English)","br","","priv","priv","munich-business-school.de",""],
+["de_iu","IU International University of Applied Sciences","Berlin and other cities (also online)","Private","u","o","bus cs","Business, IT, data science (English options)","br","","priv","priv","iu.org",""],
+["de_srh","SRH University","Berlin · Heidelberg and other cities","Private","u","o","bus cs eng","Business, IT, engineering (English options)","br","","priv","priv","srh.de",""],
+["de_cbs","CBS International Business School","Cologne · Mainz · Potsdam","Private","u","o","bus","International business (English); runs its own Studienkolleg","br","","priv","priv","cbs.de",""]
+], DE_BASE);
+
+/* Austria */
+patchRows({
+  at2:{name:"Johannes Kepler University Linz (JKU)", city:"Linz", web:"jku.at", also:""},
+  at4:{name:"Webster Vienna Private University", city:"Vienna", rule:"US-style private university; own admission.", web:"webster.ac.at", also:""},
+  at5:{name:"University of Vienna", city:"Vienna", web:"univie.ac.at", also:""}
+});
+const AT_DL = {a:["University portals · apply by ~Mar 2027 for October","2027-03-01","2027-04-30",0]};
+addRows("Austria", AT_DL, [
+["at_klu","University of Klagenfurt","Klagenfurt","Public","1000","o","cs bus","Informatics, business (some English)","ask:Proof of university access in Uzbekistan (no DTM: ask about an admission letter)","Proof of home-country university access.","a","","aau.at",""],
+["at_tuw","TU Wien","Vienna","Public","200","m","eng cs","Engineering, computer science (German)","ask:Proof of university access in Uzbekistan;lang:German C1","Proof of home-country university access plus German C1.","a","","tuwien.at",""],
+["at_graz","University of Graz","Graz","Public","500","o","eco sci soc","Economics, sciences, humanities (German)","ask:Proof of university access in Uzbekistan;lang:German C1","Proof of home-country university access plus German C1.","a","","uni-graz.at",""],
+["at_uibk","University of Innsbruck","Innsbruck","Public","500","o","sci eco","Sciences, economics (German; some English)","ask:Proof of university access in Uzbekistan;lang:German C1","Proof of home-country university access plus German C1.","a","","uibk.ac.at",""],
+["at_modul","Modul University Vienna","Vienna","Private","u","o","hos bus","Tourism & hospitality, international management (English)","","Own admission.","a","","modul.ac.at",""],
+["at_imc","IMC Krems University of Applied Sciences","Krems","Public (applied sciences)","u","o","bus med","International business, tourism, health (English options)","","Own admission tests; check how they assess your Attestat.","a","","imc.ac.at",""],
+["at_mci","MCI Innsbruck (Management Center Innsbruck)","Innsbruck","Private (applied sciences)","u","o","bus eng","Business, management & IT, engineering (English options)","","Own admission tests; check how they assess your Attestat.","a","","mci.edu",""],
+["at_technikum","FH Technikum Wien","Vienna","Public (applied sciences)","u","o","cs eng","Computer science, electronics (some English)","","Own admission tests; check how they assess your Attestat.","a","","technikum-wien.at",""]
+]);
+
+/* Belgium */
+patchRows({be2:{name:"KU Leuven", city:"Leuven", web:"kuleuven.be", also:"", rule:"Asks for entrance-exam results from the home country; ask whether an Uzbek university admission letter counts."}});
+const BE_DL = {b:["University portals · non-EU deadline ~1 Mar 2027","2027-02-01","2027-03-01",0]};
+addRows("Belgium", BE_DL, [
+["be_ugent","Ghent University","Ghent","Public","200","m","sci eng eco","Sciences, engineering, economics (mostly Dutch; few English bachelor's)","ask:Proof of university access in Uzbekistan (no DTM: ask about an admission letter)","Assesses foreign certificates individually.","b","","ugent.be",""],
+["be_uantwerp","University of Antwerp","Antwerp","Public","500","o","eco bus sci","Economics, business, sciences","ask:Proof of university access in Uzbekistan (no DTM: ask about an admission letter)","Needs proof of university access at home.","b","","uantwerpen.be",""],
+["be_uhasselt","Hasselt University","Hasselt","Public","?","o","bus eng","Business, engineering","ask:Proof of university access in Uzbekistan (no DTM: ask about an admission letter)","Needs proof of university access at home.","b","","uhasselt.be",""]
+]);
+
+/* Denmark */
+patchRows({
+  dk1:{name:"Copenhagen Business School (CBS)", city:"Copenhagen", band:"?", web:"cbs.dk", also:""},
+  dk2:{name:"More business academies & university colleges", req:"ask:Confirm the academy accepts your Attestat for AP entry", also:"Zealand, UC SYD, KP, Absalon, UCN, UCL, EAMV, EASJ"}
+});
+const DK_DL = {d:["optagelse.dk · 15 Mar 2027 (quota 2)","2027-02-28","2027-03-15",0]};
+const DKY = "yr1";
+addRows("Denmark", DK_DL, [
+["dk_ku","University of Copenhagen","Copenhagen","Public","100","m","sci soc eco","Sciences, social sciences, economics (bachelor's mostly Danish)",DKY,"Needs higher-education study or Danish A/B subject levels; a foundation is unlikely to count.","d","","ku.dk",""],
+["dk_au","Aarhus University","Aarhus","Public","200","m","bus eco sci eng","Business, economics, sciences, engineering",DKY,"Needs higher-education study or Danish A/B subject levels.","d","","au.dk",""],
+["dk_dtu","Technical University of Denmark (DTU)","Lyngby (Copenhagen)","Public","200","m","eng cs","Engineering (bachelor's mostly Danish; a few in English)",DKY,"Needs higher-education study or Danish A/B subject levels.","d","","dtu.dk",""],
+["dk_itu","IT University of Copenhagen","Copenhagen","Public","?","m","cs","Software development, data science, digital design (English)",DKY,"Needs higher-education study or Danish A/B subject levels.","d","","itu.dk",""],
+["dk_sdu","University of Southern Denmark","Odense · Sønderborg","Public","500","o","eng bus","Engineering, business (English options)",DKY,"Needs higher-education study or Danish A/B subject levels.","d","","sdu.dk",""],
+["dk_aau","Aalborg University","Aalborg · Copenhagen","Public","500","o","eng cs bus","Engineering, computer science (problem-based learning; English options)",DKY,"Needs higher-education study or Danish A/B subject levels.","d","","aau.dk",""],
+["dk_eaaa","Business Academy Aarhus","Aarhus","Public (business academy)","u","o","bus cs","Marketing management, computer science (AP degrees in English)","ask:Confirm the academy accepts your Attestat for AP entry","Business academy: practical AP degree in English; a top-up year leads to a bachelor's.","d","","eaaa.dk",""],
+["dk_cph","Copenhagen Business Academy","Copenhagen","Public (business academy)","u","o","bus cs","Marketing, IT, international sales (English)","ask:Confirm the academy accepts your Attestat for AP entry","Business academy: practical AP degree in English; a top-up year leads to a bachelor's.","d","","cphbusiness.dk",""],
+["dk_kea","KEA – Copenhagen School of Design and Technology","Copenhagen","Public (business academy)","u","o","cs art eng","Computer science, design, construction (English)","ask:Confirm the academy accepts your Attestat for AP entry","Business academy: practical AP degree in English; a top-up year leads to a bachelor's.","d","","kea.dk",""],
+["dk_iba","IBA Kolding","Kolding","Public (business academy)","u","o","bus art","International business, design (English)","ask:Confirm the academy accepts your Attestat for AP entry","Business academy: practical AP degree in English; a top-up year leads to a bachelor's.","d","","iba.dk",""],
+["dk_via","VIA University College","Aarhus · Horsens","Public (university college)","u","o","eng bus art","Engineering, business, design (English options)","ask:Confirm the college accepts your Attestat","University college: practical degrees in English; ask how your Attestat is assessed.","d","","via.dk",""]
+]);
+
+/* Norway */
+patchRows({no1:{name:"BI Norwegian Business School", city:"Oslo", band:"?", web:"bi.edu", also:""}});
+const NO_DL = {n:["University portals · international deadlines ~1 Dec 2026–1 Mar 2027","2026-12-01","2027-03-01",0]};
+const NOY = "yr1", NOR = "Official list: Attestat + 1 year of higher education. A foundation does not count.";
+addRows("Norway", NO_DL, [
+["no_ntnu","NTNU – Norwegian University of Science and Technology","Trondheim","Public","500","m","eng cs","Engineering, technology (bachelor's mostly Norwegian)",NOY,NOR,"n","","ntnu.edu",""],
+["no_uio","University of Oslo","Oslo","Public","200","m","sci soc","Sciences, social sciences (bachelor's mostly Norwegian)",NOY,NOR,"n","","uio.no",""],
+["no_uib","University of Bergen","Bergen","Public","500","o","sci soc","Sciences, social sciences",NOY,NOR,"n","","uib.no",""],
+["no_uia","University of Agder","Kristiansand","Public","?","o","bus eng","Business, engineering",NOY,NOR,"n","","uia.no",""],
+["no_uit","UiT The Arctic University of Norway","Tromsø","Public","1000","o","sci","Sciences, Arctic studies",NOY,NOR,"n","","uit.no",""],
+["no_uis","University of Stavanger","Stavanger","Public","?","o","eng hos","Petroleum engineering, hospitality",NOY,NOR,"n","","uis.no",""],
+["no_usn","University of South-Eastern Norway","Kongsberg and other campuses","Public","?","o","eng","Engineering, maritime",NOY,NOR,"n","","usn.no",""],
+["no_oslomet","OsloMet – Oslo Metropolitan University","Oslo","Public","?","o","cs med","IT, health sciences",NOY,NOR,"n","","oslomet.no",""],
+["no_nord","Nord University","Bodø","Public","?","o","bus","Business, aquaculture",NOY,NOR,"n","","nord.no",""],
+["no_nmbu","Norwegian University of Life Sciences (NMBU)","Ås","Public","?","o","sci","Life sciences, environment",NOY,NOR,"n","","nmbu.no",""],
+["no_kristiania","Kristiania University College","Oslo","Private","u","o","bus art","Business, creative industries",NOY,NOR,"n","","kristiania.no",""]
+]);
+
+/* Portugal */
+patchRows({
+  pt2:{name:"Católica Lisbon School of Business & Economics", city:"Lisbon", band:"?", web:"clsbe.lisboa.ucp.pt", also:""},
+  pt3:{name:"University of Porto", city:"Porto", band:"500", web:"up.pt", also:""}
+});
+const PT_DL = {p:["International Student Statute calls ~Jan–May 2027 (several phases)","2027-02-15","2027-05-31",0]};
+const PTL = "lang:Portuguese B2";
+addRows("Portugal", PT_DL, [
+["pt_iscte","ISCTE – University Institute of Lisbon","Lisbon","Public","?","o","bus cs eco","Management, IT, economics; some English degrees","","International Student Statute.","p","","iscte-iul.pt",""],
+["pt_ulisboa","University of Lisbon","Lisbon","Public","500","o","eng eco sci","Engineering (Técnico), economics (ISEG), sciences (mostly Portuguese)",PTL,"International contest plus entrance requirements.","p","","ulisboa.pt",""],
+["pt_coimbra","University of Coimbra","Coimbra","Public","500","o","sci soc med","Sciences, law, medicine (Portuguese)",PTL,"International contest plus entrance requirements.","p","","uc.pt",""],
+["pt_minho","University of Minho","Braga · Guimarães","Public","1000","o","eng bus","Engineering, business (Portuguese)",PTL,"International contest plus entrance requirements.","p","","uminho.pt",""],
+["pt_aveiro","University of Aveiro","Aveiro","Public","1000","o","eng sci","Engineering, sciences (Portuguese)",PTL,"International contest plus entrance requirements.","p","","ua.pt",""],
+["pt_europeia","Universidade Europeia","Lisbon","Private","u","o","bus hos art","Business, tourism, design (English options)","","International Student Statute.","p","","europeia.pt",""],
+["pt_lusofona","Universidade Lusófona","Lisbon · Porto","Private","u","o","bus art cs","Business, film, computer science (English options)","","International Student Statute.","p","","ulusofona.pt",""]
+]);
+
+/* UAE */
+patchRows({
+  ae4:{name:"University of Sharjah", city:"Sharjah", band:"500", web:"sharjah.ac.ae", also:""},
+  ae5:{name:"Heriot-Watt University Dubai", city:"Dubai", band:"500", rule:"May place you in its own foundation first (IELTS 5.5; January/September).", web:"hw.ac.uk/dubai", also:""},
+  ae6:{name:"More private universities in the UAE", also:"Emirates Aviation University, Amity Dubai, Manipal Dubai, BITS Pilani Dubai, Westford, Hamdan Bin Mohammed Smart University"}
+});
+segAll("ae1 ae3 ae4 ae6 ae8", "loc"); SEG.ae5 = "br"; segAll("ae2 ae7", "cl");
+const AE_DL = {u:["University portals · fall intake; apply by ~spring 2027","2027-03-01","2027-06-30",0]};
+const AE_BASE = {loc:"UAE Ministry equivalency accepts the 11-year CIS certificate; English and grades decide.", br:"UAE branch campus: degree from the home university; it may start you in a foundation."};
+addRows("UAE", AE_DL, [
+["ae_adu","Abu Dhabi University","Abu Dhabi","Private","1000","o","bus eng cs","Business, engineering, IT","","","u","loc","adu.ac.ae",""],
+["ae_ajman","Ajman University","Ajman","Private","1000","o","eng med bus","Engineering, dentistry, business","","","u","loc","ajman.ac.ae",""],
+["ae_aud","American University in Dubai","Dubai","Private","?","o","bus art eng","Business, design, engineering (US-accredited)","","","u","loc","aud.edu",""],
+["ae_cud","Canadian University Dubai","Dubai","Private","?","o","bus eng cs","Business, engineering, IT","","","u","loc","cud.ac.ae",""],
+["ae_ud","University of Dubai","Dubai","Private","?","o","bus cs","Business, IT","","","u","loc","ud.ac.ae",""],
+["ae_aau","Al Ain University","Al Ain · Abu Dhabi","Private","?","o","bus eng med","Business, engineering, pharmacy","","","u","loc","aau.ac.ae",""],
+["ae_aurak","American University of Ras Al Khaimah (AURAK)","Ras Al Khaimah","Private","?","o","eng bus","Engineering, business (US-style)","","","u","loc","aurak.ac.ae",""],
+["ae_skyline","Skyline University College","Sharjah","Private","u","o","bus hos","Business, tourism","","","u","loc","skylineuniversity.ac.ae",""],
+["ae_zu","Zayed University","Abu Dhabi · Dubai","Public","1000","m","bus soc cs","Business, communication, technological innovation","ask:Confirm places for international applicants","","u","loc","zu.ac.ae",""],
+["ae_uaeu","United Arab Emirates University","Al Ain","Public","500","h","eng sci bus","Engineering, sciences, business","ask:Confirm places for international applicants and the 12-year requirement","Mostly for Emirati students.","u","loc","uaeu.ac.ae",""],
+["ae_uowd","University of Wollongong in Dubai","Dubai","Branch campus","200","o","bus cs eng","Business, IT, engineering (Australian degree)","","","u","br","uowdubai.ac.ae",""],
+["ae_mdx","Middlesex University Dubai","Dubai","Branch campus","?","o","bus cs art","Business, IT, media (UK degree)","","","u","br","mdx.ac.ae",""],
+["ae_bham","University of Birmingham Dubai","Dubai","Branch campus","100","m","bus cs eng","Business, computer science, engineering (UK degree)","","Likely to start you with its foundation year.","u","br","birmingham.ac.uk/dubai",""],
+["ae_murdoch","Murdoch University Dubai","Dubai","Branch campus","?","o","bus cs","Business, IT (Australian degree)","","","u","br","murdochuniversitydubai.com",""],
+["ae_curtin","Curtin University Dubai","Dubai","Branch campus","200","o","bus eng","Business, engineering (Australian degree)","","","u","br","curtindubai.ac.ae",""],
+["ae_rit","RIT Dubai","Dubai","Branch campus","?","o","eng cs bus","Engineering, computing, business (US degree)","","","u","br","rit.edu/dubai",""]
+], AE_BASE);
+
+/* Hungary */
+patchRows({hu6:{name:"More Hungarian universities", also:"Eszterházy, John von Neumann, Sopron, Nyíregyháza, Dunaújváros"}});
+const HU_DL = {h:["University portals · ~Jan–May 2027 (each university)","2027-03-31","2027-05-15",0], sh:["Online application ~Nov 2026–15 Jan 2027 (check)","2027-01-05","2027-01-15",0]};
+addRows("Hungary", HU_DL, [
+["hu_bge","Budapest Business University","Budapest","Public","u","o","bus hos","Business, commerce, tourism (English)","","Accepts a certificate that opens university at home.","h","","uni-bge.hu",""],
+["hu_obuda","Óbuda University","Budapest","Public","?","o","eng cs","Engineering, informatics (English)","","Accepts a certificate that opens university at home.","h","","uni-obuda.hu",""],
+["hu_mate","Hungarian University of Agriculture and Life Sciences (MATE)","Gödöllő · Budapest","Public","?","o","sci eng","Agriculture, food science, environmental engineering (English)","","Accepts a certificate that opens university at home.","h","","uni-mate.hu",""],
+["hu_miskolc","University of Miskolc","Miskolc","Public","?","o","eng","Engineering, materials (English)","","Accepts a certificate that opens university at home.","h","","uni-miskolc.hu",""],
+["hu_sze","Széchenyi István University","Győr","Public","?","o","eng bus","Vehicle engineering, business (English)","","Accepts a certificate that opens university at home.","h","","sze.hu",""],
+["hu_pannon","University of Pannonia","Veszprém","Public","?","o","eng cs bus","Engineering, IT, business (English)","","Accepts a certificate that opens university at home.","h","","uni-pannon.hu",""],
+["hu_sh","Stipendium Hungaricum scholarship","Budapest and other cities","Government scholarship","?","h","eng cs bus med sci","Full scholarship at Hungarian universities","","Uzbekistan is a partner country (confirm this year's quota and the Uzbek ministry's nomination rules).","sh","","stipendiumhungaricum.hu",""]
+]);
+
+/* Singapore */
+patchRows({
+  sg1:{name:"National University of Singapore (NUS)", city:"Singapore", web:"nus.edu.sg", also:""},
+  sg2:{name:"SIM Global Education", city:"Singapore", web:"sim.edu.sg", also:""}
+});
+const SG_DL = {s:["Applications ~Oct 2026–Feb 2027",null,"2027-01-20",0], p:["Several intakes a year","2027-04-01",null,0]};
+const SGR = "CIS certificates (Uzbek included) are not accepted alone: 3 AP exams at 4–5 or A-levels, plus SAT 1250+.";
+addRows("Singapore", SG_DL, [
+["sg_ntu","Nanyang Technological University (NTU)","Singapore","Public","20","x","eng cs bus sci","Engineering, computer science, business","ap;sat1250",SGR,"s","","ntu.edu.sg",""],
+["sg_smu","Singapore Management University (SMU)","Singapore","Public","?","h","bus eco cs","Business, economics, information systems","ap;sat1250",SGR,"s","","smu.edu.sg",""],
+["sg_sutd","Singapore University of Technology and Design (SUTD)","Singapore","Public","?","h","eng cs art","Engineering, architecture, computing","ap;sat1250",SGR,"s","","sutd.edu.sg",""],
+["sg_jcu","James Cook University Singapore","Singapore","Private (Australian degree)","?","o","bus cs","Business, IT, psychology","br","Partner-university rules.","p","","jcu.edu.sg",""],
+["sg_curtin","Curtin Singapore","Singapore","Private (Australian degree)","?","o","bus","Business, communication","br","Partner-university rules.","p","","curtin.edu.sg",""],
+["sg_kaplan","Kaplan Singapore","Singapore","Private (partner degrees)","u","o","bus cs","Business, IT (UK and Australian partner degrees)","br","Partner-university rules.","p","","kaplan.com.sg",""],
+["sg_psb","PSB Academy","Singapore","Private (partner degrees)","u","o","bus eng","Business, engineering (partner degrees)","br","Partner-university rules.","p","","psb-academy.edu.sg",""]
+]);
+
+/* Bahrain */
+patchRows({bh2:{name:"American University of Bahrain (AUBH)", web:"aubh.edu.bh", also:""}});
+const BH_DL = {b:["University portals · fall intake","2027-03-01",null,0]};
+const BHQ = "ask:Bahrain equivalency of 11 years is unconfirmed";
+addRows("Bahrain", BH_DL, [
+["bh_ahlia","Ahlia University","Manama","Private","?","o","bus eng cs","Business, engineering, IT",BHQ,"Private admission after equivalency.","b","","ahlia.edu.bh",""],
+["bh_asu","Applied Science University","Manama","Private","?","o","bus soc","Business, law",BHQ,"Private admission after equivalency.","b","","asu.edu.bh",""],
+["bh_gu","Gulf University","Manama","Private","u","o","eng bus","Engineering, business",BHQ,"Private admission after equivalency.","b","","gulfuniversity.edu.bh",""],
+["bh_ucb","University College of Bahrain","Manama","Private","u","o","bus cs","Business, IT",BHQ,"Private admission after equivalency.","b","","ucb.edu.bh",""],
+["bh_bub","British University of Bahrain","Saar","Private (UK degrees)","u","o","bus eng","Business, engineering (UK partner degrees)",BHQ,"Private admission after equivalency.","b","","bub.bh",""],
+["bh_rcsi","RCSI Bahrain","Busaiteen","Private (Irish medical school)","?","m","med","Medicine, nursing",BHQ,"Medical school with its own entry tests.","b","","rcsi.com/bahrain",""]
+]);
+
+/* Kuwait */
+patchRows({kw2:{name:"American University of Kuwait (AUK)", web:"auk.edu.kw", also:""}});
+const KW_DL = {k:["University portals · fall intake","2027-03-01",null,0]};
+const KWQ = "ask:Kuwait equivalency of 11 years is unconfirmed";
+addRows("Kuwait", KW_DL, [
+["kw_gust","Gulf University for Science and Technology (GUST)","Kuwait City","Private","?","o","bus cs","Business, computer science",KWQ,"Private admission after equivalency.","k","","gust.edu.kw",""],
+["kw_aum","American University of the Middle East (AUM)","Egaila","Private","?","o","eng bus","Engineering, business",KWQ,"Private admission after equivalency.","k","","aum.edu.kw",""],
+["kw_au","Australian University (Kuwait)","Kuwait City","Private","u","o","eng bus","Engineering, business, aviation",KWQ,"Private admission after equivalency.","k","","au.edu.kw",""],
+["kw_acm","American College of the Middle East","Egaila","Private","u","o","eng bus","Engineering, business",KWQ,"Private admission after equivalency.","k","","acm.edu.kw",""]
+]);
+
+/* Malaysia */
+patchRows({
+  my2:{name:"Universiti Malaya (UM)", city:"Kuala Lumpur", band:"100", web:"um.edu.my", also:""},
+  my3:{name:"Monash University Malaysia", city:"Subang Jaya (Kuala Lumpur)", band:"50", rule:"Monash University Foundation Year (MUFY) accepts you now; IELTS 5.5. Band shows Monash's ranking.", web:"monash.edu.my", also:""},
+  my4:{name:"More private universities in Malaysia", also:"HELP, INTI, SEGi, UNITEN, UTP, MSU, Limkokwing, UTAR, Lincoln, City University"}
+});
+segAll("my1 my2 my5", "pub"); segAll("my3 my4", "priv");
+const MY_DL = {m:["Several intakes a year (Jan–Feb, Jul, Sep); foundation first, then degree","2027-04-01","2027-07-31",1]};
+const MY_BASE = {pub:"Public universities require 12 years, so a foundation (or matriculation-level) year first.", priv:"Requires 12 years, so start with the university's own foundation; EMGS visa approval needed."};
+addRows("Malaysia", MY_DL, [
+["my_ukm","Universiti Kebangsaan Malaysia (UKM)","Bangi","Public","200","o","eng sci med","Engineering, sciences, medicine","br","","m","pub","ukm.my",""],
+["my_upm","Universiti Putra Malaysia (UPM)","Serdang","Public","200","o","sci eng","Agriculture, sciences, engineering","br","","m","pub","upm.edu.my",""],
+["my_usm","Universiti Sains Malaysia (USM)","Penang","Public","200","o","sci eng med","Sciences, engineering, medicine","br","","m","pub","usm.my",""],
+["my_utm","Universiti Teknologi Malaysia (UTM)","Johor Bahru · Kuala Lumpur","Public","200","o","eng cs","Engineering, computing","br","","m","pub","utm.my",""],
+["my_iium","International Islamic University Malaysia (IIUM)","Gombak (Kuala Lumpur)","Public","500","o","soc eng med ir","Law, engineering, medicine, international relations (English and Arabic)","br","","m","pub","iium.edu.my",""],
+["my_taylors","Taylor's University","Subang Jaya","Private","500","o","bus hos cs med","Hospitality, business, computing, medicine","br","Taylor's foundation programmes accept you now.","m","priv","taylors.edu.my",""],
+["my_nottingham","University of Nottingham Malaysia","Semenyih","Branch campus","200","o","eng bus sci","Engineering, business, sciences (UK degree)","br","","m","priv","nottingham.edu.my",""],
+["my_sunway","Sunway University","Subang Jaya","Private","500","o","bus cs hos","Business, computing, hospitality; Lancaster dual degrees","br","","m","priv","sunway.edu.my",""],
+["my_hw","Heriot-Watt University Malaysia","Putrajaya","Branch campus","500","o","eng bus","Engineering, business (UK degree)","br","","m","priv","hw.ac.uk/malaysia",""],
+["my_xmum","Xiamen University Malaysia","Sepang","Branch campus","500","o","eng bus cs","Engineering, business, computing (Chinese university campus)","br","","m","priv","xmu.edu.my",""],
+["my_soton","University of Southampton Malaysia","Johor Bahru","Branch campus","100","o","eng cs","Engineering, computer science (UK degree)","br","","m","priv","southampton.ac.uk/my",""],
+["my_curtin","Curtin University Malaysia","Miri (Sarawak)","Branch campus","200","o","eng bus","Engineering, business (Australian degree)","br","","m","priv","curtin.edu.my",""],
+["my_swin","Swinburne University of Technology Sarawak","Kuching","Branch campus","500","o","eng cs","Engineering, IT (Australian degree)","br","","m","priv","swinburne.edu.my",""],
+["my_apu","Asia Pacific University (APU)","Kuala Lumpur","Private","u","o","cs bus","Computing, cyber security, business","br","Check whether APU accepts 11 years directly.","m","priv","apu.edu.my",""],
+["my_ucsi","UCSI University","Kuala Lumpur","Private","500","o","med bus art","Medicine, business, music","br","","m","priv","ucsiuniversity.edu.my",""],
+["my_mmu","Multimedia University (MMU)","Cyberjaya · Melaka","Private","1000","o","cs eng art","Computing, engineering, creative multimedia","br","","m","priv","mmu.edu.my",""]
+], MY_BASE);
+
+/* ---------- Tier 2 strategies ---------- */
+Object.assign(DEEP, {
+"Australia":{
+  head:"A strong but slower route. Australian universities want Year 12 level, so you start with a foundation or diploma that accepts your Year 11 Attestat and guarantees progression. Foundation in 2027, degree from 2028 (or a diploma straight into year 2).",
+  read:["Foundation colleges (UQ College, Trinity, Monash College, UTS College, Eynesbury, Taylors) read your Attestat grades; a 5.0 average clears every published threshold.","Diplomas (Monash College, UTS College, RMIT UP) teach year 1 of the degree inside the college and move you into year 2 at the university.","The student visa (subclass 500) applies a Genuine Student test: explain why Australia and why now, given 2022–2026."],
+  edge:["Grades well above every foundation threshold","IELTS 7.5 overall beats foundation requirements (5.5 with 5.0 bands)","Post-study work rights of 2–4 years"],
+  risk:["<b>Time.</b> Foundation plus a 3-year degree is 4 years, like a US degree, but the degree itself starts in 2028.","<b>Visa.</b> The Genuine Student test is strict: document your gap years carefully.","<b>Caps.</b> Australia limits new international enrolments per university, so apply early."],
+  plan:[["Jan–Apr 2027","Choose a foundation (UQ College, Monash College or UTS College) and apply."],["Apr–Jun 2027","Offer, then the subclass 500 visa (apply 2–3 months ahead)."],["Jul–Oct 2027","Foundation starts (July or October; February 2028 also works)."],["2028","Degree starts with guaranteed progression at the required grades."]],
+  mix:{m:2, o:3}, picks:{m:["au1","au5","au4"], o:["au2","au3","au7"]}
+},
+"Sweden":{
+  head:"Directly open. Sweden accepts the Uzbek Shahodatnoma for general entry, and the national round (16 Oct 2026–15 Jan 2027) fits your timeline. The catch is language: most bachelor's at the big universities are in Swedish, so English options cluster at Jönköping, Linnaeus, Malmö, BTH and other smaller universities.",
+  read:["One application on universityadmissions.se for up to 4 programmes; selection by grades or an international quota.","Specific requirements (maths, physics, English 6) are checked from your transcript."],
+  edge:["General entry met with your current certificate","IELTS 7.5 meets English 6 (6.5, no band below 5.5)","One simple national round"],
+  risk:["<b>Few English bachelor's</b> at Lund, Uppsala, KTH and Chalmers: check the list when the round opens.","<b>Residence permit</b> processing can take 2–3 months, so apply right after admission (April).","<b>Recognition.</b> Smaller universities are outside global rankings (nostrification)."],
+  plan:[["16 Oct 2026","Round opens: pick up to 4 English programmes."],["15 Jan 2027","Application deadline; documents by ~1 Feb."],["Late Mar 2027","Results; then the residence permit."]],
+  mix:{m:1, o:3}, picks:{m:["se4"], o:["se1","se2","se3","se_mau"]}
+},
+"Netherlands":{
+  head:"Two tiers. Universities of applied sciences admit you directly at HAVO level, and many teach international business, hospitality and IT in English. Research universities (Amsterdam, Leiden, Delft, Groningen and others) need VWO level, so a bridge year first.",
+  read:["You apply on Studielink plus the institution's own portal; non-EU deadlines are usually 1 Apr–1 May.","Applied sciences check your diploma level and English (IELTS ~6.0); some programmes add an intake interview."],
+  edge:["Direct entry to applied sciences","Many English-taught programmes","IELTS 7.5"],
+  risk:["<b>Recognition.</b> Applied-sciences degrees are outside global rankings (nostrification in Uzbekistan).","<b>Housing</b> is scarce: book as soon as you are admitted.","<b>Research universities</b> need a bridge year (Holland ISC) or one year of university."],
+  plan:[["Jan–Mar 2027","Apply to 2–3 applied-sciences programmes on Studielink."],["Apr–May 2027","Offers; the institution requests your residence permit."],["Aug 2027","Start, or take Holland ISC in 2027–28 for a research university in 2028."]],
+  mix:{m:1, o:3}, picks:{m:["nl_hth"], o:["nl_hhs","nl_hva","nl_saxion"]}
+},
+"Norway":{
+  head:"Closed for 2027 with your current record. Norway's national list requires the Attestat plus one full year of higher education, and a foundation does not count. It becomes realistic after a year of university.",
+  read:["Universities apply the national country list first.","Most bachelor's are taught in Norwegian."],
+  edge:["Strong universities and English master's later"],
+  risk:["<b>Bridge.</b> Only a real university year counts.","<b>Language.</b> Most bachelor's are in Norwegian."],
+  plan:[["2027–28","Optional: one year of university to unlock Norway for 2028."]],
+  mix:{m:1}, picks:{m:["no1","no_ntnu"]}
+},
+"Portugal":{
+  head:"Open through the International Student Statute. Nova SBE, Católica and ISCTE run international calls through spring 2027 with English options; other public universities mostly teach in Portuguese.",
+  read:["Each university runs its own international contest in phases (Jan–May).","Selection on grades plus a motivation letter or entrance requirements; Nova SBE asks for IELTS 6.0 and no SAT."],
+  edge:["Several phases into spring","Your IELTS meets Nova SBE"],
+  risk:["<b>Visa.</b> Consular and residence-permit processes are slow, so start right after the offer.","<b>Language.</b> Outside Nova, Católica and ISCTE, most bachelor's are in Portuguese."],
+  plan:[["Jan–Mar 2027","Nova SBE and Católica first phases."],["Apr–May 2027","Later phases; visa application straight away."]],
+  mix:{m:2, o:1}, picks:{m:["pt1","pt2"], o:["pt_iscte"]}
+},
+"UAE":{
+  head:"A practical, English-speaking option. The UAE Ministry accepts the 11-year CIS certificate, the American University of Sharjah takes it explicitly, and branch campuses (Heriot-Watt, Wollongong, Birmingham, Curtin) award foreign degrees. Khalifa University and NYU Abu Dhabi are closed because of their recency rules.",
+  read:["Admission on grades and English; some branch campuses start international students in a foundation.","Equivalency through the Ministry of Higher Education."],
+  edge:["University-sponsored visas are straightforward","English everywhere","Branch campuses give UK and Australian degrees"],
+  risk:["<b>Recognition.</b> Check that the branch-campus degree is the same as the home-campus degree.","<b>Recency rules</b> at Khalifa and NYU Abu Dhabi."],
+  plan:[["Jan–Apr 2027","Apply to AUS and two branch campuses."],["May–Jul 2027","Offer, equivalency, university-sponsored visa."]],
+  mix:{m:2, o:2}, picks:{m:["ae1","ae_bham"], o:["ae5","ae_uowd"]}
+},
+"Austria":{
+  head:"Public universities want proof that you could enter university in Uzbekistan. Without DTM, that means asking whether an Uzbek university admission letter counts. Most public bachelor's are in German. Private and applied-sciences institutions (Webster, Modul, IMC Krems, MCI) admit on their own terms.",
+  read:["Public: home-country access proof plus German C1 for most programmes.","Private and applied sciences: own tests and interviews."],
+  edge:["Private English-taught programmes"],
+  risk:["<b>Home-access proof</b> without DTM.","<b>German</b> for most public programmes."],
+  plan:[["Nov 2026","Ask WU and JKU whether an Uzbek university admission letter counts."],["Jan–Apr 2027","Apply to Webster, Modul or IMC Krems as private options."]],
+  mix:{m:1, o:2}, picks:{m:["at1"], o:["at4","at_modul"]}
+},
+"Belgium":{
+  head:"Flemish universities need proof of university access at home, which is hard without DTM; French-community universities need French B2. Applied-sciences colleges assess you individually.",
+  read:["Equivalence plus home-access proof; KU Leuven asks for entrance-exam results."],
+  edge:["Strong universities and English master's later"],
+  risk:["<b>Home-access proof</b> without DTM.","<b>Language.</b> Most bachelor's are in Dutch or French."],
+  plan:[["Nov 2026","Email VUB and KU Leuven about the admission-letter route."],["By 1 Mar 2027","Non-EU deadlines."]],
+  mix:{m:1, o:1}, picks:{m:["be2"], o:["be1"]}
+},
+"Denmark":{
+  head:"Universities want some higher education or Danish A/B subject levels first, so they are effectively closed for 2027. Business academies (practical AP degrees in English, with a top-up to a bachelor's) may assess you individually.",
+  read:["One national portal, optagelse.dk; quota 2 closes 15 March."],
+  edge:["Practical English AP degrees with a bachelor's top-up"],
+  risk:["<b>Entry level.</b> Universities need one year of higher education.","<b>Business academies</b>: confirm they accept your Attestat."],
+  plan:[["Nov 2026–Jan 2027","Email 2–3 business academies about entry."],["15 Mar 2027","optagelse.dk deadline."]],
+  mix:{o:2}, picks:{o:["dk_eaaa","dk_cph"]}
+},
+"Finland":{
+  head:"Open. Finnish universities accept a certificate that opens university at home, and the joint application runs 7–21 January 2027. Aalto wants the SAT for your diploma type and Helsinki wants Writing 6.0; applied-sciences universities use the UAS Exam.",
+  read:["Selection by entrance exam, SAT or previous grades, depending on the programme.","UAS Exam: an online test plus an interview."],
+  edge:["A clear national process","Good English bachelor's at applied-sciences universities","The January round fits your plan"],
+  risk:["<b>Writing 5.5</b> blocks Aalto and Helsinki until you retake.","<b>SAT</b> needed for Aalto; the December SAT reaches the 21 January deadline."],
+  plan:[["7–21 Jan 2027","Joint application on Studyinfo.fi (up to 6 choices)."],["Feb–May 2027","Entrance exams or the UAS Exam; results by June."]],
+  mix:{h:1, m:2, o:3}, picks:{h:["fi1"], m:["fi3","fi_lut"], o:["fi_haagahelia","fi_metropolia","fi_jamk"]}
+},
+"Germany":{
+  head:"Your Attestat gives Studienkolleg access only: a preparatory year ending in the state exam, then the degree from 2028. English-track Studienkollegs exist (FH Aachen, CBS). Most bachelor's are in German, and private English-taught universities need a foundation too.",
+  read:["uni-assist checks your certificate; Studienkolleg entrance tests cover maths and German (or English for English tracks)."],
+  edge:["Top universities with low fees","18-month job-seeker permit after graduating"],
+  risk:["<b>Time.</b> The degree starts in 2028.","<b>German</b> for most degrees.","<b>Visa.</b> Blocked account and appointment waits."],
+  plan:[["Jan–Jul 2027","Apply to an English-track Studienkolleg (FH Aachen, CBS) or a German-taught one."],["2027–28","Studienkolleg and the state exam."],["2028","Degree via uni-assist."]],
+  mix:{m:2, o:1}, picks:{m:["de_rwth","de_tum"], o:["de2"]}
+},
+"Hungary":{
+  head:"Directly open. Hungarian universities accept a certificate that opens university at home, many teach in English, and the Stipendium Hungaricum scholarship covers Uzbek applicants. Entrance exams or interviews decide.",
+  read:["Each university runs its own entrance test or interview (maths for engineering, biology and chemistry for medicine)."],
+  edge:["Direct entry","English-taught degrees","A full-scholarship route"],
+  risk:["<b>Recognition.</b> Corvinus, ELTE, BME, Debrecen, Szeged, Pécs and Semmelweis are ranked; smaller universities need nostrification.","<b>Stipendium Hungaricum</b> nominations go through Uzbekistan's ministry."],
+  plan:[["Nov 2026–15 Jan 2027","Stipendium Hungaricum application."],["Jan–May 2027","Direct applications and entrance exams."]],
+  mix:{h:1, m:2, o:2}, picks:{h:["hu5"], m:["hu1","hu3"], o:["hu2","hu4"]}
+},
+"Jordan":{
+  head:"Closed. Equivalency requires proof of 12 years of school, so Jordan opens only after a year of university.",
+  read:["Ministry equivalency is the gate for every university."],
+  edge:["Arabic-language environment for later study"],
+  risk:["<b>12 years</b> required."],
+  plan:[["2027","No action for 2027."]],
+  mix:{}, picks:{}
+},
+"Singapore":{
+  head:"Closed for 2027 at the public universities. NUS, NTU and SMU do not accept CIS certificates alone and want AP or A-levels plus the SAT. Private institutions (SIM, JCU, Curtin, Kaplan) teach partner-university degrees after a foundation.",
+  read:["NUS, NTU and SMU: 3 AP exams at 4–5 or A-levels, plus SAT 1250+."],
+  edge:["World-class universities if you add APs for 2028"],
+  risk:["<b>AP exams</b> run only in May, so 2028 entry.","<b>Private partner degrees</b> are usually outside global rankings."],
+  plan:[["May 2027","Optional: 3 AP exams for 2028 entry to NUS, NTU or SMU."]],
+  mix:{o:1}, picks:{o:["sg2"]}
+},
+"Bahrain":{
+  head:"Uncertain. The University of Bahrain takes only recent graduates, and private universities depend on whether Bahrain's equivalency accepts 11 years, so ask before applying.",
+  read:["Equivalency through Bahrain's Higher Education Council."],
+  edge:["English-taught private universities"],
+  risk:["<b>Equivalency</b> of the 11-year certificate is unconfirmed.","<b>Recognition.</b> Private universities are outside global rankings."],
+  plan:[["Nov 2026","Email AUBH and Ahlia about equivalency."]],
+  mix:{o:1}, picks:{o:["bh2"]}
+},
+"Kuwait":{
+  head:"Uncertain. Kuwait University scholarships need a certificate under 2 years old, and private universities (AUK, GUST, AUM) depend on Kuwait's equivalency of 11 years.",
+  read:["Private universities admit after equivalency."],
+  edge:["US-style private universities"],
+  risk:["<b>Equivalency</b> unconfirmed.","<b>Recognition.</b> Outside global rankings."],
+  plan:[["Nov 2026","Email AUK and GUST about equivalency."]],
+  mix:{o:1}, picks:{o:["kw2"]}
+},
+"Malaysia":{
+  head:"Universiti Utara Malaysia admits you directly. Almost every other university wants 12 years, so you start with a foundation (MUFY at Monash, Taylor's). These start several times a year and lead to well-ranked degrees, including UK and Australian branch campuses.",
+  read:["Foundation entry on your Attestat, then the degree.","EMGS approves the student pass."],
+  edge:["Many intakes a year","English-taught","Branch campuses with UK and Australian degrees"],
+  risk:["<b>Time.</b> A foundation first (except at UUM).","<b>Work after study</b> is limited."],
+  plan:[["Jan–Apr 2027","UUM directly, or the MUFY or Taylor's foundation."],["Jul–Sep 2027","Start."]],
+  mix:{o:3}, picks:{o:["my1","my3","my_taylors"]}
+}
+});
+
+/* ---------- Country scorecard (1–5; finance ignored) ----------
+   a access with your 11-year Attestat in 2027 · o odds of an offer · r recognition in Uzbekistan
+   v visa ease · e English-taught supply · t timing fit for 2027 · w work rights after study */
+const SCORE_W = {a:25, o:20, r:15, v:15, e:10, t:10, w:5};
+const SCORE_L = {a:"Access", o:"Odds", r:"Recognition", v:"Visa", e:"English", t:"Timing", w:"Work after"};
+const SCORE_S = {a:"Access", o:"Odds", r:"Recog.", v:"Visa", e:"English", t:"Timing", w:"Work"};
+const SCORE = {
+  "USA":{a:5,o:4,r:4,v:3,e:5,t:4,w:4, why:"No 12-year rule or age limit and hundreds of open universities; the F-1 interview is the main risk."},
+  "Canada":{a:4,o:4,r:5,v:2,e:5,t:4,w:5, why:"Strong ranked universities and work rights, held back by the study-permit cap and case-by-case Attestat checks."},
+  "Hong Kong":{a:4,o:3,r:5,v:5,e:5,t:4,w:4, why:"Top-ranked, English-taught and easy visas; the SAT does the work a national exam would."},
+  "Türkiye":{a:5,o:5,r:3,v:4,e:4,t:5,w:3, why:"Admission on your diploma grade, rolling deadlines and spring intakes make it the safest Tier 1 country."},
+  "China":{a:4,o:4,r:4,v:4,e:3,t:3,w:2, why:"Many ranked universities and scholarships; the CSCA test and university-by-university windows take planning."},
+  "Spain":{a:4,o:4,r:3,v:4,e:3,t:3,w:3, why:"Private universities admit directly; public ones need homologation, PCE exams and usually Spanish."},
+  "Qatar":{a:3,o:2,r:5,v:5,e:5,t:4,w:3, why:"US degrees from top universities with sponsored visas, but very few places."},
+  "France":{a:3,o:4,r:2,v:4,e:3,t:4,w:4, why:"Business-school BBAs admit in rounds; many are outside global rankings, and public universities need French."},
+  "Italy":{a:1,o:3,r:2,v:3,e:3,t:2,w:3, why:"The 12-year rule closes almost everything for 2027; only US-accredited Rome colleges are open now."},
+  "Saudi Arabia":{a:2,o:3,r:3,v:4,e:1,t:2,w:2, why:"Scholarships taught in Arabic, a certificate-age limit you only just meet, and English privates closed."},
+  "Australia":{a:2,o:5,r:5,v:3,e:5,t:4,w:5, why:"Foundation first, but progression is guaranteed and degrees and work rights are excellent."},
+  "Sweden":{a:4,o:4,r:4,v:3,e:2,t:5,w:3, why:"Directly eligible in a round that fits your dates; English bachelor's are limited."},
+  "Netherlands":{a:3,o:4,r:3,v:4,e:5,t:4,w:4, why:"Applied sciences admit you directly in English; research universities need a bridge year."},
+  "Norway":{a:1,o:3,r:4,v:3,e:2,t:2,w:3, why:"Requires one year of university on top of the Attestat."},
+  "Portugal":{a:4,o:4,r:3,v:3,e:3,t:4,w:3, why:"International Student Statute calls through spring; slow visas."},
+  "UAE":{a:4,o:4,r:3,v:5,e:5,t:4,w:3, why:"Ministry accepts 11 years; English-taught, easy visas, branch-campus degrees."},
+  "Austria":{a:2,o:3,r:4,v:3,e:2,t:3,w:3, why:"Home-access proof is hard without DTM; most public degrees in German."},
+  "Belgium":{a:2,o:3,r:4,v:3,e:2,t:3,w:3, why:"Home-access proof or French B2; few English bachelor's."},
+  "Denmark":{a:1,o:3,r:4,v:3,e:3,t:3,w:3, why:"Universities need extra study first; business academies uncertain."},
+  "Finland":{a:4,o:3,r:4,v:4,e:4,t:4,w:4, why:"Eligible now with a clear January round; Aalto and Helsinki need the retake and SAT."},
+  "Germany":{a:2,o:3,r:5,v:3,e:2,t:2,w:5, why:"Studienkolleg first and mostly German, but excellent universities and work rights."},
+  "Hungary":{a:5,o:4,r:3,v:4,e:4,t:4,w:3, why:"Directly open in English with a scholarship route."},
+  "Jordan":{a:1,o:2,r:2,v:4,e:2,t:1,w:2, why:"Closed: 12 years required."},
+  "Singapore":{a:1,o:2,r:5,v:4,e:5,t:1,w:3, why:"Public universities need AP exams, so 2028 at the earliest."},
+  "Bahrain":{a:2,o:3,r:2,v:4,e:4,t:3,w:2, why:"Equivalency of 11 years unconfirmed."},
+  "Kuwait":{a:2,o:3,r:2,v:3,e:4,t:3,w:2, why:"Equivalency of 11 years unconfirmed."},
+  "Malaysia":{a:3,o:4,r:4,v:4,e:5,t:4,w:2, why:"UUM direct, others after a short foundation; limited work rights."}
+};
+const scoreOf = c => { const s = SCORE[c]; if (!s) return null; return Math.round(Object.entries(SCORE_W).reduce((t,[k,w]) => t + w * s[k] / 5, 0)); };
+
+/* US state names for search */
+const US_STATES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DC:"Washington DC",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
+
 
 /* ===================== SAT ===================== */
 const SAT_DATES = [
@@ -1841,7 +3058,8 @@ Object.entries(SIT).forEach(([k,sel]) => $(sel).addEventListener("change", e => 
 $("#sReset").addEventListener("click", () => { state.sit = Object.assign({}, DEF_SIT); syncSit(); persist(); renderAll(); });
 
 /* ===================== UNIVERSITIES ===================== */
-const ui = {lane:(() => { try { return localStorage.getItem("atlas.lane") || "1"; } catch(e) { return "1"; } })(), sub:"prog", kind:"both", q:"", field:"", sort:"status", hideClosed:true, saved:false, rank:false, spring:false, cmp:[], cmode:"cards", gq:"", chance:"", sc:"USA"};
+const ui = {lane:(() => { try { return localStorage.getItem("atlas.lane") || "1"; } catch(e) { return "1"; } })(), sub:"prog", kind:"both", q:"", field:"", sort:"status", hideClosed:true, saved:false, rank:false, spring:false, cmp:[], cmode:"cards", gq:"", chance:"", sc:"USA", seg:{}, more:{}};
+const PAGE = 25;
 const laneCountries = () => ORDER.filter(c => ui.lane === "all" || String(tierOf(c)) === ui.lane);
 const isSaved = id => state.saved.includes(id);
 const saveBtn = id => `<button type="button" class="savebtn" data-save="${id}" aria-pressed="${isSaved(id)}">${STAR}<span>${isSaved(id) ? "Saved" : "Save"}</span></button>`;
@@ -1850,9 +3068,15 @@ function datesCell(x, closed){
   if (closed) return `<div class="dates"><span>—</span></div>`;
   return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span></div>`;
 }
+function searchText(x){
+  if (x._st) return x._st;
+  const st = x.country === "USA" ? (x.city.match(/\b[A-Z]{2}\b/g) || []).map(a => US_STATES[a] || "").join(" ") : "";
+  const sg = SEGS[x.country] && SEG[x.id] ? ((SEGS[x.country].find(s => s[0] === SEG[x.id]) || [])[1] || "") : "";
+  return x._st = [x.name, x.city, st, sg, x.courses, x.type, x.also, x.feeds, x.country, DISPLAY(x.country), fieldNames(x.fields)].join(" ").toLowerCase();
+}
 function passFilters(x, e){
   const q = ui.q;
-  if (q) { const text = [x.name, x.city, x.courses, x.type, x.also, x.feeds, x.country, fieldNames(x.fields)].join(" ").toLowerCase(); if (!text.includes(q)) return false; }
+  if (q && !searchText(x).includes(q)) return false;
   if (ui.field && !x.fields.includes(ui.field)) return false;
   if (ui.hideClosed && e.s === "closed") return false;
   if (ui.saved && !isSaved(x.id)) return false;
@@ -1869,20 +3093,31 @@ const SORTS = {
   final:(a,b) => (a.x.fin || "9999").localeCompare(b.x.fin || "9999"),
   az:(a,b) => a.x.name.localeCompare(b.x.name)
 };
-function rowHtml({x, e}){
-  const closed = e.s === "closed", band = BAND[x.band] || "";
-  const sub = x.kind === "deg" ? `${esc(x.city)} · ${esc(x.type)}${band ? " · " + band : ""}` : `${esc(x.city)} · leads to ${esc(x.feeds)}`;
-  const kindTag = x.kind === "deg" ? '<span class="tag">Degree</span>' : '<span class="tag v">Foundation</span>';
-  const extra = x.kind === "fnd" ? `<span class="tag ${x.guar === "g" ? "g" : x.guar === "n" ? "a" : ""}">${GUAR[x.guar]}</span>${x.home ? '<span class="tag g">No visa</span>' : ""}` : "";
+function bodyHtml(x, e){
+  const closed = e.s === "closed";
   const need = closed ? `<dl><dt>Why it's closed</dt><dd>${T(x.rule || x.accepts)}</dd></dl>` : `<dl><dt>What you still need</dt><dd>${e.miss.length ? `<div class="miss">${e.miss.map(m => `<span>${T(m)}</span>`).join("")}</div>` : "Nothing. You can apply as you are."}</dd></dl>`;
   const c = chanceOf(x, e);
   const chDl = c ? `<dl><dt>Your chance</dt><dd>${meter(c)}<b class="chw">${CH[c][0]}</b> · ${esc(CH[c][2])}. ${esc(CH[c][3])}${isEst(x) ? ' <span class="faint">Estimated from ranking.</span>' : ""}</dd></dl>` : "";
   const body = x.kind === "deg"
     ? `<dl><dt>Courses</dt><dd>${esc(x.courses)}</dd></dl><dl><dt>The rule for you</dt><dd>${T(x.rule)}</dd></dl>${need}${chDl}<dl><dt>Application window</dt><dd>${T(x.win)}</dd></dl>${x.also ? `<dl class="full"><dt>The same rule covers</dt><dd class="small muted">${esc(x.also)}</dd></dl>` : ""}`
     : `<dl><dt>Accepts your Attestat?</dt><dd>${esc(x.accepts)}</dd></dl><dl><dt>English</dt><dd>${esc(x.english)}</dd></dl><dl><dt>Intakes · length</dt><dd>${esc(x.intakes)} · ${esc(x.length)}</dd></dl><dl><dt>How to apply</dt><dd>${T(x.apply)}</dd></dl>${need}${chDl}${x.note ? `<dl><dt>Note</dt><dd>${T(x.note)}</dd></dl>` : ""}`;
-  return `<details class="it ${STATUS[e.s][2]}" id="it-${x.id}"><summary><div><div class="nm">${esc(x.name)}</div><div class="sub">${sub}</div><div class="fl">${esc(fieldNames(x.fields))}</div></div>${datesCell(x, closed)}<div class="meta">${chip(e.s)}${chTag(x, e)}${kindTag}${extra}${x.spring && !closed ? '<span class="tag a">Spring 2027</span>' : ""}${RKTAG[rkOf(x)]}</div><div class="meta">${fitHtml(x.fit)}${closed ? "" : saveBtn(x.id)}</div></summary>
-    <div class="body">${body}<div class="acts">${webLink(x.web)}${cmpBtn(x.id)}</div></div></details>`;
+  const segName = SEGS[x.country] && SEG[x.id] ? (SEGS[x.country].find(s => s[0] === SEG[x.id]) || [])[1] : "";
+  return `${body}${segName ? `<dl><dt>Section</dt><dd>${esc(segName)}</dd></dl>` : ""}<div class="acts">${webLink(x.web)}${cmpBtn(x.id)}</div>`;
 }
+function rowHtml({x, e}){
+  const closed = e.s === "closed", band = BAND[x.band] || "";
+  const sub = x.kind === "deg" ? `${esc(x.city)} · ${esc(x.type)}${band ? " · " + band : ""}` : `${esc(x.city)} · leads to ${esc(x.feeds)}`;
+  const kindTag = x.kind === "deg" ? '<span class="tag">Degree</span>' : '<span class="tag v">Foundation</span>';
+  const extra = x.kind === "fnd" ? `<span class="tag ${x.guar === "g" ? "g" : x.guar === "n" ? "a" : ""}">${GUAR[x.guar]}</span>${x.home ? '<span class="tag g">No visa</span>' : ""}` : "";
+  return `<details class="it ${STATUS[e.s][2]}" id="it-${x.id}"><summary><div><div class="nm">${esc(x.name)}</div><div class="sub">${sub}</div><div class="fl">${esc(fieldNames(x.fields))}</div></div>${datesCell(x, closed)}<div class="meta">${chip(e.s)}${chTag(x, e)}${kindTag}${extra}${x.spring && !closed ? '<span class="tag a">Spring 2027</span>' : ""}${RKTAG[rkOf(x)]}</div><div class="meta">${fitHtml(x.fit)}${closed ? "" : saveBtn(x.id)}</div></summary>
+    <div class="body" data-lazy="${x.id}"></div></details>`;
+}
+function fillBody(d){
+  const b = d && d.querySelector(".body[data-lazy]"); if (!b || b.dataset.done) return;
+  const x = byId[b.dataset.lazy]; if (!x) return;
+  b.innerHTML = bodyHtml(x, evalItem(x)); b.dataset.done = "1";
+}
+document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.classList && d.classList.contains("it") && d.open) fillBody(d); }, true);
 function best(list){ return list.map(o => o.e.s).sort((a,b) => SORDER[a] - SORDER[b])[0] || "closed"; }
 function renderLanes(){
   const n = {1:0,2:0,3:0}; ORDER.forEach(c => n[tierOf(c)]++);
@@ -1897,13 +3132,20 @@ function renderFieldChips(){
   const cnt = k => ITEMS.filter(x => cs.has(x.country) && x.fields.includes(k) && evalItem(x).s !== "closed").length;
   $("#fchips").innerHTML = `<button type="button" class="fchip" data-field="" aria-pressed="${!ui.field}">All fields</button>` + Object.keys(FIELDS).map(k => `<button type="button" class="fchip" data-field="${k}" aria-pressed="${ui.field === k}">${FIELDS[k].s} <span class="faint">${cnt(k)}</span></button>`).join("");
 }
+function segChips(g){
+  const segs = SEGS[g.c]; if (!segs || g.visAll.length < 8) return "";
+  const btns = segs.map(([k, l]) => { const n = g.visAll.filter(o => SEG[o.x.id] === k).length; return n ? `<button type="button" class="segb" data-seg="${esc(g.c)}|${k}" aria-pressed="${g.sk === k}">${esc(l)} <span>${n}</span></button>` : ""; }).join("");
+  return `<div class="segs" role="group" aria-label="Sections in ${esc(DISPLAY(g.c))}"><button type="button" class="segb" data-seg="${esc(g.c)}|" aria-pressed="${!g.sk}">All <span>${g.visAll.length}</span></button>${btns}</div>`;
+}
 function renderProgrammes(){
   renderFieldChips();
   const otherFilters = ui.q || ui.saved || ui.rank || ui.spring || ui.field || ui.chance;
   const groups = laneCountries().map(c => {
-    const all = rowsFor(c), vis = all.filter(o => passFilters(o.x, o.e)).sort(SORTS[ui.sort]);
-    const onlyClosed = !vis.length && all.length > 0 && !otherFilters && ui.hideClosed && all.every(o => o.e.s === "closed");
-    return {c, all, vis, onlyClosed};
+    const all = rowsFor(c), visAll = all.filter(o => passFilters(o.x, o.e)).sort(SORTS[ui.sort]);
+    const sk = SEGS[c] && ui.seg[c] && visAll.some(o => SEG[o.x.id] === ui.seg[c]) ? ui.seg[c] : "";
+    const vis = sk ? visAll.filter(o => SEG[o.x.id] === sk) : visAll;
+    const onlyClosed = !visAll.length && all.length > 0 && !otherFilters && ui.hideClosed && all.every(o => o.e.s === "closed");
+    return {c, all, visAll, vis, sk, onlyClosed};
   });
   const homeAll = ui.kind !== "deg" ? F.filter(f => f.country === "Uzbekistan").map(x => ({x, e:evalItem(x)})) : [];
   const home = {c:"Uzbekistan", all:homeAll, vis:homeAll.filter(o => passFilters(o.x, o.e))};
@@ -1922,9 +3164,9 @@ function renderProgrammes(){
       <div class="cg-title"><h3>${esc(DISPLAY(g.c))}</h3><span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></div>
       <div class="cg-side"><label for="tier-${sid}">Tier</label><select id="tier-${sid}" data-tierset="${esc(g.c)}">${[1,2,3].map(k => `<option value="${k}" ${k === t ? "selected" : ""}>${k} · ${TIER_NAME[k]}</option>`).join("")}</select></div>
       <p class="cg-verdict">${T(info.v || "")}</p>
-      <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}${fins.length ? `<span class="tag">Next final deadline: ${fmt(fins[0])}</span>` : ""}<button type="button" class="linkbtn" data-ctrylink="${esc(g.c)}">How studying in ${esc(DISPLAY(g.c))} works</button></div>
+      <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}${fins.length ? `<span class="tag">Next final deadline: ${fmt(fins[0])}</span>` : ""}<button type="button" class="linkbtn" data-ctrylink="${esc(g.c)}">How studying in ${esc(DISPLAY(g.c))} works</button>${DEEP[g.c] ? `<button type="button" class="linkbtn" data-sc="${esc(g.c)}">Strategy &amp; chances</button>` : ""}</div>
       <dl class="facts"><div><dt>Rule for your Attestat</dt><dd>${T(info.rule || "")}</dd></div><div><dt>Apply via</dt><dd>${T(info.apply || "")}</dd></div><div><dt>Degree length</dt><dd>${esc(info.deg || "")}</dd></div><div><dt>Visa</dt><dd>${T(info.visa || "")}</dd></div></dl>
-    </div>${g.vis.length ? `<div class="list">${g.vis.map(rowHtml).join("")}</div>` : ""}${closedHidden ? `<div class="hiddennote">${g.onlyClosed ? "Every option here is closed to you. " : ""}${closedHidden} closed option${closedHidden === 1 ? "" : "s"} hidden. <button type="button" class="linkbtn" data-showclosed>Show closed</button></div>` : ""}</section>`;
+    </div>${segChips(g)}${g.vis.length ? `<div class="list">${g.vis.slice(0, ui.more[g.c] ? g.vis.length : PAGE).map(rowHtml).join("")}</div>` : ""}${g.vis.length > PAGE ? `<div class="morebar"><button type="button" class="btn ghost sm" data-more="${esc(g.c)}">${ui.more[g.c] ? "Show fewer" : `Show all ${g.vis.length} (${g.vis.length - PAGE} more)`}</button></div>` : ""}${closedHidden ? `<div class="hiddennote">${g.onlyClosed ? "Every option here is closed to you. " : ""}${closedHidden} closed option${closedHidden === 1 ? "" : "s"} hidden. <button type="button" class="linkbtn" data-showclosed>Show closed</button></div>` : ""}</section>`;
   }).join("") || `<div class="empty">Nothing matches these filters. <button type="button" class="linkbtn" data-clear>Clear filters</button></div>`;
 }
 function countryFacts(c){
@@ -1945,7 +3187,7 @@ function renderCountries(){
       <p class="small">${T(CI[c].v)}</p>
       <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => s.cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${s.cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}</div>
       ${countryFacts(c)}
-      <div><button type="button" class="btn sm" data-showc="${esc(c)}">See ${open} open programme${open === 1 ? "" : "s"}</button></div></article>`; }).join("")}</div>`;
+      <div class="acts"><button type="button" class="btn sm" data-showc="${esc(c)}">See ${open} open programme${open === 1 ? "" : "s"}</button>${DEEP[c] ? `<button type="button" class="btn ghost sm" data-sc="${esc(c)}">Strategy${SCORE[c] ? ` · score ${scoreOf(c)}` : ""}</button>` : ""}</div></article>`; }).join("")}</div>`;
 }
 function renderCourses(){
   const cs = new Set(laneCountries());
@@ -1992,7 +3234,7 @@ function renderBalance(){
     if (n.x > 6) tips.push("<b>More than six long shots.</b> Each needs tailored essays. Keep the ones you would truly choose.");
     if (!tips.length) tips.push(`<b>Balanced.</b> ${n.o} likely, ${n.m} target and ${top} ambitious choices is a healthy spread.`);
   }
-  const t1 = ORDER.filter(c => tierOf(c) === 1);
+  const t1 = ORDER.filter(c => tierOf(c) <= 2);
   const rows = t1.map(c => {
     const mine = live.filter(o => o.x.country === c), cn = chCount(mine), d = DEEP[c], rec = d ? CH_KEYS.reduce((a,k) => a + (d.mix[k] || 0), 0) : 0;
     return `<tr><td><button type="button" class="linkbtn" data-sc="${esc(c)}">${esc(DISPLAY(c))}</button></td>${CH_KEYS.map(k => `<td class="nums ${cn[k] ? "" : "faint"}">${cn[k]}</td>`).join("")}<td class="nums"><b>${mine.length}</b></td><td class="nums faint">${rec || "—"}</td></tr>`;
@@ -2002,18 +3244,24 @@ function renderBalance(){
     ${balBar(n)}
     <ul class="tips">${tips.map(t => `<li>${t}</li>`).join("")}</ul>
     <p class="small muted">Suggested for 2027: 20–28 applications in total. About 12–15 in the USA (one Common App) and 2–4 in each of 4–5 other Tier 1 countries. Aim for roughly a quarter long shots and reaches, 40% targets and a third likely options.</p>
-    <details class="small"><summary class="faint" style="cursor:pointer">Tier 1 breakdown</summary><div class="tablebox" style="margin-top:8px"><table><thead><tr><th>Country</th>${CH_KEYS.map(k => `<th>${CH[k][0]}</th>`).join("")}<th>Saved</th><th>Suggested</th></tr></thead><tbody>${rows}</tbody></table></div>${otherN ? `<p class="faint" style="margin-top:6px">${otherN} more saved outside Tier 1.</p>` : ""}</details>`;
+    <details class="small"><summary class="faint" style="cursor:pointer">Tier 1–2 breakdown</summary><div class="tablebox" style="margin-top:8px"><table><thead><tr><th>Country</th>${CH_KEYS.map(k => `<th>${CH[k][0]}</th>`).join("")}<th>Saved</th><th>Suggested</th></tr></thead><tbody>${rows}</tbody></table></div>${otherN ? `<p class="faint" style="margin-top:6px">${otherN} more saved in Tier 3 or from Tashkent.</p>` : ""}</details>`;
 }
 function stratPickCard(id){
   const x = byId[id]; if (!x) return "";
   const e = evalItem(x);
   return `<li class="pk"><div style="min-width:0"><button type="button" class="linkbtn pkn" data-goto="${id}">${esc(x.name)}</button><div class="faint small">${esc(x.city)}${x.fin ? " · final " + fmt(x.fin) : ""}</div></div><div class="pkm">${chip(e.s)}${e.s !== "closed" ? saveBtn(id) : ""}</div></li>`;
 }
+function renderScore(){
+  const keys = Object.keys(SCORE_W), cs = ORDER.filter(c => SCORE[c] && tierOf(c) <= 2).sort((a,b) => scoreOf(b) - scoreOf(a));
+  $("#score").innerHTML = `<div class="toolbar"><div><span class="eyebrow">Country scorecard · Tier 1 and Tier 2</span><h3 style="margin-top:4px">Where your 2027 chances are strongest</h3></div></div>
+    <p class="small muted">Each factor is scored 1–5 for your profile (11-year Attestat, 2022 graduate, IELTS 7.5 with Writing 5.5, SAT planned; finance ignored), then weighted: ${keys.map(k => `${SCORE_L[k]} ${SCORE_W[k]}%`).join(", ")}. It ranks countries, not single universities; use it to decide where to spend applications.</p>
+    <div class="tablebox"><table class="stack score"><thead><tr><th>#</th><th>Country</th>${keys.map(k => `<th>${SCORE_L[k]}</th>`).join("")}<th>Score</th><th>Why</th></tr></thead><tbody>${cs.map((c,i) => { const s = SCORE[c], tot = scoreOf(c), t = tierOf(c); return `<tr><td class="nums faint rk">${i + 1}</td><td class="cn"><button type="button" class="linkbtn" data-sc="${esc(c)}">${esc(DISPLAY(c))}</button> <span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></td>${keys.map(k => `<td class="f" data-l="${SCORE_L[k]}" data-s="${SCORE_S[k]}"><span class="sc s${s[k]}" title="${SCORE_L[k]}: ${s[k]} of 5">${s[k]}</span></td>`).join("")}<td class="tt" data-l="Score"><span class="tot"><b>${tot}</b><i><u style="width:${tot}%"></u></i></span></td><td class="small muted why" data-l="Why">${esc(s.why)}</td></tr>`; }).join("")}</tbody></table></div>`;
+}
 function renderStrategy(){
-  renderBalance();
+  renderBalance(); renderScore();
   const cs = deepCountries();
   if (!DEEP[ui.sc]) ui.sc = cs[0];
-  $("#sChips").innerHTML = cs.map(c => `<button type="button" role="tab" class="schip ${tierClass(tierOf(c))}" data-sc="${esc(c)}" aria-selected="${ui.sc === c}"><i></i>${esc(DISPLAY(c))}</button>`).join("");
+  $("#sChips").innerHTML = [1,2,3].map(t => { const l = cs.filter(c => tierOf(c) === t); return l.length ? `<div class="schrow"><span class="schl">${TIER_NAME[t]}</span>${l.map(c => `<button type="button" role="tab" class="schip ${tierClass(t)}" data-sc="${esc(c)}" aria-selected="${ui.sc === c}"><i></i>${esc(DISPLAY(c))}${SCORE[c] ? `<span class="faint">${scoreOf(c)}</span>` : ""}</button>`).join("")}</div>` : ""; }).join("");
   const c = ui.sc, d = DEEP[c], t = tierOf(c);
   const all = U.filter(x => x.country === c).map(x => ({x, e:evalItem(x)})), open = all.filter(o => o.e.s !== "closed");
   const nOpen = chCount(open);
@@ -2054,6 +3302,7 @@ function renderUnis(){
   $$("#subnav button").forEach(b => b.setAttribute("aria-selected", b.dataset.sub === ui.sub));
   $("#vProg").hidden = ui.sub !== "prog"; $("#vStrat").hidden = ui.sub !== "strat"; $("#vCtry").hidden = ui.sub !== "ctry"; $("#vCourse").hidden = ui.sub !== "course"; $("#vGloss").hidden = ui.sub !== "gloss";
   $("#intro").hidden = !!state.seenIntro;
+  $("#nStrat").textContent = Object.keys(DEEP).length;
   $("#lanes").hidden = ui.sub === "strat";
   if (ui.sub === "strat") renderStrategy();
   renderProgrammes();
@@ -2082,8 +3331,9 @@ function goto(id){
   if (x.country !== "Uzbekistan" && ui.lane !== "all" && String(tierOf(x.country)) !== ui.lane) ui.lane = String(tierOf(x.country));
   if (ui.kind === "deg" && x.kind === "fnd" || ui.kind === "fnd" && x.kind === "deg") { ui.kind = "both"; $$("#kindSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.kind === "both")); }
   $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog]));
+  ui.seg[x.country] = ""; ui.more[x.country] = true;
   renderUnis();
-  const el = document.getElementById("it-" + id); if (el) { el.open = true; scrollToEl(el); }
+  const el = document.getElementById("it-" + id); if (el) { el.open = true; fillBody(el); scrollToEl(el); }
 }
 document.addEventListener("click", e => {
   if (e.target.closest("[data-clear]")) clearFilters();
@@ -2094,6 +3344,8 @@ document.addEventListener("click", e => {
   const sc = e.target.closest("[data-showc]"); if (sc) { setSub("prog"); scrollToEl(document.getElementById("cg-" + domId(sc.dataset.showc))); }
   const g = e.target.closest("[data-goto]"); if (g) goto(g.dataset.goto);
   const fg = e.target.closest("[data-fieldgo]"); if (fg) { ui.field = fg.dataset.fieldgo; setSub("prog"); scrollToEl($("#vProg")); }
+  const sg = e.target.closest("[data-seg]"); if (sg) { const [c, k] = sg.dataset.seg.split("|"); ui.seg[c] = k; ui.more[c] = false; renderProgrammes(); const h = document.getElementById("cg-" + domId(c)); if (h && h.getBoundingClientRect().top < 0) scrollToEl(h); }
+  const mo = e.target.closest("[data-more]"); if (mo) { const c = mo.dataset.more; ui.more[c] = !ui.more[c]; renderProgrammes(); if (!ui.more[c]) scrollToEl(document.getElementById("cg-" + domId(c))); }
 });
 document.addEventListener("click", e => {
   const sc = e.target.closest("[data-sc]");
