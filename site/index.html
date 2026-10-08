@@ -2542,13 +2542,11 @@ addUS([
 ["u_uwyo","University of Wyoming","Laramie, WY","Public","?","o","eng sci","Energy and petroleum engineering, geology, agriculture","?","6","R","flag","uwyo.edu",""],
 ["u_wichita","Wichita State University","Wichita, KS","Public","?","o","eng bus","Aerospace engineering (NIAR research institute), business","?","6","R","flag","wichita.edu",""],
 ["u_uidaho","University of Idaho","Moscow, ID","Public","?","o","eng sci","Engineering, agriculture, natural resources","?","6","R","flag","uidaho.edu",""],
-["u_umb","University of Massachusetts Boston","Boston, MA","Public","?","o","bus med cs","Management, nursing, computer science","O","6.5","R","pub","umb.edu",""],
 ["u_boise","Boise State University","Boise, ID","Public","?","o","eng bus cs","Engineering, business, computer science","?","6","R","pub","boisestate.edu",""],
 /* Research universities that were missing entirely */
 ["u_uah","University of Alabama in Huntsville","Huntsville, AL","Public","?","o","eng cs sci","Aerospace and systems engineering, computer science, physics (NASA Marshall next door)","?","6","R","flag","uah.edu",""],
 ["u_ucden","University of Colorado Denver","Denver, CO","Public","?","o","bus eng art","Business, engineering, architecture","O","6.5","R","flag","ucdenver.edu","Colorado public universities are test-optional by law."],
 ["u_usm","University of Southern Mississippi","Hattiesburg, MS","Public","?","o","sci bus","Polymer science, marine science, business","?","6","R","flag","usm.edu",""],
-["u_uri","University of Rhode Island","Kingston, RI","Public","?","o","eng sci med bus","Ocean engineering, oceanography, pharmacy, business","O","6.5","F1","flag","uri.edu","Past cycles: EA 1 Dec, RD 1 Feb."],
 ["u_uncg","University of North Carolina at Greensboro","Greensboro, NC","Public","?","o","bus med art","Business, nursing, music, education","C","6","R","pub","uncg.edu","UNC System: no scores needed with a GPA of 2.8 or higher."],
 ["u_ull","University of Louisiana at Lafayette","Lafayette, LA","Public","?","o","eng cs","Engineering, computer science, informatics","?","6","R","pub","louisiana.edu",""],
 ["u_kennesaw","Kennesaw State University","Kennesaw, GA (Atlanta)","Public","?","o","eng cs bus","Engineering, computer science, cyber security, business","R","6","R","pub","kennesaw.edu",USG_R],
@@ -2586,6 +2584,174 @@ appendAlso("sa3", "Al Yamamah University, University of Business and Technology 
 appendAlso("sa2c", "Saudi Electronic University");
 appendAlso("q_afg", "Oryx Universal College (Liverpool John Moores University degrees)");
 patchRows({u_byu:{win:"Priority ~1 Nov · final ~15 Dec 2026 (last cycle's pattern; confirm on apply.byu.edu)", sug:"2026-11-01", fin:"2026-12-15"}});
+/* ---------- Tier 3 directories (v9): South Korea, Latvia, Lithuania, Malta, Iceland, Luxembourg ---------- */
+Object.assign(SEGS, {
+  "South Korea":[["sky","Top Seoul universities"],["sci","Science & technology institutes"],["seoul","Other Seoul & capital area"],["nat","National universities"],["reg","Regional & international-focused"],["route","Scholarships, language routes & closed"]]
+});
+
+/* South Korea: grouped rows become single universities (ids kept) */
+patchRows({
+  kr3:{name:"Seoul National University (SNU)", city:"Seoul", type:"Public (national)", band:"50", fields:"eng cs sci eco bus soc", courses:"Engineering, natural sciences, economics, business, social sciences (mostly Korean-taught)", req:"lang:TOPIK 3+ or an English score (most SNU courses are taught in Korean)", rule:"Foreign-national admission (both parents non-Korean). SNU's guidelines have no explicit 12-year clause, but confirm the 11-year Attestat in writing. Very short windows (a few days).", web:"snu.ac.kr", also:"", sel:"h", seg:"sky"},
+  kr1:{name:"Hankuk University of Foreign Studies (HUFS)", spring:1, city:"Seoul · Yongin", type:"Private", band:"1000", fields:"ir soc bus eco", courses:"Languages and area studies (incl. Central Asian studies), international studies, business, law", req:"", rule:"Foreign-national admission with Korean or English proof; strong fit for languages and international studies.", web:"hufs.ac.kr", also:"", sel:"o", seg:"sky"},
+  kr4:{name:"KAIST", city:"Daejeon", type:"Public (science institute)", band:"100", fields:"eng cs sci bus", courses:"All majors in English: computing, electrical, mechanical and industrial engineering, sciences, business technology", req:"", rule:"English-medium. Maths and science record, essays and two recommendations decide; SAT and olympiad results help. KAIST scholarships (full tuition plus a monthly allowance) go to many admitted international students; confirm the terms.", web:"kaist.ac.kr", also:"", sel:"x", seg:"sci"},
+  kr2:{name:"Woosong University – SolBridge International School of Business", city:"Daejeon", type:"Private", band:"u", fields:"bus", courses:"BBA taught fully in English (finance, marketing, digital business)", req:"", rule:"English-only business school with a very international class; spring and fall intakes.", web:"solbridge.ac.kr", also:"", sel:"o", seg:"reg"},
+  kr5:{name:"More Korean universities", band:"?", rule:"Same foreign-national route; mostly Korean-taught (TOPIK 3), with spring and fall rounds. Check IEQAS certification first.", also:"Hannam, Daejeon University, Paichai, Hoseo, Kyungsung, Silla, Youngsan, Kyungnam, Daegu University, Daegu Catholic, Wonkwang, Chosun, Soonchunhyang, Sangmyung, Seokyeong, Sungkyul, Kyungil, Tongmyong, Kosin, Kongju National, Kunsan National, Mokpo National, Sunchon National, Andong National, Changwon National, Hanbat National, Korea National University of Transportation", seg:"reg"},
+  kr6:{seg:"route", sel:"h"},
+  kr7:{seg:"route", also:"Ewha (incl. Scranton College), Sookmyung, Sungshin, Duksung, Dongduk, Seoul Women's; Korea Military Academy, Naval and Air Force Academies, Korean National Police University; national universities of education"}
+});
+const KR_DL = {
+  f:["Fall 2027 foreign-student round ~early Mar–early Apr 2027 (spring 2027 rounds at this level closed Aug–Sep 2026)","2027-03-02","2027-03-26",0],
+  n:["Spring 2027 round may still be open (~Oct–Dec 2026) · fall 2027 round ~Mar–May 2027","2027-03-02","2027-04-30",1],
+  s:["International rounds ~Oct 2026–Jan 2027 for fall 2027","2026-12-15","2027-01-15",0]
+};
+const KR_BASE = {
+  sky:"Foreign-national admission (both parents non-Korean). Proof of Korean (TOPIK) or English (your IELTS) is required. The Ministry's baseline is 12 years of school and each university decides, so ask in writing whether your 11-year Attestat is accepted.",
+  sci:"English-medium science and technology institute: maths and science grades, essays and recommendations decide; SAT and olympiad results help.",
+  seoul:"Foreign-national admission; most majors teach in Korean (TOPIK 3–4 or a Korean language year first) with a few English tracks. Confirm the 11-year Attestat in writing.",
+  nat:"National university: lower fees, foreign-national rounds in spring and fall, mostly Korean-taught (TOPIK 3 typical) with some English programmes. Confirm the 11-year Attestat in writing.",
+  reg:"Private regional university with large international intakes and English options. Check its IEQAS status: universities that fail it cannot issue student visas for a year."
+};
+const KR_T = "lang:TOPIK 3 (or one of the few English-taught programmes)";
+addRows("South Korea", KR_DL, [
+["k_yonsei","Yonsei University – Underwood International College (UIC)","Seoul · Songdo","Private","100","h","eco ir cs bus soc art","English-taught liberal arts: economics, international studies, political science, techno-art, applied information engineering","","Yonsei's main colleges teach in Korean; UIC teaches in English.","f","sky","yonsei.ac.kr",""],
+["k_korea","Korea University","Seoul","Private","100","h","bus ir eco eng cs","Business (English-heavy), international studies, economics, engineering","","English-taught tracks in international studies and business.","f","sky","korea.ac.kr",""],
+["k_skku","Sungkyunkwan University (SKKU)","Seoul · Suwon","Private","200","m","eng cs bus eco","Semiconductors, computer science, engineering, business (Samsung-linked)","","","f","sky","skku.edu",""],
+["k_hanyang","Hanyang University","Seoul · Ansan","Private","200","m","eng cs bus","Engineering, computer science, business","","","f","sky","hanyang.ac.kr",""],
+["k_sogang","Sogang University","Seoul","Private","500","m","bus eco cs soc","Business, economics, computer science, communication","","Spring round open now.","n","sky","sogang.ac.kr",""],
+["k_khu","Kyung Hee University","Seoul · Suwon","Private","500","m","hos ir bus med soc","Hotel & tourism management, international studies, business, Korean medicine","","","f","sky","khu.ac.kr",""],
+["k_cau","Chung-Ang University","Seoul · Anseong","Private","500","m","bus soc art cs","Business, media & communication, film & arts, software","","","f","sky","cau.ac.kr",""],
+["k_postech","POSTECH","Pohang","Private (science institute)","100","x","sci eng cs","Physics, chemistry, life sciences, engineering, computer science (English-medium)","","International undergraduate track opened for fall 2026.","s","sci","postech.ac.kr",""],
+["k_unist","UNIST","Ulsan","Public (science institute)","500","h","eng sci cs bus","Engineering, natural sciences, computer science, technology management (English-medium)","","","s","sci","unist.ac.kr",""],
+["k_gist","GIST (Gwangju Institute of Science and Technology)","Gwangju","Public (science institute)","?","h","sci eng cs","Basic sciences and engineering (English-medium; about 15 international places)","","","s","sci","gist.ac.kr",""],
+["k_dgist","DGIST","Daegu","Public (science institute)","?","h","sci eng cs","Convergence science and engineering (English-medium)","","","s","sci","dgist.ac.kr",""],
+["k_koreatech","KOREATECH (Korea University of Technology and Education)","Cheonan","Public","u","o","eng cs","Mechanical, electrical, computer engineering","ask:KOREATECH lists 12 years of primary and secondary school: confirm it accepts your 11-year Attestat","Its eligibility text states 12 or more years of schooling.","f","sci","koreatech.ac.kr",""],
+["k_uos","University of Seoul","Seoul","Public (city)","1000","o","eng soc bus","Urban engineering, public administration, business, tax",KR_T,"City-run university with low fees.","f","seoul","uos.ac.kr",""],
+["k_konkuk","Konkuk University","Seoul · Chungju","Private","500","o","bus eng sci art","Business, engineering, biosciences, real estate, design",KR_T,"","n","seoul","konkuk.ac.kr",""],
+["k_dongguk","Dongguk University","Seoul · Gyeongju","Private","1000","o","soc bus eng art","Film, police administration, business, engineering",KR_T,"","n","seoul","dongguk.edu",""],
+["k_hongik","Hongik University","Seoul · Sejong","Private","?","o","art eng","Art and design (portfolio), architecture, engineering",KR_T,"Art and design need a portfolio.","n","seoul","hongik.ac.kr",""],
+["k_kookmin","Kookmin University","Seoul","Private","?","o","art eng cs bus","Automotive engineering, design, software, business",KR_T,"","n","seoul","kookmin.ac.kr",""],
+["k_soongsil","Soongsil University","Seoul","Private","?","o","cs eng bus","Software, AI, IT engineering, business",KR_T,"","n","seoul","ssu.ac.kr",""],
+["k_sejong","Sejong University","Seoul","Private","1000","o","hos cs eng art","Hospitality & tourism, computer science, animation, engineering",KR_T,"","n","seoul","sejong.ac.kr",""],
+["k_kwangwoon","Kwangwoon University","Seoul","Private","?","o","cs eng","Electronics, computer science, robotics",KR_T,"","n","seoul","kw.ac.kr",""],
+["k_seoultech","Seoul National University of Science and Technology (SeoulTech)","Seoul","Public (national)","?","o","eng cs art","Engineering, IT, design; some English-taught global programmes",KR_T,"","n","seoul","seoultech.ac.kr",""],
+["k_catholic","Catholic University of Korea","Bucheon · Seoul","Private","1000","o","med soc bus","Medicine-related sciences, social sciences, business",KR_T,"","n","seoul","catholic.ac.kr",""],
+["k_inha","Inha University","Incheon","Private","500","o","eng cs bus","Engineering, logistics, computer science, business (sister to Inha University in Tashkent)",KR_T,"Close ties to Inha University in Tashkent.","n","seoul","inha.ac.kr",""],
+["k_ajou","Ajou University","Suwon","Private","500","o","eng cs bus","Engineering, software, business",KR_T,"","n","seoul","ajou.ac.kr",""],
+["k_gachon","Gachon University","Seongnam","Private","?","o","cs med bus","AI and software, health sciences, business",KR_T,"Several spring rounds into January.","n","seoul","gachon.ac.kr",""],
+["k_kau","Korea Aerospace University","Goyang","Private","u","o","eng","Aeronautical engineering, aviation, air transport",KR_T,"","n","seoul","kau.ac.kr",""],
+["k_dankook","Dankook University","Yongin · Cheonan","Private","?","o","eng cs bus","Engineering, software, business",KR_T,"","n","seoul","dankook.ac.kr",""],
+["k_kyonggi","Kyonggi University","Suwon · Seoul","Private","u","o","hos bus art","Tourism, business, arts",KR_T,"","n","seoul","kyonggi.ac.kr",""],
+["k_pnu","Pusan National University","Busan","Public (national)","500","o","eng sci bus","Engineering, sciences, business",KR_T,"","n","nat","pusan.ac.kr",""],
+["k_knu","Kyungpook National University","Daegu","Public (national)","500","o","eng cs sci","Electronics, computer science, sciences",KR_T,"","n","nat","knu.ac.kr",""],
+["k_jnu","Chonnam National University","Gwangju · Yeosu","Public (national)","1000","o","eng sci bus","Engineering, sciences, business",KR_T,"Spring 2027 round open until 23 Oct 2026.","n","nat","jnu.ac.kr",""],
+["k_cnu","Chungnam National University","Daejeon","Public (national)","1000","o","eng sci","Engineering, sciences, agriculture",KR_T,"","n","nat","cnu.ac.kr",""],
+["k_cbnu","Chungbuk National University","Cheongju","Public (national)","?","o","eng sci","Engineering, sciences",KR_T,"","n","nat","chungbuk.ac.kr",""],
+["k_jbnu","Jeonbuk National University","Jeonju","Public (national)","1000","o","eng sci bus","Engineering, sciences, business",KR_T,"","n","nat","jbnu.ac.kr",""],
+["k_gnu","Gyeongsang National University","Jinju","Public (national)","?","o","eng sci","Aerospace engineering, sciences, agriculture",KR_T,"","n","nat","gnu.ac.kr",""],
+["k_kangwon","Kangwon National University","Chuncheon","Public (national)","?","o","sci eng","Sciences, engineering, forestry",KR_T,"","n","nat","kangwon.ac.kr",""],
+["k_jeju","Jeju National University","Jeju","Public (national)","?","o","sci hos","Marine sciences, tourism",KR_T,"","n","nat","jejunu.ac.kr",""],
+["k_pknu","Pukyong National University","Busan","Public (national)","?","o","eng sci","Fisheries and marine sciences, engineering",KR_T,"","n","nat","pknu.ac.kr",""],
+["k_woosong","Woosong University – Endicott College of International Studies","Daejeon","Private","u","o","bus hos cs","Global business, hospitality, culinary arts, IT (English-taught)","","","n","reg","wsu.ac.kr",""],
+["k_handong","Handong Global University","Pohang","Private (Christian)","u","o","cs bus soc","Computer science, global management, international studies (English-heavy)","","Christian university with English-heavy teaching.","n","reg","handong.edu",""],
+["k_sunmoon","Sun Moon University","Asan","Private","u","o","eng bus soc","Engineering, business, Korean studies; very international",KR_T,"","n","reg","sunmoon.ac.kr",""],
+["k_hanseo","Hanseo University","Seosan","Private","u","o","eng","Aviation (pilot and aircraft maintenance), engineering",KR_T,"","n","reg","hanseo.ac.kr",""],
+["k_dongseo","Dongseo University","Busan","Private","u","o","cs art bus","Software, film and digital content, business",KR_T,"","n","reg","dongseo.ac.kr",""],
+["k_keimyung","Keimyung University","Daegu","Private","?","o","bus art med","International business (Keimyung Adams College in English), music, health",KR_T,"Keimyung Adams College teaches in English.","n","reg","kmu.ac.kr",""],
+["k_yeungnam","Yeungnam University","Gyeongsan","Private","1000","o","eng bus","Engineering, business, Saemaul (development) studies",KR_T,"","n","reg","yu.ac.kr",""],
+["k_donga","Dong-A University","Busan","Private","?","o","eng bus","Engineering, business",KR_T,"","n","reg","donga.ac.kr",""],
+["k_hallym","Hallym University","Chuncheon","Private","?","o","med cs soc","Health sciences, software, social sciences",KR_T,"","n","reg","hallym.ac.kr",""],
+["k_inje","Inje University","Gimhae","Private","?","o","med eng","Health sciences, engineering",KR_T,"","n","reg","inje.ac.kr",""]
+], KR_BASE);
+
+/* Latvia */
+patchRows({
+  lv1:{name:"Riga Technical University (RTU)", city:"Riga", type:"Public", band:"1000", fields:"eng cs bus", courses:"Computer systems, aviation, civil and electrical engineering, RTU Riga Business School (English)", rule:"Lists the Uzbek attestat. Online maths entrance test for every bachelor's plus at least one reference; AIC recognition takes about a month. Some programmes also start in February.", web:"rtu.lv", sel:"o", spring:1},
+  lv2:{name:"Rīga Stradiņš University (RSU)", city:"Riga", type:"Public", band:"?", fields:"med soc ir", courses:"Medicine and dentistry (entrance exams), public health, international relations, communication (English)", rule:"Health programmes have entrance exams in biology and chemistry; social sciences admit on documents and interview.", web:"rsu.lv", also:"", sel:"m"},
+  lv3:{name:"More Latvian institutions", also:"ISMA, RTU Rēzekne Academy, Art Academy of Latvia, Jāzeps Vītols Latvian Academy of Music, Latvian Academy of Culture, Latvian Academy of Sport Education (closed to you: National Defence Academy)"}
+});
+const LV_DL = {a:["Autumn 2027: deadlines by citizenship, ~1 May–15 Jul 2027 (Uzbek applicants need a visa, so aim for 1 May); some programmes start in February","2027-04-01","2027-05-01",0]};
+const LV_R = "Admits a certificate that opens university at home; AIC recognition (~1 month). Check the programme is accredited before paying.";
+addRows("Latvia", LV_DL, [
+["l_lu","University of Latvia (LU)","Riga","Public","1000","o","cs bus eco soc","Computer science, business administration, economics, communication (English)","","Names the Uzbek attestat in its country requirements (certified copies in the original language and English).","a","","lu.lv",""],
+["l_sse","Stockholm School of Economics in Riga (SSE Riga)","Riga","Private","u","h","eco bus","BSc Economics and Business (English; Swedish degree standards)","","Own admission test in maths, logical reasoning and English; highly selective, strong scholarships.","a","","sseriga.edu",""],
+["l_lbtu","Latvia University of Life Sciences and Technologies (LBTU)","Jelgava","Public","?","o","eng sci","Engineering, food technology, IT, agriculture","",LV_R,"a","","lbtu.lv",""],
+["l_tsi","Transport and Telecommunication Institute (TSI)","Riga","Private","u","o","cs eng bus","Computer science, aviation, logistics (English; February intake too)","",LV_R,"a","","tsi.lv",""],
+["l_riseba","RISEBA University of Applied Sciences","Riga","Private","u","o","bus art soc","Business, media and communication, architecture (English)","",LV_R,"a","","riseba.lv",""],
+["l_turiba","Turība University","Riga","Private","u","o","bus hos soc","Business, tourism and hospitality, law, communication (English)","",LV_R,"a","","turiba.lv",""],
+["l_eka","EKA University of Applied Sciences","Riga","Private","u","o","bus cs","Business, computer science","",LV_R,"a","","eka.edu.lv",""],
+["l_venta","Ventspils University of Applied Sciences","Ventspils","Public","u","o","cs","Computer science, translation","",LV_R,"a","","venta.lv",""],
+["l_vidzeme","Vidzeme University of Applied Sciences","Valmiera","Public","u","o","hos cs","Tourism, IT","",LV_R,"a","","va.lv",""],
+["l_daugavpils","Daugavpils University","Daugavpils","Public","u","o","sci soc","Sciences, humanities","",LV_R,"a","","du.lv",""],
+["l_liepaja","Liepāja University","Liepāja","Public","u","o","art cs","New media art, IT","",LV_R,"a","","liepu.lv",""]
+]);
+
+/* Lithuania */
+patchRows({
+  lt1:{name:"Vilnius University (VU)", city:"Vilnius · Kaunas · Šiauliai", type:"Public", band:"500", fields:"cs bus eco sci med", courses:"Software engineering, business, economics, data science, medicine (English)", rule:"Requires secondary education that opens university at home; recognised in-house. One intake a year.", web:"vu.lt", sel:"o"},
+  lt3:{name:"ISM University of Management and Economics", city:"Vilnius", type:"Private", band:"u", fields:"bus eco cs", courses:"International business, economics and data analytics, finance (English)", rule:"Holistic review plus interview; SAT optional.", web:"ism.lt", also:"", sel:"m"},
+  lt4:{name:"More Lithuanian institutions", also:"Lithuanian Sports University, Vilnius Academy of Arts, Lithuanian Academy of Music and Theatre, Klaipėda State UAS, Panevėžys UAS, Utena UAS, Alytus UAS, Šiauliai State UAS, Vilnius Business College (closed to you: General Jonas Žemaitis Military Academy)"}
+});
+const LT_DL = {a:["Autumn 2027: non-EU deadlines ~1 May (Vilnius University) to ~1 Jun (KTU), from ~1 Dec 2026; a few programmes start in February","2027-04-01","2027-05-01",0]};
+const LT_R = "Admits a certificate that opens university at home; recognition by SKVC or the university.";
+addRows("Lithuania", LT_DL, [
+["l_ktu","Kaunas University of Technology (KTU)","Kaunas","Public","1000","o","eng cs bus","Software systems, mechatronics, international business, design (50+ English programmes)","",LT_R,"a","","ktu.edu",""],
+["l_vmu","Vytautas Magnus University (VMU)","Kaunas","Public","1000","o","soc bus ir cs","Liberal arts, business, political science, informatics (English)","",LT_R,"a","","vdu.lt",""],
+["l_mru","Mykolas Romeris University","Vilnius","Public","?","o","soc bus ir","Law, public security, business, international relations","",LT_R,"a","","mruni.eu",""],
+["l_klaipeda","Klaipėda University","Klaipėda","Public","?","o","sci eng","Marine sciences, engineering","",LT_R,"a","","ku.lt",""],
+["l_lsmu","Lithuanian University of Health Sciences (LSMU)","Kaunas","Public","1000","m","med sci","Medicine, dentistry, pharmacy, veterinary medicine (English)","","Entrance tests in biology and chemistry for medicine and dentistry.","a","","lsmu.lt",""],
+["l_lcc","LCC International University","Klaipėda","Private (US-style)","u","o","bus soc art","International business, psychology, English (liberal arts in English)","",LT_R,"a","","lcc.lt",""],
+["l_smk","SMK University of Applied Social Sciences","Vilnius · Klaipėda","Private","u","o","bus hos cs","Business, tourism, IT","",LT_R,"a","","smk.lt",""],
+["l_ksu","Kazimieras Simonavičius University","Vilnius","Private","u","o","bus soc art","Business, media, fashion","",LT_R,"a","","ksu.lt",""],
+["l_ehu","European Humanities University","Vilnius","Private","u","o","soc art","Humanities, media, design (English and Russian)","",LT_R,"a","","ehu.lt",""],
+["l_viko","Vilnius University of Applied Sciences (Vilniaus kolegija)","Vilnius","Public (college)","u","o","bus cs eng","Professional bachelor's: business, IT, engineering","",LT_R,"a","","viko.lt",""],
+["l_kauko","Kaunas University of Applied Sciences","Kaunas","Public (college)","u","o","bus eng med","Professional bachelor's: business, engineering, health","",LT_R,"a","","kaunokolegija.lt",""]
+]);
+
+/* Malta */
+patchRows({
+  mt2:{name:"American University of Malta (AUM)", city:"Cospicua (Bormla)", type:"Private (US-style)", band:"u", fields:"cs bus eng", courses:"Computer science, business, engineering (English)", req:"ask:AUM's published rules use Maltese MATSEC or A-levels: confirm how it treats an 11-year certificate", rule:"US-style admission; licensed by the Malta Further and Higher Education Authority (MFHEA).", web:"aum.edu.mt", also:"", sel:"o"}
+});
+const MT_DL = {o:["October 2027 start · non-EU applicants needing a visa ~1 Jul 2027 (2026: 1 Jul, 14:00)","2027-04-01","2027-07-01",0], p:["Several intakes (October and February); apply ~3 months ahead for the visa","2027-03-01","2027-06-30",1]};
+addRows("Malta", MT_DL, [
+["m_mcast","Malta College of Arts, Science and Technology (MCAST)","Paola","Public (vocational)","u","o","eng cs bus","Engineering, IT, business (MQF 6 degrees after an MQF 4 diploma)","br","Degree-level entry needs an MQF 4 (A-level-type) qualification first.","o","","mcast.edu.mt",""],
+["m_gcm","Global College Malta","Smart City Malta","Private (UK-validated degrees)","u","o","bus cs","Business, computing (foundation available)","ask:Confirm whether you start in its foundation year","Partner-university entry rules.","p","","globalcollege.edu.mt",""],
+["m_gbs","GBS Malta","St Julian's","Private","u","o","bus hos","Business, hospitality","ask:Confirm entry with an 11-year certificate","Private admission.","p","","gbs.edu.mt",""],
+["m_stmartins","St Martin's Institute of Higher Education","Swatar","Private (University of London degrees)","u","o","bus cs eco","Business, computing, economics (University of London)","ask:University of London rules usually want a foundation after 11-year systems","University of London entry standards.","p","","stmartins.edu",""],
+["m_qmul","Queen Mary University of London – Malta Campus","Gozo","UK branch campus","?","x","med","Medicine (MBBS)","D","UK medical-school entry (A-levels or equivalent, UCAT); not open with an 11-year certificate.","o","","qmul.ac.uk/malta",""]
+]);
+
+/* Iceland */
+patchRows({
+  is1:{name:"University of Iceland", city:"Reykjavík", type:"Public", band:"1000", fields:"sci eng soc", courses:"Few English bachelor's (most teach in Icelandic); sciences, engineering, social sciences", rule:"Needs the equivalent of the Icelandic matriculation exam (about 13 years of school), so an 11-year Attestat is expected to fall short. Non-EEA students start in autumn only.", web:"hi.is", also:"", sel:"m"}
+});
+const IS_DL = {a:["Autumn only for non-EU applicants: ~31 Jan–1 Feb 2027","2027-01-15","2027-02-01",0]};
+addRows("Iceland", IS_DL, [
+["i_ru","Reykjavík University","Reykjavík","Private (non-profit)","?","m","cs eng bus soc","Computer science, engineering, business, psychology (some English)","br","Needs matriculation-level equivalence; ask for an individual assessment. ISK 16,000 application fee for non-EU applicants.","a","","ru.is",""],
+["i_lhi","Iceland University of the Arts","Reykjavík","Private","u","m","art","Fine art, design, music (selected English programmes; portfolio or audition)","br","Portfolio or audition plus matriculation-level equivalence.","a","","lhi.is",""],
+["i_more","Other Icelandic universities","Akureyri · Hvanneyri · Hólar · Bifröst","Public and private","u","o","sci bus soc","Mostly Icelandic-taught","br;lang:Icelandic","Taught almost entirely in Icelandic.","a","","","University of Akureyri, Agricultural University of Iceland, Hólar University, Bifröst University"]
+]);
+
+/* Luxembourg */
+patchRows({
+  lu1:{rule:"Third-country diplomas need the Ministry of Education's equivalence before you apply (at least 6 weeks; EUR 125). It requires at least 12 consecutive years of school, so an 11-year Attestat fails. Whether a year of university completes the 12 years is not established: ask the Ministry in writing."},
+  lu2:{name:"LUNEX University", city:"Differdange", type:"Private (state-accredited)", band:"u", fields:"med bus", courses:"Physiotherapy, sport and exercise science, international sport management (English)", req:"ask:Confirm LUNEX's own rule for an 11-year certificate (it may also apply the 12-year equivalence)", rule:"Own admission; state-accredited private university.", web:"lunex.lu", also:"", sel:"o"}
+});
+const LU_DL = {a:["Own calendar; check (University of Luxembourg's non-EU window was 1 Feb–24 Mar 2026)","2027-02-01","2027-03-24",0]};
+addRows("Luxembourg", LU_DL, [
+["l_ebu","European Business University of Luxembourg","Luxembourg City","Private","u","o","bus","Business administration (English)","ask:Check accreditation and whether the degree is recognised","Own criteria; verify state recognition before paying.","a","","ebu.lu",""],
+["l_ubi","United Business Institutes Luxembourg","Luxembourg City","Private","u","o","bus","Business (with foreign validating partners)","ask:Check accreditation and the validating partner's entry rules","Own criteria; verify recognition.","a","","ubi.lu",""]
+]);
+
+/* Foundations and language routes */
+F_RAW.forEach(f => {
+  if (f[0] === "f23") { f[9] = "Non-EU with a visa: ~1 Jul 2027 (2026: 1 Jul, 14:00); apply early"; f[10] = "2027-04-01"; f[11] = "2027-07-01"; }
+});
+F_RAW.push(["f_yskli","Yonsei University – Korean Language Institute","Seoul","South Korea","Korean-taught degrees after TOPIK 3–4 (any university)","o","Yes","None (from zero)","Spring term from March 2027; quarterly terms","Spring 2026 term: 12 Dec 2025–16 Jan 2026; expect ~Dec 2026–mid Jan 2027","2026-12-20","2027-01-15","10-week terms",1,0,3,"Language route (D-4 visa), not academic credit.","y","","soc","yskli.com"]);
+
+/* Country cards */
+Object.assign(CI["South Korea"], {v:"Mostly open, but ask each university: the Ministry's baseline is 12 years and each university decides. KAIST, Yonsei and GKS reportedly accept completed secondary school.", rule:"University by university (12-year baseline)", visa:"D-2: bank deposit, TB test; avoid the universities under visa restrictions (IEQAS)", spring:"Yes: Sogang, Chonnam, Gachon and other mid-tier rounds Oct 2026–Jan 2027"});
+Object.assign(CI["Iceland"], {v:"Matriculation-level equivalence needed; non-EU applicants start in autumn only (deadline ~1 Feb)."});
+Object.assign(CI["Luxembourg"], {v:"The University of Luxembourg needs a Ministry equivalence that requires 12 consecutive years; only small private options remain."});
 /* ---------- Tier 2 strategies ---------- */
 Object.assign(DEEP, {
 "Australia":{
@@ -2765,6 +2931,65 @@ const scoreOf = c => { const s = SCORE[c]; if (!s) return null; return Math.roun
 
 /* US state names for search */
 const US_STATES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DC:"Washington DC",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
+/* ---------- Tier 3 strategies (v9) ---------- */
+Object.assign(DEEP, {
+"South Korea":{
+  head:"The strongest Tier 3 option. Korea admits foreign nationals through each university's own rounds (spring and fall), many top universities have English tracks, and KAIST and GKS are realistic scholarship routes. The open question is your 11 years: the Ministry's baseline is 12 years and each university decides, so get a written yes before paying fees.",
+  read:["Each university runs a foreign-national admission (both parents non-Korean): documents, essay, sometimes an interview.","Proof of Korean (TOPIK) or English is required; your IELTS 7.5 covers English tracks. Korean-taught majors expect TOPIK 3–4.","KAIST, Yonsei and GKS reportedly accept completed secondary school by the start of the semester; some universities (e.g. KOREATECH) state 12 years.","Documents: apostilled Attestat and transcript with translation; some universities also check them with the issuing school."],
+  edge:["Grades of 5/5 in every subject","IELTS 7.5 for English tracks","Age 22 fits GKS (under 25)","Uzbek students are a large, well-supported group in Korea"],
+  risk:["<b>11 years.</b> Ask each university in writing whether your Attestat is accepted.","<b>Language.</b> Outside English tracks you need TOPIK 3–4; a Korean language institute year fixes this but adds time.","<b>Visa.</b> The D-2 needs a bank deposit and a TB test; universities that fail IEQAS can't issue visas for a year, so check the list.","<b>Short windows.</b> SNU's round lasts days; KAIST's early track closes 22 Oct 2026."],
+  plan:[["By 22 Oct 2026","KAIST early track (spring or fall 2027 entry). Chonnam's spring round closes 23 Oct; HUFS's runs to 30 Oct."],["Oct–Nov 2026","GKS-U university track at participating universities (one track only). Sogang's spring round runs 12 Oct–20 Nov."],["Nov 2026–Jan 2027","KAIST regular track (to 14 Jan), GIST (1 Dec–29 Jan), UNIST (~Dec–Jan); Gachon's later spring rounds."],["Mar–Apr 2027","Fall rounds at Yonsei, Korea University, SKKU, Hanyang, Chung-Ang, University of Seoul and others."],["May–Aug 2027","Results, then the D-2 visa at the Korean embassy in Tashkent."]],
+  mix:{x:1, h:2, m:2, o:3}, picks:{x:["kr4"], h:["k_yonsei","k_korea"], m:["k_sogang","k_skku"], o:["kr1","k_inha","kr2"]}
+},
+"Latvia":{
+  head:"Directly open and simple. The University of Latvia names the Uzbek attestat, Riga Technical University lists it too, and many bachelor's are taught in English with low IELTS bars. Apply by spring for visa time.",
+  read:["Your attestat is recognised through the Academic Information Centre (AIC), which takes about a month.","RTU adds an online maths test and a reference; SSE Riga runs its own maths, logic and English test.","Deadlines depend on your citizenship; visa-requiring applicants have the earliest dates."],
+  edge:["Direct entry with your certificate","English-taught degrees","IELTS 7.5 far above the 5.5–6.0 asked"],
+  risk:["<b>Recognition.</b> RTU and LU are in the top 1,000; most private institutions are not, so their degrees need nostrification at home.","<b>Accreditation.</b> Check the programme is accredited before paying.","<b>Schengen visa</b> refusals for Uzbek applicants are moderate; apply early."],
+  plan:[["Feb–Apr 2027","Apply to RTU, LU and SSE Riga; sit RTU's maths test and SSE's admission test."],["By 1 May 2027","Safest final date for visa-requiring applicants."],["May–Aug 2027","Residence permit through the Latvian embassy."]],
+  mix:{h:1, o:2}, picks:{h:["l_sse"], o:["lv1","l_lu"]}
+},
+"Lithuania":{
+  head:"Directly open at Vilnius University, KTU and most others, with many English degrees. VILNIUS TECH is the exception: it asks for Uzbek national entrance-exam results, which you don't have.",
+  read:["Universities accept secondary education that opens university at home; Vilnius University recognises it in-house, others through SKVC.","Some programmes add a motivation interview or a maths test."],
+  edge:["Direct entry","English-taught degrees","Applications open from about December"],
+  risk:["<b>VILNIUS TECH</b> needs DTM results, so it is closed to you.","<b>Recognition.</b> Vilnius University, KTU, VMU and LSMU are ranked; private and college degrees need nostrification.","<b>National D visa</b> after admission; allow 2–3 months."],
+  plan:[["Dec 2026–Apr 2027","Apply to Vilnius University, KTU and ISM (applications open ~1 Dec)."],["1 May 2027","Vilnius University's non-EU deadline (2026 pattern); KTU ~1 Jun."],["May–Aug 2027","National D visa and arrival."]],
+  mix:{m:1, o:3}, picks:{m:["lt3"], o:["lt1","l_ktu","l_vmu"]}
+},
+"Malta":{
+  head:"English-speaking and EU, but the University of Malta wants Matriculation level, so you start with its Foundation Studies. Private colleges admit directly but are mostly outside rankings.",
+  read:["The University of Malta compares foreign certificates with the Maltese Matriculation Certificate (A-level type); 11-year systems go through Foundation Studies.","Private institutions follow their partner universities' rules."],
+  edge:["Fully English","EU degree","Foundation accepts IELTS 5.5 with 5.0 bands"],
+  risk:["<b>Time.</b> Foundation in 2027–28, degree from 2028.","<b>Recognition.</b> Only the University of Malta is ranked.","<b>Visa</b> through Identità takes time; the non-EU visa deadline is about 1 July."],
+  plan:[["Feb–Jun 2027","Apply to University of Malta Foundation Studies (non-EU visa deadline ~1 Jul)."],["Jul–Sep 2027","Residence permit; start in October."]],
+  mix:{o:2}, picks:{o:["mt1","m_gcm"]}
+},
+"Iceland":{
+  head:"Not realistic for 2027. Icelandic universities want the equivalent of their 13-year matriculation exam, most bachelor's teach in Icelandic, and non-EU students may only start in autumn with a 31 Jan–1 Feb deadline.",
+  read:["Foreign certificates are assessed individually against the Icelandic stúdentspróf.","An 11-year Attestat is expected to need one or two years of university first."],
+  edge:["IELTS 7.5 meets Reykjavík University's 6.5"],
+  risk:["<b>Equivalence</b> is unlikely without a bridge year.","<b>Language.</b> Few English bachelor's.","<b>Fees.</b> The University of Iceland may charge non-EEA students from autumn 2027 (unconfirmed)."],
+  plan:[["By 31 Jan 2027","Only if you want to test it: ask Reykjavík University for an individual assessment and apply."],["2028","Realistic after a year of university elsewhere."]],
+  mix:{m:1}, picks:{m:["i_ru"]}
+},
+"Luxembourg":{
+  head:"Closed at the University of Luxembourg: the Ministry's equivalence needs 12 consecutive years. Only small private institutions remain, and their recognition must be checked.",
+  read:["Third-country applicants need the Ministry's equivalence before applying (at least six weeks).","Private institutions set their own rules."],
+  edge:["Multilingual, well-paid labour market"],
+  risk:["<b>12 years</b> required by the Ministry.","<b>Private degrees</b> may not be recognised in Uzbekistan."],
+  plan:[["2027","No University of Luxembourg action; ask LUNEX directly if sport or physiotherapy interests you."]],
+  mix:{o:1}, picks:{o:["lu2"]}
+}
+});
+Object.assign(SCORE, {
+  "South Korea":{a:4,o:4,r:4,v:3,e:3,t:4,w:3, why:"Mostly open with English tracks, GKS and spring rounds; confirm the 11 years with each university."},
+  "Latvia":{a:5,o:5,r:3,v:3,e:4,t:4,w:2, why:"Names the Uzbek attestat; English degrees and easy admission, but modest rankings."},
+  "Lithuania":{a:4,o:5,r:3,v:3,e:4,t:4,w:2, why:"Directly open except VILNIUS TECH; English degrees and clear spring deadlines."},
+  "Malta":{a:2,o:4,r:2,v:3,e:5,t:3,w:3, why:"English and EU, but the University of Malta starts you in a foundation."},
+  "Iceland":{a:1,o:2,r:3,v:3,e:2,t:2,w:3, why:"Matriculation equivalence and Icelandic-taught degrees close it for 2027."},
+  "Luxembourg":{a:1,o:2,r:3,v:3,e:2,t:2,w:3, why:"The Ministry requires 12 consecutive years."}
+});
 /* ===================== v8 · VERIFIED DEADLINES (checked 8 Oct 2026) =====================
    st: "v" = 2027-cycle date confirmed from the institution's own page or document
        "p" = institution's own dates for the 2026 cycle; 2027 not yet published (pattern)
@@ -2952,6 +3177,37 @@ ver("pt_iscte", {st:"p", win:"ISCTE international (Fenix+): phase 1 mid-Dec – 
 ver("pt2", {win:"Católica (CLSBE) International Student Statute: phase 1 early Dec – early Jan; later phases run into June, but a June offer leaves too little time for a Portuguese visa (2025/26 calendar)", fin:"2027-04-01"});
 ver("pt_iscte", {win:"ISCTE international (Fenix+): phase 1 mid-Dec – ~15 Jan, then rounds ending late Feb, early Apr, mid-May and late June; unfilled places roll over. Aim for phase 1 or 2 because of visa times", fin:"2027-04-05"});
 
+/* Tier 3 (checked 8 Oct 2026) */
+ver("kr4", {st:"v", win:"Early track 22 Sep–22 Oct 2026, 18:00 KST (spring or fall 2027 entry; letters by 29 Oct; results 7 Jan) · Regular track 10 Nov 2026–14 Jan 2027 (fall only; results 25 Mar)", sug:"2026-10-20", fin:"2027-01-14", src:["KAIST: application timeline for 2027 admissions","https://admission.kaist.ac.kr/intl-undergraduate/application/ApplicationGuide/ApplicationTimeline"]});
+ver("k_gist", {st:"v", win:"Fall 2027: online application 1 Dec 2026–29 Jan 2027 (results 30 Apr); about 15 places; school finished by 31 Jul 2027", sug:"2027-01-15", fin:"2027-01-29", src:["GIST: 2027 fall undergraduate admission guideline","https://ewww.gist.ac.kr/iuadm/img/sub02/2027_Fall_Undergraduate_Admission_Guideline.pdf"]});
+ver("k_unist", {st:"p", win:"Fall 2026 cycle: 8 Dec 2025–23 Jan 2026 on Study in Korea (KRW 50,000 fee); expect ~Dec 2026–late Jan 2027", sug:"2027-01-10", fin:"2027-01-22", src:["UNIST: fall 2026 guideline for international applicants","https://admu-intl.unist.ac.kr/wp-content/uploads/2014/12/2026-Fall-undergraduate-admission-guideline-for-International-applicant-updated.pdf"]});
+ver("k_postech", {st:"p", win:"First international round (fall 2026) ran 26 Sep–3 Nov 2025 on Study in Korea; expect ~late Sep–early Nov 2026, so check now", sug:"2026-10-25", fin:"2026-11-03", src:["Korea JoongAng Daily: POSTECH international admissions","https://www.koreajoongangdaily.com/korea/postech-to-open-international-undergraduate-admissions-for-fall-2026/12461718"]});
+ver("k_yonsei", {st:"p", win:"Spring 2027 closed 17 Sep 2026. Fall 2026 round ran 10–26 Mar 2026 (documents by 10 Apr); expect ~March 2027. Proof of Korean or English is mandatory (your IELTS counts)", sug:"2027-03-08", fin:"2027-03-26", src:["Yonsei: Fall 2026 application guide for international students","https://www2.yonsei.ac.kr/entrance/2026/intl/2026_9_docu/Fall%202026%20Application%20Guide%20for%20International%20Students(Eng).pdf"]});
+ver("k_korea", {st:"p", win:"Fall 2026 round 2–27 Mar 2026 (postal documents by 31 Mar; results 12 Jun); spring 2027 closed 31 Aug 2026", sug:"2027-03-02", fin:"2027-03-26", src:["Korea University: admission guide","https://oia.korea.ac.kr/oia2026/Admission-Guide.do"]});
+ver("kr3", {st:"s", win:"Spring 2027 round ran 6–9 Jul 2026; fall 2026 round ran 3–5 Mar 2026, so expect a few days in early March 2027", sug:"2027-03-02", fin:"2027-03-05", src:["Gradualin: SNU 2027 admissions","https://gradualin.com/snu-undergraduate-admissions-2027-international-students/"]});
+ver("k_skku", {st:"s", win:"Spring 2027 closed (12–21 Aug 2026); fall round ~March 2027", sug:"2027-03-02", fin:"2027-03-26", src:["Korea JoongAng Daily: spring 2027 admissions","https://www.koreajoongangdaily.com/korea/spring-2027-admissions-for-international-students-open-at-korean-universities/12788168"]});
+ver("k_sogang", {st:"s", win:"Spring 2027 round 12 Oct–20 Nov 2026 (17:00 KST), open now · fall 2027 round ~March 2027", sug:"2026-11-13", fin:"2026-11-20", src:["Korea JoongAng Daily: more universities open spring admissions","https://www.koreajoongangdaily.com/korea/more-korean-universities-open-spring-admissions-for-international-students/12901437"]});
+ver("k_jnu", {st:"s", win:"Spring 2027 round open to 23 Oct 2026 · fall 2027 round ~spring 2027", sug:"2026-10-20", fin:"2027-04-30", src:["Korea JoongAng Daily: spring 2027 admissions open","https://www.koreajoongangdaily.com/korea/korean-universities-open-spring-2027-admissions-for-international-students/12863631"]});
+ver("k_gachon", {st:"s", win:"Spring 2027 in three rounds: round 2 23 Nov–4 Dec 2026, round 3 28 Dec 2026–4 Jan 2027 (reported for the Seongnam Global Campus university) · fall rounds in spring 2027", sug:"2026-12-04", fin:"2027-04-30", src:["Korea JoongAng Daily: more universities open spring admissions","https://www.koreajoongangdaily.com/korea/more-korean-universities-open-spring-admissions-for-international-students/12901437"]});
+ver("k_cau", {st:"s", win:"Fall 2026 first round 23 Mar–17 Apr 2026 (results 15 May); expect the same for fall 2027", sug:"2027-03-23", fin:"2027-04-16", src:["CAKEC: Chung-Ang 2026 admissions guide","https://www.cakec.com/single-post/chung-ang-univ-2026-admissions-guide-for-international-students"]});
+ver("k_uos", {st:"s", win:"Fall 2027 window 8–25 Mar 2027 in a University of Seoul document (confirm it is the undergraduate round)", sug:"2027-03-08", fin:"2027-03-25", src:["University of Seoul admission document","https://eng.uos.ac.kr/koia/web/file/download/uu/0f4f20c9ab614e2d9e298e00692005e5"]});
+ver("kr1", {st:"s", win:"Spring 2027 round 12–30 Oct 2026 (open now) · fall 2027 round ~Mar–May 2027", sug:"2026-10-28", fin:"2027-04-30", src:["Korea JoongAng Daily: spring 2027 admissions","https://www.koreajoongangdaily.com/korea/spring-2027-admissions-for-international-students-open-at-korean-universities/12788168"]});
+const WSU_V = {st:"p", win:"Woosong 2026 guide: applications from abroad 2 Mar–10 Jul 2026 (USD 50 fee); expect a similar window for fall 2027, plus a spring intake", sug:"2027-04-01", fin:"2027-07-09", src:["Woosong University: application guide 2026","https://english.wsu.ac.kr/site/main_eng/images/Application%20Guide%20Booklets_en_2026_v2.pdf"]};
+ver("kr2", WSU_V); ver("k_woosong", WSU_V);
+ver("kr6", {st:"v", win:"Embassy track closed 30 Sep 2026. University track runs to ~November 2026 at each participating university (own deadlines); you may use only one track", sug:"2026-10-20", fin:"2026-11-30", src:["Korean MOFA: 2027 GKS undergraduate notice","https://www.mofa.go.kr/ke-en/brd/m_10538/view.do?seq=761541"]});
+ver("l_lu", {st:"p", win:"2026 intake: 1 May for 'additional assessment' countries, 21 Jun for visa-requiring non-EU citizens, 16 Aug for visa-free and EU. Apply by 1 May to be safe", sug:"2027-04-01", fin:"2027-05-01", src:["University of Latvia: degree studies admission","https://www.lu.lv/en/admissions/degree-studies/"]});
+ver("lv1", {st:"p", win:"Autumn 2025 deadlines by citizenship group: 1 May, 15 Jun, 15 Jul (most other countries), 1 Aug (EU). apply.rtu.lv shows your date when you pick Uzbekistan", sug:"2027-04-01", fin:"2027-05-01", src:["RTU: application deadlines autumn 2025","https://apply.rtu.lv/news/new/15-application-deadlines-autumn-2025"]});
+ver("lv2", {st:"s", win:"Autumn admission opens 1 Feb; deadlines 1 May–13 Aug depending on citizenship and programme", sug:"2027-03-15", fin:"2027-05-01", src:["Study in Latvia: Rīga Stradiņš University","https://www.studyinlatvia.lv/universities/riga-stradins-university"]});
+ver("l_sse", {st:"p", win:"Last published cycle: apply by 15 Apr, admission test (maths, logic, English) 26 Apr; expect mid-April–May 2027", sug:"2027-04-01", fin:"2027-04-15", src:["SSE Riga: how to apply","https://www.sseriga.edu/education/bachelor/admission"]});
+ver("lt1", {st:"p", win:"Autumn 2026: non-EU deadline 1 May (EU 1 Jul); applications open ~1 Dec; one intake a year", sug:"2027-04-01", fin:"2027-05-01", src:["Vilnius University: apply to bachelor's studies","https://www.vu.lt/en/admissions/admissions-to-bachelor-studies"]});
+ver("l_ktu", {st:"p", win:"2026 intake: apply by 1 Jun 2026; 50+ English programmes", sug:"2027-04-15", fin:"2027-06-01", src:["KTU: admissions for international students 2026","https://en.ktu.edu/news/ktu-opens-admissions-for-international-students-2026"]});
+ver("lt3", {st:"s", win:"2027 rounds not published; applicants from visa-regime countries are in the earliest group (~30 Apr in estimates)", sug:"2027-03-31", fin:"2027-04-30", src:["ISM: bachelor admission regulations 2026","https://www.ism.lt/wp-content/uploads/BS-Admission-regulations_BS_2026_EN.pdf"]});
+ver("l_lcc", {st:"s", win:"International deadlines around 15 Apr (fall early) and 15 May (fall final) in the latest brochure; confirm", sug:"2027-04-15", fin:"2027-05-15", src:["LCC International University: brochure","https://lcc.lt/assets/lcc_gib_digital_apr_2026_pdf.pdf"]});
+ver("mt1", {st:"p", win:"October 2026: non-EU applicants needing a visa by 1 Jul 2026, 14:00 (later applications deferred to the next intake); expect ~1 Jul 2027. Foundation Studies first", sug:"2027-04-01", fin:"2027-07-01", src:["University of Malta: admissions FAQs","https://www.um.edu.mt/study/admissionsadvice/admissionsfaqs/"]});
+ver("is1", {st:"s", win:"Non-EEA: 1 Feb 2027 for autumn 2027 (application and documents via Ugla). Tuition for non-EEA students may start from autumn 2027 (unconfirmed)", sug:"2027-01-15", fin:"2027-02-01", src:["University of Iceland: application deadline","https://english.hi.is/study/apply/application-deadline"]});
+ver("i_ru", {st:"p", win:"Non-EU: autumn only; application opens 5 Oct, deadline 31 Jan (the page does not state the year); ISK 16,000 fee", sug:"2027-01-15", fin:"2027-01-31", src:["Reykjavík University: application process","https://en.ru.is/application-process"]});
+ver("lu1", {st:"p", win:"2026/27 non-EU window 1 Feb–24 Mar 2026 (some programmes 31 Mar); equivalence needed before applying", src:["University of Luxembourg: applying for admission","https://www.uni.lu/en/admissions/bachelor-master/"]});
+
 /* ---------- apply the checks to the directory ---------- */
 const VER_ST = {v:["✓ 2027 date","Confirmed for the 2027 cycle on the university's own page","dv-v"], p:["2026 pattern","The university's own 2026-cycle dates; the 2027 dates are not out yet","dv-p"], s:["Secondary source","From a consultancy or aggregator; confirm on the official page","dv-s"]};
 const LAC_WIN = "ED I ~1–15 Nov · ED II / RD ~1–15 Jan 2027 (typical; confirm)";
@@ -3045,7 +3301,10 @@ const STEPS = {
 };
 const EV = [
 ["2026-10-15","Pavia Foundation 2027/28: window 1 closes (later windows follow)","key","Italy"],
+["2026-10-22","KAIST early track closes (18:00 KST)","key","South Korea"],
 ["2026-10-23","SAT registration closes for 7 Nov","key",""],
+["2026-10-23","Chonnam National spring round closes","key","South Korea"],
+["2026-10-30","HUFS spring round closes","key","South Korea"],
 ["2026-11-01","Early rounds: US EA/ED, Qatar Education City, NYU Shanghai ED","key","USA"],
 ["2026-11-07","SAT sitting","key",""],
 ["2026-11-12","CUHK advance round · FH Aachen Freshman exam registration","key","Hong Kong"],
@@ -3053,13 +3312,19 @@ const EV = [
 ["2026-11-20","SAT registration closes for 5 Dec · Tsinghua round 1 closes","key",""],
 ["2026-11-25","HKUST priority round","key","Hong Kong"],
 ["2026-11-26","HKU first round (noon)","key","Hong Kong"],
+["2026-11-20","Sogang spring round closes","key","South Korea"],
 ["2026-11-30","University of California closes","key","USA"],
+["2026-11-30","GKS-U university track: last university deadlines (≈)","key","South Korea"],
 ["2026-12-01","Columbia GS application opens · UT Austin closes","key","USA"],
 ["2026-12-05","SAT sitting","key",""],
 ["2026-12-15","France DAP closes (French-taught public universities)","key","France"],
 ["2026-12-18","December SAT scores out (≈)","key",""],
 ["2026-12-31","Caltech: SAT scores due for regular decision","key","USA"],
 ["2027-01-04","Duke Kunshan regular decision","key","China"],
+["2027-01-14","KAIST regular track closes","key","South Korea"],
+["2027-01-29","GIST fall round closes","key","South Korea"],
+["2027-01-31","Reykjavík University non-EU deadline","key","Iceland"],
+["2027-02-01","University of Iceland non-EEA deadline","key","Iceland"],
 ["2027-01-05","NYU Shanghai, NYU, Stanford, Brown regular decision","key",""],
 ["2027-01-07","CUHK regular round · EDHEC round 2","key","Hong Kong"],
 ["2027-01-12","ESSEC Global BBA round 2","key","France"],
@@ -3505,7 +3770,7 @@ function renderBalance(){
     if (n.x > 6) tips.push("<b>More than six long shots.</b> Each needs tailored essays. Keep the ones you would truly choose.");
     if (!tips.length) tips.push(`<b>Balanced.</b> ${n.o} likely, ${n.m} target and ${top} ambitious choices is a healthy spread.`);
   }
-  const t1 = ORDER.filter(c => tierOf(c) <= 2);
+  const t1 = ORDER.filter(c => DEEP[c]);
   const rows = t1.map(c => {
     const mine = live.filter(o => o.x.country === c), cn = chCount(mine), d = DEEP[c], rec = d ? CH_KEYS.reduce((a,k) => a + (d.mix[k] || 0), 0) : 0;
     return `<tr><td><button type="button" class="linkbtn" data-sc="${esc(c)}">${esc(DISPLAY(c))}</button></td>${CH_KEYS.map(k => `<td class="nums ${cn[k] ? "" : "faint"}">${cn[k]}</td>`).join("")}<td class="nums"><b>${mine.length}</b></td><td class="nums faint">${rec || "—"}</td></tr>`;
@@ -3515,7 +3780,7 @@ function renderBalance(){
     ${balBar(n)}
     <ul class="tips">${tips.map(t => `<li>${t}</li>`).join("")}</ul>
     <p class="small muted">Suggested for 2027: 20–28 applications in total. About 12–15 in the USA (one Common App) and 2–4 in each of 4–5 other Tier 1 countries. Aim for roughly a quarter long shots and reaches, 40% targets and a third likely options.</p>
-    <details class="small"><summary class="faint" style="cursor:pointer">Tier 1–2 breakdown</summary><div class="tablebox" style="margin-top:8px"><table><thead><tr><th>Country</th>${CH_KEYS.map(k => `<th>${CH[k][0]}</th>`).join("")}<th>Saved</th><th>Suggested</th></tr></thead><tbody>${rows}</tbody></table></div>${otherN ? `<p class="faint" style="margin-top:6px">${otherN} more saved in Tier 3 or from Tashkent.</p>` : ""}</details>`;
+    <details class="small"><summary class="faint" style="cursor:pointer">Breakdown by country</summary><div class="tablebox" style="margin-top:8px"><table><thead><tr><th>Country</th>${CH_KEYS.map(k => `<th>${CH[k][0]}</th>`).join("")}<th>Saved</th><th>Suggested</th></tr></thead><tbody>${rows}</tbody></table></div>${otherN ? `<p class="faint" style="margin-top:6px">${otherN} more saved in Tier 3 or from Tashkent.</p>` : ""}</details>`;
 }
 function stratPickCard(id){
   const x = byId[id]; if (!x) return "";
@@ -3523,8 +3788,8 @@ function stratPickCard(id){
   return `<li class="pk"><div style="min-width:0"><button type="button" class="linkbtn pkn" data-goto="${id}">${esc(x.name)}</button><div class="faint small">${esc(x.city)}${x.fin ? " · final " + fmt(x.fin) : ""}</div></div><div class="pkm">${chip(e.s)}${e.s !== "closed" ? saveBtn(id) : ""}</div></li>`;
 }
 function renderScore(){
-  const keys = Object.keys(SCORE_W), cs = ORDER.filter(c => SCORE[c] && tierOf(c) <= 2).sort((a,b) => scoreOf(b) - scoreOf(a));
-  $("#score").innerHTML = `<div class="toolbar"><div><span class="eyebrow">Country scorecard · Tier 1 and Tier 2</span><h3 style="margin-top:4px">Where your 2027 chances are strongest</h3></div></div>
+  const keys = Object.keys(SCORE_W), cs = ORDER.filter(c => SCORE[c]).sort((a,b) => scoreOf(b) - scoreOf(a));
+  $("#score").innerHTML = `<div class="toolbar"><div><span class="eyebrow">Country scorecard · all three tiers</span><h3 style="margin-top:4px">Where your 2027 chances are strongest</h3></div></div>
     <p class="small muted">Each factor is scored 1–5 for your profile (11-year Attestat, 2022 graduate, IELTS 7.5 with Writing 5.5, SAT planned; finance ignored), then weighted: ${keys.map(k => `${SCORE_L[k]} ${SCORE_W[k]}%`).join(", ")}. It ranks countries, not single universities; use it to decide where to spend applications.</p>
     <div class="tablebox"><table class="stack score"><thead><tr><th>#</th><th>Country</th>${keys.map(k => `<th>${SCORE_L[k]}</th>`).join("")}<th>Score</th><th>Why</th></tr></thead><tbody>${cs.map((c,i) => { const s = SCORE[c], tot = scoreOf(c), t = tierOf(c); return `<tr><td class="nums faint rk">${i + 1}</td><td class="cn"><button type="button" class="linkbtn" data-sc="${esc(c)}">${esc(DISPLAY(c))}</button> <span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></td>${keys.map(k => `<td class="f" data-l="${SCORE_L[k]}" data-s="${SCORE_S[k]}"><span class="sc s${s[k]}" title="${SCORE_L[k]}: ${s[k]} of 5">${s[k]}</span></td>`).join("")}<td class="tt" data-l="Score"><span class="tot"><b>${tot}</b><i><u style="width:${tot}%"></u></i></span></td><td class="small muted why" data-l="Why">${esc(s.why)}</td></tr>`; }).join("")}</tbody></table></div>`;
 }
@@ -3755,7 +4020,7 @@ function monthItems(includePast){
     if (t.suggest && t.suggest !== t.final) items.push({date:t.suggest, kind:"sug", title:t.title, tag:"Suggested", done, country:t.country, detail:t.detail});
     if (t.final) items.push({date:t.final, kind:"fin", title:t.title, tag:"Final deadline", done, country:t.country, detail:t.detail});
   });
-  if (mf !== "tasks") EV.forEach(([date,title,kind,c]) => { if (!c || tierOf(c) <= 2) items.push({date, kind:kind === "risk" ? "risk" : "key", title, tag:kind === "risk" ? "Hard limit" : "Key date", done:false, country:c, detail:""}); });
+  if (mf !== "tasks") EV.forEach(([date,title,kind,c]) => { if (!c || tierOf(c) <= 3) items.push({date, kind:kind === "risk" ? "risk" : "key", title, tag:kind === "risk" ? "Hard limit" : "Key date", done:false, country:c, detail:""}); });
   return items.filter(i => includePast || daysTo(i.date) >= 0).sort((a,b) => a.date.localeCompare(b.date) || (a.kind === "fin" ? -1 : 1));
 }
 function renderMonths(){
@@ -3839,7 +4104,7 @@ function planCSV(){
     if (t.suggest && t.suggest !== t.final && daysTo(t.suggest) >= -1) rows.push(["Suggested: " + t.title, usDate(t.suggest), "True", (t.detail || "") + (t.final ? " | Final deadline " + fmt(t.final) : "")]);
     if (t.final && daysTo(t.final) >= -1) rows.push(["FINAL deadline: " + t.title, usDate(t.final), "True", t.detail || ""]);
   });
-  EV.forEach(([date,title,kind,c]) => { if (daysTo(date) >= -1 && (!c || tierOf(c) <= 2)) rows.push([(kind === "risk" ? "Hard limit: " : "Key date: ") + title, usDate(date), "True", c ? DISPLAY(c) : ""]); });
+  EV.forEach(([date,title,kind,c]) => { if (daysTo(date) >= -1 && (!c || tierOf(c) <= 3)) rows.push([(kind === "risk" ? "Hard limit: " : "Key date: ") + title, usDate(date), "True", c ? DISPLAY(c) : ""]); });
   return rows.map(r => r.map(csvCell).join(",")).join("\r\n");
 }
 function shortlistCSV(){

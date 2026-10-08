@@ -72,9 +72,9 @@ Most universities publish 2027 dates between September and December 2026. Re-che
 
 Checked against the 2025 Carnegie R1 list, the Hong Kong degree-awarding institutions, Universities Canada and the national lists already used for the other countries.
 
-- **USA, 35 new rows (279 → 314).**
-  - **Research universities that were only named inside "more" rows**, now full entries: Ole Miss, Mississippi State, Montana State, Montana, New Mexico State, North Dakota State, Old Dominion, Maine, Nevada Reno, UW–Milwaukee, Utah State, Northern Illinois, Texas State, Toledo, Wyoming, Wichita State, Idaho, UMass Boston, Boise State.
-  - **Missing entirely, now added:** University of North Dakota, Alabama in Huntsville, CU Denver, Southern Mississippi, Rhode Island, UNC Greensboro, Louisiana at Lafayette, Kennesaw State, Georgia Southern, Augusta, South Alabama, Oakland University, Florida A&M, Texas A&M–Corpus Christi, Brigham Young (Honor Code and ecclesiastical endorsement for every student), Catholic University of America.
+- **USA, 33 new rows (279 → 312).**
+  - **Research universities that were only named inside "more" rows**, now full entries: Ole Miss, Mississippi State, Montana State, Montana, New Mexico State, North Dakota State, Old Dominion, Maine, Nevada Reno, UW–Milwaukee, Utah State, Northern Illinois, Texas State, Toledo, Wyoming, Wichita State, Idaho, Boise State.
+  - **Missing entirely, now added:** University of North Dakota, Alabama in Huntsville, CU Denver, Southern Mississippi, UNC Greensboro, Louisiana at Lafayette, Kennesaw State, Georgia Southern, Augusta, South Alabama, Oakland University, Florida A&M, Texas A&M–Corpus Christi, Brigham Young (Honor Code and ecclesiastical endorsement for every student), Catholic University of America.
 - **Canada, 3 new rows:** Trinity Western, University of King's College, St. Thomas University. "More" lists now name the small private and faith-based universities and the French-language universities outside Québec.
 - **Wider "more" lists:**
   - **Spain:** 12 private and online universities.
@@ -84,7 +84,7 @@ Checked against the 2025 Carnegie R1 list, the Hong Kong degree-awarding institu
   - **Qatar:** Oryx Universal College (Liverpool John Moores University degrees).
 - **Already complete:** Hong Kong (all degree-awarding institutions), Italy, France and the Tier 2 countries.
 
-The site now has **964 degree entries**.
+The site now has **962 degree entries**. (Correction: the first version of this note said 964 and listed UMass Boston and Rhode Island as additions; both were already on the site, and the duplicate rows were removed.)
 
 ## Still unclear (marked "confirm" on the site)
 

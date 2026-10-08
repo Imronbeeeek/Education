@@ -1,5 +1,7 @@
 # Latvia 🇱🇻
 
+> **Update 8 Oct 2026:** deadlines depend on citizenship (University of Latvia 2026: 1 May or 21 Jun; RTU: 1 May, 15 Jun or 15 Jul). Plan for 1 May 2027. See [`strategy/13-tier3-oct-2026.md`](../../strategy/13-tier3-oct-2026.md).
+
 **Overall verdict:** **A**. Latvian institutions admit holders of a secondary certificate that gives university access in the home country, after **AIC recognition** (about 1 month). English-taught bachelor's are plentiful, and the IELTS bar (5.5–6.0) is already met.
 **Fit: ★★★★**
 **Confidence:** High (University of Latvia names the Uzbek attestat for bachelor's)

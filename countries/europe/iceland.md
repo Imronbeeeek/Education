@@ -1,5 +1,7 @@
 # Iceland 🇮🇸
 
+> **Update 8 Oct 2026:** Reykjavík University's non-EU deadline is 31 January (University of Iceland 1 February 2027). The University of Iceland may charge non-EEA tuition from autumn 2027 (unconfirmed). See [`strategy/13-tier3-oct-2026.md`](../../strategy/13-tier3-oct-2026.md).
+
 **Overall verdict:** **C (likely)**. Icelandic universities require the equivalent of the Icelandic **stúdentspróf** (matriculation exam, reached after about 13 years of schooling). An 11-year Attestat is expected to fall short, and almost all undergraduate teaching is in Icelandic.
 **Fit: ★½**
 **Confidence:** Low-Medium (individual ENIC/NARIC Iceland assessment; no Uzbek-specific ruling seen)

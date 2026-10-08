@@ -57,7 +57,8 @@
 | [`strategy/09-final-system-oct-2026.md`](strategy/09-final-system-oct-2026.md) | Final system: what the website contains, corrections (Khalifa, KFUPM, US test policies), new entries, how to use it |
 | [`strategy/10-tier1-deep-dive-oct-2026.md`](strategy/10-tier1-deep-dive-oct-2026.md) | Tier 1 deep dive, USA first: chance bands, routes for a 2022 graduate (Yale Eli Whitney, Columbia GS), the Writing 5.5 problem, SAT policies, 45 more US universities, new facts for the other nine countries |
 | [`strategy/11-directories-and-scorecard-oct-2026.md`](strategy/11-directories-and-scorecard-oct-2026.md) | Full directories (926 degree entries, 279 in the USA), strategy pages for all 27 Tier 1–2 countries, and a weighted country scorecard with reasoning |
-| [`strategy/12-verification-oct-2026.md`](strategy/12-verification-oct-2026.md) | Deadline verification: 261 universities checked and tagged by source, corrections, 38 universities added (964 entries now), what is still unclear, 153 sources |
+| [`strategy/12-verification-oct-2026.md`](strategy/12-verification-oct-2026.md) | Deadline verification: 261 universities checked and tagged by source, corrections, 36 universities added (962 entries), what is still unclear, 153 sources |
+| [`strategy/13-tier3-oct-2026.md`](strategy/13-tier3-oct-2026.md) | Tier 3 deep dive: South Korea (55 universities, KAIST/GKS/spring rounds), Latvia, Lithuania, Malta, Iceland, Luxembourg; strategies, scores and checked dates |
 | [`site/index.html`](site/index.html) | Interactive website: Universities (programmes, countries & systems, courses guide, glossary), Roadmap (suggested vs final dates, SAT planner, calendar export), Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability

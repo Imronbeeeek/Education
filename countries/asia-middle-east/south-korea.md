@@ -1,5 +1,7 @@
 # South Korea 🇰🇷
 
+> **Update 8 Oct 2026:** acceptance of 11-year certificates is decided university by university (the Ministry's baseline is 12 years), so get a written yes from each. The TOPIK 4 visa rule for Uzbek applicants could not be confirmed. KAIST's early track closes **22 Oct 2026**. Full directory and dates: [`strategy/13-tier3-oct-2026.md`](../../strategy/13-tier3-oct-2026.md).
+
 **Overall verdict:** **A (administratively)**. Korean Ministry of Education guidance recognises applicants who completed **their entire primary-secondary schooling in an 11-year-system country** (Uzbekistan is listed) as equivalent to Korean high-school graduates. Admission is then gated by **language** (TOPIK for Korean-taught; IELTS/TOEFL for English tracks) and, for Uzbek nationals, **visa screening**.
 **Fit: ★★★★ (strong Spring-2027 and Fall-2027 option; GKS age-eligible)**
 **Confidence:** Medium-High

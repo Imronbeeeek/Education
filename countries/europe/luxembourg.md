@@ -1,5 +1,7 @@
 # Luxembourg 🇱🇺
 
+> **Update 8 Oct 2026:** last year's non-EU window was 1 Feb–24 Mar 2026; the equivalence (EUR 125, at least six weeks) must be in hand before applying. See [`strategy/13-tier3-oct-2026.md`](../../strategy/13-tier3-oct-2026.md).
+
 **Overall verdict:** **D** at the University of Luxembourg for the current profile. The Ministry equivalence requires **≥ 12 consecutive years of study**, and without that equivalence a third-country applicant is not eligible. **C** at best via an extra year (acceptance of a non-school 12th year must be confirmed). Private institutions vary.
 **Fit: ★½**
 **Confidence:** High (12-year criterion confirmed)

@@ -1,5 +1,7 @@
 # Lithuania 🇱🇹
 
+> **Update 8 Oct 2026:** Vilnius University's non-EU deadline was 1 May 2026, KTU's 1 Jun 2026. See [`strategy/13-tier3-oct-2026.md`](../../strategy/13-tier3-oct-2026.md).
+
 **Overall verdict:** **A** at most institutions. **B** where an institution asks for the **Uzbek national centralized entrance-exam results**. VILNIUS TECH lists them explicitly.
 **Fit: ★★★★**
 **Confidence:** High (VILNIUS TECH and Vilnius University country requirements seen)

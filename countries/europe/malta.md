@@ -1,5 +1,7 @@
 # Malta 🇲🇹
 
+> **Update 8 Oct 2026:** the University of Malta's non-EU visa deadline was 1 Jul 2026, 14:00 (later applications move to the next intake). See [`strategy/13-tier3-oct-2026.md`](../../strategy/13-tier3-oct-2026.md).
+
 **Overall verdict:**
 - **University of Malta (UM): C.** It requires qualifications comparable to the **Maltese Matriculation Certificate** (an A-level-type, 13-year standard); UM offers **Foundation Studies**.
 - **Private / US-style institutions: A.** The American University of Malta and similar.
