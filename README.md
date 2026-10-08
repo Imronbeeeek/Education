@@ -54,7 +54,8 @@
 | [`strategy/06-foundation-routes.md`](strategy/06-foundation-routes.md) | When a foundation year helps or wastes time; time-to-degree comparison |
 | [`strategy/07-new-factors-oct-2026.md`](strategy/07-new-factors-oct-2026.md) | Recognition back in Uzbekistan (top-1,000 rule), military deferment, visa refusal data, 13 newly found foundation programmes |
 | [`strategy/08-tiers-and-timing.md`](strategy/08-tiers-and-timing.md) | Your three country tiers, Tier-1 reality check, suggested date vs final deadline for every action, SAT planner, what changes without DTM |
-| [`site/index.html`](site/index.html) | Interactive website: Universities (by tier), Roadmap (suggested vs final dates, SAT planner), Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
+| [`strategy/09-final-system-oct-2026.md`](strategy/09-final-system-oct-2026.md) | Final system: what the website contains, corrections (Khalifa, KFUPM, US test policies), new entries, how to use it |
+| [`site/index.html`](site/index.html) | Interactive website: Universities (programmes, countries & systems, courses guide, glossary), Roadmap (suggested vs final dates, SAT planner, calendar export), Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability
 - Rules were researched in October 2026 against official university and government pages, mostly via search-engine extracts. Several official sites (anabin, Nuffic, universityadmissions.se, Maastricht, MOFA Korea) were not directly reachable from the research environment.
