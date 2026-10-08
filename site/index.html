@@ -95,6 +95,11 @@ ul.plain{margin:0;padding-left:1.1em;display:grid;gap:6px}
 .s-ok{color:var(--ok);background:var(--ok-bg)} .s-reach{color:var(--reach);background:var(--reach-bg)}
 .s-bridge{color:var(--bridge);background:var(--bridge-bg)} .s-closed{color:var(--closed);background:var(--closed-bg)}
 .tag{display:inline-block;font:500 11px/1.5 var(--f-mono);color:var(--muted);border:1px solid var(--line-2);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.dv{display:inline-block;font:500 10.5px/1.5 var(--f-mono);border-radius:5px;padding:0 6px;border:1px solid var(--line-2);color:var(--muted);white-space:nowrap}
+.dv-v{color:var(--ok);border-color:rgba(91,210,156,.4)} .dv-p{color:var(--bridge);border-color:rgba(242,182,92,.4)} .dv-s{color:var(--muted)}
+.it .dates .dv{justify-self:start;margin-top:3px}
+.dvl{margin-top:7px;font-size:12.5px;line-height:1.5;color:var(--muted)} .dvl a{color:var(--accent)} .dvl .dv{margin-right:4px}
+.dvleg{margin-top:8px}
 .tag.g{color:var(--ok);border-color:rgba(91,210,156,.4)} .tag.a{color:var(--accent);border-color:var(--accent-line)} .tag.y{color:var(--bridge);border-color:rgba(242,182,92,.4)} .tag.v{color:var(--reach);border-color:rgba(187,163,255,.42)}
 .tierpill{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--tc);border:1px solid var(--tc);border-radius:999px;padding:2px 9px;white-space:nowrap}
 .tierpill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tc)}
@@ -200,7 +205,7 @@ select:hover,input:hover{border-color:var(--line-2)}
 .it .dates .sg{color:var(--accent)}
 .it .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:flex-end}
 .it .body{border-top:1px dashed var(--line-2);padding:12px 14px 14px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
-.it dl{margin:0;display:grid;gap:3px}
+.it dl{margin:0;display:grid;gap:3px;align-content:start}
 .it dt{font:500 10.5px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
 .it dd{margin:0;font-size:14px}
 .it .full{grid-column:1/-1}
@@ -504,6 +509,7 @@ table.score .why{min-width:220px;max-width:380px}
         <button type="button" data-kind="fnd" aria-pressed="false">Foundations</button>
       </div>
       <div class="legend"><span class="chip s-ok">Open now</span><span class="chip s-reach">Needs a score or document</span><span class="chip s-bridge">Bridge year first</span><span class="chip s-closed">Closed</span></div>
+      <div class="legend dvleg"><span>Deadlines checked 8 Oct 2026:</span><span><span class="dv dv-v">✓ 2027 date</span> <b id="nDvV">0</b> confirmed</span><span><span class="dv dv-p">2026 pattern</span> <b id="nDvP">0</b> from last cycle's official dates</span><span><span class="dv dv-s">Secondary source</span> <b id="nDvS">0</b></span><span>Unmarked: usual pattern, confirm</span></div>
     </div>
     <div class="fchips" role="group" aria-label="Field of study" id="fchips"></div>
     <div class="filters">
@@ -695,7 +701,6 @@ table.score .why{min-width:220px;max-width:380px}
 <div class="overlay" id="cmpOverlay" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cmpTitle"><div class="toolbar"><h3 id="cmpTitle">Side-by-side comparison</h3><button type="button" class="btn ghost sm" id="cmpClose">Close</button></div><div class="tablebox"><table id="cmpTable"></table></div></div></div>
 <div class="pop" id="pop" hidden role="dialog" aria-labelledby="popT"><div class="toolbar"><h3 id="popT"></h3><button type="button" class="iconbtn" id="popClose">Close</button></div><p class="small muted" id="popD"></p><button type="button" class="linkbtn" id="popMore" style="justify-self:start">Open the glossary</button></div>
 <div class="toast" id="toast" hidden role="status"><span id="toastMsg"></span><button class="linkbtn" type="button" id="toastUndo">Undo</button></div>
-
 <script>
 /* ===================== TIERS ===================== */
 const ORDER = ["Qatar","Saudi Arabia","USA","Canada","Spain","Hong Kong","China","Türkiye","France","Italy","Australia","Sweden","Netherlands","Norway","Portugal","UAE","Austria","Belgium","Denmark","Finland","Germany","Hungary","Jordan","Singapore","Bahrain","Kuwait","Malaysia","South Korea","Iceland","Latvia","Lithuania","Luxembourg","Malta"];
@@ -1023,7 +1028,7 @@ const U_RAW = [
    [id, name, city, country, leads to, progression g|n|o, accepts you?, English, intakes, how to apply, suggested, final, length, starts Jan–Mar, home, fit, note, ranked, req, fields, website] */
 const F_RAW = [
 ["f1","UQ College – Foundation Program (Accelerated)","Brisbane","Australia","University of Queensland, next semester","g","Yes: grade 5 in your top four subjects","Foundation English levels (check)","15 Feb 2027 · 6 Sep 2027","Feb start: by 11 Jan · Sep start: by 2 Aug 2027","2027-05-01","2027-08-02","~8–11 months",1,0,5,"Best fit for an Australian start.","y","","bus eng sci cs med","uqcollege.edu.au"],
-["f2","Trinity College Foundation Studies","Melbourne","Australia","University of Melbourne, if prerequisites and scores are met","g","Yes: average 5 qualifies for Fast Track","Check per stream","Jan/Feb 2027 · July 2027","July start: apply by ~May 2027 (check)","2027-03-15","2027-05-15","Fast Track shorter; Standard ~1 year",1,0,5,"Strongest brand.","y","","bus eng sci art cs med","trinity.unimelb.edu.au"],
+["f2","Trinity College Foundation Studies","Melbourne","Australia","University of Melbourne, if prerequisites and scores are met","g","Yes. Standard is open now (IELTS 6.0, no band below 5.5). Fast Track needs IELTS 6.0 with no band below 6.0, so only after a Writing retake","Standard: IELTS 6.0, no band below 5.5","Jan/Feb, Jul (Standard) and Sep (Fast Track) 2027","July start: apply by ~May 2027 (check)","2027-03-15","2027-05-15","Fast Track shorter; Standard ~1 year",1,0,5,"Strongest brand.","y","","bus eng sci art cs med","trinity.unimelb.edu.au"],
 ["f3","Monash College – Foundation Year","Melbourne","Australia","Guaranteed first year at Monash with the required score","g","Yes: Year 11","IELTS 5.5, no band below 5.0 (met)","22 Feb 2027 · Aug 2027","Aug start: by ~Jun 2027 (check)","2027-04-01","2027-06-30","~1 year",1,0,5,"13 subjects into all 10 faculties.","y","","bus eng sci cs med art","monashcollege.edu.au"],
 ["f4","Monash College – Diploma (Part 1 → Part 2)","Melbourne","Australia","Second year of a related Monash degree","g","Yes: Part 1 is for Year 11 holders","IELTS 5.5, no band below 5.0 (met)","Feb · Jun · Oct (check)","2–3 months before start","2027-04-01","2027-08-01","~12–16 months",1,0,4,"Skips year 1 of the degree.","y","","bus eng cs sci art","monashcollege.edu.au"],
 ["f5","UTS College – Foundation Studies","Sydney","Australia","University of Technology Sydney","g","Yes: designed for Year 11 graduates","IELTS 5.5, Writing 5.0 (met)","Feb and later intakes","2–3 months before start","2027-04-01","2027-06-30","~1 year",1,0,4,"","y","","bus eng cs art","utscollege.edu.au"],
@@ -1120,7 +1125,6 @@ const GLOSS = [
 ["TestAS","A German aptitude test some Studienkollegs and foundations accept.",["TestAS"]],
 ["Co-op","Degrees with paid work terms built in (Waterloo, Northeastern).",["co-op","Co-op"]]
 ];
-
 /* ===================== v6 · DEEPER TIER 1 RESEARCH (8 Oct 2026) =====================
    Loaded after data.js and before app.js. Adds rows, patches existing ones,
    and supplies chance bands, country strategies and the US deep dive. */
@@ -1509,7 +1513,6 @@ const US_STORY = [
   "Use the additional-information box for facts (dates, roles, hours a week). Keep the main essay for your story.",
   "Columbia GS and Yale EWSP ask directly why now. Answer with what changed and why you are ready."
 ];
-
 /* ===================== v7 · DIRECTORIES (8 Oct 2026) =====================
    Compact rows expanded into U_RAW. Each directory row gets a chance band (SEL)
    and a segment (SEG) used to split big countries into sections.
@@ -1581,7 +1584,6 @@ const SEGS = {
   "UAE":[["loc","UAE universities"],["br","Branch campuses"],["cl","Closed"]],
   "Malaysia":[["pub","Public"],["priv","Private & branch campuses"]]
 };
-
 /* ---------- USA directory ---------- */
 /* Grouped rows become single universities (ids kept so saved items stay valid) */
 patchRows({
@@ -1801,7 +1803,6 @@ addUS([
 ["u_memphis","University of Memphis","Memphis, TN","Public","u","o","bus eng hos","Business, engineering, hospitality","O","6","R","pub","memphis.edu",""],
 ["u_nau","Northern Arizona University","Flagstaff, AZ","Public","u","o","sci hos bus","Forestry, hotel & restaurant management, business","O","6","R","pub","nau.edu",""]
 ]);
-
 /* ---------- Other Tier 1 directories ---------- */
 /* rows: [id, name, city, type, band, sel, fields, courses, req, rule, deadline key, segment, website, also] */
 
@@ -2162,7 +2163,6 @@ addRows("Saudi Arabia", SA_DL, [
 ["s_uj","University of Jeddah","Jeddah","Public (scholarship)","1000","m","eng bus sci","Engineering, business, sciences",SAL,"","s","pub","uj.edu.sa",""],
 ["s_tu","Taif University","Taif","Public (scholarship)","?","m","sci med","Sciences, medicine",SAL,"","s","pub","tu.edu.sa",""]
 ], SA_BASE);
-
 /* ---------- Tier 2 directories ---------- */
 Object.assign(SEL, {au1:"m", au2:"o", au3:"o", au4:"m", au5:"m", au6:"o", au7:"o", au8:"o", se1:"o", se2:"o", se3:"o", se4:"m", se5:"h", nl1:"o", nl2:"o", nl3:"m", nl4:"o", nl5:"m", no1:"m", pt1:"m", pt2:"m", pt3:"o", ae1:"m", ae3:"x", ae8:"m", ae4:"o", ae5:"o", ae6:"o", at1:"m", at2:"o", at3:"m", at4:"o", at5:"o", be1:"o", be2:"m", be3:"o", be4:"o", dk1:"m", dk2:"o", fi1:"h", fi2:"h", fi3:"m", fi4:"o", de1:"m", de2:"o", de3:"o", hu1:"m", hu2:"o", hu3:"m", hu4:"o", hu5:"h", hu6:"o", sg1:"x", sg2:"o", bh2:"o", kw2:"o", my1:"o", my2:"o", my3:"o", my4:"o"});
 
@@ -2519,7 +2519,73 @@ addRows("Malaysia", MY_DL, [
 ["my_ucsi","UCSI University","Kuala Lumpur","Private","500","o","med bus art","Medicine, business, music","br","","m","priv","ucsiuniversity.edu.my",""],
 ["my_mmu","Multimedia University (MMU)","Cyberjaya · Melaka","Private","1000","o","cs eng art","Computing, engineering, creative multimedia","br","","m","priv","mmu.edu.my",""]
 ], MY_BASE);
+/* ---------- v8 completeness pass: universities that were missing or only named inside "more" rows ---------- */
+US_TESTTXT["?"] = "Test policy for 2027 not yet confirmed: check the international admissions page.";
+const USG_R = "University System of Georgia: SAT or ACT required for first-year applicants from Fall 2026.";
+addUS([
+/* R1 research universities that were only named inside a "more" row */
+["u_olemiss","University of Mississippi (Ole Miss)","Oxford, MS","Public","?","o","bus soc sci","Accountancy, business, journalism, pharmacy","?","6","R","flag","olemiss.edu",""],
+["u_msstate","Mississippi State University","Starkville, MS","Public","?","o","eng sci bus","Engineering, agriculture, business, veterinary medicine","?","6","R","flag","msstate.edu",""],
+["u_montstate","Montana State University","Bozeman, MT","Public","?","o","eng sci cs","Engineering, ecology, computer science","?","6","R","flag","montana.edu",""],
+["u_umt","University of Montana","Missoula, MT","Public","?","o","sci bus soc","Forestry, wildlife biology, business, journalism","?","6","R","flag","umt.edu",""],
+["u_nmsu","New Mexico State University","Las Cruces, NM","Public","?","o","eng sci bus","Engineering, agriculture, business","?","6","R","flag","nmsu.edu",""],
+["u_ndsu","North Dakota State University","Fargo, ND","Public","?","o","eng sci med","Engineering, agriculture, pharmacy","?","6","R","flag","ndsu.edu",""],
+["u_und","University of North Dakota","Grand Forks, ND","Public","?","o","eng cs sci","Aviation and unmanned aircraft systems (top-ranked), engineering","?","6","R","flag","und.edu",""],
+["u_odu","Old Dominion University","Norfolk, VA","Public","?","o","eng cs bus","Engineering, cyber security, business, maritime and supply chain","O","6","R","flag","odu.edu",""],
+["u_maine","University of Maine","Orono, ME","Public","?","o","eng sci","Engineering, marine sciences, forestry","O","6","R","flag","umaine.edu",""],
+["u_unr","University of Nevada, Reno","Reno, NV","Public","?","o","eng bus soc","Engineering, business, journalism","?","6","R","flag","unr.edu",""],
+["u_uwm","University of Wisconsin–Milwaukee","Milwaukee, WI","Public","?","o","eng art bus sci","Engineering, architecture, business, freshwater sciences","?","6","R","flag","uwm.edu",""],
+["u_usu","Utah State University","Logan, UT","Public","?","o","eng sci bus","Engineering, agriculture, business","?","6","R","flag","usu.edu",""],
+["u_niu","Northern Illinois University","DeKalb, IL (near Chicago)","Public","?","o","bus eng","Business, accountancy, engineering","?","6","R","flag","niu.edu",""],
+["u_txst","Texas State University","San Marcos, TX","Public","?","o","bus eng art","Business, engineering, geography, music","?","6","R","flag","txst.edu",""],
+["u_toledo","University of Toledo","Toledo, OH","Public","?","o","eng med bus","Engineering, pharmacy, business","?","6","R","flag","utoledo.edu",""],
+["u_uwyo","University of Wyoming","Laramie, WY","Public","?","o","eng sci","Energy and petroleum engineering, geology, agriculture","?","6","R","flag","uwyo.edu",""],
+["u_wichita","Wichita State University","Wichita, KS","Public","?","o","eng bus","Aerospace engineering (NIAR research institute), business","?","6","R","flag","wichita.edu",""],
+["u_uidaho","University of Idaho","Moscow, ID","Public","?","o","eng sci","Engineering, agriculture, natural resources","?","6","R","flag","uidaho.edu",""],
+["u_umb","University of Massachusetts Boston","Boston, MA","Public","?","o","bus med cs","Management, nursing, computer science","O","6.5","R","pub","umb.edu",""],
+["u_boise","Boise State University","Boise, ID","Public","?","o","eng bus cs","Engineering, business, computer science","?","6","R","pub","boisestate.edu",""],
+/* Research universities that were missing entirely */
+["u_uah","University of Alabama in Huntsville","Huntsville, AL","Public","?","o","eng cs sci","Aerospace and systems engineering, computer science, physics (NASA Marshall next door)","?","6","R","flag","uah.edu",""],
+["u_ucden","University of Colorado Denver","Denver, CO","Public","?","o","bus eng art","Business, engineering, architecture","O","6.5","R","flag","ucdenver.edu","Colorado public universities are test-optional by law."],
+["u_usm","University of Southern Mississippi","Hattiesburg, MS","Public","?","o","sci bus","Polymer science, marine science, business","?","6","R","flag","usm.edu",""],
+["u_uri","University of Rhode Island","Kingston, RI","Public","?","o","eng sci med bus","Ocean engineering, oceanography, pharmacy, business","O","6.5","F1","flag","uri.edu","Past cycles: EA 1 Dec, RD 1 Feb."],
+["u_uncg","University of North Carolina at Greensboro","Greensboro, NC","Public","?","o","bus med art","Business, nursing, music, education","C","6","R","pub","uncg.edu","UNC System: no scores needed with a GPA of 2.8 or higher."],
+["u_ull","University of Louisiana at Lafayette","Lafayette, LA","Public","?","o","eng cs","Engineering, computer science, informatics","?","6","R","pub","louisiana.edu",""],
+["u_kennesaw","Kennesaw State University","Kennesaw, GA (Atlanta)","Public","?","o","eng cs bus","Engineering, computer science, cyber security, business","R","6","R","pub","kennesaw.edu",USG_R],
+["u_gaso","Georgia Southern University","Statesboro, GA","Public","?","o","bus eng","Business, engineering, logistics","R","6","R","pub","georgiasouthern.edu",USG_R],
+["u_augusta","Augusta University","Augusta, GA","Public","?","o","med cs","Health sciences, nursing, cyber security","R","6","R","pub","augusta.edu",USG_R],
+["u_southal","University of South Alabama","Mobile, AL","Public","?","o","med eng bus","Health sciences, engineering, business","?","6","R","pub","southalabama.edu",""],
+["u_oakland","Oakland University","Rochester, MI (Detroit area)","Public","?","o","eng bus med","Engineering, business, health sciences","O","6","R","pub","oakland.edu",""],
+["u_famu","Florida A&M University","Tallahassee, FL","Public (HBCU)","?","o","med bus eng","Pharmacy, business, engineering (with Florida State)","R","6","R","pub","famu.edu","Florida rule: SAT, ACT or CLT required."],
+["u_tamucc","Texas A&M University–Corpus Christi","Corpus Christi, TX","Public","?","o","sci eng bus","Marine biology, engineering, business","?","6","R","pub","tamucc.edu",""],
+["u_byu","Brigham Young University","Provo, UT","Private (Church of Jesus Christ of Latter-day Saints)","?","m","bus eng cs","Marriott business and accounting, engineering, computer science","?","6.5","D15","spr","byu.edu","Every student signs the Honor Code (no alcohol, tobacco, coffee or tea; dress and grooming standards) and needs an ecclesiastical endorsement, whatever their religion. Foreign transcripts evaluated by IERF or SpanTran. Test-optional through Winter 2026; check the 2027 policy."],
+["u_cua","Catholic University of America","Washington, DC","Private","?","o","art eng soc med","Architecture, engineering, politics, nursing, music","O","6.5","E15","pri","catholic.edu",""]
+]);
+patchRows({
+  us11b:{also:"South Dakota State, University of Alaska Fairbanks, Ball State, Bowling Green, Wright State, James Madison, Towson, Montclair State, Western Washington, Appalachian State, East Carolina, Southern Illinois, Missouri State, Illinois State, Central Michigan, Western Michigan, Eastern Michigan, Indiana State, Sam Houston State, Middle Tennessee State"},
+  us11y:{also:""}
+});
+const appendAlso = (id, extra) => U_RAW.forEach(r => { if (r[0] === id) r[16] = [r[16], extra].filter(Boolean).join(", "); });
 
+/* Canada */
+addRows("Canada", CA_DL, [
+["c_twu","Trinity Western University","Langley, BC (Vancouver area)","Private (Christian)","u","o","bus med sci","Business, nursing, sciences","",CA_ASK + " Students agree to a community covenant.","R","small","twu.ca",""],
+["c_ukings","University of King's College","Halifax, NS","Public","u","o","soc art","Journalism, Foundation Year Programme, humanities (degrees with Dalhousie)","",CA_ASK,"M1","small","ukings.ca",""],
+["c_stu","St. Thomas University","Fredericton, NB","Public","u","o","soc","Criminology, journalism, human rights, liberal arts","",CA_ASK,"R","small","stu.ca",""]
+]);
+appendAlso("ca7", "Concordia University of Edmonton, The King's University, Ambrose, Redeemer, Tyndale, Crandall, Canadian Mennonite, Booth University College, Yorkville, University of Niagara Falls Canada, Fairleigh Dickinson (Vancouver campus), NYIT (Vancouver campus)");
+patchRows({ca9:{name:"French-language universities (Québec and elsewhere)"}});
+appendAlso("ca9", "UQAC, UQTR, UQAR, UQO, UQAT, Université de Moncton (NB), Université de Saint-Boniface (MB), Université de l'Ontario français, Université de Hearst");
+/* Spain, China, Türkiye, Gulf */
+appendAlso("es2f", "Universidad Villanueva, Universidad San Jorge, Universidad Católica de Valencia, CEU Cardenal Herrera, Universidad Pontificia de Salamanca, Universidad Católica de Ávila, Universidad Europea Miguel de Cervantes, Universidad Fernando Pessoa Canarias, Ramon Llull schools (IQS, La Salle, Blanquerna), online: VIU, Isabel I, UDIMA");
+appendAlso("es4", "Universitat Oberta de Catalunya (online)");
+appendAlso("cn2d", "SUSTech, ShanghaiTech, Shenzhen Technology University (ask each about international undergraduate places)");
+appendAlso("tr5", "Bezmialem Vakıf, Istanbul Atlas, Istanbul Topkapı, Istanbul Rumeli, Istanbul Ticaret, Istanbul Sabahattin Zaim, Ankara Bilim, Ufuk, Kapadokya, Avrasya");
+appendAlso("tr3", "METU Northern Cyprus Campus (same METU degree, but located in Northern Cyprus, which only Türkiye recognises: check the residence route and recognition in Uzbekistan)");
+appendAlso("sa3", "Al Yamamah University, University of Business and Technology (Jeddah), Dar Al Uloom University, Arab Open University, Riyadh Elm University, Batterjee Medical College, Fakeeh College");
+appendAlso("sa2c", "Saudi Electronic University");
+appendAlso("q_afg", "Oryx Universal College (Liverpool John Moores University degrees)");
+patchRows({u_byu:{win:"Priority ~1 Nov · final ~15 Dec 2026 (last cycle's pattern; confirm on apply.byu.edu)", sug:"2026-11-01", fin:"2026-12-15"}});
 /* ---------- Tier 2 strategies ---------- */
 Object.assign(DEEP, {
 "Australia":{
@@ -2699,7 +2765,205 @@ const scoreOf = c => { const s = SCORE[c]; if (!s) return null; return Math.roun
 
 /* US state names for search */
 const US_STATES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DC:"Washington DC",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
+/* ===================== v8 · VERIFIED DEADLINES (checked 8 Oct 2026) =====================
+   st: "v" = 2027-cycle date confirmed from the institution's own page or document
+       "p" = institution's own dates for the 2026 cycle; 2027 not yet published (pattern)
+       "s" = secondary source (consultancy/aggregator); confirm on the official page
+   Fields override the row's window/suggested/final when given. */
+const VER = {};
+const ver = (id, o) => { VER[id] = Object.assign(VER[id] || {}, o); };
+/* Hong Kong */
+ver("hk2", {st:"v", win:"Opens 23 Sep 2026 · applications received by 25 Nov 2026 (12:00 HKT) are evaluated first; rolling after (2026 cycle closed 21 Aug)", sug:"2026-11-18", fin:"2026-11-25", src:["HKU General Information NJ 2027","https://admissions.hku.hk/sites/default/files/2026-09/HKU_General_Information_NJ_2027.pdf"]});
+ver("hk7", {st:"v", win:"Opens 24 Sep 2026 · early 15 Nov 2026 · regular 15 Jan 2027 · rolling after for some programmes", sug:"2026-11-10", fin:"2027-01-15", src:["CityUHK 2027 international admission flyer","https://cityu.edu.hk/admo/news/2027_Flyer_INTL_Admission.pdf"]});
+ver("hk6", {st:"v", win:"Opens 23 Sep 2026 · early round 17 Nov 2026 · main round ~Feb 2027 · applications accepted to 14 May 2027", sug:"2026-11-12", fin:"2027-02-11", src:["PolyU 2027/28 info sheet","https://www.polyu.edu.hk/saso/docdrive/Public/AdmissionLeaflets/PolyU%20Info%20sheet.pdf"]});
+ver("hk3", {st:"p", win:"2026 cycle: advance-offer round 13 Nov · regular 8 Jan; expect the same pattern (~mid-Nov 2026 · ~early Jan 2027)", sug:"2026-11-10", fin:"2027-01-07", src:["CUHK non-JUPAS FAQ","https://admission.cuhk.edu.hk/application/non-jupas/faq/"]});
+ver("hk5", {st:"p", win:"2026 cycle: early 20 Nov · main 8 Jan · late 30 Jun; expect the same pattern for 2027", sug:"2026-11-15", fin:"2027-01-08", src:["HKUST international qualifications","https://join.hkust.edu.hk/node/6"]});
+ver("hk1", {st:"p", win:"2026 cycle: early round to 16 Nov · main to 1 Feb · extended to 31 May; expect the same pattern for 2027", sug:"2026-11-14", fin:"2027-02-01", src:["HKBU non-JUPAS application system","https://iss.hkbu.edu.hk/amsappl_nj/geninfo.jsf"]});
+ver("hk8", {st:"p", win:"2026 cycle: early 17 Nov · main into Jan · late round to 6 May (rolling); expect the same pattern", sug:"2026-11-15", fin:"2027-05-06", src:["EdUHK non-local dates","https://www.apply.eduhk.hk/ug/nonlocal_dates"]});
+/* Canada */
+ver("ca2", {st:"v", win:"Submit by 7 Nov 2026 for the earliest rounds · final deadline 15 Jan 2027 (OUAC 105 or U of T international application)", sug:"2026-11-07", fin:"2027-01-15", src:["U of T 2027-28 undergraduate bulletin","https://internationalprograms.utoronto.ca/wp-content/uploads/2026-27-IUAB.pdf"]});
+ver("ca3", {st:"s", win:"Early deadline 1 Dec 2026 · final 15 Jan 2027 (UBC calendar: applications due January 2027)", sug:"2026-12-01", fin:"2027-01-15", src:["UBC academic calendar, January 2027","https://vancouver.calendar.ubc.ca/academic-year-202627/january-2027"]});
+ver("ca4", {st:"s", win:"15 Jan 2027 (fall only); supporting documents later", sug:"2026-12-15", fin:"2027-01-15", src:["McGill application deadlines","https://www.mcgill.ca/channels/category/tags/application-deadlines"]});
+ver("ca5", {st:"v", win:"1 Feb 2027 for most programmes (engineering may be earlier, ~15 Jan); apply via OUAC 105", sug:"2027-01-10", fin:"2027-02-01", src:["Waterloo: full-time studies, apply","https://uwaterloo.ca/future/apply"]});
+ver("ca1", {st:"v", win:"Opens 1 Oct 2026 · 1 Mar 2027 for most programmes (some close earlier)", sug:"2027-01-15", fin:"2027-03-01", src:["U of A 2027-28 parents & supporters handbook","https://preview.ualberta.ca/en/admissions/media-library/uai-assets/docs/viewbook-2027-28/web-spreads/ua_handbook_parentssupporters_2027-28_web_spreads.pdf"]});
+ver("ca6c", {st:"v", win:"1 Feb 2027 for Commerce, Health Sciences, Nursing · 1 Mar 2027 for all other first-year programmes · documents by 31 Mar · apply by 20 Nov for the major-award form", sug:"2026-11-20", fin:"2027-03-01", src:["Queen's key dates & deadlines","https://www.queensu.ca/admission/applying/key-dates-deadlines"]});
+ver("ca6", {st:"s", win:"Engineering, Computer Science, Health Sci, Arts & Sci 15 Jan 2027 · most others 1 Feb (equal consideration), open to ~1 Apr", sug:"2027-01-10", fin:"2027-02-01", src:["OUAC McMaster guide","https://www.ouac.on.ca/guide/undergrad-mcmaster"]});
+ver("ca6b", {st:"s", win:"Equal consideration ~15 Jan 2027 (OUAC); scholarship nominations ~mid-Feb", sug:"2027-01-10", fin:"2027-01-15", src:["OUAC (Western)","https://www.ouac.on.ca/"]});
+ver("ca6e", {st:"p", win:"International applications open mid-Aug · 1 Mar deadline (2026 cycle); expect ~1 Mar 2027", sug:"2027-01-15", fin:"2027-03-01", src:["UCalgary dates and deadlines","https://ucalgary.ca/future-students/undergraduate/admissions/dates"]});
+ver("ca6f", {st:"s", win:"Fall 2027 dates not yet posted ('check back soon'); third-party: ~31 Jan 2027", sug:"2027-01-15", fin:"2027-01-31", src:["SFU: apply","https://www.sfu.ca/students/admission/apply"]});
+ver("ca6g", {st:"p", win:"Opens Oct 2026 · ~15 Feb for most programmes (2026 cycle)", sug:"2027-01-31", fin:"2027-02-15", src:["Dalhousie important dates","https://www.dal.ca/study/plan-your-degree/important-dates.html"]});
+ver("c_tmu", {st:"p", win:"2026 cycle: guaranteed consideration 1 Feb for all programmes (OUAC); 2027 dates not yet posted", sug:"2027-01-15", fin:"2027-02-01", src:["TMU application dates","https://www.torontomu.ca/admissions/undergraduate/apply/application-dates.html"]});
+ver("ca6h", {st:"p", win:"2026 cycle: 15 Jan equal consideration (international listed as open later); 2027 dates not yet posted", sug:"2027-01-10", fin:"2027-02-01", src:["York deadlines for undergraduate study","https://futurestudents.yorku.ca/requirements/deadlines"]});
+ver("ca6d", {st:"p", win:"September 2027 dates not yet posted (typically ~1 Apr for international). A January 2027 start exists for some programmes (deadline 17 Oct 2026), too soon for a study permit.", sug:"2027-02-01", fin:"2027-04-01", src:["uOttawa undergraduate application deadlines","https://www.uottawa.ca/study/undergraduate-studies/application-deadlines"]});
+ver("c_uvic", {st:"s", win:"~31 Jan 2027 for most September programmes (some earlier)", sug:"2027-01-15", fin:"2027-01-31", src:["Kaplan Pathways UVic sheet, Sep 2027","https://downloads.kaplanpathways.com/downloads/university-of-victoria-summary-sheet-september-2027/"]});
+ver("c_umanitoba", {st:"p", win:"2026 cycle: early application 1 Dec · international (University 1) 1 May; expect a similar pattern for 2027", sug:"2026-12-01", fin:"2027-05-01", src:["UManitoba application deadlines","https://www.umanitoba.ca/explore/undergraduate-admissions/requirements/direct-entry"]});
+/* Spain */
+ver("es1", {st:"v", win:"Early round 18 Sep 2026 (passed) · Round 1 6 Nov 2026 (decision by 11 Dec) · Round 2 15 Jan 2027 (by 19 Feb) · Round 3 5 Mar 2027 (by 23 Apr) · then from May if places remain", sug:"2026-11-06", fin:"2027-03-05", src:["IE University admissions rounds","https://www.ie.edu/university/admission/admission-process/admissions-rounds/"]});
+ver("es2", {st:"v", win:"Applications for September 2027 open now; rolling until June 2027 while places remain (admissions test + interview)", sug:"2027-01-31", fin:"2027-06-30", src:["Esade bachelor admissions","https://www.esade.edu/bachelor/en/programmes/business-administration/admissions"]});
+["es3","es3b","es3c","es4"].forEach(id => ver(id, {st:"p", win:"2026 pattern: UNEDasiss accreditation request 4 Feb–1 Dec · PCE registration ~16 Mar–28 Apr · PCE exams 25–29 May (Spain) or May–June abroad · public university pre-enrolment by ~7 Jul", sug:"2027-04-15", fin:"2027-07-07", src:["UNEDasiss key dates","https://unedasiss.uned.es/fechas_clave"]}));
+/* China */
+ver("cn3", {st:"v", win:"ED I 1 Nov 2026 · ED II 1 Jan 2027 · RD 5 Jan 2027 (Common App; 11:59 pm EST)", sug:"2026-12-18", fin:"2027-01-05", src:["NYU Shanghai: how to apply","https://shanghai.nyu.edu/node/328"]});
+ver("cn3b", {st:"v", win:"ED 2 Nov 2026 · RD 4 Jan 2027 (Common App, no fee)", sug:"2026-12-18", fin:"2027-01-04", src:["Duke Kunshan admissions","https://admissions.dukekunshan.edu.cn/en/how-to-apply/"]});
+ver("cn6", {st:"s", win:"2027 applications open; an aggregator lists a 1 Dec 2026 deadline, earlier cycles ran rounds into spring. Ask intladmissions@cuhk.edu.cn.", sug:"2026-11-25", fin:"2026-12-01", src:["Scholarship listing (unofficial)","https://www.for9a.com/en/opportunity/undergraduate-scholarship-in-china-2027-with-funding-of-up-to-rmb-187000-per-year"]});
+ver("cn7", {st:"p", win:"2026 cycle: most undergraduate programmes closed 15 Jun (some 15 May); expect a similar pattern for 2027", sug:"2027-03-31", fin:"2027-06-15", src:["XJTLU: how to apply","https://www.xjtlu.edu.cn/en/admissions/global/how-to-apply"]});
+ver("cn7b", {st:"p", win:"2026 cycle: 30 Jun deadline for September entry; expect a similar pattern for 2027", sug:"2027-03-31", fin:"2027-06-30", src:["UNNC undergraduate FAQs","https://www.nottingham.edu.cn/en/study-with-us/undergraduate/faqs.aspx"]});
+/* Türkiye */
+ver("tr1", {st:"p", win:"Fall 2025 cycle: 1 Oct–2 Jul (Medicine 1 Jan–30 Mar); applying by 31 Mar guaranteed housing. 2027 dates not yet posted.", sug:"2027-03-31", fin:"2027-07-02", src:["Koç international admissions","https://international.ku.edu.tr/?p=7254"]});
+ver("tr2", {st:"p", win:"2026–27 cycle: 15 Dec 2025–28 Aug 2026 (16:00 TR time); expect a similar window for 2027–28", sug:"2027-03-31", fin:"2027-08-28", src:["Sabancı international undergraduate admissions","https://iro.sabanciuniv.edu/en/application-requirements"]});
+ver("tr2b", {st:"p", win:"2026–27 cycle: 2 Feb–12 Jul 2026; scholarships (20–100%) awarded automatically. Expect a similar window for 2027.", sug:"2027-03-31", fin:"2027-07-12", src:["Bilkent: how to apply","https://w3.bilkent.edu.tr/international/how-to-apply"]});
+ver("tr3", {st:"p", win:"Applications mostly June–July, fall only (2025 cycle: 2 Jun–9 Jul); SAT 1200 with maths 680 for engineering/science", sug:"2027-06-02", fin:"2027-07-09", src:["METU international students office","https://iso.metu.edu.tr/en/node/39"]});
+ver("tr3b", {st:"p", win:"Degree applications in summer; 2026 calendar showed a second-period submission on 21 Jul and registration 4–8 Sep. 2027 dates not yet posted.", sug:"2027-06-15", fin:"2027-07-21", src:["Boğaziçi undergraduate degree programmes","https://intl.bogazici.edu.tr/node/100022488"]});
+/* France · Italy */
+ver("fr1", {st:"s", win:"Rounds ~30 Oct · 13 Jan · 11 Mar · 22 Apr (published pattern; the September 2027 cycle opens Oct 2026)", sug:"2027-01-13", fin:"2027-04-22", src:["Bachelorsportal: ESSEC Global BBA","https://www.bachelorsportal.com/studies/218755/essec-global-bba.html"]});
+ver("fr1b", {st:"s", win:"2027 intake not yet open; an aggregator lists 13 Jan 2027; ESCP usually runs several rounds into spring", sug:"2027-01-13", fin:"2027-04-30", src:["ESCP Turin admissions guide","https://escp.eu/news/escp-turin-admissions-guide"]});
+ver("fr1c", {st:"v", win:"Four application sessions from October to March (exact 2027 dates on the apply page); apply early, some tracks fill", sug:"2027-01-07", fin:"2027-03-31", src:["EDHEC international admissions","https://www.edhec.edu/en/node/17028"]});
+ver("it3", {st:"p", win:"Fall 2026 cycle: early action 15 Nov · regular 1 Mar · late 1 May (rolling); expect the same for Fall 2027", sug:"2026-11-15", fin:"2027-03-01", src:["JCU: how to apply","https://blog.johncabot.edu/how-to-apply-to-john-cabot-university"]});
+ver("it3b", {st:"p", win:"Non-EU applicants ~15 Mar for the fall semester (priority ~1 Jan); rolling", sug:"2027-01-01", fin:"2027-03-15", src:["AUR admissions","https://aur.edu/node/473"]});
+/* Qatar · Saudi */
+ver("qa2", {st:"v", win:"Early Action 1 Nov 2026 (decisions by 15 Dec) · Regular 15 Jan 2027 (notification by 1 Apr); Common App (choose the Qatar campus) or GU-Q's own form", sug:"2026-12-18", fin:"2027-01-15", src:["Gulf Times: GU-Q opens Fall 2027 admissions","https://www.gulf-times.com/article/730346/qatar/georgetown-university-in-qatar-opens-admissions-for-fall-2027-via-common-app"]});
+ver("qa1", {st:"p", win:"Early Decision 1 Nov (decisions in December) · Regular 1 Feb (decisions 1 Apr), recent cycles", sug:"2027-01-15", fin:"2027-02-01", src:["Gulf Times: CMU-Q Early Decision","https://www.gulf-times.com/story/708873/record-number-of-students-apply-for-carnegie-mellon-early-decision"]});
+ver("qa3", {st:"p", win:"Early Action 1 Nov · Regular 15 Jan (Common App, counselor and teacher recommendations)", sug:"2026-12-18", fin:"2027-01-15", src:["NU-Q admissions process","https://www.qatar.northwestern.edu/admissions/undergraduate/application.html"]});
+ver("qa3b", {st:"v", win:"Priority 15 Nov 2026 · final 15 Jan 2027 (Common App; portfolio via SlideRoom); merit scholarship considered automatically", sug:"2026-11-15", fin:"2027-01-15", src:["VCUarts Qatar dates & deadlines","https://qatar.vcu.edu/admissions/undergraduate-admissions/dates-deadlines/"]});
+["sa1","sa2","sa2b","sa2c","s_uqu","s_imamu","s_qu","s_kku","s_taibah","s_iau","s_kfu","s_psau","s_uj","s_tu"].forEach(id => ver(id, {st:"s", win:"2027 window not yet announced; the 2026 Study in Saudi round closed ~May–June 2026. Your certificate turns 5 years old in June 2027, so apply on the first day the window opens.", sug:"2027-04-25", fin:"2027-05-21", src:["Study in Saudi 2026-27 announcement (university notice)","https://www.univ-msila.dz/site/announcement-of-the-study-in-saudi-arabia-scholarship-for-the-academic-year-2026-2027/"]}));
+ver("qa7", {st:"v", win:"Fall cycle opened in February in 2026; some bachelor's also start in January (Winter). Check the current intake page.", sug:"2027-03-01", fin:"2027-06-30", src:["UDST international students guide","https://www.udst.edu.qa/sites/default/files/2024-05/UDST%20International%20Students.pdf"], rule:"International applicants are admitted (lowest priority category). Needs a 60% school average approved by Qatar's Ministry of Education plus UDST English and maths placement tests, or its Foundation Program first. The Amiri Scholarship is open to students from outside Qatar."});
+ver("sa1", {st:"s", win:"1448 AH cycle: bachelor's applications ran to ~14 Jun 2026 (Study in Saudi); expect a similar window in 2027. Its guide sets the age and certificate rules.", sug:"2027-04-25", fin:"2027-06-14", src:["IU Madinah undergraduate admission guide 1448","https://iu.edu.sa/media/%D8%B9%D9%85%D8%A7%D8%AF%D8%A9%20%D8%A7%D9%84%D9%82%D8%A8%D9%88%D9%84%20%D9%88%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84/Undergraduate%20Admission%20Guide%20-%201448.pdf"]});
+/* USA */
+ver("us1d", {st:"v", win:"Early Action (binding optional) 1 Nov · Regular I 5 Jan · Regular II 2 Mar (Minerva apply page)", sug:"2026-12-15", fin:"2027-03-02", src:["Minerva: apply","https://www.minerva.edu/admissions/"]});
+ver("us2b", {st:"v", win:"REA 1 Nov 2026 (materials by 6 Nov; testing by 30 Nov) · RD ~3–4 Jan 2027 (testing by 31 Dec)", sug:"2026-12-18", fin:"2027-01-03", src:["Caltech first-year deadlines","https://www.admissions.caltech.edu/apply/first-year-applicants/deadlines"]});
+ver("us4d", {st:"s", win:"ED 1 Nov 2026 (no ED II) · RD 1–2 Jan 2027 (sources differ; use 1 Jan)", sug:"2026-12-18", fin:"2027-01-01", src:["Dartmouth admissions","https://admissions.dartmouth.edu/"]});
+ver("us5d", {st:"v", win:"ED I 1 Nov 2026 · ED II and RD 2 Jan 2027 (decisions 12 Feb / 24 Mar)", sug:"2026-12-18", fin:"2027-01-02", src:["JHU application deadlines","https://apply.jhu.edu/apply/process/"]});
+ver("us5j", {st:"v", win:"ED I and EA 2 Nov 2026 · ED II and RD 4 Jan 2027 (RD notification by 1 Apr)", sug:"2026-12-18", fin:"2027-01-04", src:["WashU: important updates for fall 2027","https://admissions.washu.edu/?p=30695"]});
+ver("us5l", {st:"v", win:"ED I 1 Nov 2026 · ED II and RD 1 Jan 2027 (notification by 1 Apr)", sug:"2026-12-18", fin:"2027-01-01", src:["Emory: regular decision","https://apply.emory.edu/apply/first-year/plans-deadlines/regular-decision.html"]});
+ver("us5e", {st:"v", win:"ED I 1 Nov 2026 · ED II and RD 4 Jan 2027 (no early action)", sug:"2026-12-18", fin:"2027-01-04", src:["Rice admission (General Announcements)","https://ga.rice.edu/undergraduate-students/academic-policies-procedures/admission/admission.pdf"]});
+ver("us1", {st:"v", win:"Opens 1 Dec · Priority Early Action 15 Jan (documents by 20 Jan; decision by 1 Mar) · Early Action 1 Mar (documents to 20 Mar; decision by 1 May; advised for F-1) · Regular 15 May", sug:"2027-01-15", fin:"2027-03-01", src:["Columbia GS deadlines and decisions","https://www.gs.columbia.edu/content/admissions-deadlines-and-decisions"]});
+ver("us5c", {st:"v", win:"ED 1 Nov 2026 · RD 4 Jan 2027 (decisions March)", sug:"2026-12-18", fin:"2027-01-04", src:["Northwestern: apply","https://admissions.northwestern.edu/apply/"]});
+ver("us5h", {st:"v", win:"ED 1 Nov 2026 · RD 5 Jan 2027", sug:"2026-12-18", fin:"2027-01-05", src:["CMU application plans & deadlines","https://www.cmu.edu/admission/application-plans-deadlines"]});
+ver("us5b", {st:"s", win:"ED ~2 Nov 2026 (lists differ: 2–4 Nov) · RD 5 Jan 2027", sug:"2026-12-18", fin:"2027-01-05", src:["Duke application checklist & deadlines","https://admissions.duke.edu/checklist/"]});
+ver("us5g", {st:"s", win:"Early Action 1 Nov 2026 · RD 10 Jan 2027 (Georgetown's own application, not the Common App)", sug:"2026-12-18", fin:"2027-01-10", src:["College Essay Advisors RD list 2026-27","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us6b", {st:"v", win:"Early Action or new Early Decision 1 Nov 2026 · RD 10 Jan 2027 (decisions by 1 Apr)", sug:"2026-12-18", fin:"2027-01-10", src:["USC Dornsife: first-year application process","https://dornsife.usc.edu/admission/apply/"]});
+ver("us6e", {st:"v", win:"ED I 2 Nov 2026 · ED II and RD 4 Jan 2027 (RD decisions by 1 Apr)", sug:"2026-12-18", fin:"2027-01-04", src:["Tufts checklist and deadlines","https://admissions.tufts.edu/apply/applying-to-tufts/checklist-and-deadlines/"]});
+ver("us6d", {st:"s", win:"ED I ~2 Nov 2026 · ED II and RD 5 Jan 2027 (last cycle 6 Jan)", sug:"2026-12-18", fin:"2027-01-05", src:["College Essay Advisors RD list 2026-27","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us6c", {st:"s", win:"EA/ED 1 Nov 2026 · RD 1 Jan 2027 (third-party list)", sug:"2026-12-18", fin:"2027-01-01", src:["College Essay Advisors RD list 2026-27","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+[["us3","REA 1 Nov 2026 · RD 1 Jan 2027"],["us3b","REA 1 Nov 2026 · RD 2 Jan 2027"],["us3c","REA 1 Nov 2026 · RD 1 Jan 2027"],["us3d","REA 1 Nov 2026 · RD 5 Jan 2027"],["us2","EA 1 Nov 2026 · RD 5 Jan 2027"],["us4","ED 1 Nov 2026 · RD 5 Jan 2027"],["us4b","ED 1 Nov 2026 · RD 2 Jan 2027"],["us4c","ED 1 Nov 2026 · RD 5 Jan 2027"],["us4e","ED 1 Nov 2026 · RD 1 Jan 2027"],["us5f","ED I 1 Nov 2026 · ED II and RD 1 Jan 2027"],["us6","ED I 1 Nov 2026 · ED II and RD 5 Jan 2027"]].forEach(([id,w]) => ver(id, {st:"s", win:w, sug:"2026-12-18", fin:{"5":"2027-01-05","2":"2027-01-02","1":"2027-01-01"}[w.match(/RD (\d) Jan/)[1]], src:["2026-27 deadline lists (BestColleges, College Essay Advisors)","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]}));
+ver("us5", {st:"s", win:"EA and ED I 2 Nov 2026 · ED II and RD 4 Jan 2027", sug:"2026-12-18", fin:"2027-01-04", src:["2026-27 deadline lists","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us10b", {st:"s", win:"EA 2 Nov 2026 (non-Georgia applicants) · RD 6 Jan 2027", sug:"2026-12-18", fin:"2027-01-06", src:["2026-27 deadline lists","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us10c", {st:"s", win:"Priority 15 Oct 2026 · regular 1 Dec 2026 (SAT/ACT required: the 5 Dec SAT is too late, sit 7 Nov or ask about late scores)", sug:"2026-11-20", fin:"2026-12-01", src:["2026-27 deadline lists","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us11", {st:"s", win:"EA 1 Nov 2026 · RD 1 Feb 2027", sug:"2027-01-15", fin:"2027-02-01", src:["2026-27 deadline lists","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us11d", {st:"s", win:"EA 15 Oct 2026 · RD 15 Jan 2027", sug:"2027-01-05", fin:"2027-01-15", src:["2026-27 deadline lists","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+["us8","us8b","us8c","us8d","u_uci","u_ucsb","u_ucsc","u_ucr","u_ucm"].forEach(id => ver(id, {st:"v", win:"UC application 1–30 Nov 2026 (no early round); SAT not used", sug:"2026-11-20", fin:"2026-11-30", src:["University of California: how to apply","https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-freshman/"]}));
+ver("us9", {st:"s", win:"EA 1 Nov 2026 (tentative) · RD ~5 Jan 2027", sug:"2026-12-18", fin:"2027-01-05", src:["UIUC freshman dates","https://www.archive.admissions.illinois.edu/apply/freshman/dates"]});
+ver("us10", {st:"v", win:"EA 1 Nov 2026 (decisions 15 Jan) · RD 15 Jan 2027 (decisions by 31 Mar)", sug:"2026-11-01", fin:"2027-01-15", src:["Purdue deadlines and important dates","https://purdue.edu/IPPU/ISS/Admission/deadlines.html"]});
+ver("us11e", {st:"v", win:"EA 1 Nov (materials by 10 Nov; decisions by 31 Jan) · RD 15 Jan 2027 (materials by 22 Jan)", sug:"2026-11-01", fin:"2027-01-15", src:["UW–Madison deadlines","https://admissions.wisc.edu/deadlines/"]});
+ver("us11f", {st:"v", win:"15 Nov 2026 for autumn 2027 (test scores, if any, by 31 Dec; decisions 1–15 Mar); no late materials", sug:"2026-11-08", fin:"2026-11-15", src:["UW dates & deadlines","https://admit.washington.edu/apply/dates-deadlines/"]});
+ver("us11c", {st:"v", win:"ED and EA 1 Nov 2026 · RD 5 Jan 2027 (notification by 1 Apr)", sug:"2026-12-18", fin:"2027-01-05", src:["UVA deadlines & instructions","https://admission.virginia.edu/admission/instructions"]});
+ver("us11g", {st:"v", win:"EA 1 Nov 2026 · regular 20 Jan 2027 · later only space-available", sug:"2026-11-01", fin:"2027-01-20", src:["UMD freshman application FAQs","https://admissions.umd.edu/apply/freshman-application-faqs"]});
+ver("us11h", {st:"p", win:"International first-year (Autumn 2026 cycle): EA 1 Nov · regular 15 Jan (EA strongly advised for engineering and honors)", sug:"2026-11-01", fin:"2027-01-15", src:["Ohio State international first-year applicants","https://undergrad.osu.edu/apply/international-freshmen"]});
+ver("us11i", {st:"v", win:"EA 1 Nov · priority 30 Nov 2026 · rolling after (harder later)", sug:"2026-11-01", fin:"2026-11-30", src:["Penn State: apply","https://hazleton.psu.edu/apply-penn-state"]});
+ver("us11j", {st:"p", win:"Fall 2026 cycle: EA 1 Nov · RD 1 Dec (also the merit-scholarship cut-off); later applications decided after", sug:"2026-11-01", fin:"2026-12-01", src:["Rutgers–New Brunswick dates & deadlines","https://admissions.rutgers.edu/apply/dates-deadlines/new-brunswick"]});
+ver("us11k", {st:"p", win:"EA I 1 Nov (decision by 31 Jan) · EA II 1 Dec (by 15 Feb) · regular 1 Jan (by 31 Mar)", sug:"2026-11-01", fin:"2027-01-01", src:["UMN freshman application checklist","https://admissions.tc.umn.edu/freshman/checklist.html"]});
+ver("us11l", {st:"v", win:"EA 1 Nov (best admission and scholarship consideration; complete file) · regular 1 Feb", sug:"2026-11-01", fin:"2027-02-01", src:["IU freshman application","https://admissions.indiana.edu/apply/freshman/"]});
+ver("us11m", {st:"v", win:"Fall 2027 application open: EA 1 Nov (decision by 15 Jan) · complete by 1 Feb for a decision by 31 Mar · regular 1 Apr", sug:"2026-11-01", fin:"2027-02-01", src:["MSU first-year dates and deadlines","https://admissions.msu.edu/apply/first-year/dates-and-deadlines"]});
+ver("us11o", {st:"v", win:"EA 1 Nov (priority for honors) · RD 15 Jan 2027 (completion deadlines)", sug:"2026-11-01", fin:"2027-01-15", src:["Stony Brook international applicants","https://www.stonybrook.edu/undergraduate-admissions/apply/international.php"]});
+ver("us11q", {st:"v", win:"EA 1 Nov (other materials by 1 Dec; decision by 15 Jan) · regular 15 Jan (decision by 1 Apr)", sug:"2026-11-01", fin:"2027-01-15", src:["Binghamton first-year applicants","https://www.binghamton.edu/admissions/undergraduate/apply/freshman/"]});
+ver("us11p", {st:"p", win:"International first-year (fall 2026 cycle): EA 1 Nov · Honors priority 15 Dec · regular (complete) 1 Feb", sug:"2026-11-01", fin:"2027-02-01", src:["UB international first-year","https://www.buffalo.edu/admissions/apply/international/first-year.html"]});
+ver("us11r", {st:"v", win:"EA 5 Nov (application and documents) · RD 15 Jan 2027; no ED", sug:"2026-11-05", fin:"2027-01-15", src:["UMass Amherst early action FAQ","https://www.umass.edu/admissions/early-action-faq"]});
+ver("us11s", {st:"v", win:"ED 1 Nov (binding) · priority 1 Dec (merit and honors) · Storrs regular 15 Jan 2027", sug:"2026-12-01", fin:"2027-01-15", src:["UConn first-year dates & deadlines","https://admissions.uconn.edu/apply/deadlines/"]});
+ver("us11n", {st:"v", win:"Rolling admission; apply by 15 Dec for scholarship priority", sug:"2026-11-20", fin:"2026-12-15", src:["Pitt admissions (rolling)","https://oafa.pitt.edu/apply"]});
+ver("us11t", {st:"v", win:"Fall 2027 (College Station): opens 1 Aug · deadline 1 Dec 2026 · all documents by 15 Dec 2026. Test policy: sources conflict (its Common Data Set lists tests as considered, not required); plan the 7 Nov SAT or confirm.", sug:"2026-11-20", fin:"2026-12-01", src:["Texas A&M: apply as a freshman","https://admissions.tamu.edu/apply/freshman"]});
+ver("us11d", {st:"s", win:"EA 15 Oct 2026 · RD 15 Jan 2027", sug:"2027-01-05", fin:"2027-01-15", src:["UNC testing policy","https://policies.unc.edu/TDClient/2833/Portal/KB/Article/161095/Testing-Policy"], req:"", rule:"Students from outside North Carolina fill only ~18% of places, so admission is very tight. Testing: under the UNC System policy for 2026–27, applicants with a weighted GPA of 2.8+ need not submit scores (confirm with Chapel Hill). Early action closes 15 Oct; regular decision 15 Jan is realistic."});
+ver("us11w", {st:"v", win:"New Early Decision 15 Oct (binding; materials by 22 Oct) · Early Action 1 Nov · Regular 15 Jan 2027; SAT/ACT/CLT required", sug:"2027-01-05", fin:"2027-01-15", src:["UF news: early decision","https://news.ufl.edu/2026/05/early-decision/"]});
+ver("us11x", {st:"v", win:"New Early Decision 15 Oct (Early Action only for Florida residents) · Regular ~1 Dec 2026 · rolling to ~1 Mar (2026 calendar); SAT/ACT/CLT required", sug:"2026-11-20", fin:"2026-12-01", src:["FSU news: Early Decision plan for 2027","https://news.fsu.edu/news/university-news/2026/04/30/fsu-announces-early-decision-admissions-plan-for-2027/"]});
+ver("us11y", {st:"s", win:"Early action mid/late Oct 2026 (sources differ: 15 or 29 Oct) · regular 1 Jan 2027; SAT/ACT required", sug:"2026-12-18", fin:"2027-01-01", src:["UGA counselor fast facts 2026","https://admissions.uga.edu/wp-content/uploads/2026/07/Counselor_Fast_Facts_2026_WEB.pdf"]});
+ver("us12", {st:"p", win:"International first-year: priority deadline ~15 Jan (fall 2026 cycle); later applications considered while space remains. Barrett Honors applies separately (~15 Mar).", sug:"2027-01-10", fin:"2027-01-15", src:["ASU international first-year","https://admission.asu.edu/apply/international/first-year"]});
+ver("us12b", {st:"p", win:"Regular decision ~1 Apr (fall 2026 cycle); earlier applications get priority for scholarships", sug:"2027-01-15", fin:"2027-04-01", src:["University of Arizona: apply","https://capla.arizona.edu/admissions/apply-now"]});
+ver("us11u", {st:"v", win:"Opens 1 Aug · priority (admission and scholarships) 1 Dec 2026 · regular 1 May 2027", sug:"2026-12-01", fin:"2027-05-01", src:["UT Dallas freshman timeline","https://enroll.utdallas.edu/freshman/timeline"]});
+ver("u_cub", {st:"v", win:"EA 15 Nov (decision by 1 Feb) · RD 15 Jan 2027 (last day for application and documents)", sug:"2026-11-15", fin:"2027-01-15", src:["CU Boulder: early action myths","https://www.colorado.edu/admissions/5-early-action-myths-debunked"]});
+ver("us11z", {st:"v", win:"2026–27: EA 15 Nov (records by 1 Dec) · RD 15 Jan 2027 (records by 24 Jan; space available)", sug:"2026-11-15", fin:"2027-01-15", src:["Virginia Tech dates & deadlines","https://www.vt.edu/content/vt_edu/en/admissions/undergraduate/apply/dates-and-deadlines.html"]});
+ver("u_ncsu", {st:"v", win:"2026–27 catalog: EA 1 Nov (notified 31 Jan) · RD 15 Jan (notified 31 Mar)", sug:"2026-11-01", fin:"2027-01-15", src:["NC State catalog 2026–27: undergraduate admission","https://ncsu-preview.courseleaf.com/about/admission-enrollment/admission/undergraduate-admission/"]});
+ver("us5m", {st:"v", win:"ED I 1 Nov · ED II and RD 5 Jan; send everything by 1 Dec for top scholarship consideration", sug:"2026-12-01", fin:"2027-01-05", src:["Rochester dates & deadlines","https://admissions.rochester.edu/?p=866"]});
+ver("us5n", {st:"v", win:"ED I and EA 1 Nov · ED II and RD 15 Jan 2027", sug:"2026-11-01", fin:"2027-01-15", src:["Case Western: apply","https://case.edu/admission/apply"]});
+ver("us5o", {st:"s", win:"ED I 1 Nov · EA ~10–15 Nov (sources differ) · ED II and RD 15 Jan 2027", sug:"2026-11-10", fin:"2027-01-15", src:["Tulane important dates","https://admission.tulane.edu/node/306"]});
+ver("us5p", {st:"s", win:"ED I ~1–3 Nov · RD 1 or 15 Jan 2027 (sources conflict; use 1 Jan to be safe)", sug:"2026-12-18", fin:"2027-01-01", src:["2026-27 RD deadline list","https://www.collegeessayadvisors.com/regular-decision-deadlines/"]});
+ver("us5q", {st:"v", win:"ED I 1 Nov · ED II and RD 5 Jan 2027 (RD decisions by 1 Apr)", sug:"2026-12-18", fin:"2027-01-05", src:["GW: apply","https://undergraduate.admissions.gwu.edu/apply"]});
+ver("us5u", {st:"s", win:"ED I and new EA 1 Nov · ED II and RD 5 Jan 2027 (consultant summary)", sug:"2026-11-01", fin:"2027-01-05", src:["How to get into Syracuse (2026-27)","https://www.collegetransitions.com/blog/how-to-get-into-syracuse-university/"]});
+ver("us5r", {st:"v", win:"ED I 1 Nov · EA 1 Dec · ED II 5 Jan · RD 15 Jan 2027", sug:"2026-12-01", fin:"2027-01-15", src:["RPI: apply","https://undergrad.admissions.rpi.edu/apply"]});
+ver("us5s", {st:"p", win:"ED I 15 Nov · EA 1 Dec · ED II and RD 5 Jan (last cycle's official dates)", sug:"2026-12-01", fin:"2027-01-05", src:["Stevens first-year application plans","https://www.stevens.edu/admission-aid/undergraduate-admissions/first-year-application-plans"]});
+ver("u_williams", {st:"v", win:"ED 15 Nov (decision by 14 Dec) · RD 4–5 Jan (two official page versions differ; use 4 Jan)", sug:"2026-11-15", fin:"2027-01-04", src:["Williams: first-year applicants","https://www.williams.edu/admission-aid/apply/first-year/"]});
+ver("u_amherst", {st:"s", win:"ED ~15 Nov (sources differ: 7 or 15 Nov) · RD early January", sug:"2026-11-07", fin:"2027-01-03", src:["Amherst admission policy document","https://www.amherst.edu/media/view/71657/original/Section+3.pdf"]});
+ver("u_swat", {st:"v", win:"2026–27: Fall ED 15 Nov · Winter ED and RD 4 Jan 2027", sug:"2026-11-15", fin:"2027-01-04", src:["Swarthmore application materials & deadlines","https://www.swarthmore.edu/admissions-aid/application-materials-deadlines"]});
+ver("u_pomona", {st:"v", win:"ED I 8 Nov · ED II and RD 8 Jan", sug:"2026-11-08", fin:"2027-01-08", src:["Pomona application requirements (QuestBridge partner page)","https://www.questbridge.org/partners/college-partners/pomona-college/application-requirements"]});
+ver("u_bowdoin", {st:"p", win:"Last cycle: ED I 15 Nov · ED II and RD 5 Jan", sug:"2026-11-15", fin:"2027-01-05", src:["Bowdoin ED release-date post","https://admissions.blog/bowdoin-college-reveals-early-decision-i-release-date-and-reinforces-commitment-to-accessibility"]});
+ver("u_midd", {st:"s", win:"ED I 1 or 15 Nov (sources differ) · ED II and RD ~3 Jan 2027", sug:"2026-11-01", fin:"2027-01-03", src:["CollegeData: Middlebury","https://waf.collegedata.com/college-search/Middlebury-College/admission"]});
+ver("u_carleton", {st:"s", win:"ED I 15 Nov · ED II and RD 15 Jan", sug:"2026-11-15", fin:"2027-01-15", src:["Carleton (QuestBridge partner page)","https://www.questbridge.org/college-partners/carleton-college/application_requirements"]});
+ver("u_grinnell", {st:"s", win:"ED I 15 Nov · ED II 5 Jan · RD 15 Jan 2027", sug:"2026-11-15", fin:"2027-01-15", src:["CollegeData: Grinnell","https://www.collegedata.com/college-search/grinnell-college/admission"]});
+ver("u_mac", {st:"v", win:"ED I 1 Nov · ED II 1 Jan · RD 15 Jan", sug:"2026-11-01", fin:"2027-01-15", src:["Macalester dates & deadlines","https://macalester.edu/admissions/deadlines"]});
+ver("u_wake", {st:"v", win:"2026–27: ED I 15 Nov · ED II and RD 1 Jan 2027 (EA only for first-generation students)", sug:"2026-11-15", fin:"2027-01-01", src:["Wake Forest 2026–27 application","https://prod.wp.cdn.aws.wfu.edu/sites/203/2026/08/2026-27-Undergraduate-Admissions-Application-Wake-Forest-University.pdf"]});
+ver("u_lehigh", {st:"s", win:"ED I 1 Nov 2026 · ED II and RD ~1 Jan 2027 (third-party organizer)", sug:"2026-11-01", fin:"2027-01-01", src:["ED/EA deadline organizer","https://www.collegeessayadvisors.com/early-decision-and-early-action-deadline-organizer/"]});
+ver("u_villa", {st:"s", win:"EA and ED I 1 Nov · ED II and RD ~15 Jan 2027", sug:"2026-11-01", fin:"2027-01-15", src:["Villanova dates and deadlines","https://www.villanova.edu/university/undergraduate-admission/applying-to-villanova/dates-and-deadlines.html"]});
+ver("u_miami", {st:"v", win:"EA and ED I 1 Nov · ED II and RD 5 Jan", sug:"2026-11-01", fin:"2027-01-05", src:["University of Miami bulletin: freshman admission","https://bulletin.miami.edu/general-university-information/undergraduate-policies-and-procedures/admission/freshman-admission/"]});
+ver("us5k", {st:"v", win:"Restrictive Early Action 1 Nov (decision mid-Dec) · RD 1–4 Jan 2027 (Notre Dame pages differ; use 1 Jan)", sug:"2026-12-18", fin:"2027-01-01", src:["Notre Dame: REA & regular decision","https://admissions.nd.edu/apply/early-action-regular-decision/"]});
+ver("us6f", {st:"s", win:"ED I 1 Nov · ED II and RD ~2–4 Jan 2027 (no early action at BC)", sug:"2026-12-18", fin:"2027-01-02", src:["IvyWise: Boston College spotlight","https://www.ivywise.com/blog/finding-your-best-fit-school-spotlight-on-boston-college"], rule:"Test-optional; holistic. Boston College offers Early Decision I and II and Regular Decision only (no Early Action)."});
+ver("us5v", {st:"v", win:"Early Action (non-binding; check date) · Regular 15 Jan 2027 (notified 1 Apr)", sug:"2026-11-01", fin:"2027-01-15", src:["Drexel: ED, EA and RD options","https://drexel.edu/admissions/apply/undergrad-instructions/first-year-instructions/early-decision-early-action"]});
+ver("us5w", {st:"v", win:"ED 1 Nov · EA 15 Nov (extended 15 Dec) · RD 1 Feb (possible extension to 1 Mar) · spring entry RD 15 Oct", sug:"2026-11-15", fin:"2027-02-01", src:["Illinois Tech application dates & deadlines","https://www.iit.edu/admissions-aid/undergraduate-admission/application-dates-and-deadlines"]});
+ver("u_colby", {st:"s", win:"ED I 15 Nov · ED II and RD ~3–4 Jan 2027", sug:"2026-11-15", fin:"2027-01-03", src:["ED/EA deadline organizer","https://www.collegeessayadvisors.com/early-decision-and-early-action-deadline-organizer/"]});
+ver("u_hamilton", {st:"v", win:"ED I 15 Nov 2026 · ED II and RD 4 Jan 2027", sug:"2026-11-15", fin:"2027-01-04", src:["Hamilton: apply","https://hamilton.edu/apply"]});
+ver("u_davidson", {st:"s", win:"ED I 15 Nov · ED II ~5 Jan · RD ~12 Jan (sources differ)", sug:"2026-11-15", fin:"2027-01-05", src:["Common App: Davidson","https://www.commonapp.org/explore/davidson-college/"]});
+ver("u_haverford", {st:"v", win:"ED 15 Nov · ED II 5 Jan · RD 10 Jan", sug:"2026-11-15", fin:"2027-01-10", src:["Haverford admission","https://www.haverford.edu/node/87901"]});
+ver("u_vassar", {st:"v", win:"ED I 15 Nov · ED II and RD 1 Jan", sug:"2026-11-15", fin:"2027-01-01", src:["Vassar application requirements","https://www.vassar.edu/admission/apply/requirements/"]});
+ver("u_ford", {st:"v", win:"EA and ED I 1 Nov · ED II and RD ~3 Jan (extended to 10 Jan last cycle)", sug:"2026-11-01", fin:"2027-01-03", src:["Fordham dates and deadlines","https://fordham.edu/info/20531/apply/2528/dates_and_deadlines"]});
+ver("u_amer", {st:"v", win:"EA and ED I 1 Nov · ED II and RD 15 Jan 2027 (EA decisions by 31 Jan)", sug:"2026-11-01", fin:"2027-01-15", src:["American University decision plans & deadlines","https://american.edu/admissions/first-year/decision-plans-and-deadlines.cfm"]});
+ver("u_scu", {st:"s", win:"Early Action 1 Nov (notified late Dec) · RD ~7 Jan", sug:"2026-11-01", fin:"2027-01-07", src:["SCU first-year key deadlines","https://scu.edu/admission/undergraduate/first-year-students/fy-key-deadlines"]});
+/* Tier 2 */
+const SE_V = {st:"v", win:"universityadmissions.se: opens 16 Oct 2026 · closes 15 Jan 2027 · documents and fee ~1–2 Feb · results early April", sug:"2026-12-15", fin:"2027-01-15", src:["Jönköping University: application and admission","https://ju.se/en/study-at-ju/application-and-admission.html"]};
+["se1","se2","se3","se4","se_uu","se_su","se_gu","se_kth","se_chalmers","se_liu","se_umu","se_oru","se_kau","se_ltu","se_mau","se_bth","se_hh","se_mdu","se_hig","se_his","se_du","se_hkr","se_hb","se_miun","se_sh"].forEach(id => ver(id, SE_V));
+const FI_V = {st:"v", win:"Joint application 7–21 Jan 2027 on Studyinfo.fi (attachments by ~28 Jan); a few programmes run separate rounds from late 2026", sug:"2027-01-14", fin:"2027-01-21", src:["Study in Finland: joint application","https://www.studyinfinland.fi/news-events/joint-application-autumn-2026"]};
+["fi2","fi3","fi4","fi_lut","fi_vaasa","fi_oulu","fi_turku","fi_jyu","fi_abo","fi_uef","fi_metropolia","fi_haagahelia","fi_laurea","fi_arcada","fi_tamk","fi_turkuamk","fi_jamk","fi_lab","fi_savonia","fi_karelia","fi_xamk","fi_centria","fi_novia","fi_vamk"].forEach(id => ver(id, FI_V));
+ver("fi1", {st:"v", win:"English bachelor's 7–22 Jan 2027 (15:00 UTC+2); with SAT/ACT (round A) your scores must reach Aalto by 29 Jan 2027 15:00", sug:"2027-01-14", fin:"2027-01-22", src:["Aalto: bachelor's programmes in English (high school diploma)","https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"]});
+ver("hu_sh", {st:"s", win:"Expected ~Nov 2026–15 Jan 2027 (2026/27 round closed 15 Jan 2026, 14:00 CET); nominated through Uzbekistan's Ministry of Higher Education (~170–200 places)", sug:"2027-01-05", fin:"2027-01-15", src:["Stipendium Hungaricum: 2026/27 call","https://stipendiumhungaricum.hu/news/application-is-on-for-the-2026-2027-stipendium-hungaricum-scholarship/"], rule:"Uzbekistan is a partner country: the Ministry of Higher Education, Science and Innovation ranks Uzbek candidates (about 170–200 places a year, bachelor's included). Check the ministry's own earlier internal deadline."});
+ver("nl_hva", {st:"p", win:"Studielink · non-EU deadline 1 May (2026 intake: 1 May 2026; EU 1 July); same pattern expected for 2027", sug:"2027-03-01", fin:"2027-05-01", src:["Amsterdam UAS: International Business enrolment","https://www-prd.web.amsterdamuas.com/programmes/international-business/enrolment"]});
+ver("nl_saxion", {st:"p", win:"Studielink · non-EU: documents in Saxion's portal by 1 May; (conditional) admission by 1 May also needed for Saxion scholarships", sug:"2027-03-01", fin:"2027-05-01", src:["Saxion: frequently asked questions","https://saxion.edu/studying-in-the-netherlands/frequently-asked-questions/faq"]});
+ver("nl_hhs", {st:"s", win:"Studielink · non-EU deadline ~1 May (older THUAS dates; 2027 page not yet published)", sug:"2027-03-01", fin:"2027-05-01", src:["THUAS: important dates (older cycle)","https://thuas.com/media/important-dates-2024-2025"]});
+const DK_V = {st:"p", win:"optagelse.dk · 15 Mar 2027 12:00 CET for foreign upper-secondary exams (quota 1 and 2); quota-2 documents by the same time; entry-requirement proof by 5 Jul", sug:"2027-03-01", fin:"2027-03-15", src:["CBS: foreign upper-secondary exam deadline 15 March","https://www.cbs.dk/en/news/foreign-upper-secondary-exam-application-deadline-15-march"]};
+["dk1","dk2","dk_ku","dk_au","dk_dtu","dk_itu","dk_sdu","dk_aau","dk_eaaa","dk_cph","dk_kea","dk_iba","dk_via"].forEach(id => ver(id, DK_V));
+ver("dk_ku", {src:["University of Copenhagen: quota 1 and quota 2","https://www.ku.dk/studies/bachelor/quota-1-and-quota-2"]});
+ver("no_nmbu", {st:"p", win:"International bachelor (International Environment and Development Studies): 15 Oct–1 Dec 2026", sug:"2026-11-20", fin:"2026-12-01", src:["NMBU: how to apply, international applicants","https://www.nmbu.no/en/node/51496"]});
+ver("no_uib", {st:"p", win:"Non-EU applicants: Søknadsweb, usually 1 Dec (check the programme)", sug:"2026-11-20", fin:"2026-12-01", src:["University of Bergen: application process for non-EU/EEA citizens","https://www4.uib.no/en/studies/admission-and-application/application-process-for-applicants-with-a-citizenship-from"]});
+ver("no_ntnu", {st:"p", win:"Non-EU deadline 1 Dec for English programmes (bachelor's in English are rare; most go through Samordna opptak in Norwegian)", sug:"2026-11-20", fin:"2026-12-01", src:["NTNU: admission (international)","https://www.ntnu.edu/studies/macs/admission"]});
+ver("pt1", {st:"p", win:"Non-EU: SUPERNOVA form with documents; decision within 8 weeks; interview possible. No fixed 2027 date published yet: apply Nov 2026–Feb 2027 to leave time for the visa", sug:"2026-12-15", fin:"2027-03-31", src:["Nova SBE: bachelor's for international students","https://www.novasbe.unl.pt/en/programs/apply/bachelors/international-students"]});
+ver("ae1", {st:"s", win:"AUS fall 2027: no date published yet; past pattern was priority ~1 Dec and final in spring (international students need time for the residence visa)", sug:"2026-12-01", fin:"2027-04-30", src:["AUS shortlist summary (Tutopiya)","https://www.tutopiya.com/tools/university-shortlist-builder/uae/aus/"]});
+ver("ae2", {st:"p", win:"Khalifa University: fall 2026 cycle ran 17 Nov 2025 – 2 Mar 2026 on ugapply.ku.ac.ae; expect ~mid-Nov 2026 – early Mar 2027; late applications not considered", sug:"2027-01-15", fin:"2027-03-01", src:["Khalifa University: undergraduate application guidelines","https://apps.ku.ac.ae/ug/Application/Information"]});
+ver("ae1", {src:["AUS: undergraduate admissions deadlines","https://www.aus.edu/admissions/undergraduate/admissions-deadlines"]});
+ver("hu1", {st:"p", win:"Corvinus self-funded: autumn 2026 – mid-Jan 2027 window was used for Sept 2026 (self-funded later extended to spring/summer in past cycles); Stipendium Hungaricum route closes ~15 Jan", sug:"2027-01-10", fin:"2027-01-15", src:["Corvinus: BA/BSc application information","https://www.uni-corvinus.hu/main-page/hello-corvinus/how-to-apply/ba-and-bsc-programs-application-informations/?lang=en"]});
+ver("hu2", {st:"p", win:"ELTE self-financed: by faculty, ~3 May (Economics) to late June (Humanities) on DreamApply; Stipendium Hungaricum ~15 Jan", sug:"2027-03-31", fin:"2027-05-03", src:["ELTE Faculty of Economics: full degree admission","https://gtk.elte.hu/en/node/180830"]});
+ver("hu3", {st:"p", win:"BME international: ~1 Apr – 31 May (2025); Faculty of Economic and Social Sciences 15 May 2026; BSc entrance exam part of selection", sug:"2027-04-15", fin:"2027-05-15", src:["BME GTK: how to apply to BME","https://www.gtk.bme.hu/en/2026/04/20/how-to-apply-to-bme/"]});
+ver("my1", {st:"s", win:"UUM international: Feb, May/Jun and Sept intakes; expected deadlines ~30 Nov 2026 (Feb 2027), ~28 Feb (May), ~30 Jun 2027 (Sept). Ask UUM in writing to confirm direct entry with an 11-year Attestat", sug:"2027-03-31", fin:"2027-06-30", src:["UUM admissions summary (Collegedunia)","https://collegedunia.com/malaysia/college/734-universiti-utara-malaysia-changlun"]});
+ver("sg1", {st:"p", win:"NUS international qualifications: AY2026/27 window ran 3 Dec 2025 – 23 Feb 2026; expect ~early Dec 2026 – late Feb 2027", sug:"2027-02-01", fin:"2027-02-23", src:["NUS: international qualifications for foreigners","https://www.nus.edu.sg/oam/admissions/international-qualifications-for-foreigners"], rule:"NUS requires at least 12 years of general education by July of the application year, so an 11-year Attestat alone is not enough. A realistic route is AP exams (or A-levels) plus a year of study, which points to 2028. The UEE entrance exam has been discontinued."});
+ver("sg_smu", {st:"s", win:"SMU: AY2026/27 closed 19 Mar 2026; expect ~Oct 2026 – ~19 Mar 2027 (only listed international qualifications are considered)", sug:"2027-02-15", fin:"2027-03-19", src:["SMU: international students application timeline","https://admissions.smu.edu.sg/international-students/how-to-apply/step-2"]});
+ver("be2", {st:"p", win:"KU Leuven: non-EEA bachelor deadline 1 Mar (EEA 1 Jul)", sug:"2027-02-01", fin:"2027-03-01", src:["KU Leuven FEB: prospective students","https://feb.kuleuven.be/eng/prospective-students/"]});
+ver("at5", {st:"p", win:"University of Vienna non-EU: summer semester 2027 window 16 Nov 2026 – 7 Jan 2027 (start 1 Mar); winter 2027/28 window opens ~Dec 2026. German C1 or the VWU preparation programme", sug:"2026-12-15", fin:"2027-01-07", src:["University of Vienna: application deadlines","https://studieren.univie.ac.at/en/applying-for-a-programme/deadlines"]});
+const DE_V = {st:"p", win:"uni-assist: usually 15 Jul (winter) / 15 Jan (summer); many Studienkollegs close earlier (e.g. FU Berlin 1 Jun – 15 Jul). Degree after the FSP from 2028", src:["uni-assist: deadlines and processing time","https://uni-assist.de/en/how-to-apply/plan-your-application/deadlines-processing-time"]};
+["de1","de2","de_tum","de_lmu","de_heidelberg","de_rwth","de_kit","de_hu","de_cologne"].forEach(id => ver(id, DE_V));
+ver("au1", {st:"p", win:"Trinity College Foundation Studies: 2027 intakes Jan/Feb (Standard, and Comprehensive from Jan 2027), Jul (Standard), Sep (Fast Track); 2026 acceptances closed ~2 months before each start", sug:"2027-03-15", fin:"2027-06-25", src:["Trinity College: 2027 entry requirements","https://www.trinity.unimelb.edu.au/pathways-school/apply/entry-requirements"], rule:"Direct entry needs Year 12 level. Trinity Foundation accepts your Attestat now. English for 2027: Standard needs IELTS 6.0 with no band below 5.5 (you meet it); Fast Track needs 6.0 with no band below 6.0, so your Writing 5.5 rules out Fast Track until you retake."});
+ver("au3", {st:"s", win:"Monash College Foundation Year: Feb and Jul 2027 intakes (Extended version also runs); apply 6–12 months ahead", sug:"2027-02-15", fin:"2027-05-15", src:["Monash College: dates and fees","https://www.monashcollege.edu.au/courses/english/dates-and-fees"]});
+ver("au5", {st:"s", win:"UNSW College Standard Foundation (Kensington): Mar, Aug and Nov 2027 intakes; IELTS 5.5", sug:"2027-04-01", fin:"2027-06-15", src:["IDP: UNSW College Standard Foundation","https://www.idp.com/universities-and-colleges/unsw-college/standard-foundation-program-science/prg-au-00063825/"]});
+ver("at1", {st:"p", win:"WU bachelor registration ~1 Mar – mid/late May (2024: 1 Mar – 22 May; no late applications); BBE is the English-taught bachelor, WISO is German", sug:"2027-03-15", fin:"2027-05-15", src:["WU press release: bachelor admission procedure","https://www.wu.ac.at/en/press/press-releases/press-releases-details/detail/start-fuer-bachelor-aufnahmeverfahren-an-wirtschaftsuniversitaet-wien"]});
+ver("pt2", {st:"p", win:"Católica (CLSBE) International Student Statute: phase 1 early Dec – early Jan, later phases into June (2025/26 calendar). English certificate needed for English programmes", sug:"2026-12-20", fin:"2027-01-08", src:["Católica: International Student Status calendar 2025/26","https://lisboa.ucp.pt/study-lisboaapplicationstypes-access/calendar-international-student-status-202526"]});
+ver("pt_iscte", {st:"p", win:"ISCTE international (Fenix+): phase 1 mid-Dec – ~15 Jan, then rounds ending late Feb, early Apr, mid-May and late June; unfilled places roll over", sug:"2027-01-10", fin:"2027-01-15", src:["ISCTE: international students applications open","https://iscte-iul.pt/news/international-students-applications-open-undergraduate-programmes"]});
+ver("pt2", {win:"Católica (CLSBE) International Student Statute: phase 1 early Dec – early Jan; later phases run into June, but a June offer leaves too little time for a Portuguese visa (2025/26 calendar)", fin:"2027-04-01"});
+ver("pt_iscte", {win:"ISCTE international (Fenix+): phase 1 mid-Dec – ~15 Jan, then rounds ending late Feb, early Apr, mid-May and late June; unfilled places roll over. Aim for phase 1 or 2 because of visa times", fin:"2027-04-05"});
 
+/* ---------- apply the checks to the directory ---------- */
+const VER_ST = {v:["✓ 2027 date","Confirmed for the 2027 cycle on the university's own page","dv-v"], p:["2026 pattern","The university's own 2026-cycle dates; the 2027 dates are not out yet","dv-p"], s:["Secondary source","From a consultancy or aggregator; confirm on the official page","dv-s"]};
+const LAC_WIN = "ED I ~1–15 Nov · ED II / RD ~1–15 Jan 2027 (typical; confirm)";
+U_RAW.forEach(r => {
+  const v = VER[r[0]];
+  if (!v) { if (SEG[r[0]] === "lac" && /^u_/.test(r[0])) { r[10] = LAC_WIN; r[11] = "2026-12-18"; r[12] = "2027-01-01"; } return; }
+  if (v.win) r[10] = v.win;
+  if (v.sug !== undefined) r[11] = v.sug;
+  if (v.fin !== undefined) r[12] = v.fin;
+  if (v.req !== undefined) r[8] = v.req;
+  if (v.rule) r[9] = v.rule;
+});
 
 /* ===================== SAT ===================== */
 const SAT_DATES = [
@@ -2758,16 +3022,16 @@ const STEPS = {
  ["es:pce","Register for the UNEDasiss PCE exams","For public universities. Registration about 16 Mar–28 Apr 2027 (≈); exams abroad in June.","2027-04-01","2027-04-28","test",0,["es3","es3b","es3c","es4"]],
  ["es:pre","Pre-enrol at Spanish public universities","Usually late June to early July, by region.","2027-06-25","2027-07-10","direct",0,["es3","es3b","es3c","es4"]]],
 "Hong Kong":[
- ["hk:apply","Apply to Hong Kong universities","HKU round 1 26 Nov; CUHK 7 Jan; CityU 15 Jan; HKBU 1 Feb; PolyU 11 Feb.","2026-11-26","2027-02-11","direct",1,null],
+ ["hk:apply","Apply to Hong Kong universities","Early rounds: CityU 15 Nov, HKBU ~16 Nov, PolyU 17 Nov, HKUST ~20 Nov, HKU 25 Nov (12:00 HKT, evaluated first). Main rounds: CUHK and HKUST ~8 Jan, CityU 15 Jan, HKBU ~1 Feb, PolyU ~Feb.","2026-11-15","2027-02-11","direct",1,null],
  ["hk:sat","Send your SAT to CUHK, HKUST, PolyU and CityU","It stands in for national-exam results because you have no DTM.","2026-12-20","2027-01-07","test",0,["hk3","hk5","hk6","hk7"]]],
 "China":[
  ["cn:apply","Apply in China","Duke Kunshan 4 Jan and NYU Shanghai 5 Jan (Common App); CUHK-Shenzhen to 18 Apr; C9 English programmes ~Jan–Apr.","2027-01-04","2027-04-18","direct",1,null],
- ["cn:csca","Sit the CSCA test (maths + physics or chemistry, in English)","Sessions 23–24 Jan, 13–14 Mar, 24–25 Apr, 26–27 Jun 2027. Register on csca.cn and check where you can sit it.","2027-01-23","2027-04-24","test",0,["cn2","cn2b","cn2c","cn2d","cn5"]],
+ ["cn:csca","Sit the CSCA test (maths + physics or chemistry, in English)","Sessions 14–15 Nov and 19–20 Dec 2026, 23–24 Jan 2027; spring 2027 sessions not yet announced. Sitting by January keeps every scholarship deadline open. Register on csca.cn and check where you can sit it.","2026-12-19","2027-01-23","test",0,["cn2","cn2b","cn2c","cn2d","cn5"]],
  ["cn:csc","Apply for the Chinese Government Scholarship","Through the Chinese Embassy in Tashkent or a university; needs the CSCA.","2027-02-15","2027-03-31","direct",0,["cn5"]]],
 "Türkiye":[
  ["tr:apply","Apply in Türkiye","Private universities (Koç, Sabancı, Bilkent) from Jan–Feb; METU, Boğaziçi and ITU in June–July with your SAT.","2027-03-14","2027-07-12","direct",1,null]],
 "France":[
- ["fr:apply","Apply to French BBAs","ESSEC rounds 12 Jan, 10 Mar, 22 Apr; EDHEC to 8 Jun 2027.","2027-01-12","2027-04-22","direct",1,null]],
+ ["fr:apply","Apply to French BBAs","ESSEC Global BBA rounds ~13 Jan, ~11 Mar, ~22 Apr 2027; EDHEC runs four sessions Oct–Mar; ESCP and emlyon run rounds into spring.","2027-01-13","2027-04-22","direct",1,null]],
 "Italy":[
  ["it:pick","Decide your Italy route: John Cabot/AUR now, or a foundation for 2028","John Cabot closes 1 Mar 2027. Foundations start Oct 2027 and need Italian B1 for the visa.","2026-12-15","2027-01-31","direct",0,null],
  ["it:fnd","Apply to an Italian foundation year","Pavia (later windows on its calendar), Cattolica, Ca' Foscari, UNINT, Pisa. Check each calendar.","2027-01-31",null,"fnd",1,null],
@@ -2842,7 +3106,7 @@ const TL = [
 const DEFAULT_SAVED = ["us1","us6","us12","ca1","ca2","es1","hk1","hk2","hk3","cn3","cn6","tr1","tr3","fr1","it3","qa1","qa2"];
 
 /* ===================== MODEL ===================== */
-const U = U_RAW.map(r => ({kind:"deg", id:r[0], country:r[1], name:r[2], city:r[3], type:r[4], band:r[5], fields:r[6].split(" "), courses:r[7], req:r[8], rule:r[9], win:r[10], sug:r[11], fin:r[12], spring:!!r[13], fit:r[14], web:r[15], also:r[16]}));
+const U = U_RAW.map(r => ({kind:"deg", id:r[0], country:r[1], name:r[2], city:r[3], type:r[4], band:r[5], fields:r[6].split(" "), courses:r[7], req:r[8], rule:r[9], win:r[10], sug:r[11], fin:r[12], spring:!!r[13], fit:r[14], web:r[15], also:r[16], ver:VER[r[0]] || null}));
 const F = F_RAW.map(f => ({kind:"fnd", id:f[0], name:f[1], city:f[2], country:f[3], feeds:f[4], guar:f[5], accepts:f[6], english:f[7], intakes:f[8], apply:f[9], sug:f[10], fin:f[11], length:f[12], spring:!!f[13], home:!!f[14], fit:f[15], note:f[16], rk:f[17], req:f[18], fields:f[19].split(" "), web:f[20], type:"Foundation", band:"?"}));
 const ITEMS = [...U, ...F];
 const byId = {}; ITEMS.forEach(x => byId[x.id] = x);
@@ -3064,9 +3328,16 @@ const laneCountries = () => ORDER.filter(c => ui.lane === "all" || String(tierOf
 const isSaved = id => state.saved.includes(id);
 const saveBtn = id => `<button type="button" class="savebtn" data-save="${id}" aria-pressed="${isSaved(id)}">${STAR}<span>${isSaved(id) ? "Saved" : "Save"}</span></button>`;
 const cmpBtn = id => `<button type="button" class="cmpbtn" data-cmp="${id}" aria-pressed="${ui.cmp.includes(id)}" title="Add to comparison">${CMPI}<span>${ui.cmp.includes(id) ? "Comparing" : "Compare"}</span></button>`;
+function dvTag(x){ const v = x.ver && VER_ST[x.ver.st]; return v ? `<span class="dv ${v[2]}" title="${esc(v[1])}">${v[0]}</span>` : ""; }
+function dvLine(x){
+  const v = x.ver && VER_ST[x.ver.st];
+  if (!v) return /typical|confirm/i.test(x.win || "") ? `<div class="dvl faint">Not yet checked one by one: this is the usual pattern for this kind of university.</div>` : "";
+  const src = x.ver.src ? ` · <a href="${esc(x.ver.src[1])}" target="_blank" rel="noopener">${esc(x.ver.src[0])}</a>` : "";
+  return `<div class="dvl"><span class="dv ${v[2]}">${v[0]}</span> ${esc(v[1])} (checked 8 Oct 2026)${src}</div>`;
+}
 function datesCell(x, closed){
   if (closed) return `<div class="dates"><span>—</span></div>`;
-  return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span></div>`;
+  return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span>${dvTag(x)}</div>`;
 }
 function searchText(x){
   if (x._st) return x._st;
@@ -3099,7 +3370,7 @@ function bodyHtml(x, e){
   const c = chanceOf(x, e);
   const chDl = c ? `<dl><dt>Your chance</dt><dd>${meter(c)}<b class="chw">${CH[c][0]}</b> · ${esc(CH[c][2])}. ${esc(CH[c][3])}${isEst(x) ? ' <span class="faint">Estimated from ranking.</span>' : ""}</dd></dl>` : "";
   const body = x.kind === "deg"
-    ? `<dl><dt>Courses</dt><dd>${esc(x.courses)}</dd></dl><dl><dt>The rule for you</dt><dd>${T(x.rule)}</dd></dl>${need}${chDl}<dl><dt>Application window</dt><dd>${T(x.win)}</dd></dl>${x.also ? `<dl class="full"><dt>The same rule covers</dt><dd class="small muted">${esc(x.also)}</dd></dl>` : ""}`
+    ? `<dl><dt>Courses</dt><dd>${esc(x.courses)}</dd></dl><dl><dt>The rule for you</dt><dd>${T(x.rule)}</dd></dl>${need}${chDl}<dl><dt>Application window</dt><dd>${T(x.win)}${dvLine(x)}</dd></dl>${x.also ? `<dl class="full"><dt>The same rule covers</dt><dd class="small muted">${esc(x.also)}</dd></dl>` : ""}`
     : `<dl><dt>Accepts your Attestat?</dt><dd>${esc(x.accepts)}</dd></dl><dl><dt>English</dt><dd>${esc(x.english)}</dd></dl><dl><dt>Intakes · length</dt><dd>${esc(x.intakes)} · ${esc(x.length)}</dd></dl><dl><dt>How to apply</dt><dd>${T(x.apply)}</dd></dl>${need}${chDl}${x.note ? `<dl><dt>Note</dt><dd>${T(x.note)}</dd></dl>` : ""}`;
   const segName = SEGS[x.country] && SEG[x.id] ? (SEGS[x.country].find(s => s[0] === SEG[x.id]) || [])[1] : "";
   return `${body}${segName ? `<dl><dt>Section</dt><dd>${esc(segName)}</dd></dl>` : ""}<div class="acts">${webLink(x.web)}${cmpBtn(x.id)}</div>`;
@@ -3596,7 +3867,7 @@ function toast(msg, undo){ $("#toastMsg").textContent = msg; undoFn = undo || nu
 $("#toastUndo").addEventListener("click", () => { if (undoFn) undoFn(); undoFn = null; $("#toast").hidden = true; });
 
 /* ===================== BOOT ===================== */
+(function(){ const n = {v:0,p:0,s:0}; U.forEach(x => { if (x.ver && n[x.ver.st] !== undefined) n[x.ver.st]++; }); ["v","p","s"].forEach(k => { const el = document.getElementById("nDv" + k.toUpperCase()); if (el) el.textContent = n[k]; }); })();
 function renderAll(){ sitSummary(); renderUnis(); renderRoadmap(); renderChecklist(); }
 syncSit(); renderChart(); renderAll();
-
 </script>

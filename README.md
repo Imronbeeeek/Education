@@ -17,7 +17,7 @@
 6. **Spring 2027 shortlist** (only realistic options):
    - **UAE** (January intakes)
    - **Malaysia** (UUM direct, or Foundation, Feb/Mar)
-   - **Australia** (Foundation Feb/Mar; Trinity *Fast Track* accepts an Attestat average of 5)
+   - **Australia** (Foundation Feb/Mar; Trinity *Standard* accepts you now. *Fast Track* needs IELTS 6.0 with no band below 6.0, so it opens only after a Writing retake)
    - **Türkiye** (foundation universities' spring semester)
    - **South Korea** (mid-tier March admissions, or a Korean language institute)
    - **GKS-U 2027 University Track**: open Sep–Nov 2026, and you are age-eligible
@@ -57,6 +57,7 @@
 | [`strategy/09-final-system-oct-2026.md`](strategy/09-final-system-oct-2026.md) | Final system: what the website contains, corrections (Khalifa, KFUPM, US test policies), new entries, how to use it |
 | [`strategy/10-tier1-deep-dive-oct-2026.md`](strategy/10-tier1-deep-dive-oct-2026.md) | Tier 1 deep dive, USA first: chance bands, routes for a 2022 graduate (Yale Eli Whitney, Columbia GS), the Writing 5.5 problem, SAT policies, 45 more US universities, new facts for the other nine countries |
 | [`strategy/11-directories-and-scorecard-oct-2026.md`](strategy/11-directories-and-scorecard-oct-2026.md) | Full directories (926 degree entries, 279 in the USA), strategy pages for all 27 Tier 1–2 countries, and a weighted country scorecard with reasoning |
+| [`strategy/12-verification-oct-2026.md`](strategy/12-verification-oct-2026.md) | Deadline verification: 261 universities checked and tagged by source, corrections, 38 universities added (964 entries now), what is still unclear, 153 sources |
 | [`site/index.html`](site/index.html) | Interactive website: Universities (programmes, countries & systems, courses guide, glossary), Roadmap (suggested vs final dates, SAT planner, calendar export), Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability
