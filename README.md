@@ -55,6 +55,7 @@
 | [`strategy/07-new-factors-oct-2026.md`](strategy/07-new-factors-oct-2026.md) | Recognition back in Uzbekistan (top-1,000 rule), military deferment, visa refusal data, 13 newly found foundation programmes |
 | [`strategy/08-tiers-and-timing.md`](strategy/08-tiers-and-timing.md) | Your three country tiers, Tier-1 reality check, suggested date vs final deadline for every action, SAT planner, what changes without DTM |
 | [`strategy/09-final-system-oct-2026.md`](strategy/09-final-system-oct-2026.md) | Final system: what the website contains, corrections (Khalifa, KFUPM, US test policies), new entries, how to use it |
+| [`strategy/10-tier1-deep-dive-oct-2026.md`](strategy/10-tier1-deep-dive-oct-2026.md) | Tier 1 deep dive, USA first: chance bands, routes for a 2022 graduate (Yale Eli Whitney, Columbia GS), the Writing 5.5 problem, SAT policies, 45 more US universities, new facts for the other nine countries |
 | [`site/index.html`](site/index.html) | Interactive website: Universities (programmes, countries & systems, courses guide, glossary), Roadmap (suggested vs final dates, SAT planner, calendar export), Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability
