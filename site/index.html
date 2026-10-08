@@ -447,12 +447,12 @@ table.score .why{min-width:220px;max-width:380px}
 <header class="top wrap">
   <div class="eyebrow">Study-abroad plan · Fall 2027 · updated 8 Oct 2026</div>
   <h1>Imronbek's Admissions Atlas</h1>
-  <p class="lede">33 countries in your three tiers, 227 university entries and 41 foundation routes (about 800 institutions in total) rated for your profile, with each action's suggested date and final deadline.</p>
+  <p class="lede" id="lede">Only the universities you can apply to, now or after one step you can take, rated for your profile, with each action's suggested date and final deadline.</p>
   <div class="pass" aria-label="Your admission facts">
     <div class="seg"><span class="k">Attestat</span><span class="v">5.0 / 5.0</span><span class="s">11 years · finished 2022</span></div>
     <div class="seg"><span class="k">IELTS</span><span class="v">7.5 · W 5.5</span><span class="s">Retake planned · valid to 2 Sep 2027</span></div>
     <div class="seg" id="passSat"><span class="k">SAT</span><span class="v">Not yet</span><span class="s">Planned sitting: 5 Dec</span></div>
-    <div class="seg no"><span class="k">DTM</span><span class="v">Not taking</span><span class="s">Routes that need it are marked</span></div>
+    <div class="seg no"><span class="k">DTM</span><span class="v">Not taking</span><span class="s">Routes that need it are left out</span></div>
     <div class="seg warn"><span class="k">Passport</span><span class="v">Renewing</span><span class="s">Current one ends 21 Sep 2027</span></div>
     <div class="seg"><span class="k">Age</span><span class="v">22</span><span class="s">Target: Fall 2027</span></div>
   </div>
@@ -508,7 +508,7 @@ table.score .why{min-width:220px;max-width:380px}
         <button type="button" data-kind="deg" aria-pressed="false">Degrees</button>
         <button type="button" data-kind="fnd" aria-pressed="false">Foundations</button>
       </div>
-      <div class="legend"><span class="chip s-ok">Open now</span><span class="chip s-reach">Needs a score or document</span><span class="chip s-bridge">Bridge year first</span><span class="chip s-closed">Closed</span></div>
+      <div class="legend"><span class="chip s-ok">Open now</span><span class="chip s-reach">Needs a score or document</span><span class="chip s-bridge">Bridge year first</span></div>
       <div class="legend dvleg"><span>Deadlines checked 8 Oct 2026:</span><span><span class="dv dv-v">✓ 2027 date</span> <b id="nDvV">0</b> confirmed</span><span><span class="dv dv-p">2026 pattern</span> <b id="nDvP">0</b> from last cycle's official dates</span><span><span class="dv dv-s">Secondary source</span> <b id="nDvS">0</b></span><span>Unmarked: usual pattern, confirm</span></div>
     </div>
     <div class="fchips" role="group" aria-label="Field of study" id="fchips"></div>
@@ -518,7 +518,7 @@ table.score .why{min-width:220px;max-width:380px}
       <div class="ctl"><label for="chSel">Chance</label><select id="chSel"><option value="">Any chance</option><option value="o">Likely</option><option value="m">Target</option><option value="h">Reach</option><option value="x">Long shot</option></select></div>
       <div class="ctl" style="grid-column:span 2;min-width:0"><span class="lbl">Filters</span>
         <div class="toggles">
-          <button type="button" class="tog" data-tog="hideClosed" aria-pressed="true">Hide closed</button>
+          
           <button type="button" class="tog" data-tog="saved" aria-pressed="false">Saved only</button>
           <button type="button" class="tog" data-tog="rank" aria-pressed="false">Recognised in Uzbekistan</button>
           <button type="button" class="tog" data-tog="spring" aria-pressed="false">Spring 2027 start</button>
@@ -2859,11 +2859,11 @@ Object.assign(DEEP, {
   mix:{}, picks:{}
 },
 "Singapore":{
-  head:"Closed for 2027 at the public universities. NUS, NTU and SMU do not accept CIS certificates alone and want AP or A-levels plus the SAT. Private institutions (SIM, JCU, Curtin, Kaplan) teach partner-university degrees after a foundation.",
-  read:["NUS, NTU and SMU: 3 AP exams at 4–5 or A-levels, plus SAT 1250+."],
+  head:"Not for 2027 at the public universities. NTU, SMU and SUTD do not accept CIS certificates alone and want AP or A-levels plus the SAT (NUS is left out: it requires 12 years of school). Private institutions (SIM, JCU, Curtin, Kaplan) teach partner-university degrees after a foundation.",
+  read:["NTU, SMU and SUTD: 3 AP exams at 4–5 or A-levels, plus SAT 1250+."],
   edge:["World-class universities if you add APs for 2028"],
   risk:["<b>AP exams</b> run only in May, so 2028 entry.","<b>Private partner degrees</b> are usually outside global rankings."],
-  plan:[["May 2027","Optional: 3 AP exams for 2028 entry to NUS, NTU or SMU."]],
+  plan:[["May 2027","Optional: 3 AP exams for 2028 entry to NTU, SMU or SUTD."]],
   mix:{o:1}, picks:{o:["sg2"]}
 },
 "Bahrain":{
@@ -3220,6 +3220,24 @@ U_RAW.forEach(r => {
   if (v.req !== undefined) r[8] = v.req;
   if (v.rule) r[9] = v.rule;
 });
+/* ---------- Personal list (v10): keep only what you can apply to now or become eligible for ----------
+   Removed: every entry closed to you (citizenship, gender, age or certificate-age limits, 12-year rules,
+   DTM results), plus three that are effectively impossible (NUS and KOREATECH state 12 years of school;
+   Iceland's small universities teach in Icelandic and need matriculation equivalence). */
+const PRUNE_EXTRA = ["sg1", "k_koreatech", "i_more"];
+const PRUNED = [];
+for (let i = U_RAW.length - 1; i >= 0; i--) {
+  const r = U_RAW[i];
+  if (r[8].split(";").includes("D") || PRUNE_EXTRA.includes(r[0])) { PRUNED.unshift([r[0], r[1], r[2]]); U_RAW.splice(i, 1); }
+}
+/* "More" lists: drop names you cannot apply to */
+const ALSO_CUT = {lv3:" (closed to you: National Defence Academy)", lt4:" (closed to you: General Jonas Žemaitis Military Academy)", sa2c:"Princess Nourah (women), "};
+U_RAW.forEach(r => { const cut = ALSO_CUT[r[0]]; if (cut) r[16] = r[16].replace(cut, ""); });
+/* Countries left with nothing you can apply to disappear from the lists */
+const PRUNED_COUNTRIES = ORDER.filter(c => !U_RAW.some(r => r[1] === c) && !F_RAW.some(f => f[3] === c));
+PRUNED_COUNTRIES.forEach(c => { ORDER.splice(ORDER.indexOf(c), 1); delete DEEP[c]; delete SCORE[c]; });
+/* Strategy picks that pointed at removed entries */
+Object.values(DEEP).forEach(d => Object.keys(d.picks || {}).forEach(k => { d.picks[k] = d.picks[k].filter(id => U_RAW.some(r => r[0] === id) || F_RAW.some(f => f[0] === id)); }));
 
 /* ===================== SAT ===================== */
 const SAT_DATES = [
@@ -3657,7 +3675,7 @@ document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.clas
 function best(list){ return list.map(o => o.e.s).sort((a,b) => SORDER[a] - SORDER[b])[0] || "closed"; }
 function renderLanes(){
   const n = {1:0,2:0,3:0}; ORDER.forEach(c => n[tierOf(c)]++);
-  const lanes = [["1", TIER_NAME[1], `Tier 1 · ${n[1]} countries`, "var(--t1)"], ["2", TIER_NAME[2], `Tier 2 · ${n[2]} countries`, "var(--t2)"], ["3", TIER_NAME[3], `Tier 3 · ${n[3]} countries`, "var(--t3)"], ["all", "All countries", "33 countries", "var(--line-2)"]];
+  const lanes = [["1", TIER_NAME[1], `Tier 1 · ${n[1]} countries`, "var(--t1)"], ["2", TIER_NAME[2], `Tier 2 · ${n[2]} countries`, "var(--t2)"], ["3", TIER_NAME[3], `Tier 3 · ${n[3]} countries`, "var(--t3)"], ["all", "All countries", `${ORDER.length} countries`, "var(--line-2)"]];
   $("#lanes").innerHTML = lanes.map(([k,name,sub,c]) => `<button type="button" role="tab" class="lane" data-lane="${k}" aria-selected="${ui.lane === k}" style="--tc:${c}"><span class="ln">${name}</span><span class="ls">${sub}</span></button>`).join("");
 }
 function rowsFor(c){
@@ -3873,7 +3891,7 @@ function goto(id){
 }
 document.addEventListener("click", e => {
   if (e.target.closest("[data-clear]")) clearFilters();
-  if (e.target.closest("[data-showclosed]")) { ui.hideClosed = false; $('[data-tog="hideClosed"]').setAttribute("aria-pressed", "false"); renderProgrammes(); }
+  if (e.target.closest("[data-showclosed]")) { ui.hideClosed = false; $('[data-tog="hideClosed"]')?.setAttribute("aria-pressed", "false"); renderProgrammes(); }
   const f = e.target.closest("[data-field]"); if (f) { ui.field = f.dataset.field; renderProgrammes(); }
   const j = e.target.closest("[data-jump]"); if (j) scrollToEl(document.getElementById("cg-" + domId(j.dataset.jump)));
   const cl = e.target.closest("[data-ctrylink]"); if (cl) { setSub("ctry"); scrollToEl(document.getElementById("cc-" + domId(cl.dataset.ctrylink))); }
@@ -4133,6 +4151,7 @@ $("#toastUndo").addEventListener("click", () => { if (undoFn) undoFn(); undoFn =
 
 /* ===================== BOOT ===================== */
 (function(){ const n = {v:0,p:0,s:0}; U.forEach(x => { if (x.ver && n[x.ver.st] !== undefined) n[x.ver.st]++; }); ["v","p","s"].forEach(k => { const el = document.getElementById("nDv" + k.toUpperCase()); if (el) el.textContent = n[k]; }); })();
+(function(){ const el = document.getElementById("lede"); if (el) el.textContent = `${ORDER.length} countries in your three tiers, ${U.length} university entries and ${F.length} foundation routes. Only places you can apply to now, or after one step you can take (a score, a document or a bridge year), each rated for your profile with a suggested date and a final deadline.`; })();
 function renderAll(){ sitSummary(); renderUnis(); renderRoadmap(); renderChecklist(); }
 syncSit(); renderChart(); renderAll();
 </script>
