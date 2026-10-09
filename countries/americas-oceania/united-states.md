@@ -104,3 +104,13 @@
 **Testing timeline fit:** register **by 23 Oct for the 7 Nov SAT** (scores about 2 weeks later, enough for 15 Nov EA and all RD deadlines). The **5 Dec SAT** fits RD.
 
 **Sources:** [College Board – SAT dates & deadlines](https://satsuite.collegeboard.org/sat/dates-deadlines); [Common App – first-year vs transfer](https://www.commonapp.org/apply/first-year-students/), [application dictionary (PDF)](https://www.commonapp.org/static/6ac5a0fbb2c8b4b7721999e09d38defc/Resource_FYTR_AppDictionary_ENG_2025.06.24_2.pdf); [Dartmouth – first-year or transfer?](https://admissions.dartmouth.edu/glossary-question/do-i-apply-first-year-student-or-transfer-student); [Columbia GS – eligibility](https://www.gs.columbia.edu/content/eligibility-undergraduate), [international students](https://www.gs.columbia.edu/content/international-students), [deadlines](https://www.gs.columbia.edu/content/admissions-deadlines-and-decisions); [NAFSA – Proclamation of 16 Dec 2025](https://www.nafsa.org/regulatory-information/proclamation-december-16-2025-travel-ban-effective-january-1-2026); [White House fact sheet (Dec 2025)](https://www.whitehouse.gov/fact-sheets/2025/12/fact-sheet-president-donald-j-trump-further-restricts-and-limits-the-entry-of-foreign-nationals-to-protect-the-security-of-the-united-states/); [The Diplomat – 75-country immigrant-visa pause](https://thediplomat.com/2026/01/us-pauses-immigrant-visa-processing-for-75-countries-13-in-asia/); [US Embassy Tashkent – visas](https://uz.usembassy.gov/visas/).
+
+## Update 9 Oct 2026
+See [`strategy/16-usa-deep-dive-oct-2026.md`](../../strategy/16-usa-deep-dive-oct-2026.md):
+- 132 more universities, so 441 have full details, plus an index of every other four-year college.
+- Aid for international students at each university.
+- El-Yurt Umidi funding.
+- The 2026–27 visa rules:
+  - Uzbekistan is not under the 2026 travel restrictions;
+  - the fixed-period rule for students is blocked by a federal court;
+  - a $250 visa integrity fee is being collected at some embassies.

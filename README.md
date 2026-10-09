@@ -61,6 +61,7 @@
 | [`strategy/13-tier3-oct-2026.md`](strategy/13-tier3-oct-2026.md) | Tier 3 deep dive: South Korea (55 universities, KAIST/GKS/spring rounds), Latvia, Lithuania, Malta, Iceland, Luxembourg; strategies, scores and checked dates |
 | [`strategy/14-fees-and-platforms-oct-2026.md`](strategy/14-fees-and-platforms-oct-2026.md) | Application fees, free routes, the Common App fee waiver and one-form platforms per country |
 | [`strategy/15-design-and-focus-oct-2026.md`](strategy/15-design-and-focus-oct-2026.md) | Site reorganised into Home, Universities, My list and Plan; medicine removed (13 entries out, 207 kept without the medicine tag); new confirmed application fees |
+| [`strategy/16-usa-deep-dive-oct-2026.md`](strategy/16-usa-deep-dive-oct-2026.md) | USA only: 441 universities with details plus an index of 1,434 more; aid for international students at every one (need-blind, full need, merit, free tuition); full-ride routes; El-Yurt Umidi; 2026–27 F-1 visa rules for Uzbek citizens; how to stand out |
 | [`site/index.html`](site/index.html) | Personal website, only places you can apply to now or after one step (closed entries, Jordan and medicine-only schools were removed; the country files and strategy/15 explain why): **Home** (next tasks, deadlines, list summary, best countries), **Universities** (Browse, Countries, Guide), **My list** (application tracker, balance, fees), **Plan** (Tasks, Timeline) ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability
