@@ -137,3 +137,18 @@ Sources added:
 - [SFU](https://www.sfu.ca/students/calendar/fees-and-regulations/tuition-fees.html)
 - [LogRocket: mobile filter UX](https://blog.logrocket.com/ux-design/best-practices-mobile-search-filter)
 - [Algolia: filter UX](https://www.algolia.com/blog/ux/search-filter-ux-best-practices/)
+
+## Update: the rest of your saved list (9 Oct 2026)
+
+| University | Fee | Source |
+|---|---|---|
+| University of Alberta | CAD 150 | [Official](https://www.ualberta.ca/en/admissions/tuition-and-scholarships/international-tuition-and-fees.html) |
+| IE University | €150 (covers the admission test and committee review) | [Official](https://www.ie.edu/university/admission/admission-process/application-form/) |
+| Hong Kong Baptist University | HK$450 (one application, up to two programme choices) | [Official](https://iss.hkbu.edu.hk/amsappl_nj/geninfo.jsf) |
+| CUHK (corrected) | HK$500 for 2027 entry | [Official](https://admission.cuhk.edu.hk/application/overseas-other-qualifications-non-local-international-team/fees-calculator/) |
+| ESSEC Global BBA | €100 (Cergy and Singapore campuses) | [Official](https://www.essec.edu/en/program/global-bba-international/) |
+| METU | No application fee in the 2026–27 cycle | Secondary guides; [METU international office](https://iso.metu.edu.tr/) |
+| Koç University | ≈ 250 TL (last published, 2022) | Secondary; confirm |
+| CUHK-Shenzhen | Not published | Check the application portal |
+
+Your 17 saved applications now have exact fees for 16; only CUHK-Shenzhen is unknown. Across the site, 223 universities have exact fees (136 official, 87 secondary).

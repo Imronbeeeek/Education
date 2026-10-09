@@ -3461,6 +3461,18 @@ Object.entries({
   au1:{f:"Trinity Foundation: no application fee (its form)", usd:0, w:"", ex:"s"}, f2:{f:"No application fee (Trinity's form)", usd:0, w:"", ex:"s"},
   f3:{f:"AUD 100–125, often waived through official agents", usd:75, w:"Monash College waives the fee for many agent applications.", ex:"s"}, f4:{f:"AUD 100–125, often waived through official agents", usd:75, w:"Monash College waives the fee for many agent applications.", ex:"s"}
 }).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
+
+/* Fourth pass (9 Oct 2026): the rest of the saved list */
+Object.entries({
+  ca1:{p:"University of Alberta's own application", f:"CAD 150, non-refundable", usd:110, w:"", ex:"o", src:["University of Alberta: international tuition and fees","https://www.ualberta.ca/en/admissions/tuition-and-scholarships/international-tuition-and-fees.html"]},
+  es1:{p:"IE's own application", f:"€150 (covers the admission test and committee review)", usd:162, w:"", ex:"o", src:["IE University: application form","https://www.ie.edu/university/admission/admission-process/application-form/"]},
+  hk1:{f:"HK$450 (one application, up to two programme choices)", usd:58, ex:"o", src:["HKBU: guidelines to application (non-JUPAS)","https://iss.hkbu.edu.hk/amsappl_nj/geninfo.jsf"]},
+  hk3:{f:"HK$500 (2027 entry)", usd:64, ex:"o", src:["CUHK: fees calculator","https://admission.cuhk.edu.hk/application/overseas-other-qualifications-non-local-international-team/fees-calculator/"]},
+  cn6:{f:"Not published (check the application portal)", usd:85, ex:""},
+  tr1:{f:"≈ 250 TL (last published, 2022; confirm)", usd:8, ex:"s"},
+  tr3:{f:"No application fee (2026–27 cycle)", usd:0, w:"", ex:"s", src:["METU: international students office","https://iso.metu.edu.tr/"]},
+  fr1:{p:"ESSEC's online portal", f:"€100 (Cergy and Singapore campuses; Morocco €75)", usd:108, w:"", ex:"o", src:["ESSEC Global BBA: apply with an international diploma","https://www.essec.edu/en/program/global-bba-international/"]}
+}).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
 FEE_C["Sweden"].ex = "o"; FEE_C["Finland"].ex = "o"; FEE_C["Germany"].ex = "o"; FEE_C["Saudi Arabia"].ex = "s";
 const feeOf = x => {
   if (x._fee) return x._fee;
