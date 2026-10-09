@@ -59,6 +59,7 @@
 | [`strategy/11-directories-and-scorecard-oct-2026.md`](strategy/11-directories-and-scorecard-oct-2026.md) | Full directories (926 degree entries, 279 in the USA), strategy pages for all 27 Tier 1–2 countries, and a weighted country scorecard with reasoning |
 | [`strategy/12-verification-oct-2026.md`](strategy/12-verification-oct-2026.md) | Deadline verification: 261 universities checked and tagged by source, corrections, 36 universities added (962 entries), what is still unclear, 153 sources |
 | [`strategy/13-tier3-oct-2026.md`](strategy/13-tier3-oct-2026.md) | Tier 3 deep dive: South Korea (55 universities, KAIST/GKS/spring rounds), Latvia, Lithuania, Malta, Iceland, Luxembourg; strategies, scores and checked dates |
+| [`strategy/14-fees-and-platforms-oct-2026.md`](strategy/14-fees-and-platforms-oct-2026.md) | Application fees, free routes, the Common App fee waiver and one-form platforms per country |
 | [`site/index.html`](site/index.html) | Personal website (lists only places you can apply to now or after one step; the 25 closed or near-impossible entries and Jordan were removed on 8 Oct 2026, and the country files explain why they are out): Universities (programmes, countries & systems, courses guide, glossary), Roadmap (suggested vs final dates, SAT planner, calendar export), Checklist ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
 
 ## Method & reliability

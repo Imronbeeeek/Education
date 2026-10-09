@@ -505,6 +505,18 @@ main{padding-block:22px 72px}
 .totop svg{width:15px;height:15px}
 .totop:hover{background:var(--hover)}
 @media (max-width:640px){.totop{bottom:calc(92px + env(safe-area-inset-bottom,0px))}}
+/* ---------- v11: fees and the application tracker ---------- */
+.it .dates .fee{color:var(--muted)} .it .dates .fee.w{color:var(--ok)} .it .dates .fee.z{color:var(--ok);font-weight:600}
+.feew{margin-top:4px;font-size:13px;color:var(--muted)} .feew b{color:var(--ok)}
+.feegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px 20px}
+.feegrid h4{margin:0 0 4px;font:700 14px var(--f-display);font-stretch:104%}
+.slsum{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font:500 12.5px var(--f-mono);color:var(--muted)}
+.app-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center}
+.app-side{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}
+.appst{width:auto;padding:5px 8px;font-size:12.5px}
+.app-row[data-st="sent"] .appst,.app-row[data-st="offer"] .appst{border-color:var(--ok);color:var(--ok)}
+.app-row[data-st="no"] .appst{color:var(--faint)}
+@media (max-width:560px){.app-row{grid-template-columns:1fr}.app-side{justify-content:flex-start}}
 </style>
 
 <header class="top wrap">
@@ -581,6 +593,7 @@ main{padding-block:22px 72px}
           <button type="button" class="tog" data-tog="saved" aria-pressed="false">Saved only</button>
           <button type="button" class="tog" data-tog="rank" aria-pressed="false">Recognised in Uzbekistan</button>
           <button type="button" class="tog" data-tog="spring" aria-pressed="false">Spring 2027 start</button>
+          <button type="button" class="tog" data-tog="free" aria-pressed="false">Free or fee waiver</button>
         </div>
       </div>
     </div>
@@ -606,6 +619,7 @@ main{padding-block:22px 72px}
   <div class="subview grid" style="gap:16px" id="vStrat" hidden>
     <p class="muted small" style="max-width:80ch">A scorecard ranking every country in your three tiers for your profile, then one page per country: how they will judge your file, your chances, the risks, a dated plan and a suggested shortlist. Chance bands are estimates from admission rates (international rates are often lower) and how well you meet each rule.</p>
     <section class="card" id="balance"></section>
+    <section class="card" id="fees"></section>
     <section class="card" id="score"></section>
     <div class="schips" role="tablist" aria-label="Country" id="sChips"></div>
     <div id="stratOut"></div>
@@ -744,7 +758,8 @@ main{padding-block:22px 72px}
   </div>
 
   <div class="card">
-    <div class="toolbar"><h3>Your shortlist <span class="muted small" id="slCount"></span></h3><button class="linkbtn" type="button" id="goUnis">Add more in Universities</button></div>
+    <div class="toolbar"><h3>Your applications <span class="muted small" id="slCount"></span></h3><button class="linkbtn" type="button" id="goUnis">Add more in Universities</button></div>
+    <div class="slsum" id="slSum"></div>
     <div class="list" id="shortlist"></div>
   </div>
 
@@ -3300,6 +3315,79 @@ const PRUNED_COUNTRIES = ORDER.filter(c => !U_RAW.some(r => r[1] === c) && !F_RA
 PRUNED_COUNTRIES.forEach(c => { ORDER.splice(ORDER.indexOf(c), 1); delete DEEP[c]; delete SCORE[c]; });
 /* Strategy picks that pointed at removed entries */
 Object.values(DEEP).forEach(d => Object.keys(d.picks || {}).forEach(k => { d.picks[k] = d.picks[k].filter(id => U_RAW.some(r => r[0] === id) || F_RAW.some(f => f[0] === id)); }));
+/* ---------- Application platforms and fees (checked 9 Oct 2026) ----------
+   p = where you apply, f = fee as shown, usd = rough US$ (0 = free), w = how to pay nothing ("" = no known way),
+   src = source for a specific figure. Country defaults first, then university overrides. */
+const CA_W = "Some universities waive it (e.g. Memorial, Regina; Guelph runs a waiver for international applicants); recruitment webinars often give waiver codes.";
+const FEE_C = {
+  "USA":{p:"Common App (most) · UC application · MIT and Georgetown own forms", f:"≈ $50–90 per college", usd:75, w:"Common App fee waiver: answer the fee-waiver questions in your profile and a counselor or school official confirms; each college decides whether to accept it. Many colleges also waive on an email request."},
+  "Canada":{p:"Each university's portal (Ontario: one OUAC form)", f:"≈ CAD 100–175", usd:110, w:CA_W},
+  "Hong Kong":{p:"Each university's non-JUPAS portal", f:"≈ HK$450–780", usd:80, w:""},
+  "China":{p:"Each university's portal · Common App for NYU Shanghai and Duke Kunshan · CSC portal for scholarships", f:"≈ RMB 400–800", usd:85, w:"Scholarship routes (CSC) have no university fee at many universities."},
+  "Türkiye":{p:"Each university's own portal", f:"≈ $0–50 (Sabancı $30)", usd:30, w:"Many foundation (private) universities charge nothing."},
+  "Spain":{p:"Each private university · UNEDasiss for public universities", f:"≈ €0–150 (UNEDasiss charges for accreditation and PCE exams)", usd:90, w:""},
+  "France":{p:"Each school's own portal (BBAs)", f:"≈ €0–120", usd:90, w:""},
+  "Italy":{p:"Each university's portal · Universitaly pre-enrolment", f:"≈ €0–100", usd:60, w:""},
+  "Qatar":{p:"Common App (CMU-Q, Northwestern-Q, VCUarts-Q) · GU-Q own form or Common App", f:"≈ $0–75", usd:70, w:"Common App fee waiver accepted at CMU-Q; Georgetown-Q charges nothing."},
+  "Saudi Arabia":{p:"Study in Saudi (one national platform)", f:"Free", usd:0, w:""},
+  "Australia":{p:"Directly with the foundation college or an authorised agent", f:"≈ AUD 0–150", usd:60, w:"Many foundation colleges waive the fee, especially through official agents."},
+  "Sweden":{p:"universityadmissions.se (one form, up to 4 programmes)", f:"SEK 900 per semester, covers every choice", usd:85, w:"", src:["universityadmissions.se: pay your application fee","https://universityadmissions.se/en/fees-scholarships-residence-permit/pay-your-application-fee/"]},
+  "Finland":{p:"Studyinfo.fi (joint application)", f:"€100 once per term, covers every choice", usd:108, w:"", src:["Metropolia: application fee (national €100, no waivers)","https://www.metropolia.fi/en/academics/applying/application-fee"]},
+  "Netherlands":{p:"Studielink, then the university", f:"Studielink free; some universities charge €50–100 or a diploma-check fee", usd:50, w:"Many applied-sciences universities charge nothing."},
+  "Germany":{p:"uni-assist (most Studienkollegs and universities)", f:"€75 first application, €30 each more (same semester)", usd:80, w:"Some universities pay the uni-assist fee for you.", src:["uni-assist fees (via Expatrio)","https://www.expatrio.com/about-germany/uni-assist"]},
+  "Austria":{p:"Each university's portal", f:"Usually free (check)", usd:0, w:""},
+  "Belgium":{p:"Each university's portal", f:"≈ €0–100 (check)", usd:40, w:""},
+  "Denmark":{p:"optagelse.dk (one national form)", f:"Free", usd:0, w:""},
+  "Norway":{p:"Søknadsweb / each university", f:"Free", usd:0, w:""},
+  "Portugal":{p:"Each university (International Student Statute)", f:"≈ €50–100", usd:70, w:""},
+  "UAE":{p:"Each university's portal", f:"≈ AED 0–500", usd:110, w:""},
+  "Hungary":{p:"Each university (often DreamApply) · Stipendium Hungaricum portal", f:"≈ €100–150 self-funded; Stipendium Hungaricum free", usd:110, w:"Apply through Stipendium Hungaricum: the application and entrance exams are free.", src:["Stipendium Hungaricum: is the application free?","https://stipendiumhungaricum.hu/faq/do-stipendium-hungaricum-applicants-have-to-pay-for-their-application"]},
+  "Singapore":{p:"Each university's portal", f:"≈ SGD 0–50 (check)", usd:30, w:""},
+  "Bahrain":{p:"Each university", f:"Check", usd:50, w:""},
+  "Kuwait":{p:"Each university", f:"Check", usd:50, w:""},
+  "Malaysia":{p:"Each university · EMGS for the visa", f:"≈ RM 0–200", usd:40, w:"Many private universities waive the fee for online applications."},
+  "South Korea":{p:"Each university's portal · Study in Korea portal for GKS", f:"≈ KRW 50,000–150,000", usd:80, w:"GKS applications are free."},
+  "Latvia":{p:"Each university (often DreamApply)", f:"≈ €0–200", usd:100, w:"Some institutions charge nothing."},
+  "Lithuania":{p:"Each university (often DreamApply)", f:"≈ €100–150", usd:110, w:""},
+  "Malta":{p:"University of Malta portal", f:"≈ €100–200 (unofficial)", usd:120, w:""},
+  "Iceland":{p:"Each university's portal (Ugla at the University of Iceland)", f:"Check", usd:60, w:""},
+  "Luxembourg":{p:"Each university", f:"Check", usd:60, w:""},
+  "Uzbekistan":{p:"The centre in Tashkent", f:"Check", usd:30, w:""}
+};
+const OUAC = {p:"OUAC 105 form (Ontario)", f:"CAD 156 for 3 choices, then CAD 50 each", usd:115, w:"", src:["OUAC 105 fees","https://ouac.on.ca/guide/105-fees"]};
+const NOFEE = {f:"No application fee (2026 lists; confirm)", usd:0, w:"", src:["BestColleges: colleges with no application fee","https://www.bestcolleges.com/resources/colleges-without-application-fees/"]};
+const UCFEE = {p:"UC application (one form for every campus)", f:"≈ $95 per campus for international applicants", usd:95, w:""};
+const FEE = {
+  hk2:{f:"HK$780", usd:100, src:["HKU General Information NJ 2027","https://admissions.hku.hk/sites/default/files/2026-09/HKU_General_Information_NJ_2027.pdf"]},
+  ca3:{p:"UBC's own application", f:"CAD 173.25", usd:125, src:["UBC calendar: application fees","https://okanagan.calendar.ubc.ca/fees/application-and-administrative-fees"]},
+  qa1:{p:"Common App", f:"$70 (Common App fee waiver accepted)", usd:70, w:"Request a fee waiver inside the Common App.", src:["CMU-Q: how to apply","https://qatar.cmu.edu/admission/how-to-apply"]},
+  qa2:{p:"GU-Q application or Common App", f:"Free (waived for every completed application)", usd:0, w:"", src:["GU-Q: how to apply","https://qatar.georgetown.edu/admissions/how-to-apply"]},
+  us5g:{p:"Georgetown's own application", w:"Georgetown accepts fee-waiver requests from international applicants for whom the fee is a burden.", src:["Georgetown: application fee waiver","https://uadmissions.georgetown.edu/?p=45"]},
+  us3:{w:"Harvard waives the fee on request (fee-waiver lists); also the Common App waiver."},
+  us3b:{w:"Yale waives the fee on request (fee-waiver lists); also the Common App waiver."},
+  tr2:{f:"$30, paid once per year", usd:30, src:["Sabancı: undergraduate admissions for international students","https://sabanciuniv.edu/en/undergraduate-admissions-international-students"]},
+  kr4:{f:"USD 80", usd:80, w:"KAIST's guideline includes a fee-waiver option: check whether you qualify.", src:["KAIST admission guideline (including fee waiver)","https://admission.kaist.ac.kr/wz/api/admin/files/view/intl-undergraduate/KAIST%20Admission%20Guideline%20for%20International%20Applicants%202025%20(including%20fee%20waiver)_v.2.pdf"]},
+  kr6:{p:"Study in Korea portal / the university", f:"Free", usd:0, w:""},
+  hu_sh:{p:"Stipendium Hungaricum portal", f:"Free (application and entrance exams)", usd:0, w:""},
+  lt1:{f:"€100 per application (up to 3 programmes), via Flywire", usd:110, src:["Vilnius University: apply to bachelor's studies","https://www.vu.lt/en/studies/bachelor-and-integrated-studies"]},
+  ae1:{f:"AED 400 + 5% VAT", usd:115},
+  i_ru:{f:"ISK 16,000 for non-EU applicants", usd:115},
+  cn3b:{p:"Common App", f:"No application fee", usd:0, w:""},
+  cn3:{p:"Common App"},
+  it3:{p:"Own form or the Common App (confirm)"},
+  us5o:NOFEE, u_mac:NOFEE, u_grinnell:NOFEE, u_dayton:NOFEE, u_stolaf:NOFEE, u_carleton:NOFEE, u_cc:NOFEE
+};
+["ca2","ca5","ca6","ca6b","ca6c","ca6d","ca6h","c_tmu","c_carleton","c_guelph","c_laurier","c_brock","c_windsor","c_ontech","c_trent","c_lakehead","c_laurentian","c_ocad"].forEach(id => { FEE[id] = Object.assign({}, OUAC, FEE[id] || {}); });
+["c_mun","c_regina"].forEach(id => { FEE[id] = {f:"No application fee (2026 lists; confirm)", usd:0, w:""}; });
+const feeOf = x => {
+  if (x._fee) return x._fee;
+  const c = FEE_C[x.country] || {p:"Each university", f:"Check", usd:60, w:""};
+  let o = Object.assign({}, c, FEE[x.id] || {});
+  if (x.country === "USA" && /UC application/.test(x.win || "")) o = Object.assign({}, o, UCFEE);
+  else if (x.country === "USA" && /Cal State/.test(x.win || "")) o = Object.assign({}, o, {p:"Cal State Apply", f:"≈ $70 per campus", usd:70, w:""});
+  o.zero = o.usd === 0 || !!o.w;
+  return x._fee = o;
+};
 
 /* ===================== SAT ===================== */
 const SAT_DATES = [
@@ -3493,12 +3581,12 @@ const T = s => esc(s).replace(TERM_RE, (m, pre, w) => pre + `<button type="butto
 
 /* ===================== STATE & PERSISTENCE ===================== */
 const DEF_SIT = {hist:"s1", w:"5.5", sat:"0", fnd:"no"};
-function freshState(){ return {v:3, done:{}, skip:{}, custom:[], saved:DEFAULT_SAVED.slice(), sit:Object.assign({}, DEF_SIT), tiers:{}, satPick:"dec", seenIntro:false}; }
+function freshState(){ return {v:3, done:{}, skip:{}, custom:[], saved:DEFAULT_SAVED.slice(), sit:Object.assign({}, DEF_SIT), tiers:{}, satPick:"dec", seenIntro:false, apps:{}}; }
 function normalise(s){
   const f = freshState(); s = s && typeof s === "object" ? s : {};
   return {v:3, done:s.done && typeof s.done === "object" ? s.done : {}, skip:s.skip && typeof s.skip === "object" ? s.skip : {},
     custom:Array.isArray(s.custom) ? s.custom.filter(c => c && c.id && c.title) : [], saved:Array.isArray(s.saved) ? s.saved.filter(id => byId[id]) : f.saved,
-    sit:Object.assign({}, DEF_SIT, s.sit || {}), tiers:s.tiers && typeof s.tiers === "object" ? s.tiers : {}, satPick: typeof s.satPick === "string" ? s.satPick : "dec", seenIntro: !!s.seenIntro};
+    sit:Object.assign({}, DEF_SIT, s.sit || {}), tiers:s.tiers && typeof s.tiers === "object" ? s.tiers : {}, satPick: typeof s.satPick === "string" ? s.satPick : "dec", seenIntro: !!s.seenIntro, apps:s.apps && typeof s.apps === "object" ? s.apps : {}};
 }
 const LKEY = "atlas.v4";
 function loadLocal(){
@@ -3667,7 +3755,7 @@ Object.entries(SIT).forEach(([k,sel]) => $(sel).addEventListener("change", e => 
 $("#sReset").addEventListener("click", () => { state.sit = Object.assign({}, DEF_SIT); syncSit(); persist(); renderAll(); });
 
 /* ===================== UNIVERSITIES ===================== */
-const ui = {lane:(() => { try { return localStorage.getItem("atlas.lane") || "1"; } catch(e) { return "1"; } })(), sub:"prog", kind:"both", q:"", field:"", sort:"status", hideClosed:true, saved:false, rank:false, spring:false, cmp:[], cmode:"cards", gq:"", chance:"", sc:"USA", seg:{}, more:{}};
+const ui = {lane:(() => { try { return localStorage.getItem("atlas.lane") || "1"; } catch(e) { return "1"; } })(), sub:"prog", kind:"both", q:"", field:"", sort:"status", hideClosed:true, free:false, saved:false, rank:false, spring:false, cmp:[], cmode:"cards", gq:"", chance:"", sc:"USA", seg:{}, more:{}};
 const PAGE = 25;
 const laneCountries = () => ORDER.filter(c => ui.lane === "all" || String(tierOf(c)) === ui.lane);
 const isSaved = id => state.saved.includes(id);
@@ -3680,15 +3768,16 @@ function dvLine(x){
   const src = x.ver.src ? ` · <a href="${esc(x.ver.src[1])}" target="_blank" rel="noopener">${esc(x.ver.src[0])}</a>` : "";
   return `<div class="dvl"><span class="dv ${v[2]}">${v[0]}</span> ${esc(v[1])} (checked 8 Oct 2026)${src}</div>`;
 }
+function feeLine(x){ const f = feeOf(x); return f.usd === 0 ? `<span class="fee z">Free to apply</span>` : `<span class="fee${f.w ? " w" : ""}">Fee ${esc(f.f.replace(/ \(.*\)$/, ""))}${f.w ? " · can be $0" : ""}</span>`; }
 function datesCell(x, closed){
   if (closed) return `<div class="dates"><span>—</span></div>`;
-  return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span>${dvTag(x)}</div>`;
+  return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span>${feeLine(x)}${dvTag(x)}</div>`;
 }
 function searchText(x){
   if (x._st) return x._st;
   const st = x.country === "USA" ? (x.city.match(/\b[A-Z]{2}\b/g) || []).map(a => US_STATES[a] || "").join(" ") : "";
   const sg = SEGS[x.country] && SEG[x.id] ? ((SEGS[x.country].find(s => s[0] === SEG[x.id]) || [])[1] || "") : "";
-  return x._st = [x.name, x.city, st, sg, x.courses, x.type, x.also, x.feeds, x.country, DISPLAY(x.country), fieldNames(x.fields)].join(" ").toLowerCase();
+  return x._st = [x.name, x.city, st, sg, feeOf(x).p, x.courses, x.type, x.also, x.feeds, x.country, DISPLAY(x.country), fieldNames(x.fields)].join(" ").toLowerCase();
 }
 function passFilters(x, e){
   const q = ui.q;
@@ -3698,6 +3787,7 @@ function passFilters(x, e){
   if (ui.saved && !isSaved(x.id)) return false;
   if (ui.rank && rkOf(x) !== "y") return false;
   if (ui.spring && !x.spring) return false;
+  if (ui.free && !feeOf(x).zero) return false;
   if (ui.chance && chanceOf(x, e) !== ui.chance) return false;
   return true;
 }
@@ -3718,7 +3808,8 @@ function bodyHtml(x, e){
     ? `<dl><dt>Courses</dt><dd>${esc(x.courses)}</dd></dl><dl><dt>The rule for you</dt><dd>${T(x.rule)}</dd></dl>${need}${chDl}<dl><dt>Application window</dt><dd>${T(x.win)}${dvLine(x)}</dd></dl>${x.also ? `<dl class="full"><dt>The same rule covers</dt><dd class="small muted">${esc(x.also)}</dd></dl>` : ""}`
     : `<dl><dt>Accepts your Attestat?</dt><dd>${esc(x.accepts)}</dd></dl><dl><dt>English</dt><dd>${esc(x.english)}</dd></dl><dl><dt>Intakes · length</dt><dd>${esc(x.intakes)} · ${esc(x.length)}</dd></dl><dl><dt>How to apply</dt><dd>${T(x.apply)}</dd></dl>${need}${chDl}${x.note ? `<dl><dt>Note</dt><dd>${T(x.note)}</dd></dl>` : ""}`;
   const segName = SEGS[x.country] && SEG[x.id] ? (SEGS[x.country].find(s => s[0] === SEG[x.id]) || [])[1] : "";
-  return `${body}${segName ? `<dl><dt>Section</dt><dd>${esc(segName)}</dd></dl>` : ""}<div class="acts">${webLink(x.web)}${cmpBtn(x.id)}</div>`;
+  const fo = feeOf(x), feeDl = `<dl><dt>How to apply · fee</dt><dd>${esc(fo.p)}<br><b>${esc(fo.f)}</b>${fo.w ? `<div class="feew"><b>Pay $0:</b> ${esc(fo.w)}</div>` : ""}${fo.src ? `<div class="faint small"><a href="${esc(fo.src[1])}" target="_blank" rel="noopener">${esc(fo.src[0])}</a></div>` : ""}</dd></dl>`;
+  return `${body}${feeDl}${segName ? `<dl><dt>Section</dt><dd>${esc(segName)}</dd></dl>` : ""}<div class="acts">${webLink(x.web)}${cmpBtn(x.id)}</div>`;
 }
 function rowHtml({x, e}){
   const closed = e.s === "closed", band = BAND[x.band] || "";
@@ -3778,7 +3869,7 @@ function renderProgrammes(){
     const closedHidden = ui.hideClosed ? g.all.filter(o => o.e.s === "closed").length : 0, sid = domId(g.c);
     return `<section class="cg" id="cg-${sid}"><div class="cg-head">
       <div class="cg-title"><h3>${esc(DISPLAY(g.c))}</h3><span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></div>
-      <div class="cg-side"><label for="tier-${sid}">Tier</label><select id="tier-${sid}" data-tierset="${esc(g.c)}">${[1,2,3].map(k => `<option value="${k}" ${k === t ? "selected" : ""}>${k} · ${TIER_NAME[k]}</option>`).join("")}</select></div>
+      
       <p class="cg-verdict">${T(info.v || "")}</p>
       <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}${fins.length ? `<span class="tag">Next final deadline: ${fmt(fins[0])}</span>` : ""}<button type="button" class="linkbtn" data-ctrylink="${esc(g.c)}">How studying in ${esc(DISPLAY(g.c))} works</button>${DEEP[g.c] ? `<button type="button" class="linkbtn" data-sc="${esc(g.c)}">Strategy &amp; chances</button>` : ""}</div>
       <details class="cg-more"${matchMedia("(min-width: 821px)").matches ? " open" : ""}><summary>How it works here</summary><dl class="facts"><div><dt>Rule for your Attestat</dt><dd>${T(info.rule || "")}</dd></div><div><dt>Apply via</dt><dd>${T(info.apply || "")}</dd></div><div><dt>Degree length</dt><dd>${esc(info.deg || "")}</dd></div><div><dt>Visa</dt><dd>${T(info.visa || "")}</dd></div></dl></details>
@@ -3873,8 +3964,21 @@ function renderScore(){
     <p class="small muted">Each factor is scored 1–5 for your profile (11-year Attestat, 2022 graduate, IELTS 7.5 with Writing 5.5, SAT planned; finance ignored), then weighted: ${keys.map(k => `${SCORE_L[k]} ${SCORE_W[k]}%`).join(", ")}. It ranks countries, not single universities; use it to decide where to spend applications.</p>
     <div class="tablebox"><table class="stack score"><thead><tr><th>#</th><th>Country</th>${keys.map(k => `<th>${SCORE_L[k]}</th>`).join("")}<th>Score</th><th>Why</th></tr></thead><tbody>${cs.map((c,i) => { const s = SCORE[c], tot = scoreOf(c), t = tierOf(c); return `<tr><td class="nums faint rk">${i + 1}</td><td class="cn"><button type="button" class="linkbtn" data-sc="${esc(c)}">${esc(DISPLAY(c))}</button> <span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></td>${keys.map(k => `<td class="f" data-l="${SCORE_L[k]}" data-s="${SCORE_S[k]}"><span class="sc s${s[k]}" title="${SCORE_L[k]}: ${s[k]} of 5">${s[k]}</span></td>`).join("")}<td class="tt" data-l="Score"><span class="tot"><b>${tot}</b><i><u style="width:${tot}%"></u></i></span></td><td class="small muted why" data-l="Why">${esc(s.why)}</td></tr>`; }).join("")}</tbody></table></div>`;
 }
+function renderFees(){
+  const el = $("#fees"); if (!el) return;
+  const sl = state.saved.filter(id => byId[id]), sum = sl.reduce((t,id) => { const f = feeOf(byId[id]); t.all += f.usd; if (f.zero) t.save += f.usd; return t; }, {all:0, save:0});
+  const cs = ORDER.filter(c => FEE_C[c]);
+  el.innerHTML = `<div class="toolbar"><div><span class="eyebrow">Application fees</span><h3 style="margin-top:4px">${sl.length ? `Your ${sl.length} saved applications cost about $${sum.all.toLocaleString("en-US")} in fees; $${sum.save.toLocaleString("en-US")} of that can be $0` : "What applying costs, and how to pay nothing"}</h3></div><button type="button" class="btn ghost sm" data-freeonly>Show free or waivable programmes</button></div>
+    <div class="feegrid">
+      <div><h4>One form, many universities</h4><p class="small muted">Common App covers the US, Qatar's Education City, NYU Shanghai and Duke Kunshan. OUAC covers every Ontario university. universityadmissions.se takes up to four Swedish programmes for SEK 900; Studyinfo takes all Finnish choices for €100. optagelse.dk (Denmark) and Study in Saudi are free.</p></div>
+      <div><h4>Free routes</h4><p class="small muted">Georgetown-Qatar, Duke Kunshan, Stipendium Hungaricum, GKS (Korea), Study in Saudi, Denmark, Norway, most of Austria, many Turkish private universities, and US colleges with no fee such as Tulane, Macalester, Grinnell, Carleton, St. Olaf, Colorado College and Dayton.</p></div>
+      <div><h4>The Common App fee waiver</h4><p class="small muted">In your Common App profile, answer the fee-waiver questions; a counselor or official at your school confirms them. Each college decides whether to accept it, and one that refuses asks for the fee after you submit. You can also email a college for its own waiver: explain your situation honestly and briefly.</p></div>
+      <div><h4>Fees with no way around them</h4><p class="small muted">Finland €100 (no waivers), Sweden SEK 900, HKU HK$780, UBC CAD 173.25, OUAC CAD 156, the UC application (≈ $95 per campus), Vilnius University €100, AUS AED 400.</p></div>
+    </div>
+    <details class="small"><summary class="faint" style="cursor:pointer">Every country: where you apply, the fee, and how to pay $0</summary><div class="tablebox" style="margin-top:8px"><table class="stack"><thead><tr><th>Country</th><th>Where you apply</th><th>Fee</th><th>Pay $0</th></tr></thead><tbody>${cs.map(c => { const f = FEE_C[c]; return `<tr><td data-l="Country"><b>${esc(DISPLAY(c))}</b></td><td data-l="Where you apply">${esc(f.p)}</td><td data-l="Fee" class="nums">${esc(f.f)}</td><td data-l="Pay $0">${f.usd === 0 ? "Already free" : f.w ? esc(f.w) : '<span class="faint">No known way</span>'}</td></tr>`; }).join("")}</tbody></table></div></details>`;
+}
 function renderStrategy(){
-  renderBalance(); renderScore();
+  renderBalance(); renderFees(); renderScore();
   const cs = deepCountries();
   if (!DEEP[ui.sc]) ui.sc = cs[0];
   $("#sChips").innerHTML = [1,2,3].map(t => { const l = cs.filter(c => tierOf(c) === t); return l.length ? `<div class="schrow"><span class="schl">${TIER_NAME[t]}</span>${l.map(c => `<button type="button" role="tab" class="schip ${tierClass(t)}" data-sc="${esc(c)}" aria-selected="${ui.sc === c}"><i></i>${esc(DISPLAY(c))}${SCORE[c] ? `<span class="faint">${scoreOf(c)}</span>` : ""}</button>`).join("")}</div>` : ""; }).join("");
@@ -3938,7 +4042,7 @@ $("#gq").addEventListener("input", e => { ui.gq = e.target.value; renderGloss();
 $$("[data-tog]").forEach(b => b.addEventListener("click", () => { const k = b.dataset.tog; ui[k] = !ui[k]; b.setAttribute("aria-pressed", ui[k]); renderProgrammes(); }));
 $("#ctryMode").addEventListener("click", e => { const b = e.target.closest("[data-cm]"); if (!b) return; ui.cmode = b.dataset.cm; renderCountries(); });
 $("#introOk").addEventListener("click", () => { state.seenIntro = true; persist(); $("#intro").hidden = true; });
-function clearFilters(){ ui.q = ""; $("#q").value = ""; ui.field = ""; ui.chance = ""; $("#chSel").value = ""; ui.hideClosed = true; ui.saved = ui.rank = ui.spring = false; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); renderProgrammes(); }
+function clearFilters(){ ui.q = ""; $("#q").value = ""; ui.field = ""; ui.chance = ""; $("#chSel").value = ""; ui.hideClosed = true; ui.saved = ui.rank = ui.spring = ui.free = false; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); renderProgrammes(); }
 function scrollToEl(el){ if (el) el.scrollIntoView({behavior:smooth(), block:"start"}); }
 function goto(id){
   const x = byId[id]; if (!x) return;
@@ -3964,6 +4068,8 @@ document.addEventListener("click", e => {
   const mo = e.target.closest("[data-more]"); if (mo) { const c = mo.dataset.more; ui.more[c] = !ui.more[c]; renderProgrammes(); if (!ui.more[c]) scrollToEl(document.getElementById("cg-" + domId(c))); }
 });
 document.addEventListener("click", e => {
+  if (e.target.closest("[data-gofees]")) { show("unis"); setSub("strat"); setTimeout(() => scrollToEl($("#fees")), 30); return; }
+  if (e.target.closest("[data-freeonly]")) { ui.free = true; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); setSub("prog"); renderProgrammes(); setTimeout(() => scrollToEl($("#cIndex")), 30); return; }
   const sc = e.target.closest("[data-sc]");
   if (sc) { ui.sc = sc.dataset.sc; if (ui.sub !== "strat") { show("unis"); setSub("strat"); } else renderStrategy(); if (!sc.closest("#sChips")) scrollToEl($("#sChips")); return; }
   const sa = e.target.closest("[data-saveall]");
@@ -3974,6 +4080,8 @@ document.addEventListener("click", e => {
   }
 });
 document.addEventListener("change", e => {
+  const ap = e.target.closest("[data-appst]");
+  if (ap) { if (ap.value) state.apps[ap.dataset.appst] = ap.value; else delete state.apps[ap.dataset.appst]; persist(); const row = ap.closest(".app-row"); if (row) row.dataset.st = ap.value; renderChecklist(); return; }
   const s = e.target.closest("[data-tierset]"); if (!s) return;
   const c = s.dataset.tierset, v = +s.value, was = tierOf(c);
   if (v === DEFAULT_TIER[c]) delete state.tiers[c]; else state.tiers[c] = v;
@@ -4139,7 +4247,11 @@ function renderChecklist(){
   $("#doneList").innerHTML = closed.length ? closed.map(t => `<div class="task" style="grid-template-columns:auto minmax(0,1fr) auto"><span class="tag ${state.done[t.id] ? "g" : ""}">${state.done[t.id] ? "Done" : "Skipped"}</span><div><div class="t" style="color:var(--muted)">${esc(t.title)}</div>${state.done[t.id] ? `<div class="x">Completed ${fmt(state.done[t.id])}</div>` : ""}</div><div><button type="button" class="iconbtn" data-reopen="${esc(t.id)}">Reopen</button></div></div>`).join("") : `<p class="small muted">Nothing completed yet.</p>`;
   const sl = state.saved.filter(id => byId[id]).sort((a,b) => tierOf(byId[a].country) - tierOf(byId[b].country) || ORDER.indexOf(byId[a].country) - ORDER.indexOf(byId[b].country));
   $("#slCount").textContent = `(${sl.length})`;
-  $("#shortlist").innerHTML = sl.length ? sl.map(id => { const x = byId[id], e = evalItem(x); return `<div class="task" style="grid-template-columns:minmax(0,1fr) auto auto;align-items:center"><div><button type="button" class="linkbtn t" style="text-decoration:none;color:var(--ink);text-align:left" data-goto="${id}">${esc(x.name)}</button><div class="x">${x.country === "Uzbekistan" ? "Tashkent" : esc(DISPLAY(x.country))} · ${x.kind === "deg" ? "Degree" : "Foundation"}${x.fin ? " · final " + fmt(x.fin) : ""}</div></div>${chip(e.s)}<button type="button" class="iconbtn" data-save="${id}">Remove</button></div>`; }).join("") : `<div class="empty">No saved programmes yet.</div>`;
+  const APPST = [["","Not started"],["prep","Preparing"],["sent","Submitted"],["offer","Offer"],["wait","Waitlisted"],["no","Refused"]];
+  const feeSum = sl.reduce((t,id) => { const f = feeOf(byId[id]); t.all += f.usd; if (f.zero) t.save += f.usd; return t; }, {all:0, save:0});
+  const nSent = sl.filter(id => ["sent","offer","wait","no"].includes(state.apps[id])).length;
+  $("#slSum").innerHTML = sl.length ? `<span>${nSent} of ${sl.length} submitted</span><span>Fees ≈ $${feeSum.all.toLocaleString("en-US")}${feeSum.save ? ` · $${feeSum.save.toLocaleString("en-US")} of it can be $0` : ""}</span><button type="button" class="linkbtn" data-gofees>How to pay less</button>` : "";
+  $("#shortlist").innerHTML = sl.length ? sl.map(id => { const x = byId[id], e = evalItem(x), f = feeOf(x), st = state.apps[id] || ""; return `<div class="task app-row" data-st="${st}"><div class="app-main"><button type="button" class="linkbtn t" style="text-decoration:none;color:var(--ink);text-align:left" data-goto="${id}">${esc(x.name)}</button><div class="x">${x.country === "Uzbekistan" ? "Tashkent" : esc(DISPLAY(x.country))}${x.fin ? " · final " + fmt(x.fin) : ""} · ${f.usd === 0 ? "free" : "fee " + esc(f.f.replace(/ \(.*\)$/, "")) + (f.w ? " (can be $0)" : "")}</div></div><div class="app-side">${chip(e.s)}<select class="appst" data-appst="${id}" aria-label="Application status for ${esc(x.name)}">${APPST.map(([k,l]) => `<option value="${k}" ${k === st ? "selected" : ""}>${l}</option>`).join("")}</select><button type="button" class="iconbtn" data-save="${id}">Remove</button></div></div>`; }).join("") : `<div class="empty">No saved programmes yet.</div>`;
   $("#bTodo").textContent = openAll.length + " to do";
   $("#bUnis").textContent = "★ " + sl.length;
   $("#bRoad").textContent = openAll.filter(t => { const x = d(t); return x !== null && x <= 30; }).length + " in 30 days";
