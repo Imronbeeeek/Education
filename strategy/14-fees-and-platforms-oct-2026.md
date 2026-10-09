@@ -90,3 +90,50 @@ Added sources:
 - [CityU fees](https://www.cityu.edu.hk/admo/fees-and-scholarships?kind=local)
 - [Bocconi](https://www.unibocconi.it/en/admissions)
 - [John Cabot](https://www.johncabot.edu/admissions/enlus/tuition.aspx)
+
+## Update: third pass (9 Oct 2026): saved list, one batch per country, more waivers
+
+Exact fees now cover **217 universities**: 131 from official pages and 86 from secondary sources. The other 800 show their country's typical range.
+
+**New fees:**
+- **US:** Columbia GS $80 (accepts a waiver request), Minerva free.
+- **Korea:** SNU ₩70,000, Yonsei ₩150,000, Hanyang ≈ ₩142,000.
+- **China:** Tsinghua RMB 800, Zhejiang RMB 800, Fudan RMB 400, Nottingham Ningbo free.
+- **Spain:** Universidad Europea has no application fee, but its admission test costs €150. Navarra ≈ $100.
+- **France:** ESCP €60–80, EDHEC ≈ €50–150, emlyon ≈ €120, SKEMA ≈ €100.
+- **UAE:** University of Sharjah AED 360, AUD AED 420, ADU AED 300–315, Heriot-Watt Dubai ≈ AED 300. Wollongong Dubai and Middlesex Dubai show no fee.
+- **Malaysia:** Taylor's ≈ RM 650. Monash Malaysia RM 100, waived at its Application Days.
+- **Canada:** Calgary CAD 145, SFU CAD 130, McGill ≈ CAD 136.
+- **Australia:** Trinity Foundation free. Monash College AUD 100–125, often waived through official agents.
+
+**Other ways to pay $0:**
+- **Common App waiver:** colleges decide whether to accept it. If one doesn't, it asks for the fee after you submit.
+- **Automatic waivers:** some colleges waive automatically for international Common App applicants, decided by your citizenship.
+- **No-fee colleges:** 500+ Common App colleges charge nothing; filter for them in Common App's college search.
+- **EducationUSA:** American University may waive the fee for applicants referred by EducationUSA, so ask the Tashkent centre.
+- **Recruitment events:** fee waivers often come with virtual information sessions and fairs.
+
+**Still unconfirmed in your saved list:** Alberta, IE, HKBU, CUHK-Shenzhen, Koç, METU, ESSEC.
+
+## Design changes (third pass)
+
+Following the search-and-filter pattern used by college-search and shopping sites (one search bar, a Filters button with a count, results first):
+- **One search bar** with a **Filters** button that shows how many filters are on, plus sort. Show, chance, the "only show" switches, "what if my scores change" and the deadline key all moved into the Filters panel.
+- **Removed:** the intro box, the colour legend, the page header's eyebrow line, the tags on each row and the field list. Each row now shows its name, place, recognition, dates, fee, status and chance.
+- **Guide:** Courses and Glossary are now one "Guide" tab.
+- **On phones:** country shortcuts sit on one swipeable row, and country descriptions show three lines (tap for the rest).
+
+Sources added:
+- [Common App: fees and fee waivers](https://www.COMMONAPP.ORG/static/d8d4fe3bc09d9b0a67d715d9bb6b20f9/FY-Apply-College-Application-Fees-Waivers.pdf)
+- [Study International: US fee waivers](https://studyinternational.com/news/us-universities-application-fee-waiver/)
+- [Columbia GS](https://www.gs.columbia.edu/content/how-apply)
+- [Minerva FAQ](https://minerva.edu/faq)
+- [Zhejiang University](https://iczu.zju.edu.cn/admissionsen/2024/1030/c68988a2981659/page.htm)
+- [Tsinghua](https://yz.tsinghua.edu.cn/en/Costs/Application_Fee.htm)
+- [Fudan](https://iss.fudan.edu.cn/Tuition_Fees/Tuition___Fees.htm)
+- [Universidad Europea](https://universidadeuropea.com/en/admission-finance/admissions-process/online-foreign-education-systems/)
+- [University of Sharjah](https://sharjah.ac.ae/Admissions/Undergraduate)
+- [University of Calgary](https://calendar.ucalgary.ca/pages/4e09a54142464876bbb6f6605f94d14d)
+- [SFU](https://www.sfu.ca/students/calendar/fees-and-regulations/tuition-fees.html)
+- [LogRocket: mobile filter UX](https://blog.logrocket.com/ux-design/best-practices-mobile-search-filter)
+- [Algolia: filter UX](https://www.algolia.com/blog/ux/search-filter-ux-best-practices/)

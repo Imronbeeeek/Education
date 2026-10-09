@@ -517,10 +517,36 @@ main{padding-block:22px 72px}
 .app-row[data-st="sent"] .appst,.app-row[data-st="offer"] .appst{border-color:var(--ok);color:var(--ok)}
 .app-row[data-st="no"] .appst{color:var(--faint)}
 @media (max-width:560px){.app-row{grid-template-columns:1fr}.app-side{justify-content:flex-start}}
+/* ---------- v12: search bar + filter panel (pattern used by college-search and shop sites) ---------- */
+.findbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:stretch}
+.searchbox{display:flex;align-items:center;gap:8px;background:var(--well);border:1px solid var(--line-2);border-radius:11px;padding:0 12px;min-width:0}
+.searchbox:focus-within{border-color:var(--accent)}
+.searchbox svg{width:17px;height:17px;color:var(--faint);flex:none}
+.searchbox input{border:0;background:none;padding:11px 0;font-size:15px;width:100%;min-width:0;outline:none}
+.fbtn{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line-2);color:var(--ink);border-radius:11px;padding:0 14px;font:600 14px var(--f-body);cursor:pointer;white-space:nowrap}
+.fbtn svg{width:16px;height:16px}
+.fbtn[aria-expanded="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.fcount{background:var(--accent);color:var(--accent-ink);border-radius:999px;font:700 11px var(--f-mono);padding:1px 7px}
+.findbar select{width:auto;max-width:210px}
+.fpanel{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r);padding:16px;display:grid;gap:14px}
+.fgrid{display:grid;grid-template-columns:auto minmax(0,220px) minmax(0,1fr);gap:14px 20px;align-items:start}
+.fwide .toggles{gap:6px}
+.fpanel .whatif{background:var(--well)}
+.fpanel-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:760px){.fgrid{grid-template-columns:1fr}}
+@media (max-width:560px){.findbar{grid-template-columns:minmax(0,1fr) auto}.findbar select{grid-column:1/-1;max-width:none;width:100%}.fbtn{padding:0 12px}}
+/* rows: name, place, two facts, one status */
+.it .sub .rk{color:var(--ok)} .it .sub .nk{color:var(--bridge)} .it .sub .sp{color:var(--accent)}
+@media (max-width:560px){
+  .cindex{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+  .cindex::-webkit-scrollbar{display:none}
+  .cjump{flex:none}
+  .cg-verdict:not(.open){display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+  .cg-verdict:not(.open)::after{content:""}
+}
 </style>
 
 <header class="top wrap">
-  <div class="eyebrow">Study-abroad plan · Fall 2027 · updated 8 Oct 2026</div>
   <h1>Imronbek's Admissions Atlas</h1>
   <p class="lede" id="lede">Only the universities you can apply to, now or after one step you can take, rated for your profile, with each action's suggested date and final deadline.</p>
   <div class="pass" aria-label="Your admission facts">
@@ -554,12 +580,7 @@ main{padding-block:22px 72px}
 <section class="panel" data-panel="unis">
   <h2 class="vh">Universities</h2>
 
-  <div class="intro" id="intro" hidden>
-    <div class="st"><span class="num">1 · BROWSE</span><b>Open a row to see the rule and what you still need</b><span>Green means you can apply as you are. Purple means one score or document is missing.</span></div>
-    <div class="st"><span class="num">2 · SAVE</span><b>Press Save on the ones you want</b><span>Each saved programme adds a task to your checklist and a bar to your roadmap.</span></div>
-    <div class="st"><span class="num">3 · ACT</span><b>Work from the checklist</b><span>Every task has a suggested date and a final deadline. Done tasks disappear.</span></div>
-    <button type="button" class="btn sm" id="introOk">Got it</button>
-  </div>
+
 
   <div class="lanes" role="tablist" aria-label="Tiers" id="lanes"></div>
 
@@ -567,40 +588,34 @@ main{padding-block:22px 72px}
     <button type="button" role="tab" data-sub="prog" aria-selected="true">Programmes<span class="n" id="nProg"></span></button>
     <button type="button" role="tab" data-sub="strat" aria-selected="false"><span class="lgl">Strategy &amp; chances</span><span class="sml">Strategy</span><span class="n" id="nStrat"></span></button>
     <button type="button" role="tab" data-sub="ctry" aria-selected="false"><span class="lgl">Countries &amp; systems</span><span class="sml">Countries</span><span class="n" id="nCtry"></span></button>
-    <button type="button" role="tab" data-sub="course" aria-selected="false"><span class="lgl">Courses guide</span><span class="sml">Courses</span><span class="n">10</span></button>
-    <button type="button" role="tab" data-sub="gloss" aria-selected="false">Glossary<span class="n" id="nGloss"></span></button>
+    <button type="button" role="tab" data-sub="guide" aria-selected="false">Guide<span class="n" id="nGloss"></span></button>
   </div>
 
   <!-- Programmes -->
   <div class="subview grid" style="gap:16px" id="vProg">
-    <div class="toolbar">
-      <div class="seg" role="group" aria-label="Show" id="kindSeg">
+    <div class="findbar">
+      <label class="searchbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="q" placeholder="Search a university, city, course or Common App" aria-label="Search"></label>
+      <button type="button" class="fbtn" id="fBtn" aria-expanded="false" aria-controls="fPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters<span class="fcount" id="fCount" hidden></span></button>
+      <select id="sortSel" aria-label="Sort within a country"><option value="status">Best status first</option><option value="fit">Best fit first</option><option value="chance">Best chance first</option><option value="rank">Highest ranking first</option><option value="final">Earliest final deadline</option><option value="az">A–Z</option></select>
+    </div>
+    <div class="fchips" role="group" aria-label="Field of study" id="fchips"></div>
+    <div class="fpanel" id="fPanel" hidden>
+      <div class="fgrid">
+        <div class="ctl"><span class="lbl">Show</span><div class="seg" role="group" aria-label="Show" id="kindSeg">
         <button type="button" data-kind="both" aria-pressed="true"><span class="lgl">Degrees &amp; foundations</span><span class="sml">Both</span></button>
         <button type="button" data-kind="deg" aria-pressed="false">Degrees</button>
         <button type="button" data-kind="fnd" aria-pressed="false">Foundations</button>
-      </div>
-      <div class="legend"><span class="chip s-ok">Open now</span><span class="chip s-reach">Needs a score or document</span><span class="chip s-bridge">Bridge year first</span></div>
-      
-    </div>
-    <div class="fchips" role="group" aria-label="Field of study" id="fchips"></div>
-    <div class="filters">
-      <div class="ctl"><label for="q">Search</label><input type="search" id="q" placeholder="University, city, course…"></div>
-      <div class="ctl"><label for="sortSel">Sort within a country</label><select id="sortSel"><option value="status">Best status first</option><option value="fit">Best fit first</option><option value="chance">Best chance first</option><option value="rank">Highest ranking first</option><option value="final">Earliest final deadline</option><option value="az">A–Z</option></select></div>
-      <div class="ctl"><label for="chSel">Chance</label><select id="chSel"><option value="">Any chance</option><option value="o">Likely</option><option value="m">Target</option><option value="h">Reach</option><option value="x">Long shot</option></select></div>
-      <div class="ctl" style="grid-column:span 2;min-width:0"><span class="lbl">Filters</span>
-        <div class="toggles">
+      </div></div>
+        <div class="ctl"><label for="chSel">Chance</label><select id="chSel"><option value="">Any chance</option><option value="o">Likely</option><option value="m">Target</option><option value="h">Reach</option><option value="x">Long shot</option></select></div>
+        <div class="ctl fwide"><span class="lbl">Only show</span><div class="toggles">
           
           <button type="button" class="tog" data-tog="saved" aria-pressed="false">Saved only</button>
           <button type="button" class="tog" data-tog="rank" aria-pressed="false">Recognised in Uzbekistan</button>
           <button type="button" class="tog" data-tog="spring" aria-pressed="false">Spring 2027 start</button>
           <button type="button" class="tog" data-tog="free" aria-pressed="false">Free or fee waiver</button>
-        </div>
+        </div></div>
       </div>
-    </div>
-    <details class="keybox" id="keybox"><summary>How sure is each deadline? <span class="faint">Tags under the dates</span></summary>
-      <div class="legend"><span>Deadlines checked 8 Oct 2026:</span><span><span class="dv dv-v">✓ 2027 date</span> <b id="nDvV">0</b> confirmed</span><span><span class="dv dv-p">2026 pattern</span> <b id="nDvP">0</b> from last cycle's official dates</span><span><span class="dv dv-s">Secondary source</span> <b id="nDvS">0</b></span><span>Unmarked: usual pattern, confirm</span></div>
-    </details>
-    <details class="whatif" id="whatif">
+      <details class="whatif" id="whatif">
       <summary><h3>What if my scores change? <span class="muted small" style="font-weight:500">Statuses update instantly</span></h3><span class="small muted" id="sitSummary"></span></summary>
       <div class="filters">
         <div class="ctl"><label for="sW">IELTS Writing</label><select id="sW"><option value="5.5">5.5 (now)</option><option value="6">6.0</option><option value="6.5">6.5 (target)</option><option value="7">7.0+</option></select></div>
@@ -610,6 +625,11 @@ main{padding-block:22px 72px}
         <div class="ctl"><label>&nbsp;</label><button type="button" class="btn ghost" id="sReset">Back to today's facts</button></div>
       </div>
     </details>
+      <details class="keybox" id="keybox"><summary>How sure is each deadline? <span class="faint">Tags under the dates</span></summary>
+      <div class="legend"><span>Deadlines checked 8 Oct 2026:</span><span><span class="dv dv-v">✓ 2027 date</span> <b id="nDvV">0</b> confirmed</span><span><span class="dv dv-p">2026 pattern</span> <b id="nDvP">0</b> from last cycle's official dates</span><span><span class="dv dv-s">Secondary source</span> <b id="nDvS">0</b></span><span>Unmarked: usual pattern, confirm</span></div>
+    </details>
+      <div class="fpanel-foot"><button type="button" class="linkbtn" data-clear>Clear all filters</button><button type="button" class="btn sm" id="fDone">Show results</button></div>
+    </div>
     <div class="cindex" id="cIndex" aria-label="Jump to a country"></div>
     <div class="count" id="uCount"></div>
     <div class="cgroups" id="cGroups"></div>
@@ -3320,7 +3340,7 @@ Object.values(DEEP).forEach(d => Object.keys(d.picks || {}).forEach(k => { d.pic
    src = source for a specific figure. Country defaults first, then university overrides. */
 const CA_W = "Some universities waive it (e.g. Memorial, Regina; Guelph runs a waiver for international applicants); recruitment webinars often give waiver codes.";
 const FEE_C = {
-  "USA":{p:"Common App (most) · UC application · MIT and Georgetown own forms", f:"≈ $50–90 per college", usd:75, w:"Common App fee waiver: answer the fee-waiver questions in your profile and a counselor or school official confirms; each college decides whether to accept it. Many colleges also waive on an email request."},
+  "USA":{p:"Common App (most) · UC application · MIT and Georgetown own forms", f:"≈ $50–90 per college", usd:75, w:"Common App fee waiver (profile questions, confirmed by a counselor or school official; each college decides). Some colleges waive automatically for international Common App applicants, and 500+ Common App colleges charge nothing (filter in Common App's college search). Many also waive on an honest email request."},
   "Canada":{p:"Each university's portal (Ontario: one OUAC form)", f:"≈ CAD 100–175", usd:110, w:CA_W},
   "Hong Kong":{p:"Each university's non-JUPAS portal", f:"≈ HK$450–780", usd:80, w:""},
   "China":{p:"Each university's portal · Common App for NYU Shanghai and Duke Kunshan · CSC portal for scholarships", f:"≈ RMB 400–800", usd:85, w:"Scholarship routes (CSC) have no university fee at many universities."},
@@ -3414,6 +3434,33 @@ Object.entries({
 ["hk2","ca3","qa1","qa2","tr2","kr4","kr6","hu_sh","lt1","i_ru","cn3b","us5g"].forEach(id => { if (FEE[id] && !FEE[id].ex) FEE[id].ex = FEE[id].src ? "o" : "s"; });
 ["c_mun","c_regina","ae1","us5o","u_mac","u_grinnell","u_dayton","u_stolaf","u_carleton","u_cc"].forEach(id => { if (FEE[id]) FEE[id].ex = FEE[id].ex || "s"; });
 ["ca2","ca5","ca6","ca6b","ca6c","ca6d","ca6h","c_tmu","c_carleton","c_guelph","c_laurier","c_brock","c_windsor","c_ontech","c_trent","c_lakehead","c_laurentian","c_ocad"].forEach(id => { FEE[id].ex = "o"; });
+
+/* Third pass (9 Oct 2026): saved list and one batch per country */
+const CFW = ["Common App: application fees and fee waivers","https://www.COMMONAPP.ORG/static/d8d4fe3bc09d9b0a67d715d9bb6b20f9/FY-Apply-College-Application-Fees-Waivers.pdf"];
+Object.entries({
+  us1:{f:"$80", usd:80, w:"Columbia GS accepts an application fee waiver request.", ex:"o", src:["Columbia GS: how to apply","https://www.gs.columbia.edu/content/how-apply"]},
+  us1d:{p:"Minerva's own application", f:"No application fee", usd:0, w:"", ex:"o", src:["Minerva: FAQ","https://minerva.edu/faq"]},
+  u_amer:{w:"American University may waive the fee for applicants referred by EducationUSA (ask the EducationUSA centre in Tashkent).", ex:"s"},
+  kr3:{f:"₩70,000", usd:50, ex:"s"}, k_yonsei:{f:"₩150,000 (international track)", usd:108, ex:"s"}, k_hanyang:{f:"≈ ₩142,000 (2024 figure)", usd:103, ex:"s"},
+  cn2c:{f:"RMB 800", usd:110, ex:"o", src:["ZJU International College: undergraduate guide","https://iczu.zju.edu.cn/admissionsen/2024/1030/c68988a2981659/page.htm"]},
+  n_zjui:{f:"RMB 800 (charged only after a successful application)", usd:110, ex:"o"},
+  cn1:{f:"RMB 800 (Tsinghua admissions page; confirm it covers undergraduates)", usd:110, ex:"s", src:["Tsinghua: application fee","https://yz.tsinghua.edu.cn/en/Costs/Application_Fee.htm"]},
+  cn2:{f:"RMB 400", usd:55, ex:"o", src:["Fudan: tuition and fees","https://iss.fudan.edu.cn/Tuition_Fees/Tuition___Fees.htm"]},
+  cn7b:{f:"No application fee (September 2026 entry; confirm for 2027)", usd:0, w:"", ex:"s"},
+  es2b:{f:"No application fee; the admission test costs €150", usd:160, ex:"o", src:["Universidad Europea: admission for foreign education systems","https://universidadeuropea.com/en/admission-finance/admissions-process/online-foreign-education-systems/"]},
+  es2d:{f:"≈ $100", usd:100, ex:"s"},
+  fr1b:{f:"€60–80 (sources differ)", usd:80, ex:"s"}, fr1c:{f:"≈ €50–150", usd:100, ex:"s"}, fr1d:{f:"≈ €120", usd:130, ex:"s"}, fr2b:{f:"≈ €100", usd:108, ex:"s"},
+  ae_aud:{f:"AED 420 incl. VAT", usd:114, ex:"s"}, ae_adu:{f:"AED 300–315", usd:85, ex:"s"},
+  ae4:{f:"AED 360", usd:98, ex:"o", src:["University of Sharjah: undergraduate admissions","https://sharjah.ac.ae/Admissions/Undergraduate"]},
+  ae5:{f:"≈ AED 300", usd:82, ex:"s"}, ae_uowd:{f:"No fee (sources mostly agree; confirm)", usd:0, w:"", ex:"s"}, ae_mdx:{f:"Waived (aggregator listings; confirm)", usd:0, w:"", ex:"s"},
+  my_taylors:{f:"≈ RM 650 (the RM 2,800 enrolment fee comes only after an offer)", usd:140, ex:"s"},
+  my3:{f:"RM 100 (on Monash Malaysia's form); fee waived at its Application Days", usd:22, w:"Apply during a Monash Malaysia Application Day to have the fee waived.", ex:"s"},
+  ca6e:{f:"CAD 145 for international credentials", usd:105, w:"", ex:"o", src:["University of Calgary calendar: application fees","https://calendar.ucalgary.ca/pages/4e09a54142464876bbb6f6605f94d14d"]},
+  ca6f:{f:"CAD 130 for international applicants", usd:95, w:"", ex:"o", src:["SFU: tuition and fees","https://www.sfu.ca/students/calendar/fees-and-regulations/tuition-fees.html"]},
+  ca4:{f:"≈ CAD 136 (2026–27 guide; confirm)", usd:99, w:"", ex:"s"},
+  au1:{f:"Trinity Foundation: no application fee (its form)", usd:0, w:"", ex:"s"}, f2:{f:"No application fee (Trinity's form)", usd:0, w:"", ex:"s"},
+  f3:{f:"AUD 100–125, often waived through official agents", usd:75, w:"Monash College waives the fee for many agent applications.", ex:"s"}, f4:{f:"AUD 100–125, often waived through official agents", usd:75, w:"Monash College waives the fee for many agent applications.", ex:"s"}
+}).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
 FEE_C["Sweden"].ex = "o"; FEE_C["Finland"].ex = "o"; FEE_C["Germany"].ex = "o"; FEE_C["Saudi Arabia"].ex = "s";
 const feeOf = x => {
   if (x._fee) return x._fee;
@@ -3807,7 +3854,7 @@ function dvLine(x){
 function feeLine(x){ const f = feeOf(x); return f.usd === 0 ? `<span class="fee z">Free to apply</span>` : `<span class="fee${f.w ? " w" : ""}">Fee ${esc(f.f.replace(/ \(.*\)$/, ""))}${f.w ? " · can be $0" : ""}</span>`; }
 function datesCell(x, closed){
   if (closed) return `<div class="dates"><span>—</span></div>`;
-  return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span>${feeLine(x)}${dvTag(x)}</div>`;
+  return `<div class="dates">${x.sug ? `<span class="sg">Suggested <b style="color:inherit">${fmtShort(x.sug)}</b></span>` : `<span>Suggested: any time</span>`}<span>Final <b>${x.fin ? fmt(x.fin) : "check"}</b></span>${feeLine(x)}</div>`;
 }
 function searchText(x){
   if (x._st) return x._st;
@@ -3849,10 +3896,11 @@ function bodyHtml(x, e){
 }
 function rowHtml({x, e}){
   const closed = e.s === "closed", band = BAND[x.band] || "";
-  const sub = x.kind === "deg" ? `${esc(x.city)} · ${esc(x.type)}${band ? " · " + band : ""}` : `${esc(x.city)} · leads to ${esc(x.feeds)}`;
+  const rk = rkOf(x), rkTxt = rk === "y" ? ' · <span class="rk">recognised in Uzbekistan</span>' : rk === "n" ? ' · <span class="nk">needs nostrification</span>' : "";
+  const sub = (x.kind === "deg" ? `${esc(x.city)} · ${esc(x.type)}${band ? " · " + band : ""}` : `${esc(x.city)} · leads to ${esc(x.feeds)}`) + (x.kind === "deg" ? rkTxt : "") + (x.spring && !closed ? ' · <span class="sp">spring 2027 start</span>' : "");
   const kindTag = x.kind === "deg" ? "" : '<span class="tag v">Foundation</span>';
   const extra = x.kind === "fnd" ? `<span class="tag ${x.guar === "g" ? "g" : x.guar === "n" ? "a" : ""}">${GUAR[x.guar]}</span>${x.home ? '<span class="tag g">No visa</span>' : ""}` : "";
-  return `<details class="it ${STATUS[e.s][2]}" id="it-${x.id}"><summary><div><div class="nm">${esc(x.name)}</div><div class="sub">${sub}</div><div class="fl">${esc(fieldNames(x.fields))}</div></div>${datesCell(x, closed)}<div class="meta">${chip(e.s)}${chTag(x, e)}${kindTag}${extra}${x.spring && !closed ? '<span class="tag a">Spring 2027</span>' : ""}${RKTAG[rkOf(x)]}</div><div class="meta act">${closed ? "" : saveBtn(x.id)}</div></summary>
+  return `<details class="it ${STATUS[e.s][2]}" id="it-${x.id}"><summary><div><div class="nm">${esc(x.name)}</div><div class="sub">${sub}</div></div>${datesCell(x, closed)}<div class="meta">${chip(e.s)}${chTag(x, e)}${kindTag}${extra}</div><div class="meta act">${closed ? "" : saveBtn(x.id)}</div></summary>
     <div class="body" data-lazy="${x.id}"></div></details>`;
 }
 function fillBody(d){
@@ -3881,6 +3929,7 @@ function segChips(g){
   return `<div class="segs" role="group" aria-label="Sections in ${esc(DISPLAY(g.c))}"><button type="button" class="segb" data-seg="${esc(g.c)}|" aria-pressed="${!g.sk}">All <span>${g.visAll.length}</span></button>${btns}</div>`;
 }
 function renderProgrammes(){
+  updFCount();
   renderFieldChips();
   const otherFilters = ui.q || ui.saved || ui.rank || ui.spring || ui.field || ui.chance;
   const groups = laneCountries().map(c => {
@@ -4056,15 +4105,14 @@ function renderStrategy(){
 function renderUnis(){
   renderLanes();
   $$("#subnav button").forEach(b => b.setAttribute("aria-selected", b.dataset.sub === ui.sub));
-  $("#vProg").hidden = ui.sub !== "prog"; $("#vStrat").hidden = ui.sub !== "strat"; $("#vCtry").hidden = ui.sub !== "ctry"; $("#vCourse").hidden = ui.sub !== "course"; $("#vGloss").hidden = ui.sub !== "gloss";
-  $("#intro").hidden = !!state.seenIntro;
+  $("#vProg").hidden = ui.sub !== "prog"; $("#vStrat").hidden = ui.sub !== "strat"; $("#vCtry").hidden = ui.sub !== "ctry"; $("#vCourse").hidden = ui.sub !== "guide"; $("#vGloss").hidden = ui.sub !== "guide";
   $("#nStrat").textContent = Object.keys(DEEP).length;
   $("#lanes").hidden = ui.sub === "strat";
   if (ui.sub === "strat") renderStrategy();
   renderProgrammes();
   if (ui.sub === "ctry") renderCountries(); else $("#nCtry").textContent = laneCountries().length;
-  if (ui.sub === "course") renderCourses();
-  if (ui.sub === "gloss" || !$("#nGloss").textContent) renderGloss();
+  if (ui.sub === "guide") renderCourses();
+  if (ui.sub === "guide" || !$("#nGloss").textContent) renderGloss();
   renderCmpBar();
 }
 function setSub(s){ ui.sub = s; renderUnis(); }
@@ -4077,7 +4125,6 @@ $("#chSel").addEventListener("change", e => { ui.chance = e.target.value; render
 $("#gq").addEventListener("input", e => { ui.gq = e.target.value; renderGloss(); });
 $$("[data-tog]").forEach(b => b.addEventListener("click", () => { const k = b.dataset.tog; ui[k] = !ui[k]; b.setAttribute("aria-pressed", ui[k]); renderProgrammes(); }));
 $("#ctryMode").addEventListener("click", e => { const b = e.target.closest("[data-cm]"); if (!b) return; ui.cmode = b.dataset.cm; renderCountries(); });
-$("#introOk").addEventListener("click", () => { state.seenIntro = true; persist(); $("#intro").hidden = true; });
 function clearFilters(){ ui.q = ""; $("#q").value = ""; ui.field = ""; ui.chance = ""; $("#chSel").value = ""; ui.hideClosed = true; ui.saved = ui.rank = ui.spring = ui.free = false; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); renderProgrammes(); }
 function scrollToEl(el){ if (el) el.scrollIntoView({behavior:smooth(), block:"start"}); }
 function goto(id){
@@ -4092,6 +4139,7 @@ function goto(id){
   const el = document.getElementById("it-" + id); if (el) { el.open = true; fillBody(el); scrollToEl(el); }
 }
 document.addEventListener("click", e => {
+  const cv = e.target.closest(".cg-verdict"); if (cv && !e.target.closest(".term")) cv.classList.toggle("open");
   if (e.target.closest("[data-clear]")) clearFilters();
   if (e.target.closest("[data-showclosed]")) { ui.hideClosed = false; $('[data-tog="hideClosed"]')?.setAttribute("aria-pressed", "false"); renderProgrammes(); }
   const f = e.target.closest("[data-field]"); if (f) { ui.field = f.dataset.field; renderProgrammes(); }
@@ -4179,7 +4227,7 @@ document.addEventListener("click", e => {
 }, true);
 $("#popClose").addEventListener("click", () => { $("#pop").hidden = true; });
 $("#popMore").addEventListener("click", () => {
-  $("#pop").hidden = true; show("unis"); ui.gq = ""; $("#gq").value = ""; setSub("gloss");
+  $("#pop").hidden = true; show("unis"); ui.gq = ""; $("#gq").value = ""; setSub("guide");
   const el = document.getElementById("gl-" + domId(popTerm)); if (el) { $$(".gloss .hit").forEach(x => x.classList.remove("hit")); el.classList.add("hit"); scrollToEl(el); }
 });
 document.addEventListener("keydown", e => {
@@ -4363,6 +4411,10 @@ $("#toastUndo").addEventListener("click", () => { if (undoFn) undoFn(); undoFn =
 (function(){ const n = {v:0,p:0,s:0}; U.forEach(x => { if (x.ver && n[x.ver.st] !== undefined) n[x.ver.st]++; }); ["v","p","s"].forEach(k => { const el = document.getElementById("nDv" + k.toUpperCase()); if (el) el.textContent = n[k]; }); })();
 (function(){ const el = document.getElementById("lede"); if (el) el.textContent = `${U.length.toLocaleString("en-US")} universities and ${F.length} foundation routes in ${ORDER.length} countries, all open to you now or after one step: a score, a document or a bridge year. Each has a suggested date and a final deadline.`; })();
 (function(){ const b = document.getElementById("toTop"); if (!b) return; let raf = 0; const upd = () => { raf = 0; b.hidden = window.scrollY < 1400 || !document.getElementById("cmpBar").hidden; }; window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(upd); }, {passive:true}); b.addEventListener("click", () => { const nav = $("nav.switch"), fixed = getComputedStyle(nav).position === "fixed"; window.scrollTo({top: fixed ? Math.max(0, $("main").offsetTop - 8) : nav.offsetTop, behavior: smooth()}); }); })();
+(function(){ const b = $("#fBtn"), p = $("#fPanel"); if (!b) return;
+  b.addEventListener("click", () => { p.hidden = !p.hidden; b.setAttribute("aria-expanded", !p.hidden); });
+  $("#fDone").addEventListener("click", () => { p.hidden = true; b.setAttribute("aria-expanded", "false"); scrollToEl($("#cIndex")); }); })();
+function updFCount(){ const n = (ui.kind !== "both") + !!ui.chance + ["saved","rank","spring","free"].filter(k => ui[k]).length, el = $("#fCount"); if (!el) return; el.hidden = !n; el.textContent = n; }
 function renderAll(){ sitSummary(); renderUnis(); renderRoadmap(); renderChecklist(); }
 syncSit(); renderChart(); renderAll();
 </script>
