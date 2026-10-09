@@ -3356,7 +3356,7 @@ const FEE_C = {
 };
 const OUAC = {p:"OUAC 105 form (Ontario)", f:"CAD 156 for 3 choices, then CAD 50 each", usd:115, w:"", src:["OUAC 105 fees","https://ouac.on.ca/guide/105-fees"]};
 const NOFEE = {f:"No application fee (2026 lists; confirm)", usd:0, w:"", src:["BestColleges: colleges with no application fee","https://www.bestcolleges.com/resources/colleges-without-application-fees/"]};
-const UCFEE = {p:"UC application (one form for every campus)", f:"≈ $95 per campus for international applicants", usd:95, w:""};
+const UCFEE = {p:"UC application (one form for every campus)", f:"$95 per campus for international applicants", usd:95, w:"", ex:"o", src:["UCLA international admission guide 2026","https://admission.ucla.edu/sites/default/files/documents/UCLA-International-Admission-Guide-2026.pdf"]};
 const FEE = {
   hk2:{f:"HK$780", usd:100, src:["HKU General Information NJ 2027","https://admissions.hku.hk/sites/default/files/2026-09/HKU_General_Information_NJ_2027.pdf"]},
   ca3:{p:"UBC's own application", f:"CAD 173.25", usd:125, src:["UBC calendar: application fees","https://okanagan.calendar.ubc.ca/fees/application-and-administrative-fees"]},
@@ -3379,12 +3379,48 @@ const FEE = {
 };
 ["ca2","ca5","ca6","ca6b","ca6c","ca6d","ca6h","c_tmu","c_carleton","c_guelph","c_laurier","c_brock","c_windsor","c_ontech","c_trent","c_lakehead","c_laurentian","c_ocad"].forEach(id => { FEE[id] = Object.assign({}, OUAC, FEE[id] || {}); });
 ["c_mun","c_regina"].forEach(id => { FEE[id] = {f:"No application fee (2026 lists; confirm)", usd:0, w:""}; });
+
+/* University-specific fees found 9 Oct 2026. ex: "o" = official page, "s" = secondary source (confirm). */
+const IVY = ["Ivy Coach: Ivy League application fees","https://www.ivycoach.com/the-ivy-coach-blog/ivy-league/ivy-league-application-fee-revenue/"];
+const TWEB = ["TransferWeb fee table (fees can differ for first-year applicants)","https://transferweb.com/stats/transfer-deadlines-fees"];
+const SFC = ["Saving for College: application fees","https://www.savingforcollege.com/article/how-to-cut-college-admissions-application-fees"];
+Object.entries({
+  us3:{f:"$85", usd:85, ex:"s", src:IVY}, us3b:{f:"$80", usd:80, ex:"s", src:IVY}, us3c:{f:"$75", usd:75, ex:"s", src:IVY},
+  us4:{f:"$75", usd:75, ex:"s", src:IVY}, us4b:{f:"$80", usd:80, ex:"s", src:IVY}, us4c:{f:"$80", usd:80, ex:"s", src:IVY},
+  us4d:{f:"$85", usd:85, ex:"s", src:IVY}, us4e:{f:"$85", usd:85, ex:"s", src:IVY},
+  us3d:{f:"$90–100 (sources differ)", usd:95, ex:"s", src:SFC}, us2:{f:"$75", usd:75, ex:"s", src:SFC}, us2b:{f:"$75", usd:75, ex:"s", src:TWEB},
+  us5:{f:"$75", usd:75, ex:"s", src:TWEB}, us5b:{f:"$75–90 (sources differ)", usd:85, ex:"s", src:TWEB}, us5c:{f:"≈ $65–75", usd:75, ex:"s", src:TWEB},
+  us5d:{f:"$70", usd:70, ex:"s", src:TWEB}, us5e:{f:"≈ $65–75", usd:75, ex:"s", src:TWEB}, us5f:{f:"$50", usd:50, ex:"s", src:TWEB},
+  us5j:{f:"≈ $55–75", usd:75, ex:"s", src:TWEB}, us5k:{f:"≈ $65–75", usd:75, ex:"s", src:TWEB}, us5l:{f:"≈ $40–75 (sources differ)", usd:75, ex:"s", src:TWEB},
+  us5g:{f:"≈ $65–75", usd:75, ex:"s"}, us5h:{f:"≈ $75", usd:75, ex:"s"},
+  us6:{f:"$80", usd:80, ex:"s"}, us6d:{f:"$95", usd:95, ex:"s"},
+  us6c:{f:"$50", usd:50, w:"Northeastern lets domestic and international applicants opt out of the fee with a short online waiver form.", ex:"s"},
+  us10b:{f:"$75", usd:75, ex:"s"}, us10c:{f:"$90 for international applicants", usd:90, ex:"s"}, us10:{f:"≈ $75 for international applicants", usd:75, ex:"s"},
+  us11h:{f:"$70 for international applicants", usd:70, ex:"s"}, us11i:{f:"$75", usd:75, ex:"o", src:["Penn State: steps to apply (international)","https://www.psu.edu/resources/international-students/steps-to-apply"]},
+  us11f:{f:"$90 for international applicants; no waivers for them", usd:90, w:"", ex:"s", src:["UW Tacoma application fee page","https://applyweb.com/uwt/index.ftl"]},
+  us12:{f:"$85 for international applicants", usd:85, ex:"s"},
+  u_williams:{f:"$65", usd:65, w:"Williams has its own fee waiver; asking for it does not affect your application.", ex:"o", src:["Williams: application fee waiver","https://www.williams.edu/admission-aid/application-fee-waiver/"]},
+  u_amherst:{f:"$65", usd:65, ex:"s"}, u_pomona:{f:"$80", usd:80, w:"Pomona Access Pass form if the fee is a hardship and you apply for aid.", ex:"s", src:["Common App: Pomona College","https://www.commonapp.org/explore/pomona-college"]},
+  u_bowdoin:{f:"$65", usd:65, w:"No fee for applicants who apply for financial aid (Bowdoin Orient; confirm).", ex:"s", src:["Bowdoin Orient","https://bowdoinorient.com/bonus/article/11307"]},
+  u_colby:{f:"No application fee", usd:0, w:"", ex:"s"},
+  hk5:{f:"HK$600 (2026/27 entry)", usd:77, ex:"o", src:["HKUST application notes","https://www.join.hkust.edu.hk/oas/notes.pdf"]},
+  hk7:{f:"HK$200 per programme choice", usd:26, ex:"o", src:["CityU: fees and scholarships","https://www.cityu.edu.hk/admo/fees-and-scholarships?kind=local"]},
+  hk3:{f:"≈ HK$450 (last published figure; confirm)", usd:58, ex:"s"},
+  cn3:{p:"Common App", f:"≈ $80", usd:80, ex:"s"},
+  cn7:{f:"No fee in the current portal (confirm)", usd:0, w:"", ex:"s"},
+  it1:{f:"€100 per application", usd:108, ex:"o", src:["Bocconi: admissions","https://www.unibocconi.it/en/admissions"]},
+  it3:{f:"$50 / €50", usd:50, ex:"o", src:["John Cabot: tuition and fees","https://www.johncabot.edu/admissions/enlus/tuition.aspx"]}
+}).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
+["hk2","ca3","qa1","qa2","tr2","kr4","kr6","hu_sh","lt1","i_ru","cn3b","us5g"].forEach(id => { if (FEE[id] && !FEE[id].ex) FEE[id].ex = FEE[id].src ? "o" : "s"; });
+["c_mun","c_regina","ae1","us5o","u_mac","u_grinnell","u_dayton","u_stolaf","u_carleton","u_cc"].forEach(id => { if (FEE[id]) FEE[id].ex = FEE[id].ex || "s"; });
+["ca2","ca5","ca6","ca6b","ca6c","ca6d","ca6h","c_tmu","c_carleton","c_guelph","c_laurier","c_brock","c_windsor","c_ontech","c_trent","c_lakehead","c_laurentian","c_ocad"].forEach(id => { FEE[id].ex = "o"; });
+FEE_C["Sweden"].ex = "o"; FEE_C["Finland"].ex = "o"; FEE_C["Germany"].ex = "o"; FEE_C["Saudi Arabia"].ex = "s";
 const feeOf = x => {
   if (x._fee) return x._fee;
   const c = FEE_C[x.country] || {p:"Each university", f:"Check", usd:60, w:""};
   let o = Object.assign({}, c, FEE[x.id] || {});
   if (x.country === "USA" && /UC application/.test(x.win || "")) o = Object.assign({}, o, UCFEE);
-  else if (x.country === "USA" && /Cal State/.test(x.win || "")) o = Object.assign({}, o, {p:"Cal State Apply", f:"≈ $70 per campus", usd:70, w:""});
+  else if (x.country === "USA" && /Cal State/.test(x.win || "")) o = Object.assign({}, o, {p:"Cal State Apply", f:"$70 per campus; waivers only for California residents", usd:70, w:"", ex:"o", src:["Cal State: application fee waiver","https://calstate.edu/apply/paying-for-college/pages/fee-waiver.aspx"]});
   o.zero = o.usd === 0 || !!o.w;
   return x._fee = o;
 };
@@ -3808,7 +3844,7 @@ function bodyHtml(x, e){
     ? `<dl><dt>Courses</dt><dd>${esc(x.courses)}</dd></dl><dl><dt>The rule for you</dt><dd>${T(x.rule)}</dd></dl>${need}${chDl}<dl><dt>Application window</dt><dd>${T(x.win)}${dvLine(x)}</dd></dl>${x.also ? `<dl class="full"><dt>The same rule covers</dt><dd class="small muted">${esc(x.also)}</dd></dl>` : ""}`
     : `<dl><dt>Accepts your Attestat?</dt><dd>${esc(x.accepts)}</dd></dl><dl><dt>English</dt><dd>${esc(x.english)}</dd></dl><dl><dt>Intakes · length</dt><dd>${esc(x.intakes)} · ${esc(x.length)}</dd></dl><dl><dt>How to apply</dt><dd>${T(x.apply)}</dd></dl>${need}${chDl}${x.note ? `<dl><dt>Note</dt><dd>${T(x.note)}</dd></dl>` : ""}`;
   const segName = SEGS[x.country] && SEG[x.id] ? (SEGS[x.country].find(s => s[0] === SEG[x.id]) || [])[1] : "";
-  const fo = feeOf(x), feeDl = `<dl><dt>How to apply · fee</dt><dd>${esc(fo.p)}<br><b>${esc(fo.f)}</b>${fo.w ? `<div class="feew"><b>Pay $0:</b> ${esc(fo.w)}</div>` : ""}${fo.src ? `<div class="faint small"><a href="${esc(fo.src[1])}" target="_blank" rel="noopener">${esc(fo.src[0])}</a></div>` : ""}</dd></dl>`;
+  const fo = feeOf(x), feeDl = `<dl><dt>How to apply · fee</dt><dd>${esc(fo.p)}<br><b>${esc(fo.f)}</b>${fo.w ? `<div class="feew"><b>Pay $0:</b> ${esc(fo.w)}</div>` : ""}<div class="faint small">${fo.ex === "o" ? "Exact fee from the university or platform" : fo.ex === "s" ? "Exact fee from a secondary source: confirm before paying" : "Typical range for this country: this university's own fee is not checked yet"}${fo.src ? ` · <a href="${esc(fo.src[1])}" target="_blank" rel="noopener">${esc(fo.src[0])}</a>` : ""}</div></dd></dl>`;
   return `${body}${feeDl}${segName ? `<dl><dt>Section</dt><dd>${esc(segName)}</dd></dl>` : ""}<div class="acts">${webLink(x.web)}${cmpBtn(x.id)}</div>`;
 }
 function rowHtml({x, e}){

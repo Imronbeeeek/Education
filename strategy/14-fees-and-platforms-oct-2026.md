@@ -58,3 +58,35 @@ Ideas taken from Common App's dashboard and Niche's tiered college lists:
   - [Vilnius University](https://www.vu.lt/en/studies/bachelor-and-integrated-studies)
 - **Türkiye and Korea:** [Sabancı](https://sabanciuniv.edu/en/undergraduate-admissions-international-students) · [KAIST guideline with fee waiver](https://admission.kaist.ac.kr/wz/api/admin/files/view/intl-undergraduate/KAIST%20Admission%20Guideline%20for%20International%20Applicants%202025%20(including%20fee%20waiver)_v.2.pdf)
 - **Design patterns:** [Common App UI updates](https://www.commonapp.org/files/Common-App-UI-updates.pdf) · [Niche mobile](https://www.niche.com/about/mobile/)
+
+## Update: exact fees (9 Oct 2026, second pass)
+
+Each university's opened row now says how sure its fee is:
+- **Exact, official:** 122 universities. This covers:
+  - every university in Sweden, Finland and Germany (one national platform each);
+  - the University of California and Cal State campuses;
+  - the Ontario universities on OUAC;
+  - UBC, HKU, HKUST, CityU, Bocconi, John Cabot, Penn State, Williams, CMU-Qatar, Georgetown-Qatar, Sabancı, KAIST, Vilnius University and Stipendium Hungaricum.
+- **Exact, secondary source (confirm):** 66 universities. Among them:
+  - **Ivy League:** Harvard $85, Yale $80, Princeton $75, Penn $75, Cornell $80, Brown $80, Dartmouth $85, Columbia $85.
+  - **Other selective private:** MIT $75, Stanford $90–100, Caltech $75, Chicago $75, Duke $75–90, Johns Hopkins $70, Vanderbilt $50, NYU $80, Boston University $95.
+  - **Publics:** Georgia Tech $75; for international applicants UT Austin $90, UW $90 (no waivers), Arizona State $85, Ohio State $70.
+  - **Liberal arts:** Amherst $65, Pomona $80, Bowdoin $65 (free if you apply for aid), Colby free.
+  - **Free with a waiver:** Northeastern $50, which international applicants can opt out of with an online form.
+- **Typical range for the country:** the other 829 universities. Their own fee is not checked yet.
+
+Common App's full requirements grid lists every member college's fee in one table. It could not be downloaded from this research environment, so the remaining US fees should be read from the Common App when you add each college to your list.
+
+Added sources:
+- [Ivy Coach: Ivy League fees](https://www.ivycoach.com/the-ivy-coach-blog/ivy-league/ivy-league-application-fee-revenue/)
+- [TransferWeb fee table](https://transferweb.com/stats/transfer-deadlines-fees)
+- [Saving for College](https://www.savingforcollege.com/article/how-to-cut-college-admissions-application-fees)
+- [UCLA international guide 2026](https://admission.ucla.edu/sites/default/files/documents/UCLA-International-Admission-Guide-2026.pdf)
+- [Cal State fee waiver](https://calstate.edu/apply/paying-for-college/pages/fee-waiver.aspx)
+- [Penn State](https://www.psu.edu/resources/international-students/steps-to-apply)
+- [Williams fee waiver](https://www.williams.edu/admission-aid/application-fee-waiver/)
+- [Pomona on Common App](https://www.commonapp.org/explore/pomona-college)
+- [HKUST notes](https://www.join.hkust.edu.hk/oas/notes.pdf)
+- [CityU fees](https://www.cityu.edu.hk/admo/fees-and-scholarships?kind=local)
+- [Bocconi](https://www.unibocconi.it/en/admissions)
+- [John Cabot](https://www.johncabot.edu/admissions/enlus/tuition.aspx)
