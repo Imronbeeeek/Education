@@ -3,9 +3,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: a departure board for one study-abroad year. Boarding-pass header with the facts that decide admission, a three-way switch (Universities · Roadmap · Checklist), countries in tier lanes, and every action drawn as a window from its suggested date to its final deadline. Dark by request. */
+/* Layout: a departure board for one study-abroad year. Boarding-pass header with the facts that decide admission, four places (Home · Universities · My list · Plan), countries in tier lanes, and every action drawn as a window from its suggested date to its final deadline. Dark by request. */
 :root{
   --bg:#0a0f17; --bg-top:#101a29; --well:#0c131e; --surface:#121a27; --raised:#172133; --hover:#1b273b;
   --line:#223047; --line-2:#2f405e; --nav-bg:rgba(10,15,23,.9); --shadow:rgba(0,0,0,.5); --scrim:rgba(4,7,12,.72);
@@ -558,11 +557,176 @@ main{padding-block:22px 72px}
 @media (max-width:560px){.lane{grid-auto-flow:row;gap:0}}
 .tfilter,[role="group"]:has(> [data-tf]){flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%}
 #tFilter button{flex:none;white-space:nowrap}
+/* ---------- v14: four places (Home · Universities · My list · Plan), calmer type and surfaces ---------- */
+:root{
+  --bg:#090e16; --surface:#101826; --raised:#152033; --hover:#1a263a; --well:#0b111b;
+  --line:#1c283b; --line-2:#2a3a54;
+  --f-display:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:16px;
+}
+*{font-stretch:100%!important}
+body{background:radial-gradient(1100px 520px at 8% -12%,rgba(108,199,232,.10),transparent 62%),radial-gradient(900px 420px at 100% -6%,rgba(187,163,255,.07),transparent 60%),var(--bg);background-repeat:no-repeat;font-variant-numeric:tabular-nums}
+h1{font:750 clamp(28px,4.2vw,42px)/1.08 var(--f-display);letter-spacing:-.02em}
+h2{font:720 clamp(24px,3vw,30px)/1.15 var(--f-display);letter-spacing:-.015em}
+.eyebrow{font:600 11px/1.3 var(--f-body);letter-spacing:.1em}
+.tag,.tierpill,.subnav .n,.schip .faint,.slsum,.sync,.balbar span,.tot b,.fcount,.nextup .d,.tabbtn .badge{font-family:var(--f-body)}
+.card{border-radius:var(--r);padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,0) 120px),var(--surface);box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 10px 30px -22px rgba(0,0,0,.8)}
+main{padding-block:26px 80px}
+.panel{gap:22px}
+
+/* Top bar: brand, the four places, sync state */
+header.top{position:sticky;top:0;z-index:40;padding:0;display:block;background:rgba(9,14,22,.82);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:18px;min-height:62px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);flex:none}
+.logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font:800 13px var(--f-display);letter-spacing:.02em;color:var(--accent-ink);background:linear-gradient(135deg,var(--accent),#a99bff)}
+.bt{display:grid;line-height:1.2}
+.bt b{font:700 15px var(--f-display)}
+.bt span{font-size:12px;color:var(--faint)}
+nav.switch{position:static;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;flex:1;display:flex;justify-content:center}
+nav.switch .tabs{display:flex;gap:4px;background:var(--well);border:1px solid var(--line);border-radius:12px;padding:4px}
+.tabbtn{display:inline-flex;align-items:center;gap:8px;background:none;border:0;border-radius:9px;padding:7px 14px;color:var(--muted);cursor:pointer}
+.tabbtn:hover{background:var(--hover);color:var(--ink)}
+.tabbtn svg{width:18px;height:18px}
+.tabbtn .tt{font:650 14px var(--f-body);color:inherit}
+.tabbtn .badge{font:600 11px var(--f-body);background:var(--raised);color:var(--muted);border-radius:999px;padding:2px 8px}
+.tabbtn .badge:empty{display:none}
+.tabbtn[aria-selected="true"]{background:var(--raised);color:var(--ink);border:0;box-shadow:0 0 0 1px var(--line-2) inset}
+.tabbtn[aria-selected="true"] svg{color:var(--accent)}
+.tabbtn[aria-selected="true"] .badge{background:var(--accent-soft);color:var(--accent)}
+.topbar .sync{flex:none}
+@media (max-width:900px){.topbar .sync span{display:none}.bt span{display:none}}
+@media (max-width:640px){
+  header.top{position:static;background:transparent;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .topbar{min-height:56px}
+  .bt span{display:block}
+  .topbar .sync{margin-left:auto}
+  nav.switch{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:50;display:block;background:rgba(9,14,22,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
+  nav.switch .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:none;border:0;padding:0;gap:2px}
+  .tabbtn{flex-direction:column;gap:3px;padding:6px 2px;position:relative;background:none!important;box-shadow:none!important}
+  .tabbtn svg{width:22px;height:22px;padding:3px 14px;box-sizing:content-box;border-radius:999px}
+  .tabbtn[aria-selected="true"] svg{background:var(--accent-soft)}
+  .tabbtn .tt{font-size:11.5px}
+  .tabbtn .badge{position:absolute;top:1px;left:calc(50% + 10px);padding:0 6px;font-size:10px;background:var(--accent);color:var(--accent-ink)}
+  .tabbtn[aria-selected="true"] .badge{background:var(--accent);color:var(--accent-ink)}
+  main{padding-block:8px 110px}
+}
+
+/* Section headers: title on the left, views on the right */
+.phead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;border-bottom:1px solid var(--line);padding-bottom:0}
+.phead .ph{display:grid;gap:4px;padding-bottom:12px;max-width:62ch}
+.phead .subnav{border-bottom:0}
+.phead > .btn{margin-bottom:12px}
+@media (max-width:640px){.phead{gap:4px}.phead .ph{padding-bottom:4px}.phead .ph p{font-size:13px}.phead .subnav{width:100%}}
+
+/* Home */
+.hero{display:grid;gap:8px;padding-top:6px}
+.hero .lede{font-size:15.5px}
+.hgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:820px){.hgrid{grid-template-columns:1fr}}
+.hcard{gap:14px}
+.hh{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.hh h3{font:700 16.5px var(--f-display)}
+.hh .linkbtn{text-decoration:none;white-space:nowrap}
+.hh .linkbtn::after{content:" →"}
+.hlist,.dlist,.clist{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.hlist li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.hlist li:first-child{border-top:0;padding-top:0}
+.hl{display:grid;gap:3px;min-width:0}
+.hl b{font-weight:650;line-height:1.35}
+.dlist li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.dlist li:first-child{border-top:0;padding-top:0}
+.dd{display:grid;justify-items:center;background:var(--well);border:1px solid var(--line);border-radius:10px;padding:4px 0;line-height:1.1}
+.dd b{font:750 16px var(--f-display)}
+.dd span{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}
+.dm{display:grid;gap:2px;min-width:0}
+.dm .linkbtn{text-decoration:none;color:var(--ink);text-align:left;font-size:14px;font-weight:600}
+.dm .linkbtn:hover{color:var(--accent)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.kpis div{display:grid;gap:2px;background:var(--well);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.kpis b{font:750 20px/1.1 var(--f-display)}
+.kpis span{font-size:12px;color:var(--muted)}
+@media (max-width:480px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.crow{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:22px minmax(0,1fr) 70px;gap:12px;align-items:center;width:100%;padding:9px 8px;border-radius:10px}
+.crow:hover{background:var(--hover)}
+.crow:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.crow .rk{font:700 13px var(--f-display);color:var(--faint);text-align:center}
+.crow .cn{display:grid;gap:1px;min-width:0}
+.crow .cn .small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ftiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.ftile{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:2px;background:var(--well);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ftile:hover{border-color:var(--accent-line);background:var(--hover)}
+.ftile:focus-visible{outline:2px solid var(--accent)}
+.ftile b{font-weight:650;font-size:14px}
+.ftile span{font-size:12.5px;color:var(--muted)}
+.pass{border-radius:var(--r);background:var(--surface)}
+.pass .k{font-family:var(--f-body);font-weight:600}
+
+/* Universities */
+.lanes .lane{border-radius:999px;padding:6px 14px}
+.lane::after{display:none}
+.lane[aria-selected="true"]{background:var(--ink);border-color:var(--ink)}
+.lane[aria-selected="true"] .ln{color:var(--bg)}
+.lane[aria-selected="true"] .ls{color:#3a4a60}
+details.fold{padding:0;gap:0}
+details.fold > summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary > span{display:grid;gap:3px}
+details.fold > summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s;flex:none}
+details.fold[open] > summary::after{transform:rotate(-135deg)}
+details.fold > div{padding:0 20px 20px}
+
+/* My list */
+.app-row{padding:14px 16px;gap:10px 16px}
+.app-main{display:grid;gap:4px;min-width:0}
+.app-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.app-name{text-decoration:none;color:var(--ink);text-align:left;font:650 15.5px/1.3 var(--f-display)}
+.app-name:hover{color:var(--accent)}
+.app-row .x{font-size:13px;color:var(--muted)}
+.app-row .x a{color:var(--muted)}
+.app-facts{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px;margin-top:2px}
+.app-facts > span{display:inline-flex;gap:6px;align-items:baseline}
+.app-facts i{font-style:normal;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint)}
+.app-facts .hot{color:var(--bridge)}
+.app-facts .need{color:var(--reach)}
+.okc{color:var(--ok)}
+.slsum{font-size:13px;gap:6px 18px}
+.slsum b{color:var(--ink)}
+#apps .seg button{padding:5px 10px;font-size:12.5px}
+footer{padding-bottom:calc(22px + 80px)}
+@media (min-width:641px){footer{padding-bottom:22px}}
+.cindex{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:32px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
+.cindex::-webkit-scrollbar{display:none}
+.cjump{flex:none}
+@media (max-width:640px){.schips{display:grid;gap:8px}.schrow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:24px}.schrow::-webkit-scrollbar{display:none}.schl{flex:none;width:auto!important;min-width:0!important;margin-right:4px}.schip{flex:none}}
+.panel,.subview{grid-template-columns:minmax(0,1fr)}
+.panel > *,.subview > *{min-width:0}
+.grid:not(.g2){grid-template-columns:minmax(0,1fr)}
+.grid > *{min-width:0}
 </style>
 
-<header class="top wrap">
-  <h1>Imronbek's Admissions Atlas</h1>
-  <p class="lede" id="lede">Only the universities you can apply to, now or after one step you can take, rated for your profile, with each action's suggested date and final deadline.</p>
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="#home" data-go="home" aria-label="Admissions Atlas, home"><span class="logo" aria-hidden="true">IK</span><span class="bt"><b>Admissions Atlas</b><span>Imronbek · Fall 2027</span></span></a>
+    <nav class="switch" aria-label="Sections"><div class="tabs" role="tablist">
+      <button class="tabbtn" role="tab" data-tab="home" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V19h12V9.5"/><path d="M10 19v-5h4v5"/></svg><span class="tt">Home</span></button>
+      <button class="tabbtn" role="tab" data-tab="unis" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M7 12.5V17c0 1.2 2.2 2.5 5 2.5s5-1.3 5-2.5v-4.5"/></svg><span class="tt">Universities</span></button>
+      <button class="tabbtn" role="tab" data-tab="list" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.6.9 5.1-4.6-2.4-4.6 2.4.9-5.1-3.8-3.6 5.2-.8z"/></svg><span class="tt">My list</span><span class="badge" id="bList"></span></button>
+      <button class="tabbtn" role="tab" data-tab="plan" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 14.5l2 2 4-4"/></svg><span class="tt">Plan</span><span class="badge" id="bPlan"></span></button>
+    </div></nav>
+    <span class="sync" id="sync" title="Where your ticks and list are kept"><i></i><span>Saved in this browser</span></span>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HOME ================= -->
+<section class="panel" data-panel="home">
+  <div class="hero">
+    <span class="eyebrow" id="hDate"></span>
+    <h1>Imronbek's Admissions Atlas</h1>
+    <p class="lede" id="lede"></p>
+  </div>
   <div class="pass" aria-label="Your admission facts">
     <div class="seg"><span class="k">Attestat</span><span class="v">5.0 / 5.0</span><span class="s">11 years · finished 2022</span></div>
     <div class="seg"><span class="k">IELTS</span><span class="v">7.5 · W 5.5</span><span class="s">Retake planned · valid to 2 Sep 2027</span></div>
@@ -571,39 +735,26 @@ main{padding-block:22px 72px}
     <div class="seg warn"><span class="k">Passport</span><span class="v">Renewing</span><span class="s">Current one ends 21 Sep 2027</span></div>
     <div class="seg"><span class="k">Age</span><span class="v">22</span><span class="s">Target: Fall 2027</span></div>
   </div>
-  <div class="nextup" id="nextUp" hidden></div>
-</header>
-
-<nav class="switch" aria-label="Sections">
-  <div class="wrap" role="tablist">
-    <button class="tabbtn" role="tab" data-tab="unis" aria-selected="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M7 12.5V17c0 1.2 2.2 2.5 5 2.5s5-1.3 5-2.5v-4.5"/></svg>
-      <span class="tt">Universities</span><span class="ts">Programmes, countries, courses</span><span class="badge" id="bUnis"></span></button>
-    <button class="tabbtn" role="tab" data-tab="road" aria-selected="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h9M7 12h11M5 18h8"/><circle cx="14.5" cy="6" r="1.6"/><path d="M19 10.5l2 1.5-2 1.5z"/><circle cx="15.5" cy="18" r="1.6"/></svg>
-      <span class="tt">Roadmap</span><span class="ts">When to act, to scale</span><span class="badge" id="bRoad"></span></button>
-    <button class="tabbtn" role="tab" data-tab="todo" aria-selected="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-6"/></svg>
-      <span class="tt">Checklist</span><span class="ts">Your tasks, done ones hidden</span><span class="badge" id="bTodo"></span></button>
+  <div class="hgrid">
+    <section class="card hcard" id="hNext" aria-label="Up next"></section>
+    <section class="card hcard" id="hDead" aria-label="Coming deadlines"></section>
+    <section class="card hcard" id="hList" aria-label="My list"></section>
+    <section class="card hcard" id="hCtry" aria-label="Best countries for you"></section>
   </div>
-</nav>
-
-<main class="wrap">
+  <section class="card" id="hFields" aria-label="Explore by field"></section>
+</section>
 
 <!-- ================= UNIVERSITIES ================= -->
-<section class="panel" data-panel="unis">
-  <h2 class="vh">Universities</h2>
-
-
-
-  <div class="lanes" role="tablist" aria-label="Tiers" id="lanes"></div>
-
-  <div class="subnav" role="tablist" aria-label="Views" id="subnav">
-    <button type="button" role="tab" data-sub="prog" aria-selected="true">Programmes<span class="n" id="nProg"></span></button>
-    <button type="button" role="tab" data-sub="strat" aria-selected="false"><span class="lgl">Strategy &amp; chances</span><span class="sml">Strategy</span><span class="n" id="nStrat"></span></button>
-    <button type="button" role="tab" data-sub="ctry" aria-selected="false"><span class="lgl">Countries &amp; systems</span><span class="sml">Countries</span><span class="n" id="nCtry"></span></button>
-    <button type="button" role="tab" data-sub="guide" aria-selected="false">Guide<span class="n" id="nGloss"></span></button>
+<section class="panel" data-panel="unis" hidden>
+  <div class="phead">
+    <div class="ph"><h2>Universities</h2><p class="muted small" id="uLede">Every programme open to you, by country. Browse and save; study one country at a time in Countries.</p></div>
+    <div class="subnav" role="tablist" aria-label="Views" id="subnav">
+      <button type="button" role="tab" data-sub="prog" aria-selected="true">Browse<span class="n" id="nProg"></span></button>
+      <button type="button" role="tab" data-sub="strat" aria-selected="false">Countries<span class="n" id="nStrat"></span></button>
+      <button type="button" role="tab" data-sub="guide" aria-selected="false">Guide<span class="n" id="nGloss"></span></button>
+    </div>
   </div>
+  <div class="lanes" role="tablist" aria-label="Tiers" id="lanes"></div>
 
   <!-- Programmes -->
   <div class="subview grid" style="gap:16px" id="vProg">
@@ -649,26 +800,12 @@ main{padding-block:22px 72px}
     <div class="cgroups" id="cGroups"></div>
   </div>
 
-  <!-- Strategy -->
+  <!-- Countries: one page per country, the scorecard and the systems table -->
   <div class="subview grid" style="gap:16px" id="vStrat" hidden>
-    <p class="muted small" style="max-width:80ch">Which countries suit you best, then one page per country with your chances, risks, dates and a suggested shortlist. Chances are estimates from admission rates.</p>
-    <section class="card" id="balance"></section>
-    <section class="card" id="fees"></section>
-    <section class="card" id="score"></section>
     <div class="schips" role="tablist" aria-label="Country" id="sChips"></div>
     <div id="stratOut"></div>
-  </div>
-
-  <!-- Countries -->
-  <div class="subview grid" style="gap:16px" id="vCtry" hidden>
-    <div class="toolbar">
-      <p class="muted small" style="max-width:80ch">How studying works in each country of this tier, and what it means for your 11-year Attestat. Costs are rough yearly figures for international students, for information only.</p>
-      <div class="seg" role="group" aria-label="Layout" id="ctryMode">
-        <button type="button" data-cm="cards" aria-pressed="true">Cards</button>
-        <button type="button" data-cm="table" aria-pressed="false">Compare table</button>
-      </div>
-    </div>
-    <div id="ctryOut"></div>
+    <details class="card fold" id="scoreBox"><summary><span><span class="eyebrow">All countries</span><b>Country scorecard: where your 2027 chances are strongest</b></span></summary><div id="score"></div></details>
+    <details class="card fold" id="sysBox"><summary><span><span class="eyebrow">All countries</span><b>Compare national systems side by side</b></span></summary><div id="ctryOut"></div></details>
   </div>
 
   <!-- Courses -->
@@ -684,16 +821,69 @@ main{padding-block:22px 72px}
   </div>
 </section>
 
-<!-- ================= ROADMAP ================= -->
-<section class="panel" data-panel="road" hidden>
-  <div class="toolbar">
-    <div class="head">
-      <h2>Roadmap · Oct 2026 – Sep 2027</h2>
-      <p class="muted">Each bar runs from the suggested date (dot) to the final deadline (diamond). Saving a programme or finishing a task changes it.</p>
+<!-- ================= MY LIST ================= -->
+<section class="panel" data-panel="list" hidden>
+  <div class="phead">
+    <div class="ph"><h2>My list</h2><p class="muted small">The programmes you saved: where each application stands, what it still needs, what it costs and whether the list is balanced.</p></div>
+    <button type="button" class="btn ghost sm" data-dl="shortlist" hidden>Download (CSV)</button>
+  </div>
+  <section class="card" id="apps">
+    <div class="toolbar"><h3>Applications <span class="muted small" id="slCount"></span></h3><div class="seg" role="group" aria-label="Order" id="slSort"><button type="button" data-sls="fin" aria-pressed="true">By deadline</button><button type="button" data-sls="ctry" aria-pressed="false">By country</button></div></div>
+    <div class="slsum" id="slSum"></div>
+    <div class="list" id="shortlist"></div>
+    <button class="btn ghost sm" type="button" id="goUnis" style="justify-self:start">Find more universities</button>
+  </section>
+  <section class="card" id="balance"></section>
+  <section class="card" id="fees"></section>
+</section>
+
+<!-- ================= PLAN ================= -->
+<section class="panel" data-panel="plan" hidden>
+  <div class="phead">
+    <div class="ph"><h2>Plan</h2><p class="muted small">Each task has a suggested date and a final deadline. Ticked tasks move to Completed; saved programmes add their own tasks.</p></div>
+    <div class="subnav" role="tablist" aria-label="Plan views" id="planNav">
+      <button type="button" role="tab" data-pv="tasks" aria-selected="true">Tasks<span class="n" id="nTasks"></span></button>
+      <button type="button" role="tab" data-pv="time" aria-selected="false">Timeline</button>
     </div>
-    <button type="button" class="btn ghost" data-dl="plan" hidden>Download for Google Calendar</button>
+  </div>
+  <div class="subview grid" style="gap:20px" id="vTasks">
+  <div class="progressline">
+    <div class="toolbar"><span class="small"><b id="pDone">0</b> done · <b id="pOpen">0</b> to do</span><span class="count" id="pPct"></span></div>
+    <div class="bar"><div id="pBar"></div></div>
   </div>
 
+  <div class="grid" style="gap:10px">
+    <div class="toolbar"><h3>Up next</h3>
+      <div class="seg" role="group" aria-label="Which tasks" id="tFilter">
+        <button type="button" data-tf="all" aria-pressed="true">All tasks</button>
+        <button type="button" data-tf="t1" aria-pressed="false">Main goal</button>
+        <button type="button" data-tf="prep" aria-pressed="false">Tests &amp; papers</button>
+        <button type="button" data-tf="apps" aria-pressed="false">Applications</button>
+      </div>
+    </div>
+    <div class="next3" id="next3"></div>
+  </div>
+
+  <div class="grid" style="gap:22px" id="tGroups"></div>
+
+  <div class="card">
+    <h3>Add your own task</h3>
+    <form class="addform" id="addForm">
+      <div class="ctl"><label for="aText">Task</label><input type="text" id="aText" placeholder="e.g. Email WU Vienna about proof of university access" required></div>
+      <div class="ctl"><label for="aSug">Suggested date</label><input type="date" id="aSug"></div>
+      <div class="ctl"><label for="aFin">Final deadline</label><input type="date" id="aFin"></div>
+      <button class="btn" type="submit">Add task</button>
+    </form>
+  </div>
+  <details class="card" id="doneBox">
+    <summary style="cursor:pointer"><h3 style="display:inline">Completed &amp; skipped <span class="muted small" id="doneCount"></span></h3></summary>
+    <div class="list" id="doneList"></div>
+  </details>
+
+  <div class="toolbar"><span class="note">Your progress is private to you.</span><button type="button" class="linkbtn" id="resetAll">Start over</button></div>
+  </div>
+  <div class="subview grid" style="gap:20px" id="vTime" hidden>
+    <div class="toolbar"><p class="muted small" style="max-width:70ch">Oct 2026 – Sep 2027. Each bar runs from the suggested date (dot) to the final deadline (diamond). Saving a programme or finishing a task changes it.</p><button type="button" class="btn ghost sm" data-dl="plan" hidden>Download for Google Calendar</button></div>
   <div class="card">
     <div class="toolbar"><h3>Action windows</h3>
       <div class="legend"><span><i class="mk sug"></i>Suggested</span><span><i class="mk fin"></i>Final deadline</span><span><i class="mk win"></i>Window</span><span><i class="mk today"></i>Today</span></div></div>
@@ -701,7 +891,7 @@ main{padding-block:22px 72px}
   </div>
 
   <div class="card">
-    <div class="toolbar"><div class="grid" style="gap:4px"><h3>When to take the SAT</h3><p class="small muted">Scores arrive about 13 days after the test. Each card shows which of your Tier 1 and 2 deadlines that sitting still reaches. Pick one and your checklist follows.</p></div>
+    <div class="toolbar"><div class="grid" style="gap:4px"><h3>When to take the SAT</h3><p class="small muted">Scores arrive about 13 days after the test. Each card shows which of your Tier 1 and 2 deadlines that sitting still reaches. Pick one and your tasks follow.</p></div>
       <button type="button" class="linkbtn" id="satNone">I'll skip the SAT</button></div>
     <div class="satgrid" id="satGrid"></div>
     <p class="note" id="satAdvice"></p>
@@ -749,60 +939,7 @@ main{padding-block:22px 72px}
   </div>
   <div class="legend"><span><i style="background:var(--accent)"></i>Suggested to do</span><span><i style="background:var(--bridge)"></i>Final deadline</span><span><i style="background:var(--line-2)"></i>Key date</span><span><i style="background:var(--closed)"></i>Hard limit</span></div>
   <div class="months" id="months"></div>
-</section>
-
-<!-- ================= CHECKLIST ================= -->
-<section class="panel" data-panel="todo" hidden>
-  <div class="toolbar">
-    <div class="head"><h2>Your checklist</h2>
-      <p class="muted">When to do each task and its final deadline. Ticked tasks move to Completed; saved programmes add their own tasks.</p></div>
-    <div class="grid" style="gap:8px;justify-items:end">
-      <span class="sync" id="sync"><i></i><span>Saved in this browser</span></span>
-      <div class="toolbar" style="gap:8px"><button type="button" class="btn ghost sm" data-dl="plan" hidden>Download plan (CSV)</button><button type="button" class="btn ghost sm" data-dl="shortlist" hidden>Download shortlist (CSV)</button></div>
-    </div>
   </div>
-
-  <div class="progressline">
-    <div class="toolbar"><span class="small"><b id="pDone">0</b> done · <b id="pOpen">0</b> to do</span><span class="count" id="pPct"></span></div>
-    <div class="bar"><div id="pBar"></div></div>
-  </div>
-
-  <div class="grid" style="gap:10px">
-    <div class="toolbar"><h3>Up next</h3>
-      <div class="seg" role="group" aria-label="Which tasks" id="tFilter">
-        <button type="button" data-tf="all" aria-pressed="true">All tasks</button>
-        <button type="button" data-tf="t1" aria-pressed="false">Main goal</button>
-        <button type="button" data-tf="prep" aria-pressed="false">Tests &amp; papers</button>
-        <button type="button" data-tf="apps" aria-pressed="false">Applications</button>
-      </div>
-    </div>
-    <div class="next3" id="next3"></div>
-  </div>
-
-  <div class="grid" style="gap:22px" id="tGroups"></div>
-
-  <div class="card">
-    <h3>Add your own task</h3>
-    <form class="addform" id="addForm">
-      <div class="ctl"><label for="aText">Task</label><input type="text" id="aText" placeholder="e.g. Email WU Vienna about proof of university access" required></div>
-      <div class="ctl"><label for="aSug">Suggested date</label><input type="date" id="aSug"></div>
-      <div class="ctl"><label for="aFin">Final deadline</label><input type="date" id="aFin"></div>
-      <button class="btn" type="submit">Add task</button>
-    </form>
-  </div>
-
-  <div class="card">
-    <div class="toolbar"><h3>Your applications <span class="muted small" id="slCount"></span></h3><button class="linkbtn" type="button" id="goUnis">Add more in Universities</button></div>
-    <div class="slsum" id="slSum"></div>
-    <div class="list" id="shortlist"></div>
-  </div>
-
-  <details class="card" id="doneBox">
-    <summary style="cursor:pointer"><h3 style="display:inline">Completed &amp; skipped <span class="muted small" id="doneCount"></span></h3></summary>
-    <div class="list" id="doneList"></div>
-  </details>
-
-  <div class="toolbar"><span class="note">Your progress is private to you.</span><button type="button" class="linkbtn" id="resetAll">Start over</button></div>
 </section>
 
 </main>
@@ -3349,6 +3486,42 @@ const PRUNED_COUNTRIES = ORDER.filter(c => !U_RAW.some(r => r[1] === c) && !F_RA
 PRUNED_COUNTRIES.forEach(c => { ORDER.splice(ORDER.indexOf(c), 1); delete DEEP[c]; delete SCORE[c]; });
 /* Strategy picks that pointed at removed entries */
 Object.values(DEEP).forEach(d => Object.keys(d.picks || {}).forEach(k => { d.picks[k] = d.picks[k].filter(id => U_RAW.some(r => r[0] === id) || F_RAW.some(f => f[0] === id)); }));
+/* ---------- v14: no medicine. You are not applying to medicine, dentistry, pharmacy, nursing or health,
+   so medicine-only schools go and the field disappears; universities that also teach your fields stay. ---------- */
+const MED_CUT = ["l_lsmu"];   /* health-sciences university whose other "sciences" are pharmacy and veterinary */
+const MED_RX = /\b(medicine|medical|mbbs|dentistry|pharmacy|nursing|health|pre-?health|pre-?medicine|physiotherapy|imat)\b/i;
+const noMed = s => { if (!s || !MED_RX.test(s)) return s;
+  const parts = s.split(/(,\s+|;\s+| · )/), keep = [];
+  for (let i = 0; i < parts.length; i += 2) {
+    const sep = i ? parts[i - 1] : "", sub = parts[i].split(/ and /).filter(t => !MED_RX.test(t) || /biomedical/i.test(t));
+    if (sub.length) keep.push([sep, sub.join(" and ")]);
+  }
+  if (!keep.length) return s;
+  const out = keep.map(([sep, t], j) => (j ? sep : "") + t).join("");
+  return out.charAt(0).toUpperCase() + out.slice(1);
+};
+const MED_GONE = [];
+for (let i = U_RAW.length - 1; i >= 0; i--) {
+  const r = U_RAW[i], f = r[6].split(" ");
+  if (MED_CUT.includes(r[0]) || (f.length && f.every(k => k === "med"))) { MED_GONE.unshift([r[0], r[1], r[2]]); U_RAW.splice(i, 1); continue; }
+  if (f.includes("med")) r[6] = f.filter(k => k !== "med").join(" ");
+  r[7] = noMed(r[7]);
+}
+for (let i = F_RAW.length - 1; i >= 0; i--) {
+  const f = F_RAW[i], fl = (f[19] || "").split(" ");
+  if (fl.length && fl.every(k => k === "med")) { MED_GONE.unshift([f[0], f[3], f[1]]); F_RAW.splice(i, 1); continue; }
+  if (fl.includes("med")) f[19] = fl.filter(k => k !== "med").join(" ");
+}
+delete FIELDS.med; delete COURSES.med;
+/* Row details that only mattered for medicine */
+const MED_PATCH = {hu4:{win:"Rolling (entrance exam per university)"}, a_adelaide:{courses:"Engineering, sciences, business (Adelaide and UniSA merged in 2026)"}, n_whu:{courses:"Selected English-taught programmes; most in Chinese"}};
+U_RAW.forEach(r => { const p = MED_PATCH[r[0]]; if (p && p.win) r[10] = p.win; if (p && p.courses) r[7] = p.courses; });
+if (SEGS.China) { SEGS.China = SEGS.China.filter(s => s[0] !== "med"); Object.keys(SEG).forEach(id => { if (SEG[id] === "med") SEG[id] = "more"; }); }
+Object.values(CI).forEach(c => ["deg","cost"].forEach(k => { if (c[k]) c[k] = c[k].replace(/\s*\((medicine|medical)[^)]*\)|\s*·\s*medicine \d+/gi, ""); }));
+if (DEEP.Hungary) { DEEP.Hungary.read = ["Each university runs its own entrance test or interview (maths for engineering and computer science)."]; DEEP.Hungary.risk[0] = "<b>Recognition.</b> Corvinus, ELTE, BME, Debrecen, Szeged and Pécs are ranked; smaller universities need nostrification."; DEEP.Hungary.mix = {m:2, o:2}; }
+/* Clean strategy picks and empty countries again */
+Object.values(DEEP).forEach(d => Object.keys(d.picks || {}).forEach(k => { d.picks[k] = d.picks[k].filter(id => U_RAW.some(r => r[0] === id) || F_RAW.some(f => f[0] === id)); }));
+ORDER.filter(c => !U_RAW.some(r => r[1] === c) && !F_RAW.some(f => f[3] === c)).forEach(c => { ORDER.splice(ORDER.indexOf(c), 1); delete DEEP[c]; delete SCORE[c]; PRUNED_COUNTRIES.push(c); });
 /* ---------- Application platforms and fees (checked 9 Oct 2026) ----------
    p = where you apply, f = fee as shown, usd = rough US$ (0 = free), w = how to pay nothing ("" = no known way),
    src = source for a specific figure. Country defaults first, then university overrides. */
@@ -3504,6 +3677,28 @@ Object.entries({
   lv1:{f:"≈ €165 (portal, Sept 2026; was €150)", usd:178, ex:"s", src:["RTU international admission","https://international.rtu.lv/admission/"]},
   l_lu:{f:"≈ €170 (the figure on its applications portal)", usd:184, ex:"s", src:["Study in Latvia: application fees","https://studyinlatvia.lv/admission/fees-costs/application-fees"]}
 }).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
+/* v14 batch: focus universities that still showed a typical fee (Oct 2026 searches) */
+const BTAA = ["Big Ten admissions guide (fee table)","https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/Project/MSU/Admissions/Docs/btaa-admissions-guide.pdf"];
+const AUFEE = ["GradRight: Australian application fees and fee-free options","https://gradright.com/australia-university-without-application-fee-options-you-can-apply-to-this-admission-cycle/"];
+const AUW = "Usually waived when you apply through an authorised education agent in Uzbekistan; universities also run fee-free application weeks.";
+Object.entries({
+  us11e:{f:"$80", usd:80, ex:"o", src:["UW System 2026 application form (UW–Madison $80)","https://admin.apply.wisconsin.edu/sites/default/files/2025-08/2026-UWPaperApplication-8.25.pdf"]},
+  us11:{f:"$75", usd:75, ex:"s", src:BTAA},
+  us9:{f:"$75 for international applicants ($50 domestic)", usd:75, ex:"s", src:BTAA},
+  us11u:{f:"$50, plus a one-time $50 foreign-credential evaluation", usd:100, ex:"s", src:["UT Dallas catalog: application fees","https://catalog.utdallas.edu/2022/undergraduate/admission/application-fees-and-deadlines"]},
+  us5w:{f:"≈ $75 (aggregator figure; check)", usd:75, ex:"s", src:["Yocket: Illinois Tech","https://yocket.com/universities/illinois-institute-of-technology-1043"]},
+  us1b:{f:"$80 (Yale College fee)", usd:80, ex:"s"},
+  qa5:{p:"HBKU online application", f:"QAR 250 (≈ $69), non-refundable", usd:69, w:"", ex:"s", src:["HBKU: application fee","https://www.hbku.edu.qa/en/admission-fees-payment"]},
+  tr3b:{f:"€100 per programme", usd:108, w:"", ex:"o", src:["Boğaziçi: international undergraduate application","https://intl.bogazici.edu.tr/node/100022535"]},
+  au5:{p:"UNSW online or an authorised agent", f:"≈ AUD 150 direct (one source says AUD 108)", usd:98, w:AUW, ex:"s", src:AUFEE},
+  au4:{p:"Sydney online or an authorised agent", f:"≈ AUD 150 direct", usd:98, w:"Waived for attendees of official Sydney webinars or interviews, and usually through authorised agents.", ex:"s", src:AUFEE},
+  au2:{p:"UQ online or an authorised agent", f:"≈ AUD 150 direct", usd:98, w:"Waived during UQ Application Week, and usually through authorised agents.", ex:"s", src:AUFEE},
+  au3:{p:"Monash online or an authorised agent", f:"≈ AUD 125 direct", usd:82, w:AUW, ex:"s", src:AUFEE},
+  au7:{p:"UTS online or an authorised agent", f:"≈ AUD 100 direct", usd:65, w:AUW, ex:"s", src:AUFEE},
+  pt1:{f:"€70, non-refundable", usd:76, ex:"o", src:["Nova SBE: bachelor fees","https://www.novasbe.unl.pt/en/programs/bachelors/economics/fees"]},
+  pt2:{f:"€100 early-bird (rounds 1–3), €175 later", usd:108, ex:"o", src:["Católica Lisbon: international bachelor fees","https://clsbe.lisboa.ucp.pt/node/92176"]},
+  es3:{f:"€80 (early admission for non-Spanish school leavers)", usd:87, ex:"s", src:["UC3M international application","https://sigma.uc3m.es/SolicitudEntradaINT.html"]}
+}).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
 FEE_C["Sweden"].ex = "o"; FEE_C["Finland"].ex = "o"; FEE_C["Germany"].ex = "o"; FEE_C["Saudi Arabia"].ex = "s";
 const feeOf = x => {
   if (x._fee) return x._fee;
@@ -3559,7 +3754,7 @@ const CORE = [
 ];
 const STEPS = {
 "USA":[
- ["us:english","Choose your English plan for US universities","Full IELTS retake (aim Writing 6.5+) for Michigan, UIUC, Purdue, BU, NYU, UC and USC; Duolingo 125+ is the fallback almost everywhere except Michigan. See Universities › Strategy › USA.","2026-10-20","2026-11-10","test",0,null],
+ ["us:english","Choose your English plan for US universities","Full IELTS retake (aim Writing 6.5+) for Michigan, UIUC, Purdue, BU, NYU, UC and USC; Duolingo 125+ is the fallback almost everywhere except Michigan. See Universities › Countries › United States.","2026-10-20","2026-11-10","test",0,null],
  ["us:uc","Submit the University of California application","One form for every UC campus; no SAT. Window 1–30 Nov 2026.","2026-11-20","2026-11-30","direct",0,["us8","us8b","us8c","us8d"]],
  ["us:submit","Submit your US applications","Most regular-decision deadlines are 1–15 Jan 2027. Submit before the holidays.","2026-12-18","2027-01-15","direct",1,null],
  ["us:scores","Send SAT and IELTS scores to US universities","Order them from College Board and IELTS once results are out. Caltech wants scores before 31 Dec.","2026-12-20","2027-01-31","test",0,null]],
@@ -3868,9 +4063,12 @@ const whenHtml = t => `<dl class="when"><dt>Suggested</dt><dd class="sg">${t.sug
 /* ===================== NAV ===================== */
 const tabs = $$("nav.switch .tabbtn");
 function show(id){ tabs.forEach(b => b.setAttribute("aria-selected", b.dataset.tab === id)); $$("[data-panel]").forEach(p => p.hidden = p.dataset.panel !== id); try { localStorage.setItem("atlas.tab", id); } catch(e) {} }
-function goTop(){ const nav = $("nav.switch"), fixed = getComputedStyle(nav).position === "fixed"; const y = fixed ? Math.max(0, $("main").offsetTop - 8) : nav.offsetTop; if (Math.abs(window.scrollY - y) > 4) window.scrollTo({top:y}); }
-tabs.forEach(b => b.addEventListener("click", () => { show(b.dataset.tab); goTop(); }));
-show((() => { const h = (location.hash || "").slice(1); if (["unis","road","todo"].includes(h)) return h; try { return localStorage.getItem("atlas.tab") || "unis"; } catch(e) { return "unis"; } })());
+function goTop(){ if (window.scrollY > 4) window.scrollTo({top:0}); }
+function go(id){ show(id); goTop(); }
+tabs.forEach(b => b.addEventListener("click", () => go(b.dataset.tab)));
+document.addEventListener("click", e => { const g = e.target.closest("[data-go]"); if (!g) return; e.preventDefault(); go(g.dataset.go); });
+const TAB_ALIAS = {road:"plan", todo:"plan"};
+show((() => { const ok = ["home","unis","list","plan"], h = (location.hash || "").slice(1); if (ok.includes(TAB_ALIAS[h] || h)) return TAB_ALIAS[h] || h; try { const t = localStorage.getItem("atlas.tab"); return ok.includes(TAB_ALIAS[t] || t) ? (TAB_ALIAS[t] || t) : "home"; } catch(e) { return "home"; } })());
 const smooth = () => matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
 /* ===================== SITUATION ===================== */
@@ -3999,7 +4197,7 @@ function renderProgrammes(){
       <div class="cg-title"><h3>${esc(DISPLAY(g.c))}</h3><span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></div>
       
       <p class="cg-verdict">${T(info.v || "")}</p>
-      <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}${fins.length ? `<span class="tag">Next final deadline: ${fmt(fins[0])}</span>` : ""}<button type="button" class="linkbtn" data-ctrylink="${esc(g.c)}">How studying in ${esc(DISPLAY(g.c))} works</button>${DEEP[g.c] ? `<button type="button" class="linkbtn" data-sc="${esc(g.c)}">Strategy &amp; chances</button>` : ""}</div>
+      <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}${fins.length ? `<span class="tag">Next final deadline: ${fmt(fins[0])}</span>` : ""}${DEEP[g.c] ? `<button type="button" class="linkbtn" data-sc="${esc(g.c)}">${esc(DISPLAY(g.c))} country guide</button>` : `<button type="button" class="linkbtn" data-ctrylink="${esc(g.c)}">How studying in ${esc(DISPLAY(g.c))} works</button>`}</div>
       <details class="cg-more"${matchMedia("(min-width: 821px)").matches ? " open" : ""}><summary>How it works here</summary><dl class="facts"><div><dt>Rule for your Attestat</dt><dd>${T(info.rule || "")}</dd></div><div><dt>Apply via</dt><dd>${T(info.apply || "")}</dd></div><div><dt>Degree length</dt><dd>${esc(info.deg || "")}</dd></div><div><dt>Visa</dt><dd>${T(info.visa || "")}</dd></div></dl></details>
     </div>${segChips(g)}${g.vis.length ? `<div class="list">${g.vis.slice(0, ui.more[g.c] ? g.vis.length : PAGE).map(rowHtml).join("")}</div>` : ""}${g.vis.length > PAGE ? `<div class="morebar"><button type="button" class="btn ghost sm" data-more="${esc(g.c)}">${ui.more[g.c] ? "Show fewer" : `Show all ${g.vis.length} (${g.vis.length - PAGE} more)`}</button></div>` : ""}${closedHidden ? `<div class="hiddennote">${g.onlyClosed ? "Every option here is closed to you. " : ""}${closedHidden} closed option${closedHidden === 1 ? "" : "s"} hidden. <button type="button" class="linkbtn" data-showclosed>Show closed</button></div>` : ""}</section>`;
   }).join("") || `<div class="empty">Nothing matches these filters. <button type="button" class="linkbtn" data-clear>Clear filters</button></div>`;
@@ -4009,20 +4207,9 @@ function countryFacts(c){
   return `<dl class="facts"><div><dt>Degree</dt><dd>${esc(i.deg)}</dd></div><div><dt>Language</dt><dd>${esc(i.lang)}</dd></div><div><dt>Apply via</dt><dd>${T(i.apply)}</dd></div><div><dt>Intakes</dt><dd>${esc(i.intake)}</dd></div><div><dt>Admission based on</dt><dd>${T(i.basis)}</dd></div><div><dt>Institutions</dt><dd>${esc(i.types)}</dd></div><div><dt>Rule for your Attestat</dt><dd>${T(i.rule)}</dd></div><div><dt>Foundation</dt><dd>${T(i.fnd)}</dd></div><div><dt>Cost (approx., info only)</dt><dd>${esc(i.cost)}</dd></div><div><dt>Work after graduating</dt><dd>${T(i.work)}</dd></div><div><dt>Visa</dt><dd>${T(i.visa)}</dd></div><div><dt>Spring 2027</dt><dd>${esc(i.spring)}</dd></div></dl>`;
 }
 function renderCountries(){
-  const cs = laneCountries();
-  $("#nCtry").textContent = cs.length;
-  $$("#ctryMode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.cm === ui.cmode));
+  const cs = ORDER.slice();
   const stats = c => { const all = ITEMS.filter(x => x.country === c).map(x => ({x, e:evalItem(x)})); const cnt = {ok:0,reach:0,bridge:0,closed:0}; all.forEach(o => cnt[o.e.s]++); return {all, cnt, b:best(all)}; };
-  if (ui.cmode === "table") {
-    $("#ctryOut").innerHTML = `<div class="tablebox"><table style="min-width:1250px"><thead><tr><th>Country</th><th>Tier</th><th>Best status</th><th>Open now</th><th>Degree</th><th>Language</th><th>Apply via</th><th>Intakes</th><th>Rule for your Attestat</th><th>Cost (approx.)</th><th>Work after</th></tr></thead><tbody>${cs.map(c => { const s = stats(c), i = CI[c]; return `<tr><td><button type="button" class="linkbtn" data-showc="${esc(c)}">${esc(DISPLAY(c))}</button></td><td><span class="tierpill ${tierClass(tierOf(c))}">${TIER_NAME[tierOf(c)]}</span></td><td>${chip(s.b)}</td><td class="nums">${s.cnt.ok}</td><td>${esc(i.deg)}</td><td>${esc(i.lang)}</td><td>${T(i.apply)}</td><td>${esc(i.intake)}</td><td>${T(i.rule)}</td><td>${esc(i.cost)}</td><td>${T(i.work)}</td></tr>`; }).join("")}</tbody></table></div>`;
-    return;
-  }
-  $("#ctryOut").innerHTML = `<div class="ccards">${cs.map(c => { const s = stats(c), t = tierOf(c), sid = domId(c), open = s.all.filter(o => o.e.s !== "closed").length;
-    return `<article class="ccard" id="cc-${sid}" style="--tc:var(--t${t})"><div class="toolbar"><div class="cg-title"><h3>${esc(DISPLAY(c))}</h3><span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></div><select aria-label="Tier for ${esc(DISPLAY(c))}" data-tierset="${esc(c)}" style="width:auto;padding:5px 8px;font-size:12.5px">${[1,2,3].map(k => `<option value="${k}" ${k === t ? "selected" : ""}>${k} · ${TIER_NAME[k]}</option>`).join("")}</select></div>
-      <p class="small">${T(CI[c].v)}</p>
-      <div class="cg-stats">${["ok","reach","bridge","closed"].filter(k => s.cnt[k]).map(k => `<span class="chip ${STATUS[k][1]}">${s.cnt[k]} ${STATUS[k][0].toLowerCase()}</span>`).join("")}</div>
-      ${countryFacts(c)}
-      <div class="acts"><button type="button" class="btn sm" data-showc="${esc(c)}">See ${open} open programme${open === 1 ? "" : "s"}</button>${DEEP[c] ? `<button type="button" class="btn ghost sm" data-sc="${esc(c)}">Strategy${SCORE[c] ? ` · score ${scoreOf(c)}` : ""}</button>` : ""}</div></article>`; }).join("")}</div>`;
+  $("#ctryOut").innerHTML = `<p class="small muted" style="margin:10px 0">How studying works in each country and what it means for your 11-year Attestat. Costs are rough yearly figures, for information only.</p><div class="tablebox"><table style="min-width:1250px"><thead><tr><th>Country</th><th>Tier</th><th>Best status</th><th>Open now</th><th>Degree</th><th>Language</th><th>Apply via</th><th>Intakes</th><th>Rule for your Attestat</th><th>Cost (approx.)</th><th>Work after</th></tr></thead><tbody>${cs.map(c => { const s = stats(c), i = CI[c] || {}; return `<tr><td><button type="button" class="linkbtn" data-sc="${esc(c)}">${esc(DISPLAY(c))}</button></td><td><span class="tierpill ${tierClass(tierOf(c))}">${TIER_NAME[tierOf(c)]}</span></td><td>${chip(s.b)}</td><td class="nums">${s.cnt.ok}</td><td>${esc(i.deg)}</td><td>${esc(i.lang)}</td><td>${T(i.apply)}</td><td>${esc(i.intake)}</td><td>${T(i.rule)}</td><td>${esc(i.cost)}</td><td>${T(i.work)}</td></tr>`; }).join("")}</tbody></table></div>`;
 }
 function renderCourses(){
   const cs = new Set(laneCountries());
@@ -4032,7 +4219,7 @@ function renderCourses(){
     return `<article class="course"><div class="toolbar"><h3>${FIELDS[k].n}</h3><span class="tag">${list.length} open in this tier</span></div>
       <dl><div><dt>What you study</dt><dd>${esc(c.what)}</dd></div><div><dt>What admissions look for</dt><dd>${T(c.needs)}</dd></div><div><dt>How it fits you</dt><dd class="you">${esc(c.you)}</dd></div><div><dt>Length</dt><dd>${esc(c.len)}</dd></div><div><dt>Strong options</dt><dd>${esc(c.where)}</dd></div><div><dt>After you graduate</dt><dd>${T(c.after)}</dd></div></dl>
       ${list.length ? `<div class="grid" style="gap:6px"><span class="eyebrow">Best open matches in this tier</span><ul class="picks">${list.slice(0,6).map(o => `<li><span><button type="button" class="linkbtn" data-goto="${o.x.id}">${esc(o.x.name)}</button> <span class="faint">· ${esc(DISPLAY(o.x.country === "Uzbekistan" ? "Tashkent" : o.x.country))}</span></span>${chip(o.e.s)}</li>`).join("")}</ul></div>` : `<p class="small faint">No open options in this tier. Try "All countries".</p>`}
-      <div><button type="button" class="btn ghost sm" data-fieldgo="${k}">Show all ${list.length} in Programmes</button></div></article>`;
+      <div><button type="button" class="btn ghost sm" data-fieldgo="${k}">Show all ${list.length} in Browse</button></div></article>`;
   }).join("");
 }
 function renderGloss(){
@@ -4060,7 +4247,7 @@ function renderBalance(){
   const saved = state.saved.filter(id => byId[id]).map(id => ({x:byId[id], e:evalItem(byId[id])}));
   const live = saved.filter(o => o.e.s !== "closed"), n = chCount(live), tot = live.length;
   const tips = [];
-  if (!tot) tips.push("Save programmes in Programmes or from the suggested lists below to see your balance.");
+  if (!tot) tips.push("Save universities in Browse or from the suggested lists below to see your balance.");
   else {
     const top = n.x + n.h;
     if (n.o < 2) { const s = suggestOpen("o", 3); tips.push(`<b>Add at least two likely options</b> so a place is close to certain.${s.length ? " Strong open ones: " + pickLinks(s) + "." : ""}`); }
@@ -4099,14 +4286,14 @@ function renderFees(){
   el.innerHTML = `<div class="toolbar"><div><span class="eyebrow">Application fees</span><h3 style="margin-top:4px">${sl.length ? `Your ${sl.length} saved applications cost about $${sum.all.toLocaleString("en-US")} in fees; $${sum.save.toLocaleString("en-US")} of that can be $0` : "What applying costs, and how to pay nothing"}</h3></div><button type="button" class="btn ghost sm" data-freeonly>Show free or waivable programmes</button></div>
     <div class="feegrid">
       <div><h4>One form, many universities</h4><p class="small muted">Common App covers the US, Qatar's Education City, NYU Shanghai and Duke Kunshan. OUAC covers every Ontario university. universityadmissions.se takes up to four Swedish programmes for SEK 900; Studyinfo takes all Finnish choices for €100. optagelse.dk (Denmark) and Study in Saudi are free.</p></div>
-      <div><h4>Free routes</h4><p class="small muted">Georgetown-Qatar, Duke Kunshan, Stipendium Hungaricum, GKS (Korea), Study in Saudi, Denmark, Norway, most of Austria, many Turkish private universities, and US colleges with no fee such as Tulane, Macalester, Grinnell, Carleton, St. Olaf, Colorado College and Dayton.</p></div>
+      <div><h4>Free routes</h4><p class="small muted">Georgetown-Qatar, Duke Kunshan, Stipendium Hungaricum, GKS (Korea), Study in Saudi, Denmark, Norway, most of Austria, many Turkish private universities, and US colleges with no fee such as Tulane, Macalester, Grinnell, Carleton, St. Olaf, Colorado College and Dayton. Australian universities (AUD 100–150) usually waive the fee when you apply through an authorised agent.</p></div>
       <div><h4>The Common App fee waiver</h4><p class="small muted">In your Common App profile, answer the fee-waiver questions; a counselor or official at your school confirms them. Each college decides whether to accept it, and one that refuses asks for the fee after you submit. You can also email a college for its own waiver: explain your situation honestly and briefly.</p></div>
-      <div><h4>Fees with no way around them</h4><p class="small muted">Finland €100 (no waivers), Sweden SEK 900, HKU HK$780, UBC CAD 173.25, OUAC CAD 156, the UC application (≈ $95 per campus), Vilnius University €100, AUS AED 400.</p></div>
+      <div><h4>Fees with no way around them</h4><p class="small muted">Finland €100 (no waivers), Sweden SEK 900, HKU HK$780, UBC CAD 173.25, OUAC CAD 156, the UC application (≈ $95 per campus), Vilnius University €100, AUS AED 400, Boğaziçi €100 per programme, Católica Lisbon €100–175, Nova SBE €70.</p></div>
     </div>
     <details class="small"><summary class="faint" style="cursor:pointer">Every country: where you apply, the fee, and how to pay $0</summary><div class="tablebox" style="margin-top:8px"><table class="stack"><thead><tr><th>Country</th><th>Where you apply</th><th>Fee</th><th>Pay $0</th></tr></thead><tbody>${cs.map(c => { const f = FEE_C[c]; return `<tr><td data-l="Country"><b>${esc(DISPLAY(c))}</b></td><td data-l="Where you apply">${esc(f.p)}</td><td data-l="Fee" class="nums">${esc(f.f)}</td><td data-l="Pay $0">${f.usd === 0 ? "Already free" : f.w ? esc(f.w) : '<span class="faint">No known way</span>'}</td></tr>`; }).join("")}</tbody></table></div></details>`;
 }
 function renderStrategy(){
-  renderBalance(); renderFees(); renderScore();
+  renderScore();
   const cs = deepCountries();
   if (!DEEP[ui.sc]) ui.sc = cs[0];
   $("#sChips").innerHTML = [1,2,3].map(t => { const l = cs.filter(c => tierOf(c) === t); return l.length ? `<div class="schrow"><span class="schl">${TIER_NAME[t]}</span>${l.map(c => `<button type="button" role="tab" class="schip ${tierClass(t)}" data-sc="${esc(c)}" aria-selected="${ui.sc === c}"><i></i>${esc(DISPLAY(c))}${SCORE[c] ? `<span class="faint">${scoreOf(c)}</span>` : ""}</button>`).join("")}</div>` : ""; }).join("");
@@ -4123,14 +4310,15 @@ function renderStrategy(){
   const mixTxt = CH_KEYS.filter(k => d.mix[k]).map(k => `${d.mix[k]} ${CH[k][0].toLowerCase()}`).join(" · ");
   let html = `<article class="strat" style="--tc:var(--t${t})">
     <header class="sh"><div class="cg-title"><h3>${esc(DISPLAY(c))}</h3><span class="tierpill ${tierClass(t)}">${TIER_NAME[t]}</span></div><p>${T(d.head)}</p>
-      <div class="cg-stats">${CH_KEYS.slice().reverse().filter(k => nOpen[k]).map(k => `<span class="tag chtag ${CH[k][1]}">${meter(k)}${nOpen[k]} ${CH[k][0].toLowerCase()}</span>`).join("")}<span class="tag">${open.length} open of ${all.length}</span><button type="button" class="linkbtn" data-showc="${esc(c)}">See them in Programmes</button></div></header>
+      <div class="cg-stats">${CH_KEYS.slice().reverse().filter(k => nOpen[k]).map(k => `<span class="tag chtag ${CH[k][1]}">${meter(k)}${nOpen[k]} ${CH[k][0].toLowerCase()}</span>`).join("")}<span class="tag">${open.length} open of ${all.length}</span><button type="button" class="linkbtn" data-showc="${esc(c)}">See them in Browse</button></div></header>
     <div class="sgrid">
       <section class="scard"><span class="eyebrow">How they will read your file</span><ul class="sl">${d.read.map(s => `<li>${TR(s)}</li>`).join("")}</ul></section>
       <section class="scard"><span class="eyebrow">Your strengths here</span><ul class="sl ok">${d.edge.map(s => `<li>${TR(s)}</li>`).join("")}</ul><span class="eyebrow" style="margin-top:6px">Risks and how to fix them</span><ul class="sl warn">${d.risk.map(s => `<li>${TR(s)}</li>`).join("")}</ul></section>
     </div>
     <section class="scard"><div class="toolbar"><div><span class="eyebrow">Suggested shortlist</span><p class="small muted" style="margin-top:4px">Suggested mix: ${mixTxt}. You have saved ${mySaved.length} open option${mySaved.length === 1 ? "" : "s"} here${mySaved.length ? ` (${CH_KEYS.filter(k => myN[k]).map(k => `${myN[k]} ${CH[k][0].toLowerCase()}`).join(", ")})` : ""}.</p></div>${unsavedPicks.length ? `<button type="button" class="btn sm" data-saveall="${esc(unsavedPicks.join(","))}">Save all ${unsavedPicks.length} suggested</button>` : `<span class="tag g">All suggested saved</span>`}</div>
       <div class="pgrid">${CH_KEYS.filter(k => (d.picks[k] || []).length).map(k => `<div><div class="bh"><span class="tag chtag ${CH[k][1]}">${meter(k)}${CH[k][0]}</span><span class="faint small">${CH[k][2]}</span></div><ul class="pks">${d.picks[k].map(stratPickCard).join("")}</ul></div>`).join("")}</div></section>
-    <section class="scard"><span class="eyebrow">Timeline</span><ol class="tline">${d.plan.map(([w, s]) => `<li><span class="w">${esc(w)}</span><span>${T(s)}</span></li>`).join("")}</ol></section>`;
+    <section class="scard"><span class="eyebrow">Timeline</span><ol class="tline">${d.plan.map(([w, s]) => `<li><span class="w">${esc(w)}</span><span>${T(s)}</span></li>`).join("")}</ol></section>
+    ${CI[c] ? `<section class="scard" id="sFacts"><div class="toolbar"><span class="eyebrow">How studying in ${esc(DISPLAY(c))} works</span><label class="small faint">Tier <select aria-label="Tier for ${esc(DISPLAY(c))}" data-tierset="${esc(c)}" style="width:auto;padding:4px 8px;font-size:12.5px">${[1,2,3].map(k => `<option value="${k}" ${k === t ? "selected" : ""}>${k} · ${TIER_NAME[k]}</option>`).join("")}</select></label></div><p class="small">${T(CI[c].v)}</p>${countryFacts(c)}</section>` : ""}`;
   if (c === "USA") html += `
     <section class="scard"><span class="eyebrow">English test strategy</span><p class="small muted">Your IELTS is 7.5 overall with Writing 5.5. Many US universities read section scores, and several do not accept the One Skill Retake.</p>
       <div class="tablebox"><table class="stack"><thead><tr><th>University</th><th>What they ask</th><th>For you</th></tr></thead><tbody>${US_EN.map(([u, r, v, k]) => `<tr><td><b>${esc(u)}</b></td><td data-l="What they ask">${T(r)}</td><td data-l="For you"><span class="tag ${k === "g" ? "g" : k === "y" ? "y" : "r"}">${esc(v)}</span></td></tr>`).join("")}</tbody></table></div>
@@ -4148,12 +4336,13 @@ function renderStrategy(){
 function renderUnis(){
   renderLanes();
   $$("#subnav button").forEach(b => b.setAttribute("aria-selected", b.dataset.sub === ui.sub));
-  $("#vProg").hidden = ui.sub !== "prog"; $("#vStrat").hidden = ui.sub !== "strat"; $("#vCtry").hidden = ui.sub !== "ctry"; $("#vCourse").hidden = ui.sub !== "guide"; $("#vGloss").hidden = ui.sub !== "guide";
+  if (ui.sub === "ctry") ui.sub = "strat";
+  $("#vProg").hidden = ui.sub !== "prog"; $("#vStrat").hidden = ui.sub !== "strat"; $("#vCourse").hidden = ui.sub !== "guide"; $("#vGloss").hidden = ui.sub !== "guide";
   $("#nStrat").textContent = Object.keys(DEEP).length;
   $("#lanes").hidden = ui.sub === "strat";
   if (ui.sub === "strat") renderStrategy();
   renderProgrammes();
-  if (ui.sub === "ctry") renderCountries(); else $("#nCtry").textContent = laneCountries().length;
+  if (ui.sub === "strat" && $("#sysBox").open) renderCountries();
   if (ui.sub === "guide") renderCourses();
   if (ui.sub === "guide" || !$("#nGloss").textContent) renderGloss();
   renderCmpBar();
@@ -4167,12 +4356,12 @@ $("#sortSel").addEventListener("change", e => { ui.sort = e.target.value; render
 $("#chSel").addEventListener("change", e => { ui.chance = e.target.value; renderProgrammes(); });
 $("#gq").addEventListener("input", e => { ui.gq = e.target.value; renderGloss(); });
 $$("[data-tog]").forEach(b => b.addEventListener("click", () => { const k = b.dataset.tog; ui[k] = !ui[k]; b.setAttribute("aria-pressed", ui[k]); renderProgrammes(); }));
-$("#ctryMode").addEventListener("click", e => { const b = e.target.closest("[data-cm]"); if (!b) return; ui.cmode = b.dataset.cm; renderCountries(); });
+$("#sysBox").addEventListener("toggle", () => { if ($("#sysBox").open) renderCountries(); });
 function clearFilters(){ ui.q = ""; $("#q").value = ""; ui.field = ""; ui.chance = ""; $("#chSel").value = ""; ui.hideClosed = true; ui.saved = ui.rank = ui.spring = ui.free = false; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); renderProgrammes(); }
 function scrollToEl(el){ if (el) el.scrollIntoView({behavior:smooth(), block:"start"}); }
 function goto(id){
   const x = byId[id]; if (!x) return;
-  show("unis"); ui.sub = "prog"; ui.q = ""; $("#q").value = ""; ui.field = ""; ui.chance = ""; $("#chSel").value = ""; ui.saved = ui.rank = ui.spring = false;
+  go("unis"); ui.sub = "prog"; ui.q = ""; $("#q").value = ""; ui.field = ""; ui.chance = ""; $("#chSel").value = ""; ui.saved = ui.rank = ui.spring = false;
   if (evalItem(x).s === "closed") ui.hideClosed = false;
   if (x.country !== "Uzbekistan" && ui.lane !== "all" && String(tierOf(x.country)) !== ui.lane) ui.lane = String(tierOf(x.country));
   if (ui.kind === "deg" && x.kind === "fnd" || ui.kind === "fnd" && x.kind === "deg") { ui.kind = "both"; $$("#kindSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.kind === "both")); }
@@ -4187,28 +4376,28 @@ document.addEventListener("click", e => {
   if (e.target.closest("[data-showclosed]")) { ui.hideClosed = false; $('[data-tog="hideClosed"]')?.setAttribute("aria-pressed", "false"); renderProgrammes(); }
   const f = e.target.closest("[data-field]"); if (f) { ui.field = f.dataset.field; renderProgrammes(); }
   const j = e.target.closest("[data-jump]"); if (j) scrollToEl(document.getElementById("cg-" + domId(j.dataset.jump)));
-  const cl = e.target.closest("[data-ctrylink]"); if (cl) { setSub("ctry"); scrollToEl(document.getElementById("cc-" + domId(cl.dataset.ctrylink))); }
+  const cl = e.target.closest("[data-ctrylink]"); if (cl) { ui.sc = cl.dataset.ctrylink; show("unis"); setSub("strat"); scrollToEl($("#sFacts") || $("#stratOut")); }
   const sc = e.target.closest("[data-showc]"); if (sc) { setSub("prog"); scrollToEl(document.getElementById("cg-" + domId(sc.dataset.showc))); }
   const g = e.target.closest("[data-goto]"); if (g) goto(g.dataset.goto);
-  const fg = e.target.closest("[data-fieldgo]"); if (fg) { ui.field = fg.dataset.fieldgo; setSub("prog"); scrollToEl($("#vProg")); }
+  const fg = e.target.closest("[data-fieldgo]"); if (fg) { ui.field = fg.dataset.fieldgo; if (fg.dataset.lane) { ui.lane = fg.dataset.lane; try { localStorage.setItem("atlas.lane", ui.lane); } catch(err) {} } go("unis"); setSub("prog"); }
   const sg = e.target.closest("[data-seg]"); if (sg) { const [c, k] = sg.dataset.seg.split("|"); ui.seg[c] = k; ui.more[c] = false; renderProgrammes(); const h = document.getElementById("cg-" + domId(c)); if (h && h.getBoundingClientRect().top < 0) scrollToEl(h); }
   const mo = e.target.closest("[data-more]"); if (mo) { const c = mo.dataset.more; ui.more[c] = !ui.more[c]; renderProgrammes(); if (!ui.more[c]) scrollToEl(document.getElementById("cg-" + domId(c))); }
 });
 document.addEventListener("click", e => {
-  if (e.target.closest("[data-gofees]")) { show("unis"); setSub("strat"); setTimeout(() => scrollToEl($("#fees")), 30); return; }
-  if (e.target.closest("[data-freeonly]")) { ui.free = true; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); setSub("prog"); renderProgrammes(); setTimeout(() => scrollToEl($("#cIndex")), 30); return; }
+  if (e.target.closest("[data-gofees]")) { show("list"); setTimeout(() => scrollToEl($("#fees")), 30); return; }
+  if (e.target.closest("[data-freeonly]")) { ui.free = true; $$("[data-tog]").forEach(b => b.setAttribute("aria-pressed", ui[b.dataset.tog])); go("unis"); setSub("prog"); return; }
   const sc = e.target.closest("[data-sc]");
-  if (sc) { ui.sc = sc.dataset.sc; if (ui.sub !== "strat") { show("unis"); setSub("strat"); } else renderStrategy(); if (!sc.closest("#sChips")) scrollToEl($("#sChips")); return; }
+  if (sc) { ui.sc = sc.dataset.sc; const away = $('[data-panel="unis"]').hidden || ui.sub !== "strat"; show("unis"); if (ui.sub !== "strat") setSub("strat"); else renderStrategy(); if (away) goTop(); else if (!sc.closest("#sChips")) scrollToEl($("#sChips")); return; }
   const sa = e.target.closest("[data-saveall]");
   if (sa) {
     const ids = sa.dataset.saveall.split(",").filter(id => byId[id] && !isSaved(id)); if (!ids.length) return;
     state.saved = [...state.saved, ...ids]; persist(); renderAll();
-    toast(`Saved ${ids.length}. Each one added a task to your checklist`, () => { state.saved = state.saved.filter(x => !ids.includes(x)); persist(); renderAll(); });
+    toast(`Saved ${ids.length}. Each one added a task to your plan`, () => { state.saved = state.saved.filter(x => !ids.includes(x)); persist(); renderAll(); });
   }
 });
 document.addEventListener("change", e => {
   const ap = e.target.closest("[data-appst]");
-  if (ap) { if (ap.value) state.apps[ap.dataset.appst] = ap.value; else delete state.apps[ap.dataset.appst]; persist(); const row = ap.closest(".app-row"); if (row) row.dataset.st = ap.value; renderChecklist(); return; }
+  if (ap) { if (ap.value) state.apps[ap.dataset.appst] = ap.value; else delete state.apps[ap.dataset.appst]; persist(); renderList(); renderHome(); return; }
   const s = e.target.closest("[data-tierset]"); if (!s) return;
   const c = s.dataset.tierset, v = +s.value, was = tierOf(c);
   if (v === DEFAULT_TIER[c]) delete state.tiers[c]; else state.tiers[c] = v;
@@ -4372,18 +4561,8 @@ function renderChecklist(){
   $("#tGroups").innerHTML = groups.map(([name, sub, fn]) => { const its = rest.filter(fn); return its.length ? `<div class="tgroup"><h3>${name} <span class="n">${its.length}</span></h3>${sub ? `<div class="gs">${sub}</div>` : ""}${its.map(taskRow).join("")}</div>` : ""; }).join("");
   $("#doneCount").textContent = `(${closed.length})`;
   $("#doneList").innerHTML = closed.length ? closed.map(t => `<div class="task" style="grid-template-columns:auto minmax(0,1fr) auto"><span class="tag ${state.done[t.id] ? "g" : ""}">${state.done[t.id] ? "Done" : "Skipped"}</span><div><div class="t" style="color:var(--muted)">${esc(t.title)}</div>${state.done[t.id] ? `<div class="x">Completed ${fmt(state.done[t.id])}</div>` : ""}</div><div><button type="button" class="iconbtn" data-reopen="${esc(t.id)}">Reopen</button></div></div>`).join("") : `<p class="small muted">Nothing completed yet.</p>`;
-  const sl = state.saved.filter(id => byId[id]).sort((a,b) => tierOf(byId[a].country) - tierOf(byId[b].country) || ORDER.indexOf(byId[a].country) - ORDER.indexOf(byId[b].country));
-  $("#slCount").textContent = `(${sl.length})`;
-  const APPST = [["","Not started"],["prep","Preparing"],["sent","Submitted"],["offer","Offer"],["wait","Waitlisted"],["no","Refused"]];
-  const feeSum = sl.reduce((t,id) => { const f = feeOf(byId[id]); t.all += f.usd; if (f.zero) t.save += f.usd; return t; }, {all:0, save:0});
-  const nSent = sl.filter(id => ["sent","offer","wait","no"].includes(state.apps[id])).length;
-  $("#slSum").innerHTML = sl.length ? `<span>${nSent} of ${sl.length} submitted</span><span>Fees ≈ $${feeSum.all.toLocaleString("en-US")}${feeSum.save ? ` · $${feeSum.save.toLocaleString("en-US")} of it can be $0` : ""}</span><button type="button" class="linkbtn" data-gofees>How to pay less</button>` : "";
-  $("#shortlist").innerHTML = sl.length ? sl.map(id => { const x = byId[id], e = evalItem(x), f = feeOf(x), st = state.apps[id] || ""; return `<div class="task app-row" data-st="${st}"><div class="app-main"><button type="button" class="linkbtn t" style="text-decoration:none;color:var(--ink);text-align:left" data-goto="${id}">${esc(x.name)}</button><div class="x">${x.country === "Uzbekistan" ? "Tashkent" : esc(DISPLAY(x.country))}${x.fin ? " · final " + fmt(x.fin) : ""} · ${f.usd === 0 ? "free" : "fee " + esc(f.f.replace(/ \(.*\)$/, "")) + (f.w ? " (can be $0)" : "")}</div></div><div class="app-side">${chip(e.s)}<select class="appst" data-appst="${id}" aria-label="Application status for ${esc(x.name)}">${APPST.map(([k,l]) => `<option value="${k}" ${k === st ? "selected" : ""}>${l}</option>`).join("")}</select><button type="button" class="iconbtn" data-save="${id}">Remove</button></div></div>`; }).join("") : `<div class="empty">No saved programmes yet.</div>`;
-  $("#bTodo").textContent = openAll.length + " to do";
-  $("#bUnis").textContent = "★ " + sl.length;
-  $("#bRoad").textContent = openAll.filter(t => { const x = d(t); return x !== null && x <= 30; }).length + " in 30 days";
-  const nx = openAll[0], nu = $("#nextUp");
-  if (nx) { nu.hidden = false; nu.innerHTML = `<span class="lab">Next</span><span class="t">${esc(nx.title)}</span><span class="d">Suggested ${nx.suggest ? fmt(nx.suggest) : "any time"} · Final ${nx.final ? fmt(nx.final) : "check"}</span><button type="button" class="btn sm" data-done="${esc(nx.id)}">Mark done</button>`; } else nu.hidden = true;
+  $("#nTasks").textContent = openAll.length;
+  $("#bPlan").innerHTML = openAll.length + '<span class="lgl"> to do</span>';
 }
 document.addEventListener("click", e => {
   const dn = e.target.closest("button[data-done]"), sk = e.target.closest("[data-skip]"), ro = e.target.closest("[data-reopen]"), dl = e.target.closest("[data-del]");
@@ -4404,7 +4583,7 @@ $("#addForm").addEventListener("submit", e => {
   state.custom.push({id:"c:" + Date.now().toString(36), title:t, suggest:s, final:f});
   $("#aText").value = ""; $("#aSug").value = ""; $("#aFin").value = ""; persist(); renderAll(); toast("Task added");
 });
-$("#goUnis").addEventListener("click", () => { show("unis"); setSub("prog"); goTop(); });
+$("#goUnis").addEventListener("click", () => { go("unis"); setSub("prog"); });
 let resetArmed = null;
 $("#resetAll").addEventListener("click", e => {
   const b = e.currentTarget;
@@ -4450,14 +4629,70 @@ let toastTimer = null, undoFn = null;
 function toast(msg, undo){ $("#toastMsg").textContent = msg; undoFn = undo || null; $("#toastUndo").hidden = !undo; $("#toast").hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $("#toast").hidden = true; undoFn = null; }, 5000); }
 $("#toastUndo").addEventListener("click", () => { if (undoFn) undoFn(); undoFn = null; $("#toast").hidden = true; });
 
+/* ===================== MY LIST ===================== */
+const APPST = [["","Not started"],["prep","Preparing"],["sent","Submitted"],["offer","Offer"],["wait","Waitlisted"],["no","Refused"]];
+const SENT = ["sent","offer","wait","no"];
+const daysLeft = f => { const n = daysTo(f); return n < 0 ? "passed" : n === 0 ? "today" : `${n} day${n === 1 ? "" : "s"} left`; };
+const usd = n => "$" + n.toLocaleString("en-US");
+const feeSumOf = list => list.reduce((t,x) => { const f = feeOf(x); t.all += f.usd; if (f.zero) t.save += f.usd; return t; }, {all:0, save:0});
+ui.sls = (() => { try { return localStorage.getItem("atlas.sls") || "fin"; } catch(e) { return "fin"; } })();
+function renderList(){
+  renderBalance(); renderFees();
+  const byC = (a,b) => tierOf(a.country) - tierOf(b.country) || ORDER.indexOf(a.country) - ORDER.indexOf(b.country) || a.name.localeCompare(b.name);
+  const byF = (a,b) => (a.fin || "9999").localeCompare(b.fin || "9999") || byC(a,b);
+  const sl = state.saved.filter(id => byId[id]).map(id => byId[id]).sort(ui.sls === "ctry" ? byC : byF);
+  $$("#slSort button").forEach(b => b.setAttribute("aria-pressed", b.dataset.sls === ui.sls));
+  $("#slCount").textContent = sl.length ? `(${sl.length})` : "";
+  const fee = feeSumOf(sl), nSent = sl.filter(x => SENT.includes(state.apps[x.id])).length, nOffer = sl.filter(x => state.apps[x.id] === "offer").length;
+  $("#slSum").innerHTML = sl.length ? `<span><b>${nSent}</b> of ${sl.length} submitted</span>${nOffer ? `<span><b>${nOffer}</b> offer${nOffer === 1 ? "" : "s"}</span>` : ""}<span>Fees ≈ <b>${usd(fee.all)}</b>${fee.save ? ` · ${usd(fee.save)} of it can be $0` : ""}</span><button type="button" class="linkbtn" data-gofees>How to pay less</button>` : "";
+  $("#shortlist").innerHTML = sl.length ? sl.map(x => {
+    const id = x.id, e = evalItem(x), f = feeOf(x), st = state.apps[id] || "", soon = x.fin && daysTo(x.fin) >= 0 && daysTo(x.fin) <= 21 && !SENT.includes(st);
+    return `<div class="task app-row" data-st="${st}"><div class="app-main">
+      <div class="app-top"><button type="button" class="linkbtn app-name" data-goto="${id}">${esc(x.name)}</button>${chTag(x, e)}</div>
+      <div class="x">${x.country === "Uzbekistan" ? "Tashkent" : esc(DISPLAY(x.country))}${x.city ? " · " + esc(x.city) : ""}${x.web ? ` · <a href="https://${esc(x.web)}" target="_blank" rel="noopener">${esc(x.web)}</a>` : ""}</div>
+      <div class="app-facts"><span class="${soon ? "hot" : ""}"><i>Final</i>${x.fin ? `${fmt(x.fin)} <span class="faint">· ${daysLeft(x.fin)}</span>` : "Rolling or not set"}</span><span><i>Fee</i>${f.usd === 0 ? '<span class="okc">Free</span>' : esc(f.f.replace(/ \(.*\)$/, "")) + (f.w ? ' <span class="okc">· can be $0</span>' : "")}</span>${e.s === "closed" ? "" : e.miss.length ? `<span class="need"><i>Still needed</i>${esc(e.miss.join(" · "))}</span>` : `<span><i>Eligibility</i><span class="okc">Nothing missing</span></span>`}</div>
+    </div><div class="app-side">${chip(e.s)}<select class="appst" data-appst="${id}" aria-label="Application status for ${esc(x.name)}">${APPST.map(([k,l]) => `<option value="${k}" ${k === st ? "selected" : ""}>${l}</option>`).join("")}</select><button type="button" class="iconbtn" data-save="${id}">Remove</button></div></div>`;
+  }).join("") : `<div class="empty">No saved programmes yet. <button type="button" class="linkbtn" data-go="unis">Browse universities</button> and press Save on the ones you like, or save a country's suggested shortlist in Countries.</div>`;
+  $("#bList").textContent = sl.length ? "★ " + sl.length : "";
+}
+$("#slSort").addEventListener("click", e => { const b = e.target.closest("[data-sls]"); if (!b) return; ui.sls = b.dataset.sls; try { localStorage.setItem("atlas.sls", ui.sls); } catch(err) {} renderList(); });
+
+/* ===================== HOME ===================== */
+const dayBox = d => { const x = toDate(d); return `<span class="dd"><b>${x.getDate()}</b><span>${x.toLocaleDateString("en-GB", {month:"short"})}</span></span>`; };
+function renderHome(){
+  $("#hDate").textContent = TODAY.toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+  const tasks = allTasks().filter(t => !isClosed(t)).sort(sortTasks), top = tasks.slice(0, 3);
+  $("#hNext").innerHTML = `<div class="hh"><h3>Up next</h3><button type="button" class="linkbtn" data-go="plan" data-pvgo="tasks">All ${tasks.length} tasks</button></div>` + (top.length ? `<ol class="hlist">${top.map(t => { const tm = timing(t); return `<li><div class="hl"><b>${esc(t.title)}</b><span class="faint small">Suggested ${t.suggest ? fmt(t.suggest) : "any time"} · final ${t.final ? fmt(t.final) : "not set"}</span><span class="state ${tm.cls}">${tm.text}</span></div><button type="button" class="btn ghost sm" data-done="${esc(t.id)}">Done</button></li>`; }).join("")}</ol>` : `<p class="muted small">Nothing to do right now.</p>`);
+  const sl = state.saved.filter(id => byId[id]).map(id => byId[id]);
+  const dl = sl.filter(x => x.fin && daysTo(x.fin) >= 0 && !SENT.includes(state.apps[x.id]) && evalItem(x).s !== "closed").sort((a,b) => a.fin.localeCompare(b.fin)).slice(0, 5).map(x => [x.fin, x.name, DISPLAY(x.country), x.id]);
+  const ev = EV.filter(([d,,,c]) => daysTo(d) >= 0 && (!c || tierOf(c) <= 2)).sort((a,b) => a[0].localeCompare(b[0])).slice(0, 5).map(([d,t,,c]) => [d, t, c ? DISPLAY(c) : "", ""]);
+  const rows = dl.length ? dl : ev;
+  $("#hDead").innerHTML = `<div class="hh"><h3>${dl.length ? "Your next deadlines" : "Key dates ahead"}</h3><button type="button" class="linkbtn" data-go="plan" data-pvgo="time">Timeline</button></div><ul class="dlist">${rows.map(([d,t,c,id]) => `<li>${dayBox(d)}<span class="dm">${id ? `<button type="button" class="linkbtn" data-goto="${id}">${esc(t)}</button>` : `<span>${esc(t)}</span>`}<span class="faint small">${esc(c)}${c ? " · " : ""}${daysLeft(d)}</span></span></li>`).join("")}</ul>${dl.length ? "" : `<p class="faint small">Save universities to see their own deadlines here.</p>`}`;
+  const live = sl.filter(x => evalItem(x).s !== "closed").map(x => ({x, e:evalItem(x)})), n = chCount(live), fee = feeSumOf(sl);
+  const nst = k => sl.filter(x => (k === "sent" ? SENT.includes(state.apps[x.id]) : state.apps[x.id] === k)).length;
+  $("#hList").innerHTML = `<div class="hh"><h3>My list</h3><button type="button" class="linkbtn" data-go="list">Open My list</button></div>` + (sl.length ? `<div class="kpis"><div><b>${sl.length}</b><span>saved</span></div><div><b>${nst("prep")}</b><span>preparing</span></div><div><b>${nst("sent")}</b><span>submitted</span></div><div><b>${usd(fee.all)}</b><span>fees${fee.save ? ` · ${usd(fee.save)} waivable` : ""}</span></div></div>${balBar(n)}<div class="legend small">${CH_KEYS.slice().reverse().map(k => `<span><i class="lg ${CH[k][1]}"></i>${CH[k][0]} ${n[k]}</span>`).join("")}</div>` : `<p class="muted small">Nothing saved yet. Save universities while browsing, or a country's suggested shortlist.</p><button type="button" class="btn sm" data-go="unis" style="justify-self:start">Browse universities</button>`);
+  const cs = ORDER.filter(c => SCORE[c]).sort((a,b) => scoreOf(b) - scoreOf(a)).slice(0, 5);
+  $("#hCtry").innerHTML = `<div class="hh"><h3>Best countries for you</h3><button type="button" class="linkbtn" data-scoreall>Scorecard</button></div><ol class="clist">${cs.map((c,i) => `<li><button type="button" class="crow" data-sc="${esc(c)}"><span class="rk">${i + 1}</span><span class="cn"><b>${esc(DISPLAY(c))}</b><span class="faint small">${esc(SCORE[c].why)}</span></span><span class="tot"><b>${scoreOf(c)}</b><i><u style="width:${scoreOf(c)}%"></u></i></span></button></li>`).join("")}</ol>`;
+  const t1 = new Set(ORDER.filter(c => tierOf(c) === 1));
+  $("#hFields").innerHTML = `<div class="hh"><h3>Explore by field</h3><span class="faint small">Programmes open to you in your main-goal countries</span></div><div class="ftiles">${Object.keys(FIELDS).map(k => { const m = ITEMS.filter(x => t1.has(x.country) && x.fields.includes(k) && evalItem(x).s !== "closed").length; return `<button type="button" class="ftile" data-fieldgo="${k}" data-lane="1"><b>${FIELDS[k].s}</b><span>${m} open</span></button>`; }).join("")}</div>`;
+}
+document.addEventListener("click", e => { if (!e.target.closest("[data-scoreall]")) return; show("unis"); setSub("strat"); $("#scoreBox").open = true; setTimeout(() => scrollToEl($("#scoreBox")), 30); });
+
+/* ===================== PLAN VIEWS ===================== */
+ui.pv = (() => { if (location.hash === "#road") return "time"; try { return localStorage.getItem("atlas.pv") || "tasks"; } catch(e) { return "tasks"; } })();
+function setPv(v){ ui.pv = v === "time" ? "time" : "tasks"; try { localStorage.setItem("atlas.pv", ui.pv); } catch(e) {} $$("#planNav button").forEach(b => b.setAttribute("aria-selected", b.dataset.pv === ui.pv)); $("#vTasks").hidden = ui.pv !== "tasks"; $("#vTime").hidden = ui.pv !== "time"; }
+$("#planNav").addEventListener("click", e => { const b = e.target.closest("[data-pv]"); if (b) setPv(b.dataset.pv); });
+document.addEventListener("click", e => { const b = e.target.closest("[data-pvgo]"); if (b) setPv(b.dataset.pvgo); });
+setPv(ui.pv);
+
 /* ===================== BOOT ===================== */
 (function(){ const n = {v:0,p:0,s:0}; U.forEach(x => { if (x.ver && n[x.ver.st] !== undefined) n[x.ver.st]++; }); ["v","p","s"].forEach(k => { const el = document.getElementById("nDv" + k.toUpperCase()); if (el) el.textContent = n[k]; }); })();
 (function(){ const el = document.getElementById("lede"); if (el) el.textContent = `${U.length.toLocaleString("en-US")} universities and ${F.length} foundation routes in ${ORDER.length} countries, all open to you now or after one step: a score, a document or a bridge year. Each has a suggested date and a final deadline.`; })();
-(function(){ const b = document.getElementById("toTop"); if (!b) return; let raf = 0; const upd = () => { raf = 0; b.hidden = window.scrollY < 1400 || !document.getElementById("cmpBar").hidden; }; window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(upd); }, {passive:true}); b.addEventListener("click", () => { const nav = $("nav.switch"), fixed = getComputedStyle(nav).position === "fixed"; window.scrollTo({top: fixed ? Math.max(0, $("main").offsetTop - 8) : nav.offsetTop, behavior: smooth()}); }); })();
+(function(){ const b = document.getElementById("toTop"); if (!b) return; let raf = 0; const upd = () => { raf = 0; b.hidden = window.scrollY < 1400 || !document.getElementById("cmpBar").hidden; }; window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(upd); }, {passive:true}); b.addEventListener("click", () => window.scrollTo({top:0, behavior: smooth()})); })();
 (function(){ const b = $("#fBtn"), p = $("#fPanel"); if (!b) return;
   b.addEventListener("click", () => { p.hidden = !p.hidden; b.setAttribute("aria-expanded", !p.hidden); });
   $("#fDone").addEventListener("click", () => { p.hidden = true; b.setAttribute("aria-expanded", "false"); scrollToEl($("#cIndex")); }); })();
 function updFCount(){ const n = (ui.kind !== "both") + !!ui.chance + ["saved","rank","spring","free"].filter(k => ui[k]).length, el = $("#fCount"); if (!el) return; el.hidden = !n; el.textContent = n; }
-function renderAll(){ sitSummary(); renderUnis(); renderRoadmap(); renderChecklist(); }
+function renderAll(){ sitSummary(); renderUnis(); renderRoadmap(); renderChecklist(); renderList(); renderHome(); }
 syncSit(); renderChart(); renderAll();
 </script>
