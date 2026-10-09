@@ -544,6 +544,20 @@ main{padding-block:22px 72px}
   .cg-verdict:not(.open){display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
   .cg-verdict:not(.open)::after{content:""}
 }
+/* ---------- v13: calmer navigation ---------- */
+.tabbtn .ts{display:none}
+.tabbtn{padding:8px 12px;align-items:center}
+.tabbtn svg{grid-row:auto}
+.tabbtn .badge{grid-row:auto}
+.lanes{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px}
+.lanes::-webkit-scrollbar{display:none}
+.lane{flex:0 0 auto;padding:7px 14px;justify-items:start;text-align:left;grid-auto-flow:column;align-items:baseline;gap:8px}
+.lane .ln{font-size:14.5px}
+.lane .ls{font-size:12px}
+.lane::after{height:2px}
+@media (max-width:560px){.lane{grid-auto-flow:row;gap:0}}
+.tfilter,[role="group"]:has(> [data-tf]){flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%}
+#tFilter button{flex:none;white-space:nowrap}
 </style>
 
 <header class="top wrap">
@@ -637,7 +651,7 @@ main{padding-block:22px 72px}
 
   <!-- Strategy -->
   <div class="subview grid" style="gap:16px" id="vStrat" hidden>
-    <p class="muted small" style="max-width:80ch">A scorecard ranking every country in your three tiers for your profile, then one page per country: how they will judge your file, your chances, the risks, a dated plan and a suggested shortlist. Chance bands are estimates from admission rates (international rates are often lower) and how well you meet each rule.</p>
+    <p class="muted small" style="max-width:80ch">Which countries suit you best, then one page per country with your chances, risks, dates and a suggested shortlist. Chances are estimates from admission rates.</p>
     <section class="card" id="balance"></section>
     <section class="card" id="fees"></section>
     <section class="card" id="score"></section>
@@ -3472,6 +3486,23 @@ Object.entries({
   tr1:{f:"≈ 250 TL (last published, 2022; confirm)", usd:8, ex:"s"},
   tr3:{f:"No application fee (2026–27 cycle)", usd:0, w:"", ex:"s", src:["METU: international students office","https://iso.metu.edu.tr/"]},
   fr1:{p:"ESSEC's online portal", f:"€100 (Cergy and Singapore campuses; Morocco €75)", usd:108, w:"", ex:"o", src:["ESSEC Global BBA: apply with an international diploma","https://www.essec.edu/en/program/global-bba-international/"]}
+}).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
+
+/* Fifth pass (9 Oct 2026) */
+Object.entries({
+  us6e:{f:"$75 (fee waiver available)", usd:75, ex:"s", src:["CollegeData: Tufts admission","https://www.collegedata.com/college-search/Tufts-University/admission"]},
+  us5n:{f:"$75 (fee waiver available)", usd:75, ex:"o", src:["Case Western 2026–27 data sheet","https://cdn.ymaws.com/members.aicuo.edu/resource/resmgr/documents/cg/2026-27/individual_pages/casewru.pdf"]},
+  us5m:{f:"$50", usd:50, w:"Rochester lets domestic and international applicants opt out of the fee with an online form.", ex:"s", src:["CollegeData: Rochester admission","https://www.collegedata.com/college-search/university-of-rochester/admission"]},
+  u_davidson:{f:"No application fee (dropped 31 Jul 2026)", usd:0, w:"", ex:"o", src:["Davidson: application fee dropped","https://www.davidson.edu/news/2026/07/31/davidson-college-drops-application-fee"]},
+  u_vassar:{f:"$65", usd:65, ex:"s"},
+  u_swat:{w:"Swarthmore waives the fee for qualified applicants (checked through its SwatPass portal).", ex:"s", src:["Common App: Swarthmore College","https://www.commonapp.org/explore/swarthmore-college"]},
+  hk6:{f:"HK$450 per application", usd:58, ex:"o", src:["PolyU: non-JUPAS FAQ","https://www.polyu.edu.hk/study/ug/admissions/non-jupas-year-1/non-jupas-year-1-frequently-asked-questions"]},
+  hk4:{f:"HK$150 per programme choice (2024–25 schedule; HK$200 late)", usd:19, ex:"o", src:["Lingnan: application fees (non-JUPAS)","https://ln.edu.hk/admissions/ug/financing"]},
+  hu1:{f:"€95 self-funded; free for Stipendium Hungaricum", usd:103, ex:"o", src:["Corvinus: admission requirements","https://www.uni-corvinus.hu/post/landing-page/application/admissions-requirements/?lang=en"]},
+  hu2:{f:"€155 (Faculty of Economics; varies by faculty); free for Stipendium Hungaricum", usd:168, ex:"o", src:["ELTE GTK: paying the application fee","https://gtk.elte.hu/dstore/document/180389/How%20to%20pay%20the%20application%20fee%20via%20EPAY.pdf"]},
+  hu4:{f:"$150 at Debrecen (bank transfer); Szeged and Pécs similar, check; free for Stipendium Hungaricum", usd:150, ex:"s", src:["University of Debrecen: tuition, application and entrance fees","https://www.edu.unideb.hu/p/tuition-fee-application-entrance-fee"]},
+  lv1:{f:"≈ €165 (portal, Sept 2026; was €150)", usd:178, ex:"s", src:["RTU international admission","https://international.rtu.lv/admission/"]},
+  l_lu:{f:"≈ €170 (the figure on its applications portal)", usd:184, ex:"s", src:["Study in Latvia: application fees","https://studyinlatvia.lv/admission/fees-costs/application-fees"]}
 }).forEach(([id,o]) => { FEE[id] = Object.assign({}, FEE[id] || {}, o); });
 FEE_C["Sweden"].ex = "o"; FEE_C["Finland"].ex = "o"; FEE_C["Germany"].ex = "o"; FEE_C["Saudi Arabia"].ex = "s";
 const feeOf = x => {

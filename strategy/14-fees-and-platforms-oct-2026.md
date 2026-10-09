@@ -152,3 +152,40 @@ Sources added:
 | CUHK-Shenzhen | Not published | Check the application portal |
 
 Your 17 saved applications now have exact fees for 16; only CUHK-Shenzhen is unknown. Across the site, 223 universities have exact fees (136 official, 87 secondary).
+
+## Update: fifth pass (9 Oct 2026)
+
+Exact fees now cover **236 universities**: 142 official and 94 from secondary sources. New this pass:
+- **US:**
+  - Tufts $75 and Case Western $75 (official data sheet), both with fee waivers available.
+  - Rochester $50; international applicants can opt out with an online form.
+  - Vassar $65.
+  - Davidson dropped its fee on 31 Jul 2026.
+  - Swarthmore waives the fee for qualified applicants (SwatPass).
+- **Hong Kong:** PolyU HK$450, Lingnan HK$150 per programme choice.
+- **Hungary:**
+  - Corvinus €95.
+  - ELTE €155 (Faculty of Economics; varies by faculty).
+  - Debrecen $150.
+  - All three are free through Stipendium Hungaricum.
+- **Latvia:** Riga Technical University ≈ €165, University of Latvia ≈ €170.
+
+Design changes in this pass:
+- **Top tabs:** slimmer; the subtitles are gone.
+- **Tier switch:** one compact row on desktop too.
+- **Strategy:** its intro is now one sentence.
+- **Checklist:** its filter buttons stay on one line on phones.
+
+Sources:
+- [CollegeData: Tufts](https://www.collegedata.com/college-search/Tufts-University/admission)
+- [Case Western data sheet](https://cdn.ymaws.com/members.aicuo.edu/resource/resmgr/documents/cg/2026-27/individual_pages/casewru.pdf)
+- [CollegeData: Rochester](https://www.collegedata.com/college-search/university-of-rochester/admission)
+- [Davidson](https://www.davidson.edu/news/2026/07/31/davidson-college-drops-application-fee)
+- [Swarthmore on Common App](https://www.commonapp.org/explore/swarthmore-college)
+- [PolyU FAQ](https://www.polyu.edu.hk/study/ug/admissions/non-jupas-year-1/non-jupas-year-1-frequently-asked-questions)
+- [Lingnan fees](https://ln.edu.hk/admissions/ug/financing)
+- [Corvinus](https://www.uni-corvinus.hu/post/landing-page/application/admissions-requirements/?lang=en)
+- [ELTE GTK](https://gtk.elte.hu/dstore/document/180389/How%20to%20pay%20the%20application%20fee%20via%20EPAY.pdf)
+- [Debrecen](https://www.edu.unideb.hu/p/tuition-fee-application-entrance-fee)
+- [RTU](https://international.rtu.lv/admission/)
+- [Study in Latvia](https://studyinlatvia.lv/admission/fees-costs/application-fees)
