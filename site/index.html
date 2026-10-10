@@ -4104,6 +4104,8 @@ const US_PRIVMERIT = [
   ["Clarkson University","Up to $40,000 a year","All admitted applicants considered"],
   ["Washington College","$33,000–38,000 a year","Guaranteed for admitted students"],
   ["Ohio Wesleyan University","$37,000 a year (Bashford)","Automatic, no minimum GPA or test"],
+  ["Xavier University (Ohio)","$23,000–30,000 a year","Every admitted international student considered, automatic"],
+  ["University of Puget Sound","$18,000–33,000 a year","Automatic; Lillis full award by 1 Dec"],
   ["Millsaps College","$21,000–34,000 a year","Automatic on admission"],
   ["Ursinus College","Reported $30,000–40,000 a year","All admitted international students"],
   ["Rollins College","$15,000–33,000 a year","Academic scholarships"],
@@ -4318,8 +4320,12 @@ const MERIT_CHECKED = {
 },
 "University of Illinois Chicago": {
 "t": "ck",
-"ex": "s",
-"n": "No international first-year merit award confirmed; UIC's Merit Tuition Award is listed for US citizens and permanent residents."
+"ex": "o",
+"n": "UIC's first-year scholarships use the admission application, but none is named for international students; the international-only awards (Completion, Kirstein) are for third- and fourth-year students.",
+"src": [
+"UIC: scholarships for first-year students",
+"https://scholarships.uic.edu/scholarships/uic-scholarships/scholarships-for-first-year-students/"
+]
 },
 "University of Iowa": {
 "t": "mr",
@@ -4497,9 +4503,13 @@ const MERIT_CHECKED = {
 "n": "No first-year merit scholarship for international students found; only small Student Government awards (about $500) for continuing students."
 },
 "Florida International University": {
-"t": "ck",
-"ex": "s",
-"n": "No international first-year merit award found; ask FIU's admissions office."
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships for admitted first-year students, automatic, open to F-1 visa holders; spread over four years, limited funds; early deadline (about 3 Dec for overseas schools). Amounts for non-Florida students not shown.",
+"src": [
+"FIU: international tuition and scholarships",
+"https://admissions.fiu.edu/international/cost-and-aid/"
+]
 },
 "University of Louisville": {
 "t": "mr",
@@ -4543,9 +4553,9 @@ const MERIT_CHECKED = {
 "n": "Automatic merit for international students: Trustees up to $20,000 and Chancellor's up to $15,000 a year (UNH recalculates your grades)."
 },
 "Auburn University": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "No international freshman amount found for the main campus; the freshman scholarship deadline is 15 Dec. (Auburn Montgomery, a separate school, offers $2,000–10,000.)"
+"n": "Reported: Competitive Merit Scholarship for non-residents, $7,000–17,000 a year by academics (international applicants listed as eligible by aggregators); freshman scholarship deadline about 15 Dec. Not confirmed by Auburn."
 },
 "University of Arkansas": {
 "t": "mr",
@@ -4581,8 +4591,12 @@ const MERIT_CHECKED = {
 },
 "University of Illinois Urbana-Champaign": {
 "t": "ck",
-"ex": "s",
-"n": "No merit award confirmed for international students; some named awards (Stamps) are for US citizens only. Ask the scholarship office before counting on aid."
+"ex": "o",
+"n": "UIUC's merit list has no award named for international students: the Illinois Achievement Scholarship (non-resident freshmen) is need-based, and Stamps is reported as US-only. Ask the scholarship office.",
+"src": [
+"UIUC: merit-based scholarships",
+"https://www.osfa.illinois.edu/types-of-aid/scholarships/merit-based-scholarships/"
+]
 },
 "Texas A&M University": {
 "t": "nl",
@@ -4594,12 +4608,12 @@ const MERIT_CHECKED = {
 ]
 },
 "Rensselaer Polytechnic Institute (RPI)": {
-"t": "ck",
-"ex": "s",
-"n": "Merit awards (Rensselaer Leadership and Recognition Awards) exist, but international eligibility and amounts were not found.",
+"t": "mr",
+"ex": "o",
+"n": "RPI's international applicants page offers limited merit scholarships up to $25,000 a year; its financial aid page says only Rensselaer Medal winners and athletes get institutional aid. The pages conflict, so ask RPI.",
 "src": [
-"RPI: scholarships",
-"https://financialaid.rpi.edu/types-aid/scholarships"
+"RPI: international applicants",
+"https://undergrad.admissions.rpi.edu/apply/international-applicants"
 ]
 },
 "Stevens Institute of Technology": {
@@ -4608,14 +4622,18 @@ const MERIT_CHECKED = {
 "n": "Global Scholarship for international students from $5,000 up to full tuition, renewable for 8 semesters; international applicants file the CSS Profile."
 },
 "University of Maryland, College Park": {
-"t": "ck",
-"ex": "s",
-"n": "Sources conflict: the top award (Banneker/Key) is for US citizens and permanent residents; a $5,000–15,000 international award is listed only by aggregators."
+"t": "no",
+"ex": "o",
+"n": "Freshman merit scholarships are only for US citizens and eligible non-citizens, so international applicants are not considered (spring admits are not considered either).",
+"src": [
+"UMD: freshman merit scholarships",
+"https://admissions.umd.edu/finance/freshman-merit-scholarships"
+]
 },
 "Georgia State University": {
 "t": "ck",
 "ex": "s",
-"n": "No first-year international scholarship found."
+"n": "No first-year scholarship for international students found in three searches; ask Georgia State admissions."
 },
 "University of Mississippi (Ole Miss)": {
 "t": "mr",
@@ -4659,9 +4677,13 @@ const MERIT_CHECKED = {
 "n": "Partial awards for international students: about $12,000 a year (3.5+ GPA) or $8,000 (3.0–3.49); no full scholarships."
 },
 "University of North Dakota": {
-"t": "ck",
-"ex": "s",
-"n": "No first-year international scholarship found beyond small named awards."
+"t": "mr",
+"ex": "o",
+"n": "UND says some scholarships are open to international students through Scholarship Central (mostly small named awards, about $1,000–2,000); no automatic first-year award for international students.",
+"src": [
+"UND: international students",
+"https://und.edu/international"
+]
 },
 "Old Dominion University": {
 "t": "mr",
@@ -4777,9 +4799,13 @@ const MERIT_CHECKED = {
 ]
 },
 "University of Southern Mississippi": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "No international first-year amount found (domestic awards start at $2,500)."
+"n": "Reported: international applicants admitted by 1 Dec are automatically considered for freshman academic scholarships (e.g. Honors Scholar $2,000 a year); orchestra players can audition for up to full tuition.",
+"src": [
+"Southern Miss: international admissions",
+"https://www.usm.edu/undergraduate-admissions/international-admissions/"
+]
 },
 "Chapman University": {
 "t": "mr",
@@ -4791,9 +4817,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Loyola Marymount University": {
-"t": "ck",
-"ex": "s",
-"n": "International merit amounts not confirmed; check LMU's admissions page."
+"t": "mr",
+"ex": "o",
+"n": "All international first-year applicants are automatically considered for academic scholarships; LMU does not publish amounts or cut-offs.",
+"src": [
+"LMU: financial aid for international students",
+"https://financialaid.lmu.edu/international/"
+]
 },
 "University of Denver": {
 "t": "mr",
@@ -4805,9 +4835,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Saint Louis University": {
-"t": "ck",
-"ex": "s",
-"n": "No general international first-year amount found."
+"t": "mr",
+"ex": "o",
+"n": "International applicants are automatically considered for SLU's merit scholarships with the admission application; the Presidential and Martin Luther King Jr. scholarships need separate applications. Amounts not published for international students.",
+"src": [
+"SLU: international admission FAQ",
+"https://www.slu.edu/admission/international/frequently-asked-questions.php"
+]
 },
 "Loyola University Chicago": {
 "t": "mr",
@@ -4896,9 +4930,13 @@ const MERIT_CHECKED = {
 ]
 },
 "University of San Diego": {
-"t": "ck",
-"ex": "s",
-"n": "International merit amounts not found; check USD's admissions page."
+"t": "mr",
+"ex": "o",
+"n": "All first-year applicants are automatically considered for merit scholarships (grades, courses, \"changemaker\" qualities), renewable four years; the page does not single out international students and gives no amounts.",
+"src": [
+"USD: scholarships for first-year students",
+"https://www.sandiego.edu/admissions/undergraduate/affording-usd/scholarships.php"
+]
 },
 "Florida Atlantic University": {
 "t": "mr",
@@ -5030,12 +5068,16 @@ const MERIT_CHECKED = {
 "Oakland University": {
 "t": "ck",
 "ex": "s",
-"n": "No current first-year international scholarship found."
+"n": "Only an old (2010) award for newly admitted international students ($1,000–1,500) was found; ask international@oakland.edu."
 },
 "Florida A&M University": {
-"t": "ck",
+"t": "no",
 "ex": "s",
-"n": "No dedicated international freshman scholarship found."
+"n": "No scholarship for international first-years found; FAMU's out-of-state waivers need federal aid eligibility (FAFSA), which international students cannot get.",
+"src": [
+"FAMU: out-of-state fee waiver",
+"https://www.famu.edu/administration/division-of-student-affairs/out-of-town-student-fee-waiver.php"
+]
 },
 "Texas A&M University–Corpus Christi": {
 "t": "mr",
@@ -5063,7 +5105,7 @@ const MERIT_CHECKED = {
 "Morgan State University": {
 "t": "ck",
 "ex": "s",
-"n": "No international freshman scholarship found."
+"n": "Aggregators list a partial institutional scholarship for international bachelor's students (amount depends on funds); nothing official found. Ask international.affairs@morgan.edu."
 },
 "Marshall University": {
 "t": "mr",
@@ -5165,7 +5207,7 @@ const MERIT_CHECKED = {
 "University of Alaska Fairbanks": {
 "t": "ck",
 "ex": "s",
-"n": "No clearly international freshman scholarship found; general awards (Chancellor's $4,000) may not apply."
+"n": "No first-year award for international students found; the main awards (UA Scholars) are for Alaska graduates."
 },
 "University of Massachusetts Dartmouth": {
 "t": "mr",
@@ -5204,12 +5246,12 @@ const MERIT_CHECKED = {
 ]
 },
 "University of Texas at El Paso": {
-"t": "ck",
-"ex": "s",
-"n": "No general international freshman award found; Presidential Excellence ($3,000 a year) has high GPA and test thresholds.",
+"t": "mr",
+"ex": "o",
+"n": "International students can receive UTEP scholarships unless a donor requires citizenship; freshman academic scholarships go by GPA, class rank and SAT/ACT (e.g. Presidential Excellence $3,000 a year with high thresholds).",
 "src": [
-"UTEP: paying for school (international)",
-"https://www.utep.edu/student-affairs/oipsa/office-of-international-programs/information/scholarships.html"
+"UTEP: international student scholarships",
+"https://utep.edu/scholarships/scholarships/int-students-scholarships.html"
 ]
 },
 "St. John's University": {
@@ -5258,9 +5300,13 @@ const MERIT_CHECKED = {
 ]
 },
 "University of Puget Sound": {
-"t": "ck",
-"ex": "s",
-"n": "International merit amount not found; check Puget Sound's admission page."
+"t": "mr",
+"ex": "o",
+"n": "International applicants are automatically in the academic scholarship pool: $18,000–33,000 a year, renewable; the Lillis Scholarship (2 a year) needs an application by 1 Dec.",
+"src": [
+"Puget Sound: first-year international students",
+"https://www.pugetsound.edu/admission/apply/international-students/first-year-international-students"
+]
 },
 "Trinity University": {
 "t": "nm",
@@ -5272,9 +5318,9 @@ const MERIT_CHECKED = {
 ]
 },
 "Southwestern University": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "International scholarship details not found."
+"n": "Reported: every student is considered for general merit of $20,000–36,000 a year with the admission application (Brown Scholarship about $42,000); the Bishop Kaung Scholarship is for international students."
 },
 "Rollins College": {
 "t": "mr",
@@ -5341,9 +5387,9 @@ const MERIT_CHECKED = {
 ]
 },
 "St. Mary's College of Maryland": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "International scholarship details not found."
+"n": "Reported: limited aid for international students, mostly merit (Trustee, President's, Excellence, National Honors), about $6,000–18,000 a year for non-residents with a 3.0+ GPA."
 },
 "Cornell College": {
 "t": "mr",
@@ -5406,9 +5452,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Bentley University": {
-"t": "ck",
-"ex": "s",
-"n": "Academic scholarships for first-years vary by student; international amounts not found."
+"t": "mr",
+"ex": "o",
+"n": "Academic scholarships for first-year fall applicants, with every applicant considered automatically and notified at admission; renewable eight semesters. International students are reported eligible; amounts vary.",
+"src": [
+"Bentley: merit-based scholarships",
+"https://www.bentley.edu/offices/financial-assistance/merit-based-scholarships"
+]
 },
 "DePaul University": {
 "t": "mr",
@@ -5452,9 +5502,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Seattle University": {
-"t": "ck",
-"ex": "s",
-"n": "International first-year amount not confirmed (one listing: about $12,000 a year)."
+"t": "mr",
+"ex": "o",
+"n": "International first-year applicants are automatically considered for merit scholarships of at least $8,000 a year, renewable four years.",
+"src": [
+"Seattle U: undergraduate scholarships and grants",
+"https://www.seattleu.edu/admissions-aid/financial-aid--scholarships/scholarships--grants/undergraduate/"
+]
 },
 "Hult International Business School": {
 "t": "mr",
@@ -5503,9 +5557,9 @@ const MERIT_CHECKED = {
 ]
 },
 "Savannah College of Art and Design (SCAD)": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "Undergraduate international scholarship amounts not found."
+"n": "Reported: accepted students are considered for Academic Honors (GPA or SAT) and Achievement Honors scholarships, plus an International Student Scholarship (500-word essay); amounts not confirmed."
 },
 "Wentworth Institute of Technology": {
 "t": "nm",
@@ -5517,9 +5571,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Milwaukee School of Engineering": {
-"t": "ck",
-"ex": "s",
-"n": "International scholarship amounts not found."
+"t": "mr",
+"ex": "o",
+"n": "Tuition-based academic scholarships for incoming international students by high-school GPA or leaving-exam results, up to about half of tuition, renewable while full-time.",
+"src": [
+"MSOE: international student scholarships",
+"https://www.msoe.edu/admissions-aid/financial-aid-scholarships/scholarships-and-grants/msoe-scholarships-grants/international-student-scholarships/"
+]
 },
 "Quinnipiac University": {
 "t": "mr",
@@ -5567,12 +5625,12 @@ const MERIT_CHECKED = {
 ]
 },
 "Xavier University": {
-"t": "ck",
-"ex": "s",
-"n": "No international-specific scholarship amount found; academic scholarships can be deducted from the cost on the I-20.",
+"t": "mr",
+"ex": "o",
+"n": "Every admitted international undergraduate is automatically considered for merit scholarships of $23,000–30,000 a year, renewable four years; no separate application.",
 "src": [
-"Xavier: financial requirements 2026-27",
-"https://www.xavier.edu/international-admission/financial-requirements-2026-2027.pdf"
+"Xavier: international admission scholarships",
+"https://www.xavier.edu/international-admission/scholarships/"
 ]
 },
 "Butler University": {
@@ -5705,9 +5763,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Saint Joseph's University": {
-"t": "ck",
-"ex": "s",
-"n": "International merit details not found."
+"t": "mr",
+"ex": "o",
+"n": "Merit academic scholarships are open to first-year and international students; every complete application is reviewed, no separate form.",
+"src": [
+"SJU: scholarships",
+"https://www.sju.edu/scholarships"
+]
 },
 "University of Portland": {
 "t": "mr",
@@ -5746,9 +5808,13 @@ const MERIT_CHECKED = {
 ]
 },
 "Long Island University": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "International amounts conflict across sources; ask LIU."
+"n": "Reported: International Student Merit Scholarship about $22,000 a year, reviewed automatically at admission.",
+"src": [
+"LIU: international admissions",
+"https://www.liu.edu/admissions/international"
+]
 },
 "Fairleigh Dickinson University": {
 "t": "mr",
@@ -5824,18 +5890,22 @@ const MERIT_CHECKED = {
 ]
 },
 "New Mexico Tech": {
-"t": "ck",
-"ex": "s",
-"n": "One merit scholarship on entry (freshman deadline 1 Mar; e.g. Copper $2,000 a year); no international-specific amount confirmed.",
+"t": "mr",
+"ex": "o",
+"n": "Every accepted undergraduate is evaluated for scholarships by SAT/ACT and GPA, renewable four years; NMT policy lists F-1 students as eligible (one line on the same page says first-time awards need US citizenship, so confirm). Non-residents may get a tuition reduction instead.",
 "src": [
-"NMT: scholarships",
-"https://nmt.edu/finaid/scholarships.php"
+"NMT: financial aid policies",
+"https://www.nmt.edu/finaid/policies.php"
 ]
 },
 "South Dakota Mines": {
-"t": "ck",
-"ex": "s",
-"n": "No first-year scholarship for international students found; ask admissions (reported deadline 15 Jan to be considered)."
+"t": "mr",
+"ex": "o",
+"n": "Mines Merit Scholarship: six tiers from $1,000 (ACT 24 / SAT equivalent) to $7,000 a year (ACT 35–36), 3.0 GPA, apply by 1 Jan for fall; no citizenship rule stated, so confirm international eligibility.",
+"src": [
+"SD Mines: Mines Merit Scholarship Program",
+"https://sdsmt.edu/admissions-aid/financial-aid-and-scholarships/scholarships"
+]
 },
 "The College of New Jersey": {
 "t": "mr",
@@ -5849,7 +5919,7 @@ const MERIT_CHECKED = {
 "James Madison University": {
 "t": "ck",
 "ex": "s",
-"n": "Third-party sites mention a Madison Scholarship for international students, but no official amount was found; ask JMU."
+"n": "The international awards found (Graybeal, administered by JMU's international office) are for juniors and seniors; no first-year award for international students found."
 },
 "College of Charleston": {
 "t": "mr",
@@ -5922,17 +5992,17 @@ const MERIT_CHECKED = {
 },
 "Florida Gulf Coast University": {
 "t": "ck",
-"ex": "s",
-"n": "No first-year merit award for international students found; the Global Learning Grant ($500 a semester) starts only after two semesters.",
+"ex": "o",
+"n": "No first-year merit award for international students found; the nationality-based out-of-state waiver (Florida Linkage Institutes) covers only partner countries, not Uzbekistan.",
 "src": [
 "FGCU: funding and scholarships",
 "https://www.fgcu.edu/academics/internationalservices/international-students/scholarships"
 ]
 },
 "University of West Florida": {
-"t": "ck",
+"t": "mr",
 "ex": "s",
-"n": "Freshman merit awards (up to full tuition, housing and meals) are by GPA and test scores with a 1 Dec 2026 priority date for Fall 2027; the page does not say whether international students qualify.",
+"n": "Merit awards (Academic Excellence, Nautilus, Argonaut) go by GPA and SAT/ACT with a 1 Dec 2026 priority date; international students are reported eligible for the ones that do not require the FAFSA.",
 "src": [
 "UWF: freshman scholarships",
 "https://uwf.edu/admissions/undergraduate/cost-and-financial-aid/awards-and-scholarships/freshman-scholarships"
@@ -5962,12 +6032,12 @@ const MERIT_CHECKED = {
 ]
 },
 "Missouri State University": {
-"t": "ck",
+"t": "mr",
 "ex": "o",
-"n": "Only a policy for sponsored students (75% of non-resident tuition) was found; no general first-year international award confirmed.",
+"n": "Graduates of non-US high schools are considered for the International Excellence, International Leadership and Board of Governors scholarships (third-party figures: about $7,500 and $10,000 a year).",
 "src": [
-"Missouri State: international student scholarship policy",
-"https://www.missouristate.edu/Policy/Chapter5/G5_06_InternationalStudentScholarships.htm"
+"Missouri State: scholarships for international students",
+"https://missouristate.edu/policy/Op5_08_22_Scholarships_for_International_Students.htm"
 ]
 },
 "University of Northern Iowa": {
@@ -6000,7 +6070,7 @@ const MERIT_CHECKED = {
 "University of Colorado Colorado Springs": {
 "t": "ck",
 "ex": "s",
-"n": "No international first-year award with an amount found; ask international@uccs.edu."
+"n": "Only a $1,000 Honors Program award for freshmen was found, with international eligibility not stated; ask international admissions."
 },
 "Southern Utah University": {
 "t": "mr",
@@ -6021,14 +6091,22 @@ const MERIT_CHECKED = {
 ]
 },
 "University of Texas Rio Grande Valley": {
-"t": "ck",
-"ex": "s",
-"n": "General merit awards exist (2019–20 catalog: Distinguished Scholar for out-of-area students up to $40,000 total), but international eligibility is not confirmed."
+"t": "mr",
+"ex": "o",
+"n": "Most UTRGV scholarships are for US citizens and permanent residents, but some are open to international students through the yearly scholarship application; amounts not given.",
+"src": [
+"UTRGV catalog: scholarships",
+"https://utrgv.smartcatalogiq.com/en/2024-2025/student-policies/tuition-fees-and-financial-aid/types-of-financial-assistance/scholarships"
+]
 },
 "Sam Houston State University": {
 "t": "ck",
 "ex": "s",
-"n": "No first-year award for international students found; the Texas Good Neighbor waiver is only for Western Hemisphere countries."
+"n": "SHSU says test scores help with scholarship consideration, but no scholarship named for international first-years was found; the Good Neighbor waiver is only for Western Hemisphere countries.",
+"src": [
+"SHSU: international undergraduate applicants",
+"https://shsu.edu/beabearkat/international-journey/undergraduate-applicants-us"
+]
 },
 "Lamar University": {
 "t": "mr",
@@ -6042,7 +6120,11 @@ const MERIT_CHECKED = {
 "Prairie View A&M University": {
 "t": "ck",
 "ex": "s",
-"n": "No first-year award for international students found."
+"n": "New freshmen are automatically considered for the University Merit scholarship, but awards also weigh need (FAFSA) and international eligibility is not stated; ask scholarships@pvamu.edu.",
+"src": [
+"PVAMU: scholarships FAQ",
+"https://www.pvamu.edu/oss/faqs/"
+]
 },
 "East Texas A&M University": {
 "t": "mr",
@@ -6054,9 +6136,9 @@ const MERIT_CHECKED = {
 ]
 },
 "SUNY College of Environmental Science and Forestry": {
-"t": "ck",
-"ex": "s",
-"n": "Admitted first-years are automatically considered for merit awards (Presidential and National Scholarships, 1 Feb), but international eligibility is not stated.",
+"t": "mr",
+"ex": "o",
+"n": "All international applicants are considered for merit-based scholarships on acceptance; amounts not published.",
 "src": [
 "ESF: international admissions",
 "https://www.esf.edu/admissions/international.php"
@@ -6092,25 +6174,29 @@ const MERIT_CHECKED = {
 "Tennessee Tech University": {
 "t": "ck",
 "ex": "s",
-"n": "No first-year scholarship for international students found in two searches; ask admissions."
+"n": "Tech scholarships need the university's scholarship application by 15 Dec, but none found for international first-years; ask Intl_adm@tntech.edu.",
+"src": [
+"Tennessee Tech: international admissions",
+"https://tntech.edu/admissions/international/apply.php"
+]
 },
 "University of Texas at San Antonio": {
 "t": "ck",
 "ex": "s",
-"n": "No first-year merit amount for international students found; an International Student Grant exists but its amount depends on funds."
+"n": "No first-year merit scholarship for international students found; UTSA's international pages cover admission only."
 },
 "Augusta University": {
 "t": "ck",
 "ex": "s",
-"n": "No first-year scholarship for international students found."
+"n": "No first-year scholarship for international students found; check the Scholars and Honors programs with admissions."
 },
 "Hampden-Sydney College": {
-"t": "ck",
-"ex": "s",
-"n": "General merit awards (Patrick Henry about $20,000 with SAT 1250+, President's about $15,000, per third-party listings); no page confirms them for international students.",
+"t": "mr",
+"ex": "o",
+"n": "All applicants are considered for merit scholarships with no extra form; the Davis Fellowship (full tuition) goes to one entering student every other year; an older page lists Patrick Henry ($37,500) and Presidential ($35,000).",
 "src": [
 "H-SC: academic and leadership awards",
-"https://hsc.edu/admission-and-financial-aid/financial-aid/types-of-aid/academic-and-leadership-awards"
+"https://www.hsc.edu/admission-and-financial-aid/financial-aid/types-of-aid/academic-and-leadership-awards"
 ]
 },
 "Calvin University": {

@@ -44,9 +44,9 @@ US universities have no 12-year rule, so every college in the index accepts your
 | Free or cut tuition for everyone | 4 |
 | Need-based and merit aid | 56 |
 | Limited need-based aid | 17 |
-| Merit scholarships | 214 |
-| Little or no aid | 50 |
-| Not confirmed | 50 |
+| Merit scholarships | 240 |
+| Little or no aid | 52 |
+| Not confirmed | 22 |
 
 *Counts updated 10 Oct 2026 after the one-by-one merit check in [note 17](17-us-merit-check-oct-2026.md). The first version of this note had 280 merit entries, most of them unchecked.*
 

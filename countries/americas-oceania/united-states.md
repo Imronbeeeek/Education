@@ -116,4 +116,4 @@ See [`strategy/16-usa-deep-dive-oct-2026.md`](../../strategy/16-usa-deep-dive-oc
   - a $250 visa integrity fee is being collected at some embassies.
 
 ## Update 10 Oct 2026
-See [`strategy/17-us-merit-check-oct-2026.md`](../../strategy/17-us-merit-check-oct-2026.md). Merit scholarships for international first-year students were checked one by one at 251 universities: 185 confirmed, 15 also give need-based aid, 9 corrected to little or no aid, 42 not confirmed.
+See [`strategy/17-us-merit-check-oct-2026.md`](../../strategy/17-us-merit-check-oct-2026.md). Merit scholarships for international first-year students were checked one by one at 251 universities: 211 confirmed, 15 also give need-based aid, 11 corrected to little or no aid, 14 still not confirmed after a second search.
