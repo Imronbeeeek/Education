@@ -42,17 +42,19 @@ US universities have no 12-year rule, so every college in the index accepts your
 | Need-blind, meets full need | 10 |
 | Meets full need (need-aware) | 40 |
 | Free or cut tuition for everyone | 4 |
-| Need-based and merit aid | 41 |
-| Limited need-based aid | 14 |
-| Merit scholarships | 280 |
-| Little or no aid | 44 |
-| Not confirmed (grouped rows, Pitzer) | 8 |
+| Need-based and merit aid | 56 |
+| Limited need-based aid | 17 |
+| Merit scholarships | 214 |
+| Little or no aid | 50 |
+| Not confirmed | 50 |
+
+*Counts updated 10 Oct 2026 after the one-by-one merit check in [note 17](17-us-merit-check-oct-2026.md). The first version of this note had 280 merit entries, most of them unchecked.*
 
 **How sure each entry is.** Each university row says which of these applies:
 - checked on the university's own page (October 2026);
 - taken from a secondary source;
 - a well-known policy;
-- typical for its type of university and not checked individually. Most of the 280 merit entries at public and smaller private universities are this kind.
+- typical for its type of university and not checked individually. None are left: all 251 such entries were checked one by one on 9–10 Oct 2026 (note 17).
 
 **Need-blind for international applicants (2026-27):**
 - Harvard, Yale, Princeton, MIT, Amherst, Dartmouth, Bowdoin, Washington and Lee.

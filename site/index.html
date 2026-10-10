@@ -4089,7 +4089,29 @@ const US_FULLRIDES = [
   ["Davidson: John M. Belk","Nominated by your school or by Davidson","Full cost + $6,000","15 Nov 2026"],
   ["Case Western: Squire, A.W. Smith","International students eligible","Full tuition","With the application (check)"],
   ["Berea College","Every student; international places limited","No tuition; first-year room and board for international students","~Dec (check)"],
-  ["Curtis · Cooper Union · Olin","Every admitted student","Free tuition (Curtis) or at least half tuition","With the application"]
+  ["Curtis · Cooper Union · Olin","Every admitted student","Free tuition (Curtis) or at least half tuition","With the application"],
+  ["SMU President's Scholars","Applicants of any citizenship","Full tuition and fees plus a housing award","Early in the cycle (check)"],
+  ["University of Houston Tier One","International students eligible","Full tuition and fees plus two years of housing and meals","Apply by 1 Nov 2026"],
+  ["Marquette Global Scholar","Up to 2 international students (3.25+ GPA)","Full tuition, housing, food and fees","Apply by 1 Mar 2027"],
+  ["Lamar University Presidential","International students with SAT 1330+","Full ride: tuition, fees, room, board, books","Priority 15 Jan 2027"],
+  ["SIU Edwardsville Meridian","Open to international students (competitive)","Full tuition, fees, room and board","~1 Dec (check)"],
+  ["Clarkson Ignite Presidential · Coe Global Leadership","10 first-years (Clarkson) · 1 a year (Coe)","Full tuition","With the application · ~1 Feb (Coe)"]
+];
+const US_PRIVMERIT = [
+  ["Willamette University","$52,000 International Student Grant a year","Every international applicant, automatic"],
+  ["Cornell College (Iowa)","$35,000–40,000 a year (up to $42,000)","Automatic, renewable"],
+  ["Coe College","Up to $42,000 a year","By grades and SAT"],
+  ["Clarkson University","Up to $40,000 a year","All admitted applicants considered"],
+  ["Washington College","$33,000–38,000 a year","Guaranteed for admitted students"],
+  ["Ohio Wesleyan University","$37,000 a year (Bashford)","Automatic, no minimum GPA or test"],
+  ["Millsaps College","$21,000–34,000 a year","Automatic on admission"],
+  ["Ursinus College","Reported $30,000–40,000 a year","All admitted international students"],
+  ["Rollins College","$15,000–33,000 a year","Academic scholarships"],
+  ["Trinity University (Texas)","$5,000–30,000 a year","Automatic"],
+  ["Eckerd College","Up to $25,000 a year","Automatic"],
+  ["Hope College","$15,000–25,000 a year","Mainly academics"],
+  ["Washington & Jefferson College","Reported $20,000 grant","Every admitted international student; by 1 Mar"],
+  ["Marquette University","Reported $15,000–28,000 a year","Plus the Global Scholar full award"]
 ];
 const US_PUBMERIT = [
   ["University of Alabama","$6,000–10,000+ a year by SAT; full tuition at 1600","Automatic; ~4 Dec 2026"],
@@ -4104,7 +4126,18 @@ const US_PUBMERIT = [
   ["University of Kansas · Kansas State","$6,000–12,000 a year by GPA","1 May (KU international)"],
   ["UT Dallas","Academic Excellence Scholarship (varies)","Complete by 1 Dec"],
   ["University of Pittsburgh","Up to $10,000 a year","Complete by 1 Feb"],
-  ["Oregon State · Washington State","$2,000–6,000 a year","By GPA"]
+  ["Oregon State · Washington State","$2,000–6,000 a year","By GPA"],
+  ["University of Missouri","$10,000 or $20,000 a year","Holistic review"],
+  ["Missouri S&T","$15,000 a year","Automatic for F-1 freshmen"],
+  ["University of Idaho","Nearly $16,000 a year","Automatic with a 3.0 GPA"],
+  ["Middle Tennessee State","$6,000–16,000 a year by GPA or SAT","Automatic, first-come"],
+  ["Rowan University","$1,000–19,000 a year","Automatic; priority 1 Mar"],
+  ["University of North Florida","$6,000–14,000 a year (tuition waiver)","Admitted by 15 Jan"],
+  ["Towson University","$6,000–12,000","Competitive; priority 15 Nov"],
+  ["Northern Arizona University","Up to $11,000 a year","Automatic, first-come"],
+  ["Western Washington · SUNY Geneseo","Up to $10,000 a year","Automatic"],
+  ["Grand Valley State","About $6,000 a year + $2,500 merit","Automatic for every international admit"],
+  ["Lamar · East Texas A&M","$2,000+ a year; a $1,000+ competitive award brings in-state tuition","By SAT (Lamar) · myLeo (ETAMU)"]
 ];
 const US_UZFUND = [
   "<b>El-Yurt Umidi Foundation (Uzbekistan).</b> For 2026/27 it offered 500 places, 167 of them for bachelor's degrees, at universities in the QS or THE world top 300 (or on its approved list). It covers tuition, visa, insurance, flights, rent and living costs. Conditions reported: age 30 or under, IELTS 6.0+ (an unconditional offer may replace it), an admission letter, and five years of work in Uzbekistan after the degree. The 2026 round ran 3–24 April; expect the 2027 round about then, after US decisions arrive.",
@@ -4148,6 +4181,1949 @@ const US_STANDOUT = [
 
 /* Every other four-year college in the U.S. (index from a public list of 2,289 institutions, filtered: seminaries,
    medical and health schools, women's colleges and service academies removed; the directory above already covers the rest in detail) */
+/* v16 · merit scholarships for international students, confirmed one by one (9–10 Oct 2026). Overrides the typical-pattern entries in us_aid.js. */
+const MERIT_CHECKED = {
+"Purdue University": {
+"t": "mr",
+"ex": "s",
+"n": "Merit for international first-years reported at $5,000–16,000 a year (aggregator)."
+},
+"Boston University": {
+"t": "mr",
+"ex": "o",
+"n": "International students are eligible for merit scholarships; apply by 1 Dec. The Presidential Scholarship is reported at $25,000 a year (secondary); the Trustee Scholarship covers full tuition.",
+"src": [
+"BU: merit scholarships for first-year students",
+"https://www.bu.edu/admissions/?p=17947"
+]
+},
+"Ohio State University": {
+"t": "no",
+"ex": "o",
+"n": "No first-year merit scholarship for international students; the international grant is need-based and only for students near graduation.",
+"src": [
+"Ohio State: International Student Grant",
+"https://oia.oaanet.oaa.osu.edu/media/1akactja/international-student-grant.pdf"
+]
+},
+"Rutgers University–New Brunswick": {
+"t": "mr",
+"ex": "s",
+"n": "All admitted international students are automatically considered; $5,000–16,000 a year, very competitive."
+},
+"Michigan State University": {
+"t": "mr",
+"ex": "s",
+"n": "International Tuition Grant reported at $15,000–25,000 a year for eight semesters (aggregators; amounts differ)."
+},
+"University of Massachusetts Amherst": {
+"t": "mr",
+"ex": "o",
+"n": "International first-years may receive merit awards decided at admission, with no separate form (the Chancellor's Award is reported at $10,000–18,000 a year).",
+"src": [
+"UMass Amherst: international applicant FAQ",
+"https://www.umass.edu/admissions/faq-international-applicants"
+]
+},
+"University of Arizona": {
+"t": "mr",
+"ex": "o",
+"n": "Global Wildcat Award by GPA (2025-26 table): $20,000 (3.90–4.00), $16,000 (3.75–3.89), $12,500 (3.50–3.74), $7,500 (3.25–3.49), $4,000 (3.00–3.24) a year; automatic.",
+"src": [
+"Arizona: international cost and scholarships",
+"https://everywhere.arizona.edu/cost/main-campus"
+]
+},
+"Worcester Polytechnic Institute (WPI)": {
+"t": "nm",
+"ex": "o",
+"n": "Need-based grants for international students (typically $5,000–25,000) and renewable merit awards of varying amounts; IB diploma 40+ guarantees at least $25,000.",
+"src": [
+"WPI: aid for international students",
+"https://www.wpi.edu/admissions/tuition-aid/applying-for-aid/international-students"
+]
+},
+"Indiana University Bloomington": {
+"t": "mr",
+"ex": "o",
+"n": "International freshmen are eligible for merit awards and country-specific scholarships (reported $1,000–11,000 a year) and a few Global Engagement Scholarships.",
+"src": [
+"IU Bloomington: international scholarships",
+"https://bloomington.iu.edu/cost-aid/scholarships/international/"
+]
+},
+"University at Buffalo (SUNY)": {
+"t": "mr",
+"ex": "o",
+"n": "Scholarships for international first-years; the Flagship Scholarship is reported at $10,000–15,000 a year, automatic with admission.",
+"src": [
+"UB: international scholarships",
+"https://www.buffalo.edu/internationaladmissions/affordable-costs-and-funding-opportunities/scholarships-funding.html"
+]
+},
+"University of Connecticut": {
+"t": "mr",
+"ex": "s",
+"n": "First-year applicants are considered automatically for most merit awards (Global Excellence and others); reported $5,000–15,000 a year for international students."
+},
+"University of Houston": {
+"t": "mr",
+"ex": "o",
+"n": "Academic Excellence Scholarship $1,000–6,000 a year; Tier One Scholarship covers full tuition and fees plus two years of housing and meals. International students apply by 1 Nov.",
+"src": [
+"UH: international undergraduate scholarship flyer",
+"https://uh.edu/apply/international/international-undergraduate-scholarship-flyer.pdf"
+]
+},
+"George Mason University": {
+"t": "mr",
+"ex": "o",
+"n": "#YouAreWelcomeHere Scholarship: at least half tuition in year one, renewable for year two; essay or video on leadership. Other merit awards are automatic.",
+"src": [
+"Mason: #YouAreWelcomeHere scholarship",
+"https://www2.gmu.edu/admissions-aid/youarewelcomehere-scholarship"
+]
+},
+"Colorado State University": {
+"t": "mr",
+"ex": "o",
+"n": "International first-year awards of $2,000–12,000 a year, automatic and renewable; apply by 15 Dec for the best consideration.",
+"src": [
+"CSU: international student scholarships",
+"https://international.colostate.edu/iec/international-admissions/scholarships-and-tuition"
+]
+},
+"University of Hawaii at Manoa": {
+"t": "mr",
+"ex": "o",
+"n": "International Merit Award worth 150% of resident tuition (about $16,400 a year in 2023-24); no longer automatic since Fall 2024, so apply by the priority deadline.",
+"src": [
+"UH Mānoa: academic merit scholarships",
+"https://manoa.hawaii.edu/fas/types-of-aid/scholarships/academic-merit-scholarships/"
+]
+},
+"University of Delaware": {
+"t": "mr",
+"ex": "s",
+"n": "International applicants who apply by 15 Jan are automatically considered; reported $5,000–18,000 a year, renewable with a 3.0 GPA (EducationUSA listing).",
+"src": [
+"EducationUSA: Delaware international merit",
+"https://educationusa.state.gov/node/8619"
+]
+},
+"University of South Florida": {
+"t": "mr",
+"ex": "s",
+"n": "Green & Gold awards (partial out-of-state tuition waivers) by GPA and SAT, reported $5,000–11,000 a year; Scholars tier needs about 3.60 GPA and SAT 1210+; no separate form."
+},
+"University of Illinois Chicago": {
+"t": "ck",
+"ex": "s",
+"n": "No international first-year merit award confirmed; UIC's Merit Tuition Award is listed for US citizens and permanent residents."
+},
+"University of Iowa": {
+"t": "mr",
+"ex": "o",
+"n": "International Distinction in Education Award (IDEA), $2,000–15,000 a year, automatic with admission.",
+"src": [
+"Iowa: International Distinction in Education Award",
+"https://admissions.uiowa.edu/node/611"
+]
+},
+"Louisiana State University": {
+"t": "no",
+"ex": "o",
+"n": "No scholarships specifically for international students; only those who attended a US or American-curriculum school can be considered for regular merit awards.",
+"src": [
+"LSU: incoming student scholarships",
+"https://lsu.edu/financialaid/scholarships/incoming-students.php"
+]
+},
+"Wayne State University": {
+"t": "mr",
+"ex": "o",
+"n": "All incoming students are considered: Warrior Award up to $7,000, Gold up to $5,000, Green up to $2,500 a year for four years.",
+"src": [
+"Wayne State: scholarships for international students",
+"https://next.wayne.edu/scholarships/international"
+]
+},
+"University of Missouri": {
+"t": "mr",
+"ex": "o",
+"n": "International Honors Scholarship $20,000 a year and International Merit Scholarship $10,000 a year (non-resident tuition), holistic review.",
+"src": [
+"Mizzou: international student scholarships",
+"https://admissions.missouri.edu/costs-aid/scholarships/international-student-scholarships"
+]
+},
+"University of Nebraska–Lincoln": {
+"t": "mr",
+"ex": "o",
+"n": "Global Ambassador Scholarship: $10,000 a year for up to four years (renew with 3.0 GPA and 24 credits).",
+"src": [
+"UNL: Global Ambassador Scholarship",
+"https://admissions.unl.edu/cost/scholarships/global-ambassador-scholarship/"
+]
+},
+"New Jersey Institute of Technology": {
+"t": "mr",
+"ex": "s",
+"n": "Merit reviewed after admission from grades and SAT/ACT; reported $5,000–15,000 a year for international students (aggregators)."
+},
+"University of New Mexico": {
+"t": "mr",
+"ex": "s",
+"n": "International Amigo Scholarship charges in-state tuition (worth roughly $20,000–27,000 a year) with a 3.5 GPA, or 3.0 plus SAT 1240; Leadership Scholarship about $17,000 a year."
+},
+"University of Oklahoma": {
+"t": "mr",
+"ex": "s",
+"n": "Freshman awards open to international students reported at $8,000–12,000 a year with qualifying GPA and SAT/ACT (older listings); check OU's current page."
+},
+"Temple University": {
+"t": "mr",
+"ex": "o",
+"n": "First-year international merit up to $20,000 a year for four years, no separate form; two #YouAreWelcomeHere scholarships of $20,000 a year.",
+"src": [
+"Temple: scholarships for international students",
+"https://payingforcollege.temple.edu/what-financial-aid/financial-aid-offer/scholarships/international-student-scholarships"
+]
+},
+"University of Tennessee, Knoxville": {
+"t": "mr",
+"ex": "s",
+"n": "International Volunteer Scholarship, $3,000–18,000 a year for four years by GPA and test score (2026-27 grid; minimum weighted core GPA 3.8)."
+},
+"University of South Carolina": {
+"t": "mr",
+"ex": "s",
+"n": "Merit for international freshmen reported at $2,000–10,000 a year; apply by 1 Dec."
+},
+"University of Alabama at Birmingham (UAB)": {
+"t": "mr",
+"ex": "o",
+"n": "International scholarships set in your offer by residency classification and visa; up to four years, full-time.",
+"src": [
+"UAB: international scholarship policies",
+"https://www.uab.edu/cost-aid/images/documents/International-Scholarship-Policies.pdf"
+]
+},
+"University of Texas at Arlington": {
+"t": "mr",
+"ex": "s",
+"n": "Presidential Honors (~$13,000), Presidential (~$10,000) and Maverick Academic ($1,000–6,000) awards reported for international freshmen; apply through Mav ScholarShop after admission.",
+"src": [
+"UTA: competitive scholarship tuition waiver",
+"https://uta.edu/administration/fao/scholarships/competitive-scholarship-non-resident-tuition-waiver"
+]
+},
+"University of Vermont": {
+"t": "mr",
+"ex": "o",
+"n": "International students are eligible for merit scholarships of up to $30,000 a year (Trustees Scholarship about $10,000–15,000).",
+"src": [
+"UVM: information for international applicants",
+"https://www.uvm.edu/admissions/undergraduate/information_international_applicants"
+]
+},
+"Virginia Commonwealth University": {
+"t": "mr",
+"ex": "s",
+"n": "International first-years are considered for the Provost Scholarship (up to $16,000 a year) and out-of-state awards of $10,000–15,000 a year by GPA."
+},
+"Illinois Institute of Technology": {
+"t": "mr",
+"ex": "o",
+"n": "Automatic international scholarships of $40,000–100,000 over four years (about $10,000–25,000 a year); only the highest award is given. Camras Scholarship (full tuition) is separate.",
+"src": [
+"Illinois Tech: international undergraduate scholarships",
+"https://www.iit.edu/admissions-aid/tuition-and-aid/scholarships/international-undergraduate-student-scholarships"
+]
+},
+"Pepperdine University": {
+"t": "mr",
+"ex": "s",
+"n": "Regents Scholarship from $20,000 a year for top admits (SAT/ACT/CLT required for it); no need-based aid for international students."
+},
+"Santa Clara University": {
+"t": "mr",
+"ex": "o",
+"n": "Merit decided at admission for first-years, international students included: Johnson Scholars (up to full tuition), Provost (half tuition), Dean's (about $6,000–10,000). No need-based aid for international students.",
+"src": [
+"SCU: merit scholarships",
+"https://scu.edu/financialaid/types-of-aid/scholarships-and-grants/merit-scholarships"
+]
+},
+"Southern Methodist University": {
+"t": "mr",
+"ex": "o",
+"n": "President's Scholars: full tuition and fees (plus housing award), renewable with 3.3 GPA; applicants of any citizenship are considered for academic merit awards.",
+"src": [
+"SMU: academic scholarships",
+"https://SMU.edu/EnrollmentServices/financialaid/TypesOfAid/Scholarships/Academic"
+]
+},
+"Texas Christian University": {
+"t": "nm",
+"ex": "o",
+"n": "International aid from $2,000 to $41,570 a year, competitive and usually under half the cost; CSS Profile (code 6820) by 1 Feb.",
+"src": [
+"TCU: international financial aid",
+"https://admissions.tcu.edu/cost-aid/intl-scholar-fin-aid/"
+]
+},
+"Howard University": {
+"t": "nm",
+"ex": "o",
+"n": "First-time international freshmen are considered for merit Howard University Freshman Scholarships from SAT/ACT and GPA (no separate form); need-based aid needs the ISFAA.",
+"src": [
+"Howard: international student aid",
+"https://financialservices.howard.edu/financial-aid/international-student-aid"
+]
+},
+"Colorado School of Mines": {
+"t": "mr",
+"ex": "o",
+"n": "International first-years can receive an admissions award of up to $8,000 a year, renewable for 4 years; sponsored students may not qualify.",
+"src": [
+"Mines: scholarship information",
+"https://finaid.mines.edu/scholarships/"
+]
+},
+"University of Central Florida": {
+"t": "no",
+"ex": "s",
+"n": "No first-year merit scholarship for international students found; only small Student Government awards (about $500) for continuing students."
+},
+"Florida International University": {
+"t": "ck",
+"ex": "s",
+"n": "No international first-year merit award found; ask FIU's admissions office."
+},
+"University of Louisville": {
+"t": "mr",
+"ex": "o",
+"n": "Global Cardinal Scholarship, automatic by GPA: $5,000 (3.25–3.49), $6,500 (3.5–3.74), $8,000 (3.75+) a year.",
+"src": [
+"Louisville: international scholarships",
+"https://louisville.edu/cost-aid/undergraduate-scholarships-aid/international-scholarships-aid"
+]
+},
+"University of Maryland, Baltimore County (UMBC)": {
+"t": "mr",
+"ex": "o",
+"n": "Merit awards of $1,000–15,000 a year for four years, international students included; two #YouAreWelcomeHere scholarships of $22,000 a year for international first-years.",
+"src": [
+"UMBC: scholarships for incoming first-year students",
+"https://scholarships.umbc.edu/freshmen/"
+]
+},
+"Michigan Technological University": {
+"t": "mr",
+"ex": "o",
+"n": "International Ambassador Scholarship, $11,000–14,300 a year, automatic after admission (3.50+ GPA for the top amount).",
+"src": [
+"Michigan Tech: aid for international students",
+"https://www.mtu.edu/finaid/students/international/"
+]
+},
+"Missouri University of Science and Technology": {
+"t": "mr",
+"ex": "o",
+"n": "Eligible international freshmen (F-1) receive $15,000 a year for up to 8 semesters, no separate form; renew with a 3.00 GPA.",
+"src": [
+"Missouri S&T: international merit scholarships",
+"https://sfa.mst.edu/financial-aid/scholarships/international/international-merit-based-scholarships"
+]
+},
+"University of New Hampshire": {
+"t": "mr",
+"ex": "s",
+"n": "Automatic merit for international students: Trustees up to $20,000 and Chancellor's up to $15,000 a year (UNH recalculates your grades)."
+},
+"Auburn University": {
+"t": "ck",
+"ex": "s",
+"n": "No international freshman amount found for the main campus; the freshman scholarship deadline is 15 Dec. (Auburn Montgomery, a separate school, offers $2,000–10,000.)"
+},
+"University of Arkansas": {
+"t": "mr",
+"ex": "s",
+"n": "International freshman awards reported from about $1,000–2,000 up to non-resident tuition; sources disagree.",
+"src": [
+"Arkansas: funding your studies",
+"https://international-admissions.uark.edu/undergraduate-studies/funding-your-studies.php"
+]
+},
+"Texas Tech University": {
+"t": "mr",
+"ex": "o",
+"n": "Presidential Scholarship by GPA and SAT (reported $4,000–9,000 a year), no separate form; any non-resident awarded it also pays in-state tuition, which is worth more.",
+"src": [
+"Texas Tech: first-year and transfer scholarships",
+"https://www.depts.ttu.edu/international/scholarships/firstyear-transfer.php"
+]
+},
+"University of North Texas": {
+"t": "mr",
+"ex": "s",
+"n": "UNT Excellence Scholarship, $1,000–12,000 a year by GPA (+$1,000 for SAT 1350+), automatic; priority by 1 Mar."
+},
+"West Virginia University": {
+"t": "mr",
+"ex": "o",
+"n": "Global Affairs Merit Awards of $4,000–8,000 a year for international first-years who qualify for a freshman scholarship (priority mid-April).",
+"src": [
+"WVU: global scholarships",
+"https://isss.wvu.edu/students/scholarships/global"
+]
+},
+"University of Illinois Urbana-Champaign": {
+"t": "ck",
+"ex": "s",
+"n": "No merit award confirmed for international students; some named awards (Stamps) are for US citizens only. Ask the scholarship office before counting on aid."
+},
+"Texas A&M University": {
+"t": "nl",
+"ex": "s",
+"n": "Only small or competitive awards for international students (International Education Fee Scholarship; International TPEG grant about $1,500–3,000 a year).",
+"src": [
+"Texas A&M: international student guide",
+"https://aggie.tamu.edu:443/getmedia/c370e0f3-345c-4c0a-ba30-135b687a3b3f/2223_Intl_Guide.pdf"
+]
+},
+"Rensselaer Polytechnic Institute (RPI)": {
+"t": "ck",
+"ex": "s",
+"n": "Merit awards (Rensselaer Leadership and Recognition Awards) exist, but international eligibility and amounts were not found.",
+"src": [
+"RPI: scholarships",
+"https://financialaid.rpi.edu/types-aid/scholarships"
+]
+},
+"Stevens Institute of Technology": {
+"t": "nm",
+"ex": "s",
+"n": "Global Scholarship for international students from $5,000 up to full tuition, renewable for 8 semesters; international applicants file the CSS Profile."
+},
+"University of Maryland, College Park": {
+"t": "ck",
+"ex": "s",
+"n": "Sources conflict: the top award (Banneker/Key) is for US citizens and permanent residents; a $5,000–15,000 international award is listed only by aggregators."
+},
+"Georgia State University": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year international scholarship found."
+},
+"University of Mississippi (Ole Miss)": {
+"t": "mr",
+"ex": "o",
+"n": "International awards for 4 years by GPA: Legacy $5,000 (3.25–3.49), Magnolia $9,500 (3.5–3.74), Champion $12,000 (3.75–3.89), Mississippi Premier about $28,000 (3.9–4.0, ~93% of tuition).",
+"src": [
+"Ole Miss: international student scholarships",
+"https://olemiss.edu/global/international-students-oge/scholarships-international-students/"
+]
+},
+"Montana State University": {
+"t": "mr",
+"ex": "o",
+"n": "International merit tuition award of $5,000–12,000 a year by GPA (2.5+), no extra form; given in order of admission, so apply early.",
+"src": [
+"Montana State: international undergraduate scholarships",
+"https://www.montana.edu/international/admissions/INTL_UG_Scholarships.html"
+]
+},
+"University of Montana": {
+"t": "mr",
+"ex": "o",
+"n": "International bachelor's admits are automatically considered for the UM Academic Achievement Scholarship as non-residents (third-party tiers $5,000–18,000 a year by GPA).",
+"src": [
+"UM: international expenses and scholarships",
+"https://www.umt.edu/admissions/admission-requirements/international/expenses_scholarships.php"
+]
+},
+"New Mexico State University": {
+"t": "mr",
+"ex": "s",
+"n": "International Competitive Scholarship: in-state tuition plus a small stipend, by GPA and IELTS/TOEFL; limited number.",
+"src": [
+"NMSU: international competitive scholarship",
+"https://isss.nmsu.edu/_files/isss-pdfs/2022-international-competitive-scholarship-new.pdf"
+]
+},
+"North Dakota State University": {
+"t": "mr",
+"ex": "s",
+"n": "Partial awards for international students: about $12,000 a year (3.5+ GPA) or $8,000 (3.0–3.49); no full scholarships."
+},
+"University of North Dakota": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year international scholarship found beyond small named awards."
+},
+"Old Dominion University": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Scholarship up to $16,000 a year, renewable 4 years (3.25 GPA and a one-page essay); #YouAreWelcomeHere covers half tuition for two students a year.",
+"src": [
+"ODU: international student scholarship",
+"https://www.odu.edu/node/282396"
+]
+},
+"University of Maine": {
+"t": "mr",
+"ex": "o",
+"n": "International scholarships of $9,000–12,000 a year, set at admission and fixed for the degree.",
+"src": [
+"UMaine: international scholarships",
+"https://umaine.edu/admissions/?p=6811"
+]
+},
+"University of Nevada, Reno": {
+"t": "mr",
+"ex": "o",
+"n": "New international students can receive $1,000–12,000 (the international office lists $300–5,000 a year); some awards need SAT 1100+.",
+"src": [
+"UNR: international scholarships",
+"https://www.unr.edu/oiss/scholarships"
+]
+},
+"University of Wisconsin–Milwaukee": {
+"t": "nm",
+"ex": "s",
+"n": "International Student Scholarship up to $6,000 a year, based on grades and financial need."
+},
+"Utah State University": {
+"t": "mr",
+"ex": "o",
+"n": "Only small international awards: the Afton B. Tew Scholarship ($1,000 a year, automatic for an evaluated GPA of 3.85+) and a $2,000 named scholarship.",
+"src": [
+"USU: paying for school (international)",
+"https://www.usu.edu/admissions/international/undergraduate-costs.php"
+]
+},
+"Northern Illinois University": {
+"t": "mr",
+"ex": "o",
+"n": "International Freshman Merit Scholarship, $5,000–9,000 a year with a 3.5+ GPA (renewable for family-sponsored students); Housing Scholarship $2,000 a year.",
+"src": [
+"NIU: international scholarships",
+"https://niu.edu/international_admissions/paying-for-college/scholarships.shtml"
+]
+},
+"Texas State University": {
+"t": "mr",
+"ex": "o",
+"n": "Assured scholarships for qualified international first-years; $1,000+ in Texas State merit awards can bring a non-resident tuition waiver. Competitive awards by 1 Mar.",
+"src": [
+"Texas State: international scholarships",
+"https://finaid.txst.edu/scholarships/international.html"
+]
+},
+"University of Toledo": {
+"t": "mr",
+"ex": "o",
+"n": "International Rocket Award, $8,000 a year with a 3.0+ GPA (applied to the out-of-state surcharge).",
+"src": [
+"Toledo: undergraduate international tuition and scholarships",
+"https://www.utoledo.edu/admission/international/tuition/"
+]
+},
+"University of Wyoming": {
+"t": "mr",
+"ex": "o",
+"n": "Brown and Gold Commitment: $8,000 a year (GPA 3.4–4.0) or $5,000 (3.0–3.39), renewable 4 years; usually not combined with other awards.",
+"src": [
+"UW: Brown and Gold Commitment",
+"https://www.uwyo.edu/sfa/scholarships/international/brown-and-gold-commitment.html"
+]
+},
+"Wichita State University": {
+"t": "mr",
+"ex": "o",
+"n": "Global Select scholarship, about $5,000 a year for undergraduates with a 3.0 GPA.",
+"src": [
+"Wichita State: international brochure (Aug 2025)",
+"https://www.wichita.edu/admissions/international/documents/Brochure_English_Aug2025.pdf"
+]
+},
+"University of Idaho": {
+"t": "mr",
+"ex": "o",
+"n": "Invitation to Idaho: nearly $16,000 a year (2024-25) for new first-year students with a 3.0 GPA, automatic, no deadline.",
+"src": [
+"U of Idaho: Invitation to Idaho",
+"https://uidaho.edu/financial-aid/scholarships/undergraduate/invitation"
+]
+},
+"University of Alabama in Huntsville": {
+"t": "mr",
+"ex": "s",
+"n": "Freshman Academic Scholarships include international students; reported tiers up to about $19,900 a year (3.5 GPA with SAT 1450).",
+"src": [
+"UAH: international academic scholarships",
+"https://www.uah.edu/admissions/undergraduate/financial-aid/scholarships/international"
+]
+},
+"University of Colorado Denver": {
+"t": "mr",
+"ex": "o",
+"n": "Automatic merit for international first-years, renewable 4 years: $5,000 (GPA 3.0–3.29), $7,500 (3.3–3.69), $10,000 (3.7+) a year.",
+"src": [
+"CU Denver: undergraduate costs and aid",
+"https://www.ucdenver.edu/international-admissions/costs-financial-aid/undergraduate"
+]
+},
+"University of Southern Mississippi": {
+"t": "ck",
+"ex": "s",
+"n": "No international first-year amount found (domestic awards start at $2,500)."
+},
+"Chapman University": {
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships up to $36,000 a year for international first-years, set at admission with no extra form.",
+"src": [
+"Chapman: aid for international students",
+"https://Chapman.edu/admission/undergraduate/how-to-apply/international-students/tuition-and-costs.aspx"
+]
+},
+"Loyola Marymount University": {
+"t": "ck",
+"ex": "s",
+"n": "International merit amounts not confirmed; check LMU's admissions page."
+},
+"University of Denver": {
+"t": "mr",
+"ex": "o",
+"n": "Automatic merit for international first-years, $10,000–31,000 a year (SAT/ACT used).",
+"src": [
+"DU: international student tuition and scholarships",
+"https://www.du.edu/admission-aid/undergraduate/international-applicants/tuition"
+]
+},
+"Saint Louis University": {
+"t": "ck",
+"ex": "s",
+"n": "No general international first-year amount found."
+},
+"Loyola University Chicago": {
+"t": "mr",
+"ex": "s",
+"n": "Academic scholarships (about $14,000–31,000 a year) with no separate form; priority 1 Dec, merit deadline 15 Mar.",
+"src": [
+"Loyola Chicago: international admission",
+"https://luc.edu/internationaladmission"
+]
+},
+"Marquette University": {
+"t": "mr",
+"ex": "o",
+"n": "Global Scholar Award: full tuition, housing, food and fees for up to 2 international students (3.25+ GPA, F-1), apply by 1 Mar; other merit reported $15,000–28,000.",
+"src": [
+"Marquette: Global Scholar Award",
+"https://www.marquette.edu/explore/scholarships-global-scholar.php"
+]
+},
+"Creighton University": {
+"t": "mr",
+"ex": "o",
+"n": "Every international applicant is automatically considered: Matteo Ricci awards up to 50% of tuition, World Scholar Awards up to 75% (third-party: $10,000–22,000 a year).",
+"src": [
+"Creighton: international scholarships and aid",
+"https://admissions.creighton.edu/admission-aid/international/scholarships-financial-aid"
+]
+},
+"University of Dayton": {
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships up to $30,000 a year toward tuition, automatic with the application; no full-tuition awards.",
+"src": [
+"Dayton: international undergraduate affordability",
+"https://udayton.edu/affordability/international/undergraduate/index.php"
+]
+},
+"Duquesne University": {
+"t": "mr",
+"ex": "o",
+"n": "Libermann Scholarship, usually $9,000–26,000 a year for 4 years, automatic for admitted international students; no full scholarships or need-based aid.",
+"src": [
+"Duquesne: international costs and scholarships",
+"https://www.duq.edu/admission-and-aid/how-to-apply/international/costs-and-scholarships.php"
+]
+},
+"Hofstra University": {
+"t": "mr",
+"ex": "o",
+"n": "Partial merit scholarships for international undergraduates, shown on the acceptance letter (no separate form); no full rides or need-based aid.",
+"src": [
+"Hofstra: scholarship opportunities",
+"https://hofstra.edu/admission/scholarship-opportunities.html"
+]
+},
+"Seton Hall University": {
+"t": "mr",
+"ex": "o",
+"n": "University Scholarship, $4,000–25,000 a year by academic profile (SAT/ACT needed for merit); smaller named awards.",
+"src": [
+"Seton Hall: undergraduate scholarships",
+"https://www.shu.edu/scholarships/university-scholarship.html"
+]
+},
+"University of Tulsa": {
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships for international undergraduates of $4,000–15,000 a year, no separate form; Global Ambassador Scholarship reported at $10,000–20,000.",
+"src": [
+"TU: international admission FAQ",
+"https://utulsa.edu/admissions/apply/international-students/faq-international-admission/"
+]
+},
+"Florida Institute of Technology": {
+"t": "mr",
+"ex": "s",
+"n": "International undergraduates reported to receive about $10,000 a year (older listing); confirm."
+},
+"Catholic University of America": {
+"t": "mr",
+"ex": "o",
+"n": "International students may receive merit scholarships of up to $33,000 a year; no need-based aid for them.",
+"src": [
+"CUA: aid for international students",
+"https://financial-aid.catholic.edu/undergraduate/international/index.html"
+]
+},
+"University of San Diego": {
+"t": "ck",
+"ex": "s",
+"n": "International merit amounts not found; check USD's admissions page."
+},
+"Florida Atlantic University": {
+"t": "mr",
+"ex": "o",
+"n": "President's International Scholarship: $6,000 a year for 4 years with a 3.5+ GPA and SAT/ACT/CLT, automatic; Depan scholarship also available.",
+"src": [
+"FAU: international recruitment flyer",
+"https://www.fau.edu/engineering/pdf/international-recruitment-flyer.pdf"
+]
+},
+"University of Massachusetts Boston": {
+"t": "mr",
+"ex": "o",
+"n": "International first-years are automatically considered for merit aid (a grid by GPA; reported up to about $10,000 a year).",
+"src": [
+"UMass Boston: undergraduate scholarships",
+"https://umb.edu/financial-aid/undergraduate-scholarships"
+]
+},
+"University of Massachusetts Lowell": {
+"t": "mr",
+"ex": "s",
+"n": "International first-years receive $8,000–20,000 a year, decided at admission with no separate form."
+},
+"University of Nevada, Las Vegas": {
+"t": "mr",
+"ex": "o",
+"n": "UNLV Opportunity and Signature scholarships are open to international students (amounts vary; a $4,500 a year figure is reported); limited international awards, fall only.",
+"src": [
+"UNLV: first-year scholarships",
+"https://www.unlv.edu/finaid/scholarships-first-year"
+]
+},
+"University at Albany (SUNY)": {
+"t": "mr",
+"ex": "s",
+"n": "Global Excellence Scholarship up to $20,500 a year for international first-years (renew with 2.5 GPA).",
+"src": [
+"EducationUSA: UAlbany Global Excellence",
+"https://educationusa.state.gov/node/17399"
+]
+},
+"University of North Carolina at Charlotte": {
+"t": "no",
+"ex": "o",
+"n": "No scholarship for incoming international first-years; only $1,000 awards for enrolled juniors and above.",
+"src": [
+"UNC Charlotte: international student scholarships",
+"https://globallearning.charlotte.edu/?p=2213"
+]
+},
+"Ohio University": {
+"t": "mr",
+"ex": "s",
+"n": "OHIO Admission Promise Award ($2,000, 3.0 GPA, by 15 Jan) plus larger merit awards that vary.",
+"src": [
+"Ohio University: international costs and aid",
+"https://news.ohio.edu/admissions/node/2781"
+]
+},
+"Miami University (Ohio)": {
+"t": "mr",
+"ex": "s",
+"n": "University merit scholarship from $1,000 up to full tuition by grades and English score (2020 official sheet); newer listings show 20–50% of tuition by GPA.",
+"src": [
+"Miami: international student update sheet (2020)",
+"https://miamioh.edu/_files/documents/admission/counselors/2020/international-student-update-sheet-2020_508.pdf"
+]
+},
+"University of Rhode Island": {
+"t": "mr",
+"ex": "o",
+"n": "Qualified international students have received $8,750–15,000 a year (partial tuition).",
+"src": [
+"URI: international student admission",
+"https://web.uri.edu/admission/?p=2469"
+]
+},
+"Boise State University": {
+"t": "mr",
+"ex": "o",
+"n": "Automatic merit for international first-years: Ridgeline $5,000, Summit $10,000 and Global $5,000–7,000 a year (can combine up to $17,000); no full scholarships.",
+"src": [
+"Boise State: international undergraduate scholarships",
+"https://www.boisestate.edu/global-international/cost-and-scholarships/undergraduate-scholarships/"
+]
+},
+"University of North Carolina at Greensboro": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Scholarships of $3,000–6,000 a year for new students with a 3.5 GPA (one year, renewable once); priority 1 Feb.",
+"src": [
+"UNCG: international admissions",
+"https://admissions.uncg.edu/admissions/international-admissions/"
+]
+},
+"University of Louisiana at Lafayette": {
+"t": "mr",
+"ex": "o",
+"n": "International students are considered automatically; the Fleur-de-Lis Scholarship waives the non-resident fee (about $6,900 a semester; 2.5 GPA and SAT 1030).",
+"src": [
+"UL Lafayette: Office of Scholarships",
+"https://louisiana.edu/scholarship"
+]
+},
+"Kennesaw State University": {
+"t": "nl",
+"ex": "s",
+"n": "Only small awards (about $1,000) and a limited number of out-of-state waivers for honors students."
+},
+"Georgia Southern University": {
+"t": "mr",
+"ex": "o",
+"n": "International Merit Scholarship worth about $13,000 a year (waives the out-of-state fee) for a limited number of fall entrants; considers academics and need.",
+"src": [
+"Georgia Southern: international merit scholarship",
+"https://discover.georgiasouthern.edu/register/intlmeritscholarship"
+]
+},
+"University of South Alabama": {
+"t": "mr",
+"ex": "o",
+"n": "Global Freshman Scholars award for a limited number of international freshmen, $2,000–10,000 a year by test score and GPA (3.0+), automatic, renewable 4 years.",
+"src": [
+"South Alabama: international student scholarships",
+"https://meteorology.southalabama.edu/departments/globalusa/internationalscholarships.html"
+]
+},
+"Oakland University": {
+"t": "ck",
+"ex": "s",
+"n": "No current first-year international scholarship found."
+},
+"Florida A&M University": {
+"t": "ck",
+"ex": "s",
+"n": "No dedicated international freshman scholarship found."
+},
+"Texas A&M University–Corpus Christi": {
+"t": "mr",
+"ex": "o",
+"n": "International scholarship of $1,000–4,000 a year by GPA and IELTS (top tier: 3.5 GPA and IELTS 7.0); résumé and 500-word essay.",
+"src": [
+"TAMUCC: international student scholarships",
+"https://tamucc.edu/cost-and-aid/scholarships/international-students.php"
+]
+},
+"East Carolina University": {
+"t": "no",
+"ex": "s",
+"n": "No scholarship aimed at incoming international first-years; one award for enrolled international undergraduates."
+},
+"North Carolina A&T State University": {
+"t": "no",
+"ex": "o",
+"n": "No scholarships designated for international students and no need-based aid; only departmental awards open to non-citizens.",
+"src": [
+"NC A&T: international student scholarships",
+"https://ncat.edu/admissions/financial-aid/types-of-aid/scholarships/international-student-scholarships.php"
+]
+},
+"Morgan State University": {
+"t": "ck",
+"ex": "s",
+"n": "No international freshman scholarship found."
+},
+"Marshall University": {
+"t": "mr",
+"ex": "s",
+"n": "Non-resident freshman tuition waivers reported (John Marshall about $14,000, John Laidley about $12,000) with GPA and test requirements; confirm international eligibility."
+},
+"University of Tennessee at Chattanooga": {
+"t": "mr",
+"ex": "o",
+"n": "UTC has a dedicated international freshman scholarship programme (amounts on its page).",
+"src": [
+"UTC: international freshman student scholarships",
+"https://www.utc.edu/enrollment-management-and-student-affairs/center-for-global-education/international-student-and-scholar-services/scholarships/international-freshman-student-scholarships"
+]
+},
+"Louisiana Tech University": {
+"t": "mr",
+"ex": "o",
+"n": "Bulldog Scholarship halves tuition for international students (about $22,000 to $11,000 a year), automatic with admission.",
+"src": [
+"Louisiana Tech: international undergraduate admissions",
+"https://www.latech.edu/student-life/international-affairs/undergaduate-admissions.php"
+]
+},
+"University of New Orleans": {
+"t": "mr",
+"ex": "s",
+"n": "International Tuition Award about $2,000 a year (3.0 GPA); amounts vary by student.",
+"src": [
+"UNO: scholarships and awards",
+"https://www.uno.edu/financial-aid/types/scholarships-and-awards"
+]
+},
+"Bowling Green State University": {
+"t": "mr",
+"ex": "o",
+"n": "Freshman Academic Scholarship of $1,000–8,000 a year by GPA and IELTS/TOEFL or SAT/ACT.",
+"src": [
+"BGSU: international tuition and scholarships",
+"https://www.bgsu.edu/admissions/international/undergraduate/tuition.html"
+]
+},
+"University of Akron": {
+"t": "nm",
+"ex": "o",
+"n": "Presidential Scholarship $1,000–7,500 a year plus a $3,000 surcharge waiver; the Akron International Scholars Award gives full tuition, room and board to one international freshman a year (merit and need).",
+"src": [
+"Akron: international scholarships",
+"https://uakron.edu/international/scholarships"
+]
+},
+"Wright State University": {
+"t": "mr",
+"ex": "s",
+"n": "International Ambassador Scholarship: $10,000 a year for two first-year international students who live on campus."
+},
+"Cleveland State University": {
+"t": "mr",
+"ex": "s",
+"n": "Academic excellence scholarship for international undergraduates (reported up to $12,000 a year); confirm first-year eligibility."
+},
+"Central Michigan University": {
+"t": "mr",
+"ex": "o",
+"n": "Automatic by GPA: Opportunity $1,000 (2.8–2.9), Scholar $4,000 (3.0–3.29), President's Award (3.3+) charges resident tuition, saving about $9,000 a year.",
+"src": [
+"CMU: international undergraduate costs and scholarships",
+"https://www.cmich.edu/international-admissions/undergraduate/cost-scholarships"
+]
+},
+"Ball State University": {
+"t": "mr",
+"ex": "s",
+"n": "2–3 scholarships of $14,000 a year for newly admitted international students (non-resident tuition; short essay or video, by about 1 Jun); renew with 2.5 GPA."
+},
+"Southern Illinois University Carbondale": {
+"t": "mr",
+"ex": "s",
+"n": "High Achievers rate: Illinois in-state tuition for SAT 1240+ or a 3.5 GPA (a large saving on non-resident tuition)."
+},
+"University of Missouri–Kansas City": {
+"t": "mr",
+"ex": "o",
+"n": "Dean's International Scholar Award: $4,250 a semester ($8,500 a year) for bachelor's students, automatic, renew with 3.0 GPA (not professional schools).",
+"src": [
+"UMKC: scholarships for future international students",
+"https://www.umkc.edu/international-students/future-students/scholarships.html"
+]
+},
+"South Dakota State University": {
+"t": "mr",
+"ex": "s",
+"n": "Jackrabbit Guarantee, $1,000–4,000, for new undergraduates including international students (GPA 3.0 and SAT 1100); priority 1 Dec.",
+"src": [
+"EducationUSA: Jackrabbit Guarantee",
+"https://educationusa.state.gov/node/13739"
+]
+},
+"University of Alaska Fairbanks": {
+"t": "ck",
+"ex": "s",
+"n": "No clearly international freshman scholarship found; general awards (Chancellor's $4,000) may not apply."
+},
+"University of Massachusetts Dartmouth": {
+"t": "mr",
+"ex": "o",
+"n": "International freshmen are automatically considered for $10,000–15,500 a year (GPA 2.75+), renewable 4 years with 3.0 GPA.",
+"src": [
+"UMass Dartmouth: international financial information",
+"https://umassd.edu/undergraduate/international/financial"
+]
+},
+"Emerson College": {
+"t": "mr",
+"ex": "o",
+"n": "All admitted students, international included, are automatically considered for merit scholarships (Aspire, Trustees; reported $10,000–45,000 a year); no need-based aid for international students.",
+"src": [
+"Emerson: aid for international students",
+"https://emerson.edu/admission-aid/undergraduate-admission/undergraduate-financial-aid/financial-aid-for-international-students/"
+]
+},
+"The New School (Parsons School of Design)": {
+"t": "mr",
+"ex": "o",
+"n": "All applicants, international included, are considered for merit scholarships on artistic or academic ability (amounts not published).",
+"src": [
+"Parsons: financial aid overview",
+"https://ww4.newschool.edu/parsons/financial-aid/"
+]
+},
+"Pratt Institute": {
+"t": "mr",
+"ex": "o",
+"n": "International merit scholarships of $9,000–26,000 a year (4 years; 5 for architecture), automatic from portfolio, GPA and scores; no need-based aid.",
+"src": [
+"Pratt: institutional programs",
+"https://catalog.pratt.edu/undergraduate/financial-aid/institutional-programs"
+]
+},
+"University of Texas at El Paso": {
+"t": "ck",
+"ex": "s",
+"n": "No general international freshman award found; Presidential Excellence ($3,000 a year) has high GPA and test thresholds.",
+"src": [
+"UTEP: paying for school (international)",
+"https://www.utep.edu/student-affairs/oipsa/office-of-international-programs/information/scholarships.html"
+]
+},
+"St. John's University": {
+"t": "mr",
+"ex": "o",
+"n": "All applicants are automatically considered for merit scholarships (reported up to about $36,000 a year); no need-based aid for international students; Ozanam Scholars up to $10,000 extra.",
+"src": [
+"St. John's: international admission FAQ",
+"https://www.stjohns.edu/admission/international-admission/international-admission-faqs"
+]
+},
+"Morehouse College": {
+"t": "mr",
+"ex": "o",
+"n": "College-funded academic, athletic and talent awards; international students have their own eligibility section and do not file the FAFSA.",
+"src": [
+"Morehouse: institutional awards",
+"https://morehouse.edu/aid/financial-aid/institutional-awards"
+]
+},
+"Hope College": {
+"t": "mr",
+"ex": "o",
+"n": "International aid and scholarships of $15,000–25,000 a year (third-party sources: up to $30,000), mainly on academics; on-campus living required.",
+"src": [
+"Hope: costs and financial aid",
+"https://hope.edu/admissions/costs-financial-aid.html"
+]
+},
+"Berklee College of Music": {
+"t": "mr",
+"ex": "o",
+"n": "International students receive merit scholarships through the admission audition and interview (mostly partial, a few full tuition); no need-based aid at entry; Thrive Scholarship (CSS Profile) after the second semester.",
+"src": [
+"Berklee: international student financial assistance",
+"https://www.berklee.edu/financial-aid-international-student-financial-assistance"
+]
+},
+"Willamette University": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Grant of $52,000 a year for every degree-seeking international applicant, automatic and renewable (2.0 GPA, living on campus); merit scholarships from $28,000 are separate.",
+"src": [
+"Willamette: international scholarships",
+"https://willamette.edu/cost-aid/financial-aid/undergrad/international-scholarships"
+]
+},
+"University of Puget Sound": {
+"t": "ck",
+"ex": "s",
+"n": "International merit amount not found; check Puget Sound's admission page."
+},
+"Trinity University": {
+"t": "nm",
+"ex": "o",
+"n": "International applicants are automatically considered for academic merit of $5,000–30,000 a year (renewable 8 semesters); need-aware review for international aid.",
+"src": [
+"Trinity: aid for international students",
+"https://trinity.edu/admissions/aid/types/international"
+]
+},
+"Southwestern University": {
+"t": "ck",
+"ex": "s",
+"n": "International scholarship details not found."
+},
+"Rollins College": {
+"t": "mr",
+"ex": "s",
+"n": "International students are eligible for academic scholarships from $15,000 a year up to the Dean's Scholarship ($33,000); Alfond Scholars (up to 10 a year) is a full-ride-style award."
+},
+"Ursinus College": {
+"t": "mr",
+"ex": "o",
+"n": "All admitted international students are eligible for merit awards and most specialty scholarships (reported $30,000–40,000 a year).",
+"src": [
+"Ursinus: costs and scholarships (international)",
+"https://ursinus.edu/admission/applying/international-applicants/costs-and-scholarships/"
+]
+},
+"Muhlenberg College": {
+"t": "mr",
+"ex": "o",
+"n": "A limited number of merit scholarships for the most accomplished international students (general merit $18,000–35,000 a year), no extra documents.",
+"src": [
+"Muhlenberg: aid for international students",
+"https://salii.muhlenberg.edu/admissions/applyingasaninternationalstudent/financialaidforinternationalstudents"
+]
+},
+"Wheaton College (Massachusetts)": {
+"t": "mr",
+"ex": "s",
+"n": "Presidential Scholarship open to citizens of any country, reported $10,000–42,000 a year, automatic (amount in the acceptance letter)."
+},
+"Ohio Wesleyan University": {
+"t": "nm",
+"ex": "o",
+"n": "Bashford International Scholarship, $37,000 a year (Fall 2026), automatic with no minimum GPA or test; need-based aid for international students is limited.",
+"src": [
+"OWU: international scholarships and need-based aid",
+"https://www.owu.edu/admission/apply/international-students/international-scholarships-and-need-based-aid/"
+]
+},
+"Wofford College": {
+"t": "mr",
+"ex": "o",
+"n": "Academic or athletic scholarships for exceptional international students; no federal or state aid (cost about $79,000).",
+"src": [
+"Wofford: international applicants",
+"https://www.wofford.edu/admission/apply/international-applicants"
+]
+},
+"Millsaps College": {
+"t": "mr",
+"ex": "o",
+"n": "Top international applicants receive $21,000–34,000 a year, automatic on admission; no full scholarships.",
+"src": [
+"Millsaps: I-20 financial support",
+"https://admission.millsaps.edu/register/financialsupport"
+]
+},
+"Washington College": {
+"t": "mr",
+"ex": "o",
+"n": "Admitted applicants are guaranteed at least $33,000 and up to $38,000 a year (international: Colin Ferguson Grant reported in the same range).",
+"src": [
+"Washington College: guaranteed scholarships",
+"https://washcoll.edu/scholarships"
+]
+},
+"St. Mary's College of Maryland": {
+"t": "ck",
+"ex": "s",
+"n": "International scholarship details not found."
+},
+"Cornell College": {
+"t": "mr",
+"ex": "o",
+"n": "International merit scholarships of $35,000–40,000 a year for 2026-27 (up to $42,000 for exceptional students), automatic, renewable 4 years.",
+"src": [
+"Cornell College: scholarships and awards",
+"https://cornellcollege.edu/financial-assistance/scholarships-awards"
+]
+},
+"Coe College": {
+"t": "mr",
+"ex": "o",
+"n": "International merit scholarships up to $42,000 a year by grades and SAT-type tests; one full-tuition Global Leadership Scholarship a year (deadline ~1 Feb; you must fund $25,000 a year of other costs).",
+"src": [
+"Coe: international tuition, fees and scholarships",
+"https://www.coe.edu/admission/international-students/tuition-fees-scholarships"
+]
+},
+"Illinois Wesleyan University": {
+"t": "mr",
+"ex": "s",
+"n": "Admitted international students are automatically considered for partial scholarships (amounts vary with merit and need)."
+},
+"Washington & Jefferson College": {
+"t": "mr",
+"ex": "s",
+"n": "Every admitted international student receives a flat International Grant reported at $20,000 (older figure $17,000); deadline 1 Mar."
+},
+"Concordia College": {
+"t": "nm",
+"ex": "o",
+"n": "Automatic academic scholarships of $11,000–17,000 a year by grades or scores, plus funds toward financial need.",
+"src": [
+"Concordia: scholarships",
+"https://www.concordiacollege.edu/tuition-aid/scholarships/Concordia-scholarships/"
+]
+},
+"Monmouth College": {
+"t": "mr",
+"ex": "s",
+"n": "Merit award up to $17,000 (up to 50 students) and Young Leaders up to $25,000 (5 students) for degree-seeking international students."
+},
+"Albion College": {
+"t": "mr",
+"ex": "o",
+"n": "All admitted international students are eligible for awards covering about 60% of costs; you contribute up to about $30,000 a year after the scholarship.",
+"src": [
+"Albion: international scholarships and expenses",
+"https://www.albion.edu/admission/international/scholarships-and-expenses/"
+]
+},
+"Eckerd College": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Grant up to $25,000 a year (third-party: $27,000), automatic, plus up to $2,000 in work; no need-based aid for international students.",
+"src": [
+"Eckerd: international admissions",
+"https://eckerd.edu/admissions/?p=1244"
+]
+},
+"Bentley University": {
+"t": "ck",
+"ex": "s",
+"n": "Academic scholarships for first-years vary by student; international amounts not found."
+},
+"DePaul University": {
+"t": "mr",
+"ex": "s",
+"n": "Global DePaul Scholarship for international first-years, $12,000–32,000 a year by GPA, automatic, renewable 4 years."
+},
+"Elon University": {
+"t": "mr",
+"ex": "o",
+"n": "First-year applicants are considered for the Presidential, Engagement and International Scholar awards: $3,000–23,500 a year in total for international students; no need-based aid for non-US citizens.",
+"src": [
+"Elon: international first-year application",
+"https://www.elon.edu/u/admissions/undergraduate/international-admissions/admissions-requirements/"
+]
+},
+"Pace University": {
+"t": "mr",
+"ex": "s",
+"n": "Merit by GPA, reported $13,500–20,000 a year (New York City) and $27,000–35,000 (Westchester), renewable (2024 brochure).",
+"src": [
+"Kaplan Pathways: Pace scholarships",
+"https://downloads.kaplanpathways.com/downloads/pace-university-scholarships"
+]
+},
+"Fairfield University": {
+"t": "nm",
+"ex": "o",
+"n": "All students regardless of citizenship are automatically considered for merit scholarships; international students are encouraged to file the CSS Profile for aid.",
+"src": [
+"Fairfield: international students",
+"https://www.fairfield.edu/admission-and-aid/apply/international-students"
+]
+},
+"Gonzaga University": {
+"t": "mr",
+"ex": "o",
+"n": "International students generally qualify for all Gonzaga merit scholarships, decided without a separate application (first-year band reported $23,500–32,000).",
+"src": [
+"Gonzaga: costs and scholarships for international students",
+"https://www-train.gonzaga.edu/admission/international-admission/costs-scholarships-international-students"
+]
+},
+"Seattle University": {
+"t": "ck",
+"ex": "s",
+"n": "International first-year amount not confirmed (one listing: about $12,000 a year)."
+},
+"Hult International Business School": {
+"t": "mr",
+"ex": "s",
+"n": "Scholarships such as the Global Generation Scholarship of about $5,000 a year (2023-24 figures), essay or video required."
+},
+"Embry-Riddle Aeronautical University": {
+"t": "mr",
+"ex": "o",
+"n": "All foreign freshman applicants are automatically considered for the Embry-Riddle Scholarship (needs SAT/ACT; reported $5,000–15,000 a year).",
+"src": [
+"Embry-Riddle: international admissions financial information",
+"https://daytonabeach.erau.edu/admissions/international-admissions/financial"
+]
+},
+"Clarkson University": {
+"t": "mr",
+"ex": "o",
+"n": "All admitted applicants are considered for an International Scholarship up to $40,000 (set in year one); Ignite Presidential Fellowship covers full tuition for 10 first-years; no need-based aid for international undergraduates.",
+"src": [
+"Clarkson: scholarships for international students",
+"https://www.clarkson.edu/admissions-aid/international/tuition-costs/scholarships"
+]
+},
+"Kettering University": {
+"t": "mr",
+"ex": "s",
+"n": "International Scholar Award ($15,000, top international applicant) and merit reported at $8,500–17,500 a year; some large awards need US citizenship."
+},
+"Rose-Hulman Institute of Technology": {
+"t": "nm",
+"ex": "s",
+"n": "Merit scholarship automatic for admitted students (reported $10,000–25,000); international students can apply for need-based aid with a supplemental form after admission.",
+"src": [
+"Rose-Hulman: international students",
+"https://rhit.edu/admissions-and-aid/the-application-process/application-and-deadlines/international-students.html"
+]
+},
+"School of the Art Institute of Chicago": {
+"t": "mr",
+"ex": "o",
+"n": "International students are reviewed for merit scholarships during admission (Presidential, Distinguished, Honors tiers), no extra form.",
+"src": [
+"SAIC: international financial aid and scholarships",
+"https://www.saic.edu/cost-financial-aid/international/financial-aid-scholarships"
+]
+},
+"Savannah College of Art and Design (SCAD)": {
+"t": "ck",
+"ex": "s",
+"n": "Undergraduate international scholarship amounts not found."
+},
+"Wentworth Institute of Technology": {
+"t": "nm",
+"ex": "o",
+"n": "Merit scholarships (President's Award) for international students from school results, automatic; from Fall 2026 a limited number of resource-based grants for admitted international students.",
+"src": [
+"Wentworth: international undergraduate admissions",
+"https://wit.edu/admissions/international/undergraduate"
+]
+},
+"Milwaukee School of Engineering": {
+"t": "ck",
+"ex": "s",
+"n": "International scholarship amounts not found."
+},
+"Quinnipiac University": {
+"t": "mr",
+"ex": "o",
+"n": "A small pool of International Student Scholarships for strong students (reported $23,000–34,000), automatic if complete by 1 Mar.",
+"src": [
+"Quinnipiac: international student scholarship",
+"https://www.quinnipiac.edu/paying-for-college/browse-financial-aid/scholarships-grants/international-student-scholarship/"
+]
+},
+"Ithaca College": {
+"t": "nm",
+"ex": "o",
+"n": "Presidential Scholarship covers full tuition and fees for four years (separate application by 1 Nov; international students also file Ithaca's aid form by then); other awards vary.",
+"src": [
+"Ithaca: scholarships for new students",
+"https://www.ithaca.edu/tuition-financial-aid/undergraduate-financial-aid/types-financial-aid/scholarships/ithaca-scholarships-new-students"
+]
+},
+"Marist University": {
+"t": "mr",
+"ex": "s",
+"n": "Undergraduate merit of $10,000–30,000 a year, automatic (international eligibility not stated explicitly).",
+"src": [
+"Marist: aid for international students",
+"https://marist.edu/student-financial-services/international"
+]
+},
+"Suffolk University": {
+"t": "mr",
+"ex": "o",
+"n": "All applicants, international included, are automatically considered for merit awards (International Students Merit Scholarship, partial, amount varies).",
+"src": [
+"Suffolk: INTO progression scholarships",
+"https://sites.suffolk.edu/intosuffolk/files/2022/12/2022-Progression-Scholarship-Flyer-1-1.pdf"
+]
+},
+"Providence College": {
+"t": "nm",
+"ex": "o",
+"n": "Merit for all applicants (never the full cost) and very limited need-based aid up to tuition; you must cover at least housing and food (~$22,000), and the strongest candidates cover about half the cost.",
+"src": [
+"Providence: costs and aid for international students",
+"https://admission.providence.edu/international-applicants/cost-financial-aid/"
+]
+},
+"Xavier University": {
+"t": "ck",
+"ex": "s",
+"n": "No international-specific scholarship amount found; academic scholarships can be deducted from the cost on the I-20.",
+"src": [
+"Xavier: financial requirements 2026-27",
+"https://www.xavier.edu/international-admission/financial-requirements-2026-2027.pdf"
+]
+},
+"Butler University": {
+"t": "mr",
+"ex": "o",
+"n": "International scholarships of $20,000–34,000 a year (2026-27), from academic record and test scores.",
+"src": [
+"Butler: international financial aid and scholarships",
+"https://www.butler.edu/admission-aid/financial-aid-scholarships/international/"
+]
+},
+"Drake University": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Grant up to 40% of total cost a year; Presidential Scholarship $27,000–35,000 for first-years.",
+"src": [
+"Drake: scholarships",
+"https://www.drake.edu/scholarships/"
+]
+},
+"Bryant University": {
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships of $5,000–40,000 a year for international applicants (limited number).",
+"src": [
+"Bryant: international student admission",
+"https://www.bryant.edu/admission-bryant/international-student-admission"
+]
+},
+"Bradley University": {
+"t": "mr",
+"ex": "s",
+"n": "Academic scholarships for international students reported between about $12,500 and $25,000 a year (sources conflict); no need-based aid."
+},
+"Valparaiso University": {
+"t": "mr",
+"ex": "o",
+"n": "All international undergraduates are automatically awarded merit at admission: International Excellence Scholarship $18,000–25,000 a year.",
+"src": [
+"Valparaiso: international students",
+"https://valpo.edu/?p=8415"
+]
+},
+"University of St. Thomas": {
+"t": "mr",
+"ex": "s",
+"n": "International students are considered for merit covering 10–70% of tuition; full-tuition GHR Fellows (open to international applicants) and Schulze Innovation scholarships."
+},
+"University of the Pacific": {
+"t": "mr",
+"ex": "s",
+"n": "First-year merit of $10,000–30,000 a year; Powell Scholarship (up to 10 a year, about $43,000–49,000) is competitive."
+},
+"University of Redlands": {
+"t": "mr",
+"ex": "o",
+"n": "International students are considered for merit and talent awards (Achievement Award reported up to $37,000 a year, automatic).",
+"src": [
+"Redlands: international tuition and fees",
+"https://prep.www.redlands.edu/admissions-and-aid/international/tuition-and-fees"
+]
+},
+"Saint Mary's College of California": {
+"t": "mr",
+"ex": "s",
+"n": "Presidential Scholarship $30,000 a year for international and US students with a 3.8 GPA and SAT 1350+.",
+"src": [
+"Saint Mary's: international student resources",
+"https://www.stmarys-ca.edu/international-students/resources"
+]
+},
+"Mercer University": {
+"t": "mr",
+"ex": "s",
+"n": "Presidential, Heritage and Stamps (up to 10 a year) scholarships are open to international students; amounts not published.",
+"src": [
+"Mercer: first international Stamps Scholar",
+"https://den.mercer.edu/mercer-expands-recruitment-abroad-as-1st-international-student-is-named-stamps-scholar"
+]
+},
+"Belmont University": {
+"t": "nl",
+"ex": "o",
+"n": "Only limited international scholarships of $1,000–4,000 for undergraduates, awarded each spring.",
+"src": [
+"Belmont: international tuition and aid",
+"https://belmont.edu/admissions/international/tuition-aid.html"
+]
+},
+"University of Tampa": {
+"t": "mr",
+"ex": "s",
+"n": "International students are considered automatically and get the same amounts as domestic students (Presidential Scholarship about $10,000–18,000 a year).",
+"src": [
+"The Minaret: how international students receive aid",
+"https://theminaretonline.org/2025/02/17/how-do-international-students-receive-financial-aid/"
+]
+},
+"Nova Southeastern University": {
+"t": "mr",
+"ex": "s",
+"n": "International undergraduates receive scholarships at admission (average about $12,000; Dean's Scholarship reported $5,000–21,000 a year)."
+},
+"Lynn University": {
+"t": "mr",
+"ex": "s",
+"n": "Lynn Merit Scholarship for international first-years, $16,000–28,000 a year (2026-27), automatic, renew with 2.0 GPA."
+},
+"Johnson & Wales University": {
+"t": "mr",
+"ex": "o",
+"n": "International Presidential Scholarship based on academic record, renewable 4 years (general merit table $21,000–30,000 a year by GPA).",
+"src": [
+"JWU: scholarships and grants",
+"https://www.jwu.edu/scholarships-and-grants.html"
+]
+},
+"Loyola University New Orleans": {
+"t": "mr",
+"ex": "s",
+"n": "Merit for international applicants reported $14,000–27,000 a year (3.0 GPA), up to full tuition at the top."
+},
+"Loyola University Maryland": {
+"t": "mr",
+"ex": "o",
+"n": "All students, international included, are automatically eligible for merit scholarships stated at admission (2026-27 first-year bands reported about $35,000–41,000 a year).",
+"src": [
+"Loyola Maryland: scholarships",
+"https://www.loyola.edu/department/financial-aid/undergraduate/programs/scholarships"
+]
+},
+"Saint Joseph's University": {
+"t": "ck",
+"ex": "s",
+"n": "International merit details not found."
+},
+"University of Portland": {
+"t": "mr",
+"ex": "o",
+"n": "International undergraduates receive the same merit awards as domestic students, by GPA and SAT/ACT.",
+"src": [
+"University of Portland: international student scholarships",
+"https://www.up.edu/iss/international-student-resources/international-student-scholarship.html"
+]
+},
+"Whitworth University": {
+"t": "nm",
+"ex": "o",
+"n": "International first-year scholarships up to $9,000 a year (2026-27) by academic achievement, plus need-based aid.",
+"src": [
+"Whitworth: international first-year scholarships and need-based aid",
+"https://whitworth.edu/cms/administration/financial-aid/international-student-scholarships-need-based-aid"
+]
+},
+"Pacific Lutheran University": {
+"t": "mr",
+"ex": "s",
+"n": "International Merit Award/Grant of about $6,000–32,000 a year by academic record, automatic (EducationUSA: about 65% of cost).",
+"src": [
+"EducationUSA: PLU international grants",
+"https://educationusa.state.gov/scholarships/international-grants"
+]
+},
+"Adelphi University": {
+"t": "mr",
+"ex": "o",
+"n": "Undergraduate international students are eligible for merit, talent and athletic scholarships with no separate form (Dean's and Presidential reported $15,000–28,000+).",
+"src": [
+"Adelphi: aid for international students",
+"https://adelphi.edu/aid/apply/international-students"
+]
+},
+"Long Island University": {
+"t": "ck",
+"ex": "s",
+"n": "International amounts conflict across sources; ask LIU."
+},
+"Fairleigh Dickinson University": {
+"t": "mr",
+"ex": "s",
+"n": "International Undergraduate Freshmen Scholarship up to $24,000 a year, merit-based, no SAT needed, renewable.",
+"src": [
+"IIE: FDU scholarships",
+"https://www.iie.org/programs/fairleigh-dickinson-university/scholarships"
+]
+},
+"Stetson University": {
+"t": "mr",
+"ex": "s",
+"n": "Merit programmes are the route for international students (Global Citizen Scholarship; the J. Ollie Edmunds Distinguished Scholarship is a highly competitive full award); no need-based aid for them."
+},
+"Illinois State University": {
+"t": "mr",
+"ex": "s",
+"n": "International Merit Scholarship, $2,000–10,000 a year for international freshmen (by about 1 Mar)."
+},
+"Western Michigan University": {
+"t": "mr",
+"ex": "s",
+"n": "Global Education Undergraduate Merit Scholarship up to $10,000 a year (3.5+ GPA, first-time F-1), automatic, up to 8 semesters.",
+"src": [
+"WMU: scholarships for undergraduate students",
+"https://wmich.edu/internationaladmissions/financialaid/undergraduate"
+]
+},
+"Kent State University": {
+"t": "mr",
+"ex": "o",
+"n": "International Freshman Scholarship, merit-based (3.7+ GPA), amount varies (reported $2,000–20,000); Global Scholarship up to $12,000.",
+"src": [
+"Kent State: international freshman scholarship",
+"https://www.kent.edu/node/952859"
+]
+},
+"Portland State University": {
+"t": "mr",
+"ex": "o",
+"n": "International Achievement Scholarship, $3,000–10,000 a year for new international undergraduates with a 3.25+ GPA, automatic.",
+"src": [
+"PSU: international scholarships",
+"https://www.pdx.edu/student-finance/international-scholarships"
+]
+},
+"University of Memphis": {
+"t": "mr",
+"ex": "s",
+"n": "Merit for new F-1 students reported at $5,000–12,000 a year (Trustee, Dean's, Provost); apply by 1 Dec for priority.",
+"src": [
+"Memphis: scholarships",
+"https://www.memphis.edu/scholarships/"
+]
+},
+"Northern Arizona University": {
+"t": "mr",
+"ex": "o",
+"n": "International Excellence Award up to $11,000 a year for first-time F-1 students at Flagstaff, automatic and first-come, first-served; renew with 3.0 GPA.",
+"src": [
+"NAU: international scholarships",
+"https://legacy.nau.edu/isss/scholarships"
+]
+},
+"Rowan University": {
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships of $1,000–19,000 a year for international first-year students, automatic on admission; apply by 1 Mar for priority; keep a 2.5 GPA; covers direct costs only.",
+"src": [
+"Rowan: scholarships for international students",
+"https://admissions.rowan.edu/admissions-process/international-requirements/scholarships-international-students.html"
+]
+},
+"New Mexico Tech": {
+"t": "ck",
+"ex": "s",
+"n": "One merit scholarship on entry (freshman deadline 1 Mar; e.g. Copper $2,000 a year); no international-specific amount confirmed.",
+"src": [
+"NMT: scholarships",
+"https://nmt.edu/finaid/scholarships.php"
+]
+},
+"South Dakota Mines": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year scholarship for international students found; ask admissions (reported deadline 15 Jan to be considered)."
+},
+"The College of New Jersey": {
+"t": "mr",
+"ex": "o",
+"n": "Partial merit awards up to $6,000 a year ($24,000 over four years) for fall first-year international students, automatic holistic review; no full or need-based awards.",
+"src": [
+"TCNJ: international admissions and scholarships",
+"https://admissions.tcnj.edu/?p=182"
+]
+},
+"James Madison University": {
+"t": "ck",
+"ex": "s",
+"n": "Third-party sites mention a Madison Scholarship for international students, but no official amount was found; ask JMU."
+},
+"College of Charleston": {
+"t": "mr",
+"ex": "o",
+"n": "International Ambassador Scholarship $10,000 a year for admitted F-1 students, automatic.",
+"src": [
+"CofC: international scholarships",
+"https://charleston.edu/admission/apply/international/international-partnerships.php"
+]
+},
+"Appalachian State University": {
+"t": "mr",
+"ex": "s",
+"n": "Small one-time awards of $1,000–2,000 for incoming F-1 undergraduates, automatic (page last seen for Fall 2023).",
+"src": [
+"App State: international scholarships",
+"https://international.appstate.edu/node/1385"
+]
+},
+"UNC Wilmington": {
+"t": "mr",
+"ex": "s",
+"n": "Reported: $2,000 automatic for a 3.5+ GPA, and a first-year SAT scholarship of about $5,000 a year with SAT 1300+; terms vary by year."
+},
+"Towson University": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Scholarship $6,000–12,000 for new undergraduates, competitive, priority date 15 Nov; separate You Are Welcome Here award covers about half of tuition (cannot hold both).",
+"src": [
+"Towson: international student scholarships",
+"https://towson.edu/admissions/financialaid/programs/scholarships/international.html"
+]
+},
+"Western Kentucky University": {
+"t": "mr",
+"ex": "o",
+"n": "Academic Merit Awards for international students with a 3.0+ GPA; the Fall 2024 flyer listed $1,000–7,500 a year by GPA and SAT/ACT.",
+"src": [
+"WKU: international student scholarships",
+"https://www.wku.edu/international/international-scholarships.php"
+]
+},
+"Middle Tennessee State University": {
+"t": "mr",
+"ex": "o",
+"n": "International Merit Scholarship $6,000–16,000 a year by GPA or SAT (e.g. $16,000 for 3.75+ GPA or SAT 1370+), automatic for F-1 students, first-come, first-served.",
+"src": [
+"MTSU: explore MTSU (international admissions)",
+"https://w1.mtsu.edu/international-admissions/explore-mtsu.php"
+]
+},
+"Arkansas State University": {
+"t": "mr",
+"ex": "s",
+"n": "International Freshman Scholarship about $3,000 a year for a 3.25+ GPA, renewable with 3.0; cannot be combined with other awards."
+},
+"Troy University": {
+"t": "mr",
+"ex": "s",
+"n": "International Education Scholarship, amount varies (reports range from about $5,500 to $14,000 a year); confirm with Troy."
+},
+"University of North Florida": {
+"t": "mr",
+"ex": "o",
+"n": "International Student Admissions Scholarship waives part or all of out-of-state tuition; tiered merit reported at $6,000–14,000 a year (3.5–3.9 GPA); priority if admitted by 15 Jan.",
+"src": [
+"UNF: international scholarships and funding",
+"https://unf.edu/intlctr/international-students/scholarship.html"
+]
+},
+"Florida Gulf Coast University": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year merit award for international students found; the Global Learning Grant ($500 a semester) starts only after two semesters.",
+"src": [
+"FGCU: funding and scholarships",
+"https://www.fgcu.edu/academics/internationalservices/international-students/scholarships"
+]
+},
+"University of West Florida": {
+"t": "ck",
+"ex": "s",
+"n": "Freshman merit awards (up to full tuition, housing and meals) are by GPA and test scores with a 1 Dec 2026 priority date for Fall 2027; the page does not say whether international students qualify.",
+"src": [
+"UWF: freshman scholarships",
+"https://uwf.edu/admissions/undergraduate/cost-and-financial-aid/awards-and-scholarships/freshman-scholarships"
+]
+},
+"Eastern Michigan University": {
+"t": "mr",
+"ex": "s",
+"n": "Reported merit up to about $7,000 a year and a 4WARD Graduation Scholarship reserved for international students; no official amount found."
+},
+"Grand Valley State University": {
+"t": "mr",
+"ex": "o",
+"n": "GVSU International Scholarship about $6,000 a year, automatic for every admitted international undergraduate (brings tuition to the Michigan resident rate); International Merit Scholarship $2,500 on top (essay, academics, activities).",
+"src": [
+"GVSU: international funding and scholarships",
+"https://www.gvsu.edu/istudents/funding-scholarships-2"
+]
+},
+"Southern Illinois University Edwardsville": {
+"t": "mr",
+"ex": "o",
+"n": "GEO Award cuts the international tuition rate by 50%, automatic; the competitive Meridian Scholarship (full tuition, fees, room and board) has been open to international students.",
+"src": [
+"SIUE: international undergraduate affordability",
+"https://siue.edu/newsletters/international-admissions/undergraduate-inquiry/affordable.html"
+]
+},
+"Missouri State University": {
+"t": "ck",
+"ex": "o",
+"n": "Only a policy for sponsored students (75% of non-resident tuition) was found; no general first-year international award confirmed.",
+"src": [
+"Missouri State: international student scholarship policy",
+"https://www.missouristate.edu/Policy/Chapter5/G5_06_InternationalStudentScholarships.htm"
+]
+},
+"University of Northern Iowa": {
+"t": "mr",
+"ex": "s",
+"n": "International Scholars Award $2,000–5,000 a year, automatic (3.0 GPA or SAT 1020); International Excel Award $1,000–4,000 by separate application (priority 1 Feb).",
+"src": [
+"UNI: scholarships and financial information",
+"https://internationalengagement.uni.edu/node/455"
+]
+},
+"University of Nebraska Omaha": {
+"t": "mr",
+"ex": "o",
+"n": "International Academic Excellence Scholarship, partial tuition from about $3,000 a year, automatic for new undergraduates, renewable up to five years.",
+"src": [
+"UNO: scholarships and funding",
+"https://www.unomaha.edu/international-at-uno/student-support/scholarships-and-funding.php"
+]
+},
+"University of South Dakota": {
+"t": "mr",
+"ex": "s",
+"n": "Coyote Beginnings Scholarship reported at up to $4,000 a year by high-school grades, automatic, plus a $1,500–2,500 grant; official page confirms only the $3,000 transfer award.",
+"src": [
+"USD: international scholarships",
+"https://www.usd.edu/international-office/international-scholarships"
+]
+},
+"University of Colorado Colorado Springs": {
+"t": "ck",
+"ex": "s",
+"n": "No international first-year award with an amount found; ask international@uccs.edu."
+},
+"Southern Utah University": {
+"t": "mr",
+"ex": "o",
+"n": "International Founders' ($9,000), Deans' ($7,000) and Centurium ($4,000) four-year scholarships, automatic; GPA (about 3.0+) and need weighed; priority 15 Apr for fall.",
+"src": [
+"SUU: international costs and scholarships",
+"https://www.suu.edu/international/estimated-costs.html"
+]
+},
+"Western Washington University": {
+"t": "mr",
+"ex": "o",
+"n": "International Achievement Award up to $10,000 a year as a partial tuition waiver for up to four years, 3.0+ GPA, no separate form if you apply by the priority deadline.",
+"src": [
+"WWU: international tuition and scholarships",
+"https://admissions.wwu.edu/international/tuition-scholarships"
+]
+},
+"University of Texas Rio Grande Valley": {
+"t": "ck",
+"ex": "s",
+"n": "General merit awards exist (2019–20 catalog: Distinguished Scholar for out-of-area students up to $40,000 total), but international eligibility is not confirmed."
+},
+"Sam Houston State University": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year award for international students found; the Texas Good Neighbor waiver is only for Western Hemisphere countries."
+},
+"Lamar University": {
+"t": "mr",
+"ex": "o",
+"n": "Freshman merit by SAT, open to international students: University Scholars $2,000 a year (SAT 1010+), Academic Excellence about $8,000 a year (SAT 1200+), Presidential full ride (SAT 1330+, limited); priority 15 Jan.",
+"src": [
+"Lamar: incoming freshman scholarships",
+"https://financialaid.lamar.edu/scholarships/incoming-freshmen-scholarship.html"
+]
+},
+"Prairie View A&M University": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year award for international students found."
+},
+"East Texas A&M University": {
+"t": "mr",
+"ex": "o",
+"n": "Competitive institutional scholarships (apply in myLeo after admission); under Texas rules a competitive scholarship of $1,000+ lets an international student pay the in-state tuition rate.",
+"src": [
+"ETAMU: international undergraduate funding",
+"https://www.etamu.edu/international/undergrad/funding/"
+]
+},
+"SUNY College of Environmental Science and Forestry": {
+"t": "ck",
+"ex": "s",
+"n": "Admitted first-years are automatically considered for merit awards (Presidential and National Scholarships, 1 Feb), but international eligibility is not stated.",
+"src": [
+"ESF: international admissions",
+"https://www.esf.edu/admissions/international.php"
+]
+},
+"SUNY Geneseo": {
+"t": "mr",
+"ex": "o",
+"n": "Merit tuition scholarships up to $10,000 a year for international students, automatic, renewable four years; priority 1 Jan for fall.",
+"src": [
+"Geneseo: cost and scholarships for international students",
+"https://www.geneseo.edu/iss/cost-scholarships"
+]
+},
+"University of Michigan–Dearborn": {
+"t": "mr",
+"ex": "o",
+"n": "Non-resident and international first-years are considered automatically for the Non-Resident Scholarship, tiered by GPA (reported up to about $12,500 a year).",
+"src": [
+"UM-Dearborn: non-resident and international scholarships",
+"https://umdearborn.edu/students/financial-aid/types-aid/scholarships/international-student-scholarship"
+]
+},
+"Indiana University Indianapolis": {
+"t": "mr",
+"ex": "o",
+"n": "Merit scholarships for first-year international students from $5,000 a year (3.0 GPA tier and up), automatic, limited, renewable four years.",
+"src": [
+"IU Indianapolis: scholarships for international students",
+"https://international.indianapolis.iu.edu/admissions/scholarships/index.html"
+]
+},
+"Tennessee Tech University": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year scholarship for international students found in two searches; ask admissions."
+},
+"University of Texas at San Antonio": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year merit amount for international students found; an International Student Grant exists but its amount depends on funds."
+},
+"Augusta University": {
+"t": "ck",
+"ex": "s",
+"n": "No first-year scholarship for international students found."
+},
+"Hampden-Sydney College": {
+"t": "ck",
+"ex": "s",
+"n": "General merit awards (Patrick Henry about $20,000 with SAT 1250+, President's about $15,000, per third-party listings); no page confirms them for international students.",
+"src": [
+"H-SC: academic and leadership awards",
+"https://hsc.edu/admission-and-financial-aid/financial-aid/types-of-aid/academic-and-leadership-awards"
+]
+},
+"Calvin University": {
+"t": "mr",
+"ex": "s",
+"n": "Academic scholarships are reported at $10,000–12,000+ a year (not international-specific); named international scholarships of about $3,300–4,300 need financial need (Oppewall: entering first-years, deadline about 20 Jan).",
+"src": [
+"Calvin: Oppewall Scholarship for International Students",
+"https://calvin.academicworks.com/opportunities/28965"
+]
+}
+};
+Object.entries(MERIT_CHECKED).forEach(([n, o]) => { AID[n] = Object.assign({}, AID[n] || {}, o); if (!o.src) delete AID[n].src; });
 /* Every other four-year US college: public list of 2,289 institutions minus seminaries, medical and health schools, women's colleges, service academies, the universities already in the directory and their branch campuses */
 const US_INDEX = [["AIB College of Business","Des Moines","IA"],["Abilene Christian University","Abilene","TX"],["Abraham Baldwin Agricultural College","Tifton","GA"],["Academy for Jewish Religion-California","Los Angeles","CA"],["Academy of Vocal Arts","Philadelphia","PA"],["Adams State University","Alamosa","CO"],["Adrian College","Adrian","MI"],["Alabama A & M University","Normal","AL"],["Alabama State University","Montgomery","AL"],["Alaska Pacific University","Anchorage","AK"],["Albany State University","Albany","GA"],["Albertus Magnus College","New Haven","CT"],["Albright College","Reading","PA"],["Alcorn State University","Alcorn State","MS"],["Alderson Broaddus University","Philippi","WV"],["Alfred University","Alfred","NY"],["Allegheny Wesleyan College","Salem","OH"],["Allen College","Waterloo","IA"],["Allen University","Columbia","SC"],["Alliant International University","San Diego","CA"],["Alma College","Alma","MI"],["Alvernia University","Reading","PA"],["American Baptist College","Nashville","TN"],["American Conservatory Theater","San Francisco","CA"],["American Film Institute Conservatory","Los Angeles","CA"],["American Indian College of the Assemblies of God Inc","Phoenix","AZ"],["American International College","Springfield","MA"],["American Jewish University","Los Angeles","CA"],["American Musical and Dramatic Academy","New York","NY"],["Amridge University","Montgomery","AL"],["Anderson University","Anderson","IN"],["Anderson University","Anderson","SC"],["Andrews University","Berrien Springs","MI"],["Angelo State University","San Angelo","TX"],["Anna Maria College","Paxton","MA"],["Antioch University-Los Angeles","Culver City","CA"],["Antioch University-Midwest","Yellow Springs","OH"],["Antioch University-New England","Keene","NH"],["Antioch University-Santa Barbara","Santa Barbara","CA"],["Antioch University-Seattle","Seattle","WA"],["Aquinas College","Grand Rapids","MI"],["Aquinas College","Nashville","TN"],["Arcadia University","Glenside","PA"],["Arizona Christian University","Phoenix","AZ"],["Arizona State University-Downtown Phoenix","Phoenix","AZ"],["Arkansas Baptist College","Little Rock","AR"],["Arkansas Tech University","Russellville","AR"],["Arlington Baptist College","Arlington","TX"],["Armstrong Atlantic State University","Savannah","GA"],["Art Academy of Cincinnati","Cincinnati","OH"],["Art Center College of Design","Pasadena","CA"],["Asbury University","Wilmore","KY"],["Ashland University","Ashland","OH"],["Assumption College","Worcester","MA"],["Athens State University","Athens","AL"],["Atlanta Metropolitan State College","Atlanta","GA"],["Augsburg College","Minneapolis","MN"],["Augusta Area Dietetic Internship-University Hospital","Augusta","GA"],["Aurora University","Aurora","IL"],["Austin College","Sherman","TX"],["Austin Peay State University","Clarksville","TN"],["Ave Maria University","Ave Maria","FL"],["Averett University","Danville","VA"],["Averett University-Non-Traditional Programs","Danville","VA"],["Avila University","Kansas City","MO"],["Azusa Pacific Online University","Glendora","CA"],["Azusa Pacific University","Azusa","CA"],["Bacone College","Muskogee","OK"],["Bais HaMedrash and Mesivta of Baltimore","Baltimore","MD"],["Bais Medrash Elyon","Monsey","NY"],["Bais Medrash Toras Chesed","Lakewood","NJ"],["Baker College of Allen Park","Allen Park","MI"],["Baker College of Auburn Hills","Auburn Hills","MI"],["Baker College of Cadillac","Cadillac","MI"],["Baker College of Clinton Township","Clinton Township","MI"],["Baker College of Flint","Flint","MI"],["Baker College of Jackson","Jackson","MI"],["Baker College of Muskegon","Muskegon","MI"],["Baker College of Owosso","Owosso","MI"],["Baker College of Port Huron","Port Huron","MI"],["Baker University","Baldwin City","KS"],["Baldwin Wallace University","Berea","OH"],["Bank Street College of Education","New York","NY"],["Baptist University of the Americas","San Antonio","TX"],["Barclay College","Haviland","KS"],["Barry University","Miami","FL"],["Barton College","Wilson","NC"],["Bastyr University","Kenmore","WA"],["Bay Path College","Longmeadow","MA"],["Beacon College","Leesburg","FL"],["Becker College","Worcester","MA"],["Beis Medrash Heichal Dovid","Far Rockaway","NY"],["Belhaven University","Jackson","MS"],["Bellarmine University","Louisville","KY"],["Bellevue College","Bellevue","WA"],["Bellevue University","Bellevue","NE"],["Bellin College","Green Bay","WI"],["Belmont Abbey College","Belmont","NC"],["Bemidji State University","Bemidji","MN"],["Benedict College","Columbia","SC"],["Benedictine College","Atchison","KS"],["Benedictine University","Lisle","IL"],["Benjamin Franklin Institute of Technology","Boston","MA"],["Bergin University of Canine Studies","Santa Rosa","CA"],["Berry College","Mount Berry","GA"],["Beth Hamedrash Shaarei Yosher Institute","Brooklyn","NY"],["Beth Medrash Govoha","Lakewood","NJ"],["Bethany College","Lindsborg","KS"],["Bethany College","Bethany","WV"],["Bethany Lutheran College","Mankato","MN"],["Bethel College","Hampton","VA"],["Bethel College-Indiana","Mishawaka","IN"],["Bethel College-North Newton","North Newton","KS"],["Bethel University","Saint Paul","MN"],["Bethel University","McKenzie","TN"],["Bethesda University of California","Anaheim","CA"],["Bethune-Cookman University","Daytona Beach","FL"],["Beulah Heights University","Atlanta","GA"],["Biola University","La Mirada","CA"],["Birmingham Southern College","Birmingham","AL"],["Birthingway College of Midwifery","Portland","OR"],["Bismarck State College","Bismarck","ND"],["Black Hills State University","Spearfish","SD"],["Blackburn College","Carlinville","IL"],["Bloomfield College","Bloomfield","NJ"],["Bloomsburg University of Pennsylvania","Bloomsburg","PA"],["Blue Mountain College","Blue Mountain","MS"],["Bluefield College","Bluefield","VA"],["Bluefield State College","Bluefield","WV"],["Bluffton University","Bluffton","OH"],["Boricua College","New York","NY"],["Boston Architectural College","Boston","MA"],["Boston Baptist College","Boston","MA"],["Bowie State University","Bowie","MD"],["Brandman University","Irvine","CA"],["Brazosport College","Lake Jackson","TX"],["Brescia University","Owensboro","KY"],["Brevard College","Brevard","NC"],["Brewton-Parker College","Mount Vernon","GA"],["Briar Cliff University","Sioux City","IA"],["Bridgewater College","Bridgewater","VA"],["Bridgewater State University","Bridgewater","MA"],["Broward College","Fort Lauderdale","FL"],["Bryan College-Dayton","Dayton","TN"],["Bryn Athyn College of the New Church","Bryn Athyn","PA"],["Buena Vista University","Storm Lake","IA"],["Buffalo State SUNY","Buffalo","NY"],["Burlington College","Burlington","VT"],["CUNY Bernard M Baruch College","New York","NY"],["CUNY Brooklyn College","Brooklyn","NY"],["CUNY City College","New York","NY"],["CUNY Hunter College","New York","NY"],["CUNY John Jay College of Criminal Justice","New York","NY"],["CUNY Lehman College","Bronx","NY"],["CUNY Medgar Evers College","Brooklyn","NY"],["CUNY New York City College of Technology","Brooklyn","NY"],["CUNY Queens College","Flushing","NY"],["CUNY York College","Jamaica","NY"],["Cabrini College","Radnor","PA"],["Cairn University-Langhorne","Langhorne","PA"],["Caldwell College","Caldwell","NJ"],["California Baptist University","Riverside","CA"],["California Christian College","Fresno","CA"],["California College San Diego","San Diego","CA"],["California College San Diego","National City","CA"],["California College San Diego","San Marcos","CA"],["California College of the Arts","San Francisco","CA"],["California Institute of Integral Studies","San Francisco","CA"],["California Institute of the Arts","Valencia","CA"],["California Lutheran University","Thousand Oaks","CA"],["California Maritime Academy","Vallejo","CA"],["California Polytechnic State University-San Luis Obispo","San Luis Obispo","CA"],["California State Polytechnic University-Pomona","Pomona","CA"],["California State University-Bakersfield","Bakersfield","CA"],["California State University-Channel Islands","Camarillo","CA"],["California State University-Chico","Chico","CA"],["California State University-Dominguez Hills","Carson","CA"],["California State University-East Bay","Hayward","CA"],["California State University-Fresno","Fresno","CA"],["California State University-Los Angeles","Los Angeles","CA"],["California State University-Monterey Bay","Seaside","CA"],["California State University-Sacramento","Sacramento","CA"],["California State University-San Bernardino","San Bernardino","CA"],["California State University-San Marcos","San Marcos","CA"],["California State University-Stanislaus","Turlock","CA"],["California University of Management and Sciences","Anaheim","CA"],["California University of Pennsylvania","California","PA"],["Calumet College of Saint Joseph","Whiting","IN"],["Calvin College","Grand Rapids","MI"],["Cambridge College","Cambridge","MA"],["Cameron University","Lawton","OK"],["Campbell University","Buies Creek","NC"],["Campbellsville University","Campbellsville","KY"],["Canisius College","Buffalo","NY"],["Capital University","Columbus","OH"],["Capitol College","Laurel","MD"],["Cardinal Stritch University","Milwaukee","WI"],["Carlos Albizu University-Miami","Miami","FL"],["Carlow University","Pittsburgh","PA"],["Carolina Christian College","Winston Salem","NC"],["Carroll College","Helena","MT"],["Carroll University","Waukesha","WI"],["Carson-Newman University","Jefferson City","TN"],["Carthage College","Kenosha","WI"],["Castleton State College","Castleton","VT"],["Catawba College","Salisbury","NC"],["Cazenovia College","Cazenovia","NY"],["Cedarville University","Cedarville","OH"],["Centenary College","Hackettstown","NJ"],["Centenary College of Louisiana","Shreveport","LA"],["Central Baptist College","Conway","AR"],["Central Christian College of Kansas","McPherson","KS"],["Central College","Pella","IA"],["Central Connecticut State University","New Britain","CT"],["Central Methodist University-College of Liberal Arts and Sciences","Fayette","MO"],["Central State University","Wilberforce","OH"],["Central Washington University","Ellensburg","WA"],["Centralia College","Centralia","WA"],["Chadron State College","Chadron","NE"],["Chaminade University of Honolulu","Honolulu","HI"],["Champlain College","Burlington","VT"],["Charleston Southern University","Charleston","SC"],["Charter Oak State College","New Britain","CT"],["Chatham University","Pittsburgh","PA"],["Chestnut Hill College","Philadelphia","PA"],["Cheyney University of Pennsylvania","Cheyney","PA"],["Chicago State University","Chicago","IL"],["Chipola College","Marianna","FL"],["Chowan University","Murfreesboro","NC"],["Christian Brothers University","Memphis","TN"],["Christian Life College","Mount Prospect","IL"],["Christopher Newport University","Newport News","VA"],["Cincinnati Christian University","Cincinnati","OH"],["Citadel Military College of South Carolina","Charleston","SC"],["City College-Fort Lauderdale","Fort Lauderdale","FL"],["City College-Gainesville","Gainesville","FL"],["City College-Miami","Miami","FL"],["City University of Seattle","Seattle","WA"],["City Vision College","Kansas City","MO"],["Claflin University","Orangeburg","SC"],["Clarion University of Pennsylvania","Clarion","PA"],["Clark Atlanta University","Atlanta","GA"],["Clarke University","Dubuque","IA"],["Clarkson College","Omaha","NE"],["Clayton  State University","Morrow","GA"],["Clearwater Christian College","Clearwater","FL"],["Cleary University","Ann Arbor","MI"],["Cleveland Institute of Art","Cleveland","OH"],["Cleveland Institute of Music","Cleveland","OH"],["Cleveland University-Kansas City","Overland Park","KS"],["Clinton College","Rock Hill","SC"],["Coastal Carolina University","Conway","SC"],["Coker College","Hartsville","SC"],["Colby-Sawyer College","New London","NH"],["Coleman University","San Diego","CA"],["College America-Cheyenne","Cheyenne","WY"],["College America-Colorado Springs","Colorado Springs","CO"],["College America-Denver","Denver","CO"],["College America-Flagstaff","Flagstaff","AZ"],["College America-Fort Collins","Fort Collins","CO"],["College America-Phoenix","Phoenix","AZ"],["College for Creative Studies","Detroit","MI"],["College of Central Florida","Ocala","FL"],["College of Coastal Georgia","Brunswick","GA"],["College of Menominee Nation","Keshena","WI"],["College of Mount Saint Vincent","Bronx","NY"],["College of Mount St Joseph","Cincinnati","OH"],["College of Our Lady of the Elms","Chicopee","MA"],["College of Saint Elizabeth","Morristown","NJ"],["College of Saint Mary","Omaha","NE"],["College of Southern Nevada","Las Vegas","NV"],["College of St Joseph","Rutland","VT"],["College of Staten Island CUNY","Staten Island","NY"],["College of William and Mary","Williamsburg","VA"],["CollegeAmerica-Colorado Springs South","Colorado Springs","CO"],["CollegeAmerica-Stevens Henager College","Idaho Falls","ID"],["Colorado Christian University","Lakewood","CO"],["Colorado Heights University","Denver","CO"],["Colorado Mesa University","Grand Junction","CO"],["Colorado Mountain College","Glenwood Springs","CO"],["Colorado State University-Fort Collins","Fort Collins","CO"],["Colorado State University-Global Campus","Greenwood Village","CO"],["Columbia Basin College","Pasco","WA"],["Columbia College","Columbia","MO"],["Columbia College","Columbia","SC"],["Columbia College-Chicago","Chicago","IL"],["Columbia College-Hollywood","Tarzana","CA"],["Columbia International University","Columbia","SC"],["Columbia University in the City of New York","New York","NY"],["Columbus College of Art and Design","Columbus","OH"],["Columbus State University","Columbus","GA"],["Compass College of Cinematic Arts","Grand Rapids","MI"],["Concord University","Athens","WV"],["Concordia College Alabama","Selma","AL"],["Concordia College-New York","Bronxville","NY"],["Concordia University-Ann Arbor","Ann Arbor","MI"],["Concordia University-Chicago","River Forest","IL"],["Concordia University-Irvine","Irvine","CA"],["Concordia University-Nebraska","Seward","NE"],["Concordia University-Portland","Portland","OR"],["Concordia University-Saint Paul","Saint Paul","MN"],["Concordia University-Texas","Austin","TX"],["Concordia University-Wisconsin","Mequon","WI"],["Converse College","Spartanburg","SC"],["Conway School of Landscape Design","Conway","MA"],["Cooper Health System Center for Allied Health Education","Camden","NJ"],["Cooper Union for the Advancement of Science and Art","New York","NY"],["Coppin State University","Baltimore","MD"],["Corban University","Salem","OR"],["Corcoran College of Art and Design","Washington","NA"],["Cornerstone University","Grand Rapids","MI"],["Cornish College of the Arts","Seattle","WA"],["Covenant College","Lookout Mountain","GA"],["Cox College","Springfield","MO"],["Cranbrook Academy of Art","Bloomfield Hills","MI"],["Criswell College","Dallas","TX"],["Crossroads College","Rochester","MN"],["Crowley's Ridge College","Paragould","AR"],["Crown College","Saint Bonifacius","MN"],["Culver-Stockton College","Canton","MO"],["Cumberland University","Lebanon","TN"],["Curry College","Milton","MA"],["D'Youville College","Buffalo","NY"],["Daemen College","Amherst","NY"],["Dakota State University","Madison","SD"],["Dakota Wesleyan University","Mitchell","SD"],["Dallas Baptist University","Dallas","TX"],["Dallas Christian College","Dallas","TX"],["Dalton State College","Dalton","GA"],["Davenport University","Grand Rapids","MI"],["Davis & Elkins College","Elkins","WV"],["Davis College","Johnson City","NY"],["Daytona State College","Daytona Beach","FL"],["DeSales University","Center Valley","PA"],["Dean College","Franklin","MA"],["Defiance College","Defiance","OH"],["Delaware State University","Dover","DE"],["Delaware Valley College","Doylestown","PA"],["Dell'Arte International School of Physical Theatre","Blue Lake","CA"],["Delta State University","Cleveland","MS"],["Dickinson State University","Dickinson","ND"],["Dillard University","New Orleans","LA"],["Dine College","Tsaile","AZ"],["Divine Word College","Epworth","IA"],["Dixie State University","Saint George","UT"],["Doane College-Crete","Crete","NE"],["Doane College-Lincoln Grand Island and Master","Lincoln","NE"],["Dominican College of Blauvelt","Orangeburg","NY"],["Dominican University","River Forest","IL"],["Dominican University of California","San Rafael","CA"],["Dongguk University-Los Angeles","Los Angeles","CA"],["Donnelly College","Kansas City","KS"],["Dordt College","Sioux Center","IA"],["Dowling College","Oakdale","NY"],["Drew University","Madison","NJ"],["Drury University","Springfield","MO"],["Dunwoody College of Technology","Minneapolis","MN"],["East Central University","Ada","OK"],["East Georgia State College","Swainsboro","GA"],["East Stroudsburg University of Pennsylvania","East Stroudsburg","PA"],["East Tennessee State University","Johnson City","TN"],["East Texas Baptist University","Marshall","TX"],["East-West University","Chicago","IL"],["Eastern Connecticut State University","Willimantic","CT"],["Eastern Florida State College","Cocoa","FL"],["Eastern Illinois University","Charleston","IL"],["Eastern Kentucky University","Richmond","KY"],["Eastern Mennonite University","Harrisonburg","VA"],["Eastern Nazarene College","Quincy","MA"],["Eastern New Mexico University-Main Campus","Portales","NM"],["Eastern Oregon University","La Grande","OR"],["Eastern University","Saint Davids","PA"],["Eastern Washington University","Cheney","WA"],["Ecclesia College","Springdale","AR"],["Edgewood College","Madison","WI"],["Edinboro University of Pennsylvania","Edinboro","PA"],["Edison State College","Fort Myers","FL"],["Edward Waters College","Jacksonville","FL"],["Elizabeth City State University","Elizabeth City","NC"],["Elizabethtown College","Elizabethtown","PA"],["Elizabethtown College School of Continuing and Professional Studies","Elizabethtown","PA"],["Elmhurst College","Elmhurst","IL"],["Elmira College","Elmira","NY"],["Embry-Riddle Aeronautical University-Daytona Beach","Daytona Beach","FL"],["Emmanuel College","Franklin Springs","GA"],["Emmanuel College","Boston","MA"],["Emory & Henry College","Emory","VA"],["Emporia State University","Emporia","KS"],["Endicott College","Beverly","MA"],["Erikson Institute","Chicago","IL"],["Erskine College","Due West","SC"],["Eureka College","Eureka","IL"],["Evangel University","Springfield","MO"],["Everglades University","Boca Raton","FL"],["Excelsior College","Albany","NY"],["Fairleigh Dickinson University-Metropolitan Campus","Teaneck","NJ"],["Fairmont State University","Fairmont","WV"],["Family of Faith College","Shawnee","OK"],["Farmingdale State College","Farmingdale","NY"],["Fashion Institute of Technology","New York","NY"],["Faulkner University","Montgomery","AL"],["Fayetteville State University","Fayetteville","NC"],["Felician College","Lodi","NJ"],["Ferris State University","Big Rapids","MI"],["Ferrum College","Ferrum","VA"],["Finlandia University","Hancock","MI"],["Fisher College","Boston","MA"],["Fisk University","Nashville","TN"],["Fitchburg State University","Fitchburg","MA"],["Flagler College-St Augustine","Saint Augustine","FL"],["Flagler College-Tallahassee","Tallahassee","FL"],["Florida Agricultural and Mechanical University","Tallahassee","FL"],["Florida College","Temple Terrace","FL"],["Florida Gateway College","Lake City","FL"],["Florida Memorial University","Miami Gardens","FL"],["Florida Southern College","Lakeland","FL"],["Florida State College at Jacksonville","Jacksonville","FL"],["Fontbonne University","Saint Louis","MO"],["Fort Berthold Community College","New Town","ND"],["Fort Hays State University","Hays","KS"],["Fort Lewis College","Durango","CO"],["Fort Valley State University","Fort Valley","GA"],["Framingham State University","Framingham","MA"],["Francis Marion University","Florence","SC"],["Franciscan University of Steubenville","Steubenville","OH"],["Frank Lloyd Wright School of Architecture","Scottsdale","AZ"],["Franklin College","Franklin","IN"],["Franklin Pierce University","Rindge","NH"],["Franklin University","Columbus","OH"],["Franklin W Olin College of Engineering","Needham","MA"],["Freed-Hardeman University","Henderson","TN"],["Fresno Pacific University","Fresno","CA"],["Friends University","Wichita","KS"],["Frostburg State University","Frostburg","MD"],["Gallaudet University","Washington","NA"],["Gannon University","Erie","PA"],["Gardner-Webb University","Boiling Springs","NC"],["Geneva College","Beaver Falls","PA"],["George Fox University","Newberg","OR"],["Georgetown College","Georgetown","KY"],["Georgia Christian University","Atlanta","GA"],["Georgia College and State University","Milledgeville","GA"],["Georgia Gwinnett College","Lawrenceville","GA"],["Georgia Regents University","Augusta","GA"],["Georgia Southwestern State University","Americus","GA"],["Georgian Court University","Lakewood","NJ"],["Glenville State College","Glenville","WV"],["Goddard College","Plainfield","VT"],["Golden Gate University-San Francisco","San Francisco","CA"],["Goldey-Beacom College","Wilmington","DE"],["Goodwin College","East Hartford","CT"],["Gordon College","Wenham","MA"],["Gordon State College","Barnesville","GA"],["Goshen College","Goshen","IN"],["Goucher College","Baltimore","MD"],["Governors State University","University Park","IL"],["Grace Mission University","Fullerton","CA"],["Grace University","Omaha","NE"],["Graceland University-Lamoni","Lamoni","IA"],["Grambling State University","Grambling","LA"],["Grand View University","Des Moines","IA"],["Granite State College","Concord","NH"],["Gratz College","Melrose Park","PA"],["Great Basin College","Elko","NV"],["Great Lakes Christian College","Lansing","MI"],["Green Mountain College","Poultney","VT"],["Greensboro College","Greensboro","NC"],["Greenville College","Greenville","IL"],["Guilford College","Greensboro","NC"],["Gulf Coast State College","Panama City","FL"],["Gwynedd Mercy University","Gwynedd Valley","PA"],["Hallmark College","San Antonio","TX"],["Hamline University","Saint Paul","MN"],["Hampton University","Hampton","VA"],["Hannibal-LaGrange University","Hannibal","MO"],["Hanover College","Hanover","IN"],["Hardin-Simmons University","Abilene","TX"],["Harding University","Searcy","AR"],["Harris-Stowe State University","Saint Louis","MO"],["Harrisburg University of Science and Technology","Harrisburg","PA"],["Hartwick College","Oneonta","NY"],["Haskell Indian Nations University","Lawrence","KS"],["Hastings College","Hastings","NE"],["Hawaii Pacific University","Honolulu","HI"],["Hebrew College","Newton Centre","MA"],["Hebrew Union College-Jewish Institute of Religion","New York","NY"],["Heidelberg University","Tiffin","OH"],["Henderson State University","Arkadelphia","AR"],["Heritage Christian University","Florence","AL"],["Heritage University","Toppenish","WA"],["High Point University","High Point","NC"],["Hilbert College","Hamburg","NY"],["Hillsdale Free Will Baptist College","Moore","OK"],["Hiram College","Hiram","OH"],["Hiwassee College","Madisonville","TN"],["Hobart William Smith Colleges","Geneva","NY"],["Hodges University","Naples","FL"],["Holy Cross College","Notre Dame","IN"],["Holy Family University","Philadelphia","PA"],["Holy Names University","Oakland","CA"],["Hood College","Frederick","MD"],["Hope International University","Fullerton","CA"],["Horizon University","San Diego","CA"],["Houghton College","Houghton","NY"],["Houston Baptist University","Houston","TX"],["Howard Payne University","Brownwood","TX"],["Humboldt State University","Arcata","CA"],["Humphreys College-Stockton and Modesto Campuses","Stockton","CA"],["Huntingdon College","Montgomery","AL"],["Huntington University","Huntington","IN"],["Husson University","Bangor","ME"],["Huston-Tillotson University","Austin","TX"],["Idaho State University","Pocatello","ID"],["Illinois College","Jacksonville","IL"],["Immaculata University","Immaculata","PA"],["Independence University","Salt Lake City","UT"],["Indian River State College","Fort Pierce","FL"],["Indiana Institute of Technology","Fort Wayne","IN"],["Indiana State University","Terre Haute","IN"],["Indiana University of Pennsylvania-Main Campus","Indiana","PA"],["Indiana University-East","Richmond","IN"],["Indiana University-Kokomo","Kokomo","IN"],["Indiana University-Northwest","Gary","IN"],["Indiana University-Purdue University-Fort Wayne","Fort Wayne","IN"],["Indiana University-Purdue University-Indianapolis","Indianapolis","IN"],["Indiana University-South Bend","South Bend","IN"],["Indiana University-Southeast","New Albany","IN"],["Indiana Wesleyan University","Marion","IN"],["Institute for Clinical Social Work","Chicago","IL"],["Institute for Doctoral Studies in the Visual Arts","Portland","ME"],["Institute for the Psychological Sciences","Arlington","VA"],["Institute of American Indian and Alaska Native Culture","Santa Fe","NM"],["Institute of World Politics","Washington","NA"],["Iona College","New Rochelle","NY"],["Iowa Wesleyan College","Mount Pleasant","IA"],["Jackson State University","Jackson","MS"],["Jacksonville State University","Jacksonville","AL"],["Jacksonville University","Jacksonville","FL"],["Jarvis Christian College","Hawkins","TX"],["John Brown University","Siloam Springs","AR"],["John Carroll University","University Heights","OH"],["John F Kennedy University","Pleasant Hill","CA"],["John Paul the Great Catholic University","Escondido","CA"],["Johnson & Wales University-North Miami","North Miami","FL"],["Johnson C Smith University","Charlotte","NC"],["Johnson State College","Johnson","VT"],["Johnson University","Knoxville","TN"],["Johnson University Florida","Kissimmee","FL"],["Jones College-Jacksonville","Jacksonville","FL"],["Judson University","Elgin","IL"],["Kansas City Art Institute","Kansas City","MO"],["Kansas Wesleyan University","Salina","KS"],["Kean University","Union","NJ"],["Keene State College","Keene","NH"],["Keiser University-Ft Lauderdale","Fort Lauderdale","FL"],["Kentucky Christian University","Grayson","KY"],["Kentucky State University","Frankfort","KY"],["Kentucky Wesleyan College","Owensboro","KY"],["Kettering College","Kettering","OH"],["Keuka College","Keuka Park","NY"],["Keystone College","La Plume","PA"],["King University","Bristol","TN"],["King's College","Wilkes-Barre","PA"],["King's University","Van Nuys","CA"],["Knowledge Systems Institute","Skokie","IL"],["Kutztown University of Pennsylvania","Kutztown","PA"],["Kuyper College","Grand Rapids","MI"],["LIU Brentwood","Brentwood","NY"],["LIU Brooklyn","Brooklyn","NY"],["LIU Hudson at Rockland","Orangeburg","NY"],["LIU Hudson at Westchester","Purchase","NY"],["LIU Post","Brookville","NY"],["LIU Riverhead","Riverhead","NY"],["La Roche College","Pittsburgh","PA"],["La Salle University","Philadelphia","PA"],["La Sierra University","Riverside","CA"],["LaGrange College","Lagrange","GA"],["Laboure College","Milton","MA"],["Laguna College of Art and Design","Laguna Beach","CA"],["Lake Erie College","Painesville","OH"],["Lake Superior State University","Sault Ste Marie","MI"],["Lake Washington Institute of Technology","Kirkland","WA"],["Lake-Sumter State College","Leesburg","FL"],["Lakeland College","Plymouth","WI"],["Lander University","Greenwood","SC"],["Landmark College","Putney","VT"],["Lane College","Jackson","TN"],["Langston University","Langston","OK"],["Lasell College","Newton","MA"],["Laurel University","High Point","NC"],["Lawrence Technological University","Southfield","MI"],["Le Moyne College","Syracuse","NY"],["Le Moyne-Owen College","Memphis","TN"],["LeTourneau University","Longview","TX"],["Lebanon Valley College","Annville","PA"],["Lee University","Cleveland","TN"],["Lees-McRae College","Banner Elk","NC"],["Lenoir-Rhyne University","Hickory","NC"],["Lesley University","Cambridge","MA"],["Lewis University","Romeoville","IL"],["Lewis-Clark State College","Lewiston","ID"],["Lexington College","Chicago","IL"],["Liberty University","Lynchburg","VA"],["Life Pacific College","San Dimas","CA"],["Life University","Marietta","GA"],["Limestone College","Gaffney","SC"],["Lincoln Christian University","Lincoln","IL"],["Lincoln College","Lincoln","IL"],["Lincoln Memorial University","Harrogate","TN"],["Lincoln University","Oakland","CA"],["Lincoln University","Jefferson City","MO"],["Lincoln University of Pennsylvania","Lincoln University","PA"],["Lindenwood University","Saint Charles","MO"],["Lindsey Wilson College","Columbia","KY"],["Linfield College-McMinnville Campus","McMinnville","OR"],["Lipscomb University","Nashville","TN"],["Livingstone College","Salisbury","NC"],["Lock Haven University","Lock Haven","PA"],["Logan University","Chesterfield","MO"],["Loma Linda University","Loma Linda","CA"],["Longwood University","Farmville","VA"],["Loras College","Dubuque","IA"],["Louisiana College","Pineville","LA"],["Louisiana State University and Agricultural & Mechanical College","Baton Rouge","LA"],["Lourdes University","Sylvania","OH"],["Lubbock Christian University","Lubbock","TX"],["Lycoming College","Williamsport","PA"],["Lyme Academy College of Fine Arts","Old Lyme","CT"],["Lynchburg College","Lynchburg","VA"],["Lyndon State College","Lyndonville","VT"],["Lyon College","Batesville","AR"],["MCPHS University","Boston","MA"],["MGH Institute of Health Professions","Boston","MA"],["MacMurray College","Jacksonville","IL"],["Madison Area Technical College","Madison","WI"],["Madonna University","Livonia","MI"],["Maharishi University of Management","Fairfield","IA"],["Maine College of Art","Portland","ME"],["Maine Maritime Academy","Castine","ME"],["Malone University","Canton","OH"],["Manchester University","North Manchester","IN"],["Manhattan Christian College","Manhattan","KS"],["Manhattan College","Riverdale","NY"],["Manhattan School of Music","New York","NY"],["Manhattanville College","Purchase","NY"],["Mansfield University of Pennsylvania","Mansfield","PA"],["Manthano Christian College","Westland","MI"],["Maranatha Baptist University","Watertown","WI"],["Maria College of Albany","Albany","NY"],["Marian Court College","Swampscott","MA"],["Marian University","Indianapolis","IN"],["Marian University","Fond Du Lac","WI"],["Marietta College","Marietta","OH"],["Marist College","Poughkeepsie","NY"],["Marlboro College","Marlboro","VT"],["Mars Hill University","Mars Hill","NC"],["Marshall B Ketchum University","Fullerton","CA"],["Martin Luther College","New Ulm","MN"],["Martin Methodist College","Pulaski","TN"],["Martin University","Indianapolis","IN"],["Mary Baldwin College","Staunton","VA"],["Marygrove College","Detroit","MI"],["Maryland Institute College of Art","Baltimore","MD"],["Maryland University of Integrative Health","Laurel","MD"],["Marylhurst University","Marylhurst","OR"],["Marymount California University","Rancho Palos Verdes","CA"],["Marymount Manhattan College","New York","NY"],["Marymount University","Arlington","VA"],["Maryville College","Maryville","TN"],["Maryville University of Saint Louis","Saint Louis","MO"],["Marywood University","Scranton","PA"],["Massachusetts College of Art and Design","Boston","MA"],["Massachusetts College of Liberal Arts","North Adams","MA"],["Massachusetts General Hospital Dietetic Internship","Boston","MA"],["Massachusetts Maritime Academy","Buzzards Bay","MA"],["Mayville State University","Mayville","ND"],["McDaniel College","Westminster","MD"],["McKendree University","Lebanon","IL"],["McMurry University","Abilene","TX"],["McNeese State University","Lake Charles","LA"],["McPherson College","McPherson","KS"],["Medaille College","Buffalo","NY"],["Memphis College of Art","Memphis","TN"],["Menlo College","Atherton","CA"],["Mercy College","Dobbs Ferry","NY"],["Mercy College of Ohio","Toledo","OH"],["Mercyhurst University","Erie","PA"],["Merrimack College","North Andover","MA"],["Mesivta Keser Torah","Belmar","NJ"],["Mesivtha Tifereth Jerusalem of America","New York","NY"],["Messenger College","Euless","TX"],["Messiah College","Mechanicsburg","PA"],["Methodist College","Peoria","IL"],["Methodist University","Fayetteville","NC"],["Metropolitan College of New York","New York","NY"],["Metropolitan State University","Saint Paul","MN"],["Metropolitan State University of Denver","Denver","CO"],["Miami Dade College","Miami","FL"],["Michigan Jewish Institute","W Bloomfield","MI"],["Mid-America Christian University","Oklahoma City","OK"],["Mid-America College of Funeral Service","Jeffersonville","IN"],["Mid-Atlantic Christian University","Elizabeth City","NC"],["Mid-Continent University","Mayfield","KY"],["Mid-South Christian College","Memphis","TN"],["MidAmerica Nazarene University","Olathe","KS"],["Middle Georgia State College","Macon","GA"],["Middle Tennessee School of Anesthesia Inc","Madison","TN"],["Midland College","Midland","TX"],["Midland University","Fremont","NE"],["Midway College","Midway","KY"],["Midwestern State University","Wichita Falls","TX"],["Midwestern University-Downers Grove","Downers Grove","IL"],["Midwestern University-Glendale","Glendale","AZ"],["Midwives College of Utah","Salt Lake City","UT"],["Miles College","Fairfield","AL"],["Millersville University of Pennsylvania","Millersville","PA"],["Milligan College","Milligan College","TN"],["Millikin University","Decatur","IL"],["Milwaukee Institute of Art & Design","Milwaukee","WI"],["Minneapolis College of Art and Design","Minneapolis","MN"],["Minnesota State University-Mankato","Mankato","MN"],["Minnesota State University-Moorhead","Moorhead","MN"],["Minot State University","Minot","ND"],["Misericordia University","Dallas","PA"],["Mississippi College","Clinton","MS"],["Mississippi University for Women","Columbus","MS"],["Mississippi Valley State University","Itta Bena","MS"],["Missouri Baptist University","Saint Louis","MO"],["Missouri Southern State University","Joplin","MO"],["Missouri Valley College","Marshall","MO"],["Missouri Western State University","Saint Joseph","MO"],["Mitchell College","New London","CT"],["Molloy College","Rockville Centre","NY"],["Monmouth University","West Long Branch","NJ"],["Montana Tech of the University of Montana","Butte","MT"],["Montclair State University","Montclair","NJ"],["Monterey Institute of International Studies","Monterey","CA"],["Montessori Education Center of the Rockies","Boulder","CO"],["Montessori Institute of Milwaukee","Milwaukee","WI"],["Montreat College","Montreat","NC"],["Montserrat College of Art","Beverly","MA"],["Moravian College","Bethlehem","PA"],["Morehead State University","Morehead","KY"],["Morningside College","Sioux City","IA"],["Morris College","Sumter","SC"],["Morrisville State College","Morrisville","NY"],["Mount Aloysius College","Cresson","PA"],["Mount Ida College","Newton","MA"],["Mount Marty College","Yankton","SD"],["Mount Mary University","Milwaukee","WI"],["Mount Mercy University","Cedar Rapids","IA"],["Mount Olive College","Mount Olive","NC"],["Mount Saint Mary College","Newburgh","NY"],["Mount St Mary's College","Los Angeles","CA"],["Mount St Mary's University","Emmitsburg","MD"],["Mount Vernon Nazarene University","Mount Vernon","OH"],["Multnomah University","Portland","OR"],["Murray State University","Murray","KY"],["Muskingum University","New Concord","OH"],["Naropa University","Boulder","CO"],["Nashotah House","Nashotah","WI"],["National Labor College","Silver Spring","MD"],["National Louis University","Chicago","IL"],["National University","La Jolla","CA"],["Navajo Technical University","Crownpoint","NM"],["Nazareth College","Rochester","NY"],["Nebraska Christian College","Papillion","NE"],["Nebraska Wesleyan University","Lincoln","NE"],["Neumann University","Aston","PA"],["Nevada State College","Henderson","NV"],["New College of Florida","Sarasota","FL"],["New England College","Henniker","NH"],["New England Institute of Technology","East Greenwich","RI"],["New England School of Communications","Bangor","ME"],["New Hampshire Institute of Art","Manchester","NH"],["New Hope Christian College-Eugene","Eugene","OR"],["New Hope Christian College-Honolulu","Honolulu","HI"],["New Jersey City University","Jersey City","NJ"],["New Mexico Highlands University","Las Vegas","NM"],["New Mexico Institute of Mining and Technology","Socorro","NM"],["New York Academy of Art","New York","NY"],["New York College of Health Professions","Syosset","NY"],["New York Institute of Technology","Old Westbury","NY"],["New York School of Interior Design","New York","NY"],["Newberry College","Newberry","SC"],["Newbury College","Brookline","MA"],["Newman University","Wichita","KS"],["Niagara University","Niagara University","NY"],["Nicholls State University","Thibodaux","LA"],["Nichols College","Dudley","MA"],["Norfolk State University","Norfolk","VA"],["North American University","Houston","TX"],["North Carolina A & T State University","Greensboro","NC"],["North Carolina Central University","Durham","NC"],["North Carolina Wesleyan College","Rocky Mount","NC"],["North Central College","Naperville","IL"],["North Central University","Minneapolis","MN"],["North Greenville University","Tigerville","SC"],["North Park University","Chicago","IL"],["NorthShore University HealthSystem School of Nurse Anesthesia","Evanston","IL"],["Northeastern Illinois University","Chicago","IL"],["Northeastern State University","Tahlequah","OK"],["Northeastern University Global Network","Boston","MA"],["Northern Kentucky University","Highland Heights","KY"],["Northern Michigan University","Marquette","MI"],["Northern New Mexico College","Espanola","NM"],["Northern State University","Aberdeen","SD"],["Northland College","Ashland","WI"],["Northland International University","Dunbar","WI"],["Northwest Christian University","Eugene","OR"],["Northwest Florida State College","Niceville","FL"],["Northwest Indian College","Bellingham","WA"],["Northwest Institute of Literary Arts","Langley","WA"],["Northwest Missouri State University","Maryville","MO"],["Northwest Nazarene University","Nampa","ID"],["Northwest University","Kirkland","WA"],["Northwestern College","Orange City","IA"],["Northwestern Michigan College","Traverse City","MI"],["Northwestern Oklahoma State University","Alva","OK"],["Northwestern State University of Louisiana","Natchitoches","LA"],["Northwood University-Florida","West Palm Beach","FL"],["Northwood University-Michigan","Midland","MI"],["Northwood University-Texas","Cedar Hill","TX"],["Norwich University","Northfield","VT"],["Notre Dame College","Cleveland","OH"],["Notre Dame de Namur University","Belmont","CA"],["Nyack College","Nyack","NY"],["O'More College of Design","Franklin","TN"],["Oak Hills Christian College","Bemidji","MN"],["Oakland City University","Oakland City","IN"],["Oakwood University","Huntsville","AL"],["Oglala Lakota College","Kyle","SD"],["Oglethorpe University","Atlanta","GA"],["Ohio Christian University","Circleville","OH"],["Ohio Dominican University","Columbus","OH"],["Ohio Mid-Western College","Cincinnati","OH"],["Ohio Northern University","Ada","OH"],["Ohio State University-Lima Campus","Lima","OH"],["Ohio State University-Mansfield Campus","Mansfield","OH"],["Ohio State University-Marion Campus","Marion","OH"],["Ohio State University-Newark Campus","Newark","OH"],["Ohio University-Chillicothe Campus","Chillicothe","OH"],["Ohio University-Eastern Campus","Saint Clairsville","OH"],["Ohio University-Lancaster Campus","Lancaster","OH"],["Ohio University-Southern Campus","Ironton","OH"],["Ohio University-Zanesville Campus","Zanesville","OH"],["Ohio Valley University","Vienna","WV"],["Oklahoma Baptist University","Shawnee","OK"],["Oklahoma Christian University","Edmond","OK"],["Oklahoma City University","Oklahoma City","OK"],["Oklahoma Panhandle State University","Goodwell","OK"],["Oklahoma State University Institute of Technology","Okmulgee","OK"],["Oklahoma State University-Oklahoma City","Oklahoma City","OK"],["Oklahoma Wesleyan University","Bartlesville","OK"],["Olivet College","Olivet","MI"],["Olivet Nazarene University","Bourbonnais","IL"],["Olympic College","Bremerton","WA"],["Oral Roberts University","Tulsa","OK"],["Oregon College of Art and Craft","Portland","OR"],["Oregon Health & Science University","Portland","OR"],["Oregon Institute of Technology","Klamath Falls","OR"],["Oregon State University-Cascades Campus","Bend","OR"],["Otis College of Art and Design","Los Angeles","CA"],["Ottawa University-Jeffersonville","Jeffersonville","IN"],["Ottawa University-Kansas City","Overland Park","KS"],["Ottawa University-Milwaukee","Brookfield","WI"],["Ottawa University-Online","Ottawa","KS"],["Ottawa University-Ottawa","Ottawa","KS"],["Ottawa University-Phoenix","Phoenix","AZ"],["Otterbein University","Westerville","OH"],["Ouachita Baptist University","Arkadelphia","AR"],["Our Lady of Holy Cross College","New Orleans","LA"],["Our Lady of the Lake College","Baton Rouge","LA"],["Our Lady of the Lake University","San Antonio","TX"],["Ozark Christian College","Joplin","MO"],["Pace University-New York","New York","NY"],["Pacific Northwest College of Art","Portland","OR"],["Pacific Oaks College","Pasadena","CA"],["Pacific School of Religion","Berkeley","CA"],["Pacific States University","Los Angeles","CA"],["Pacific Union College","Angwin","CA"],["Pacific University","Forest Grove","OR"],["Paine College","Augusta","GA"],["Palm Beach Atlantic University","West Palm Beach","FL"],["Palm Beach State College","Lake Worth","FL"],["Palo Alto University","Palo Alto","CA"],["Park University","Parkville","MO"],["Parker University","Dallas","TX"],["Paul Quinn College","Dallas","TX"],["Paul Smiths College of Arts and Science","Paul Smiths","NY"],["Peirce College","Philadelphia","PA"],["Peninsula College","Port Angeles","WA"],["Pennsylvania Academy of the Fine Arts","Philadelphia","PA"],["Pennsylvania College of Art and Design","Lancaster","PA"],["Pennsylvania College of Technology","Williamsport","PA"],["Pennsylvania State University-Main Campus","University Park","PA"],["Pennsylvania State University-Penn State Abington","Abington","PA"],["Pennsylvania State University-Penn State Altoona","Altoona","PA"],["Pennsylvania State University-Penn State Beaver","Monaca","PA"],["Pennsylvania State University-Penn State Berks","Reading","PA"],["Pennsylvania State University-Penn State Brandywine","Media","PA"],["Pennsylvania State University-Penn State Dubois","DuBois","PA"],["Pennsylvania State University-Penn State Erie-Behrend College","Erie","PA"],["Pennsylvania State University-Penn State Fayette- Eberly","Lemont Furnace","PA"],["Pennsylvania State University-Penn State Great Valley","Malvern","PA"],["Pennsylvania State University-Penn State Greater Allegheny","McKeesport","PA"],["Pennsylvania State University-Penn State Harrisburg","Middletown","PA"],["Pennsylvania State University-Penn State Hazleton","Hazleton","PA"],["Pennsylvania State University-Penn State Lehigh Valley","Center Valley","PA"],["Pennsylvania State University-Penn State Mont Alto","Mont Alto","PA"],["Pennsylvania State University-Penn State New Kensington","New Kensington","PA"],["Pennsylvania State University-Penn State Schuylkill","Schuylkill Haven","PA"],["Pennsylvania State University-Penn State Shenango","Sharon","PA"],["Pennsylvania State University-Penn State Wilkes-Barre","Lehman","PA"],["Pennsylvania State University-Penn State Worthington Scranton","Dunmore","PA"],["Pennsylvania State University-Penn State York","York","PA"],["Pennsylvania State University-World Campus","University Park","PA"],["Pensacola State College","Pensacola","FL"],["Peru State College","Peru","NE"],["Pfeiffer University","Misenheimer","NC"],["Philadelphia University","Philadelphia","PA"],["Philander Smith College","Little Rock","AR"],["Piedmont College","Demorest","GA"],["Piedmont International University","Winston Salem","NC"],["Pillar College","Newark","NJ"],["Pine Manor College","Chestnut Hill","MA"],["Pittsburg State University","Pittsburg","KS"],["Plymouth State University","Plymouth","NH"],["Point Loma Nazarene University","San Diego","CA"],["Point Park University","Pittsburgh","PA"],["Point University","West Point","GA"],["Polk State College","Winter Haven","FL"],["Polytechnic Institute of New York University","Brooklyn","NY"],["Polytechnic University of Puerto Rico-Miami","Miami","FL"],["Polytechnic University of Puerto Rico-Orlando","Orlando","FL"],["Pontifical College Josephinum","Columbus","OH"],["Pontifical Faculty of the Immaculate Conception at the Dominican House of Studies","Washington","NA"],["Pontifical John Paul II Institute for Studies on Marriage and Family","Washington","NA"],["Potomac State College of West Virginia University","Keyser","WV"],["Prairie View A & M University","Prairie View","TX"],["Presbyterian College","Clinton","SC"],["Prescott College","Prescott","AZ"],["Presentation College","Aberdeen","SD"],["Providence Christian College","Pasadena","CA"],["Purdue University-Calumet Campus","Hammond","IN"],["Purdue University-North Central Campus","Westville","IN"],["Queens University of Charlotte","Charlotte","NC"],["Quincy University","Quincy","IL"],["Rabbi Jacob Joseph School","Edison","NJ"],["Radford University","Radford","VA"],["Ramapo College of New Jersey","Mahwah","NJ"],["Randolph College","Lynchburg","VA"],["Randolph-Macon College","Ashland","VA"],["Ranken Technical College","Saint Louis","MO"],["Regent University","Virginia Beach","VA"],["Regis College","Weston","MA"],["Regis University","Denver","CO"],["Reinhardt University","Waleska","GA"],["Remington College-Dallas Campus","Garland","TX"],["Remington College-Heathrow Campus","Heathrow","FL"],["Remington College-Honolulu Campus","Honolulu","HI"],["Remington College-Memphis Campus","Memphis","TN"],["Remington College-Tampa Campus","Tampa","FL"],["Resurrection University","Chicago","IL"],["Rhode Island College","Providence","RI"],["Rider University","Lawrenceville","NJ"],["Ringling College of Art and Design","Sarasota","FL"],["Ripon College","Ripon","WI"],["Rivier University","Nashua","NH"],["Roanoke College","Salem","VA"],["Robert Morris University","Moon Township","PA"],["Robert Morris University Illinois","Chicago","IL"],["Roberts Wesleyan College","Rochester","NY"],["Rochester College","Rochester Hills","MI"],["Rockford University","Rockford","IL"],["Rockhurst University","Kansas City","MO"],["Rocky Mountain College","Billings","MT"],["Roger Williams University","Bristol","RI"],["Rogers State University","Claremore","OK"],["Roosevelt University","Chicago","IL"],["Rosemont College","Rosemont","PA"],["Rush University","Chicago","IL"],["Rust College","Holly Springs","MS"],["Rutgers University-Camden","Camden","NJ"],["Rutgers University-New Brunswick","New Brunswick","NJ"],["Rutgers University-Newark","Newark","NJ"],["SUNY College at Brockport","Brockport","NY"],["SUNY College at Cortland","Cortland","NY"],["SUNY College at Geneseo","Geneseo","NY"],["SUNY College at Old Westbury","Old Westbury","NY"],["SUNY College at Oswego","Oswego","NY"],["SUNY College at Plattsburgh","Plattsburgh","NY"],["SUNY College at Potsdam","Potsdam","NY"],["SUNY College of Agriculture and Technology at Cobleskill","Cobleskill","NY"],["SUNY College of Technology at Alfred","Alfred","NY"],["SUNY College of Technology at Canton","Canton","NY"],["SUNY College of Technology at Delhi","Delhi","NY"],["SUNY Empire State College","Saratoga Springs","NY"],["SUNY Institute of Technology at Utica-Rome","Utica","NY"],["SUNY Maritime College","Throggs Neck","NY"],["SUNY Oneonta","Oneonta","NY"],["SUNY at Albany","Albany","NY"],["SUNY at Binghamton","Vestal","NY"],["SUNY at Fredonia","Fredonia","NY"],["SUNY at Purchase College","Purchase","NY"],["Sacred Heart University","Fairfield","CT"],["Saginaw Valley State University","University Center","MI"],["Saint Ambrose University","Davenport","IA"],["Saint Anselm College","Manchester","NH"],["Saint Augustine College","Chicago","IL"],["Saint Augustine's University","Raleigh","NC"],["Saint Catharine College","Saint Catharine","KY"],["Saint Cloud State University","Saint Cloud","MN"],["Saint Edward's University","Austin","TX"],["Saint Francis University","Loretto","PA"],["Saint Gregory's University","Shawnee","OK"],["Saint John Fisher College","Rochester","NY"],["Saint Johns River State College","Palatka","FL"],["Saint Johns University","Collegeville","MN"],["Saint Joseph's College of Maine","Standish","ME"],["Saint Joseph's College-New York","Brooklyn","NY"],["Saint Josephs College","Rensselaer","IN"],["Saint Leo University","Saint Leo","FL"],["Saint Louis Christian College","Florissant","MO"],["Saint Martin's University","Lacey","WA"],["Saint Mary's University of Minnesota","Winona","MN"],["Saint Mary-of-the-Woods College","Saint Mary of the Woods","IN"],["Saint Michael's College","Colchester","VT"],["Saint Norbert College","De Pere","WI"],["Saint Peter's University","Jersey City","NJ"],["Saint Vincent College","Latrobe","PA"],["Saint Xavier University","Chicago","IL"],["Salem State University","Salem","MA"],["Salisbury University","Salisbury","MD"],["Salish Kootenai College","Pablo","MT"],["Salus University","Elkins Park","PA"],["Salve Regina University","Newport","RI"],["Samford University","Birmingham","AL"],["Samuel Merritt University","Oakland","CA"],["San Diego Christian College","El Cajon","CA"],["San Diego State University-Imperial Valley Campus","Calexico","CA"],["San Francisco Art Institute","San Francisco","CA"],["San Francisco Conservatory of Music","San Francisco","CA"],["Santa Fe College","Gainesville","FL"],["Savannah State University","Savannah","GA"],["Saybrook University","San Francisco","CA"],["School of the Museum of Fine Arts-Boston","Boston","MA"],["Schreiner University","Kerrville","TX"],["Seattle Central College","Seattle","WA"],["Seattle Community College-North Campus","Seattle","WA"],["Seattle Community College-South Campus","Seattle","WA"],["Seattle Pacific University","Seattle","WA"],["Selma University","Selma","AL"],["Seminole State College of Florida","Sanford","FL"],["Seton Hill University","Greensburg","PA"],["Shaw University","Raleigh","NC"],["Shawnee State University","Portsmouth","OH"],["Shenandoah University","Winchester","VA"],["Shepherd University","Shepherdstown","WV"],["Shimer College","Chicago","IL"],["Shippensburg University of Pennsylvania","Shippensburg","PA"],["Shorter University","Rome","GA"],["Shorter University-College of Adult & Professional Programs","Marietta","GA"],["Siena College","Loudonville","NY"],["Siena Heights University","Adrian","MI"],["Sierra Nevada College","Incline Village","NV"],["Silver Lake College of the Holy Family","Manitowoc","WI"],["Simmons College","Boston","MA"],["Simmons College of Kentucky","Louisville","KY"],["Simpson College","Indianola","IA"],["Simpson University","Redding","CA"],["Sinte Gleska University","Mission","SD"],["Sitting Bull College","Fort Yates","ND"],["Slippery Rock University of Pennsylvania","Slippery Rock","PA"],["Snow College","Ephraim","UT"],["Sofia University","Palo Alto","CA"],["Sojourner-Douglass College","Baltimore","MD"],["Sonoma State University","Rohnert Park","CA"],["South Baylo University","Anaheim","CA"],["South Carolina State University","Orangeburg","SC"],["South Dakota School of Mines and Technology","Rapid City","SD"],["South Florida State College","Avon Park","FL"],["South Georgia State College","Douglas","GA"],["South Texas College","McAllen","TX"],["Southeast Missouri State University","Cape Girardeau","MO"],["Southeastern Baptist College","Laurel","MS"],["Southeastern Louisiana University","Hammond","LA"],["Southeastern Oklahoma State University","Durant","OK"],["Southeastern University","Lakeland","FL"],["Southern Adventist University","Collegedale","TN"],["Southern Arkansas University Main Campus","Magnolia","AR"],["Southern California Institute of Architecture","Los Angeles","CA"],["Southern Connecticut State University","New Haven","CT"],["Southern Nazarene University","Bethany","OK"],["Southern New Hampshire University","Manchester","NH"],["Southern Oregon University","Ashland","OR"],["Southern Polytechnic State University","Marietta","GA"],["Southern University Law Center","Baton Rouge","LA"],["Southern University and A & M College","Baton Rouge","LA"],["Southern University at New Orleans","New Orleans","LA"],["Southern Vermont College","Bennington","VT"],["Southern Virginia University","Buena Vista","VA"],["Southern Wesleyan University","Central","SC"],["Southwest Baptist University","Bolivar","MO"],["Southwest Minnesota State University","Marshall","MN"],["Southwestern Adventist University","Keene","TX"],["Southwestern Assemblies of God University","Waxahachie","TX"],["Southwestern Christian College","Terrell","TX"],["Southwestern Christian University","Bethany","OK"],["Southwestern College","Winfield","KS"],["Southwestern College","Santa Fe","NM"],["Southwestern Oklahoma State University","Weatherford","OK"],["Spalding University","Louisville","KY"],["Spertus College","Chicago","IL"],["Spring Arbor University","Spring Arbor","MI"],["Spring Hill College","Mobile","AL"],["Springfield College","Springfield","MA"],["Springfield College-School of Human Services","Springfield","MA"],["St Andrews University","Laurinburg","NC"],["St Bonaventure University","Saint Bonaventure","NY"],["St Catherine University","Saint Paul","MN"],["St Francis College","Brooklyn Heights","NY"],["St John's University-New York","Queens","NY"],["St Luke's College","Sioux City","IA"],["St Mary's University","San Antonio","TX"],["St Petersburg College","Clearwater","FL"],["St Thomas Aquinas College","Sparkill","NY"],["St Thomas University","Miami Gardens","FL"],["St Vincent's College","Bridgeport","CT"],["Starr King School for Ministry","Berkeley","CA"],["State College of Florida-Manatee-Sarasota","Bradenton","FL"],["State University of New York at New Paltz","New Paltz","NY"],["Stephen F Austin State University","Nacogdoches","TX"],["Sterling College","Sterling","KS"],["Sterling College","Craftsbury Common","VT"],["Stevens-Henager College of Business-Provo","Orem","UT"],["Stevens-Henager College-Boise","Boise","ID"],["Stevens-Henager College-Logan","Logan","UT"],["Stevens-Henager College-Murray","Murray","UT"],["Stevens-Henager College-Ogden","West Haven","UT"],["Stevens-Henager College-St George","St. George","UT"],["Stevenson University","Stevenson","MD"],["Stillman College","Tuscaloosa","AL"],["Stonehill College","Easton","MA"],["Sul Ross State University","Alpine","TX"],["Susquehanna University","Selinsgrove","PA"],["Tabor College","Hillsboro","KS"],["Talladega College","Talladega","AL"],["Tarleton State University","Stephenville","TX"],["Taylor University","Upland","IN"],["Teachers College at Columbia University","New York","NY"],["Tennessee State University","Nashville","TN"],["Tennessee Technological University","Cookeville","TN"],["Tennessee Temple University","Chattanooga","TN"],["Tennessee Wesleyan College","Athens","TN"],["Texas A & M International University","Laredo","TX"],["Texas A & M University-College Station","College Station","TX"],["Texas A & M University-Commerce","Commerce","TX"],["Texas A & M University-Corpus Christi","Corpus Christi","TX"],["Texas A & M University-Kingsville","Kingsville","TX"],["Texas A & M University-Texarkana","Texarkana","TX"],["Texas College","Tyler","TX"],["Texas Lutheran University","Seguin","TX"],["Texas Southern University","Houston","TX"],["Texas Wesleyan University","Fort Worth","TX"],["Texas Woman's University","Denton","TX"],["The Baptist College of Florida","Graceville","FL"],["The Boston Conservatory","Boston","MA"],["The College of Idaho","Caldwell","ID"],["The College of New Rochelle","New Rochelle","NY"],["The College of Saint Rose","Albany","NY"],["The College of Saint Scholastica","Duluth","MN"],["The Evergreen State College","Olympia","WA"],["The King’s College","New York","NY"],["The New England Conservatory of Music","Boston","MA"],["The Richard Stockton College of New Jersey","Galloway","NJ"],["The Robert B Miller College","Battle Creek","MI"],["The Sage Colleges","Troy","NY"],["The University of Findlay","Findlay","OH"],["The University of Tennessee-Martin","Martin","TN"],["The University of Texas MD Anderson Cancer Center","Houston","TX"],["The University of Texas at Brownsville","Brownsville","TX"],["The University of Texas at Tyler","Tyler","TX"],["The University of Texas of the Permian Basin","Odessa","TX"],["The University of Texas-Pan American","Edinburg","TX"],["The University of the Arts","Philadelphia","PA"],["The Wright Institute","Berkeley","CA"],["Thiel College","Greenville","PA"],["Thomas Aquinas College","Santa Paula","CA"],["Thomas College","Waterville","ME"],["Thomas Edison State College","Trenton","NJ"],["Thomas Jefferson University","Philadelphia","PA"],["Thomas M Cooley Law Schoo","Lansing","MI"],["Thomas More College","Crestview Hills","KY"],["Thomas More College of Liberal Arts","Merrimack","NH"],["Thomas University","Thomasville","GA"],["Thunderbird School of Global Management","Glendale","AZ"],["Tiffin University","Tiffin","OH"],["Toccoa Falls College","Toccoa Falls","GA"],["Tougaloo College","Tougaloo","MS"],["Touro College","New York","NY"],["Touro University California","Vallejo","CA"],["Touro University Nevada","Henderson","NV"],["Touro University Worldwide","Los Alamitos","CA"],["Transylvania University","Lexington","KY"],["Trevecca Nazarene University","Nashville","TN"],["Trine University","Angola","IN"],["Trine University-Regional/Non-Traditional Campuses","Fort Wayne","IN"],["Trinity Baptist College","Jacksonville","FL"],["Trinity Christian College","Palos Heights","IL"],["Trinity College of Florida","Trinity","FL"],["Trinity Episcopal School for Ministry","Ambridge","PA"],["Trinity International University-Florida","Davie","FL"],["Trinity International University-Illinois","Deerfield","IL"],["Trinity Lutheran College","Everett","WA"],["Trocaire College","Buffalo","NY"],["Truett-McConnell College","Cleveland","GA"],["Tulane University of Louisiana","New Orleans","LA"],["Turtle Mountain Community College","Belcourt","ND"],["Tusculum College","Greeneville","TN"],["Tuskegee University","Tuskegee","AL"],["Union Institute & University","Cincinnati","OH"],["Union University","Jackson","TN"],["United States Sports Academy","Daphne","AL"],["United Tribes Technical College","Bismarck","ND"],["Unity College","Unity","ME"],["University of Alaska Anchorage","Anchorage","AK"],["University of Alaska Southeast","Juneau","AK"],["University of Arkansas-Fort Smith","Fort Smith","AR"],["University of Baltimore","Baltimore","MD"],["University of Bridgeport","Bridgeport","CT"],["University of California-San Francisco","San Francisco","CA"],["University of Central Arkansas","Conway","AR"],["University of Central Missouri","Warrensburg","MO"],["University of Central Oklahoma","Edmond","OK"],["University of Charleston","Charleston","WV"],["University of Cincinnati-Blue Ash College","Blue Ash","OH"],["University of Cincinnati-Clermont College","Batavia","OH"],["University of Connecticut-Avery Point","Groton","CT"],["University of Dallas","Irving","TX"],["University of Detroit Mercy","Detroit","MI"],["University of Dubuque","Dubuque","IA"],["University of Evansville","Evansville","IN"],["University of Fort Lauderdale","Lauderhill","FL"],["University of Great Falls","Great Falls","MT"],["University of Hartford","West Hartford","CT"],["University of Hawaii Maui College","Kahului","HI"],["University of Hawaii at Hilo","Hilo","HI"],["University of Hawaii-West Oahu","Kapolei","HI"],["University of Houston-Clear Lake","Houston","TX"],["University of Illinois at Springfield","Springfield","IL"],["University of Indianapolis","Indianapolis","IN"],["University of Jamestown","Jamestown","ND"],["University of La Verne","La Verne","CA"],["University of Louisiana at Monroe","Monroe","LA"],["University of Mary","Bismarck","ND"],["University of Mary Hardin-Baylor","Belton","TX"],["University of Mary Washington","Fredericksburg","VA"],["University of Maryland Eastern Shore","Princess Anne","MD"],["University of Maryland-Baltimore","Baltimore","MD"],["University of Maryland-University College","Adelphi","MD"],["University of Michigan-Ann Arbor","Ann Arbor","MI"],["University of Minnesota-Crookston","Crookston","MN"],["University of Minnesota-Duluth","Duluth","MN"],["University of Minnesota-Morris","Morris","MN"],["University of Minnesota-Rochester","Rochester","MN"],["University of Missouri-Kansas City","Kansas City","MO"],["University of Missouri-St Louis","Saint Louis","MO"],["University of Mobile","Mobile","AL"],["University of Montevallo","Montevallo","AL"],["University of Mount Union","Alliance","OH"],["University of Nebraska at Kearney","Kearney","NE"],["University of Nebraska-Lincoln","Lincoln","NE"],["University of New England","Biddeford","ME"],["University of New Haven","West Haven","CT"],["University of North Alabama","Florence","AL"],["University of North Carolina School of the Arts","Winston-Salem","NC"],["University of North Carolina Wilmington","Wilmington","NC"],["University of North Carolina at Asheville","Asheville","NC"],["University of North Carolina at Pembroke","Pembroke","NC"],["University of North Georgia","Dahlonega","GA"],["University of Northern Colorado","Greeley","CO"],["University of Northwestern Ohio","Lima","OH"],["University of Northwestern-St Paul","Saint Paul","MN"],["University of Oklahoma-Norman Campus","Norman","OK"],["University of Pikeville","Pikeville","KY"],["University of Pittsburgh-Pittsburgh Campus","Pittsburgh","PA"],["University of Rio Grande","Rio Grande","OH"],["University of Saint Francis-Fort Wayne","Fort Wayne","IN"],["University of Saint Joseph","West Hartford","CT"],["University of Saint Mary","Leavenworth","KS"],["University of Saint Mary of the Lake","Mundelein","IL"],["University of Science and Arts of Oklahoma","Chickasha","OK"],["University of Scranton","Scranton","PA"],["University of Sioux Falls","Sioux Falls","SD"],["University of South Florida-St Petersburg","St. Petersburg","FL"],["University of Southern Indiana","Evansville","IN"],["University of Southern Maine","Portland","ME"],["University of St Francis","Joliet","IL"],["University of Washington-Bothell Campus","Bothell","WA"],["University of Washington-Seattle Campus","Seattle","WA"],["University of Washington-Tacoma Campus","Tacoma","WA"],["University of West Alabama","Livingston","AL"],["University of West Georgia","Carrollton","GA"],["University of Western States","Portland","OR"],["University of Wisconsin-Eau Claire","Eau Claire","WI"],["University of Wisconsin-Green Bay","Green Bay","WI"],["University of Wisconsin-La Crosse","La Crosse","WI"],["University of Wisconsin-Madison","Madison","WI"],["University of Wisconsin-Milwaukee","Milwaukee","WI"],["University of Wisconsin-Oshkosh","Oshkosh","WI"],["University of Wisconsin-Parkside","Kenosha","WI"],["University of Wisconsin-Platteville","Platteville","WI"],["University of Wisconsin-River Falls","River Falls","WI"],["University of Wisconsin-Stevens Point","Stevens Point","WI"],["University of Wisconsin-Stout","Menomonie","WI"],["University of Wisconsin-Superior","Superior","WI"],["University of Wisconsin-Whitewater","Whitewater","WI"],["University of the Cumberlands","Williamsburg","KY"],["University of the District of Columbia","Washington","NA"],["University of the Incarnate Word","San Antonio","TX"],["University of the Ozarks","Clarksville","AR"],["University of the Sciences","Philadelphia","PA"],["University of the Southwest","Hobbs","NM"],["University of the West","Rosemead","CA"],["Upper Iowa University","Fayette","IA"],["Upper Valley Educators Institute","Lebanon","NH"],["Urbana University","Urbana","OH"],["Uta Mesivta of Kiryas Joel","Monroe","NY"],["Utah Valley University","Orem","UT"],["Utica College","Utica","NY"],["Valdosta State University","Valdosta","GA"],["Valencia College","Orlando","FL"],["Valley City State University","Valley City","ND"],["Valley Forge Christian College","Phoenixville","PA"],["VanderCook College of Music","Chicago","IL"],["Vanguard University of Southern California","Costa Mesa","CA"],["Vaughn College of Aeronautics and Technology","Flushing","NY"],["Vermont College of Fine Arts","Montpelier","VT"],["Vermont Technical College","Randolph Center","VT"],["Villa Maria College","Buffalo","NY"],["Vincennes University","Vincennes","IN"],["Virginia Baptist College","Fredericksburg","VA"],["Virginia Intermont College","Bristol","VA"],["Virginia Military Institute","Lexington","VA"],["Virginia Polytechnic Institute and State University","Blacksburg","VA"],["Virginia State University","Petersburg","VA"],["Virginia Union University","Richmond","VA"],["Virginia University of Lynchburg","Lynchburg","VA"],["Virginia Wesleyan College","Norfolk","VA"],["Visible Music College","Memphis","TN"],["Viterbo University","La Crosse","WI"],["Voorhees College","Denmark","SC"],["Wagner College","Staten Island","NY"],["Walla Walla University","College Place","WA"],["Walsh College of Accountancy and Business Administration","Troy","MI"],["Walsh University","North Canton","OH"],["Warner Pacific College","Portland","OR"],["Warner Pacific College Adult Degree Program","Portland","OR"],["Warner University","Lake Wales","FL"],["Warren Wilson College","Swannanoa","NC"],["Wartburg College","Waverly","IA"],["Washburn University","Topeka","KS"],["Washington Adventist University","Takoma Park","MD"],["Watkins College of Art Design & Film","Nashville","TN"],["Wayland Baptist University","Plainview","TX"],["Wayne State College","Wayne","NE"],["Waynesburg University","Waynesburg","PA"],["Webber International University","Babson Park","FL"],["Weber State University","Ogden","UT"],["Webster University","Saint Louis","MO"],["Welch College","Nashville","TN"],["Wells College","Aurora","NY"],["Wesley College","Dover","DE"],["West Chester University of Pennsylvania","West Chester","PA"],["West Liberty University","West Liberty","WV"],["West Texas A & M University","Canyon","TX"],["West Virginia State University","Institute","WV"],["West Virginia University Hospital Departments of Rad Tech and Nutrition","Morgantown","WV"],["West Virginia University Institute of Technology","Montgomery","WV"],["West Virginia Wesleyan College","Buckhannon","WV"],["Western Carolina University","Cullowhee","NC"],["Western Connecticut State University","Danbury","CT"],["Western Governors University","Salt Lake City","UT"],["Western Illinois University","Macomb","IL"],["Western Nevada College","Carson City","NV"],["Western New England University","Springfield","MA"],["Western New Mexico University","Silver City","NM"],["Western Oregon University","Monmouth","OR"],["Western State Colorado University","Gunnison","CO"],["Westfield State University","Westfield","MA"],["Westminster College","Fulton","MO"],["Westminster College","New Wilmington","PA"],["Westminster College","Salt Lake City","UT"],["Westmont College","Santa Barbara","CA"],["Wheeling Jesuit University","Wheeling","WV"],["Wheelock College","Boston","MA"],["Whittier College","Whittier","CA"],["Whitworth University-Adult Degree Programs","Spokane","WA"],["Widener University-Delaware Campus","Wilmington","DE"],["Widener University-Harrisburg Campus","Harrisburg","PA"],["Widener University-Main Campus","Chester","PA"],["Wilberforce University","Wilberforce","OH"],["Wiley College","Marshall","TX"],["Wilkes University","Wilkes-Barre","PA"],["William Carey University","Hattiesburg","MS"],["William Jessup University","Rocklin","CA"],["William Jewell College","Liberty","MO"],["William Paterson University of New Jersey","Wayne","NJ"],["William Peace University","Raleigh","NC"],["William Penn University","Oskaloosa","IA"],["William Woods University","Fulton","MO"],["Williams Baptist College","Walnut Ridge","AR"],["Williamson Christian College","Franklin","TN"],["Wilmington College","Wilmington","OH"],["Wilmington University","New Castle","DE"],["Wilson College","Chambersburg","PA"],["Wingate University","Wingate","NC"],["Winona State University","Winona","MN"],["Winston-Salem State University","Winston-Salem","NC"],["Winthrop University","Rock Hill","SC"],["Wisconsin Lutheran College","Milwaukee","WI"],["Wittenberg University","Springfield","OH"],["Woodbury University","Burbank","CA"],["Worcester State University","Worcester","MA"],["World Mission University","Los Angeles","CA"],["Wright Career College","Overland Park","KS"],["Wright State University-Lake Campus","Celina","OH"],["Xavier University of Louisiana","New Orleans","LA"],["Yale-New Haven Hospital Dietetic Internship","New Haven","CT"],["York College","York","NE"],["York College Pennsylvania","York","PA"],["Young Harris College","Young Harris","GA"],["Youngstown State University","Youngstown","OH"]];
 
@@ -4753,6 +6729,7 @@ function usGuide(){
       <ul class="sl">${US_AIDHOW.map(t => `<li>${TR(t)}</li>`).join("")}</ul></section>
     <section class="scard"><span class="eyebrow">Full-ride and full-tuition scholarships open to you</span>${tbl(["Scholarship","Who","Value","How / when"], US_FULLRIDES)}<p class="small faint">Values and deadlines change each year: confirm on each university's scholarship page before you plan around them.</p></section>
     <section class="scard"><span class="eyebrow">Merit scholarships at public universities</span>${tbl(["University","Award","How"], US_PUBMERIT)}</section>
+    <section class="scard"><span class="eyebrow">Largest confirmed awards at private colleges</span>${tbl(["College","Award","How"], US_PRIVMERIT)}<p class="small faint">Checked one by one, 9–10 Oct 2026. Most of these colleges list a full cost of roughly $55,000–85,000 a year before the award.</p></section>
     <section class="scard"><span class="eyebrow">Funding from Uzbekistan</span><ul class="sl">${US_UZFUND.map(t => `<li>${TR(t)}</li>`).join("")}</ul></section>
     <section class="scard"><span class="eyebrow">From offer to F-1 visa, 2026–27</span><ol class="tline">${US_VISA2.map(([w, t]) => `<li><span class="w">${esc(w)}</span><span>${TR(t)}</span></li>`).join("")}</ol></section>
     <div class="sgrid">
