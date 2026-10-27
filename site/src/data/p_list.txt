@@ -1,0 +1,251 @@
+University of Illinois Urbana-Champaign | flag | 100 | mr | p
+Purdue University | flag | 100 | mr | p
+Boston University | spr | 200 | mr | p
+University of Maryland, College Park | flag | 500 | mr | p
+Ohio State University | flag | 500 | mr | p
+Rutgers University–New Brunswick | flag | 500 | mr | p
+Michigan State University | flag | 500 | mr | p
+University of Massachusetts Amherst | flag | 500 | mr | p
+Texas A&M University | flag | 500 | mr | p
+University of Arizona | flag | 500 | mr | p
+Rensselaer Polytechnic Institute (RPI) | spr | 1000 | mr | p
+Stevens Institute of Technology | spr | 1000 | mr | p
+Worcester Polytechnic Institute (WPI) | spr | 1000 | mr | p
+Indiana University Bloomington | flag | 1000 | mr | p
+University at Buffalo (SUNY) | flag | 1000 | mr | p
+University of Connecticut | flag | 1000 | mr | p
+University of Houston | flag | 1000 | mr | p
+George Mason University | flag | 1000 | mr | p
+Colorado State University | flag | 1000 | mr | p
+University of Delaware | flag | 1000 | mr | p
+University of South Florida | flag | 1000 | mr | p
+University of Hawaii at Manoa | flag | 1000 | mr | p
+University of Illinois Chicago | flag | 1000 | mr | p
+University of Iowa | flag | 1000 | mr | p
+Louisiana State University | flag | 1000 | mr | p
+Wayne State University | flag | 1000 | mr | p
+University of Missouri | flag | 1000 | mr | p
+University of Nebraska–Lincoln | flag | 1000 | mr | p
+New Jersey Institute of Technology | flag | 1000 | mr | p
+University of New Mexico | flag | 1000 | mr | p
+University of Oklahoma | flag | 1000 | mr | p
+Temple University | flag | 1000 | mr | p
+University of South Carolina | flag | 1000 | mr | p
+University of Tennessee, Knoxville | flag | 1000 | mr | p
+University of Alabama at Birmingham (UAB) | flag | 1000 | mr | p
+University of Texas at Arlington | flag | 1000 | mr | p
+University of Vermont | flag | 1000 | mr | p
+Virginia Commonwealth University | flag | 1000 | mr | p
+Illinois Institute of Technology | pri | 1000 | mr | p
+Indiana University Indianapolis | pub | 1000 | mr | p
+Pepperdine University | spr | ? | mr | p
+Santa Clara University | spr | ? | mr | p
+Southern Methodist University | spr | ? | mr | p
+Texas Christian University | spr | ? | mr | p
+Howard University | spr | ? | mr | p
+Colorado School of Mines | flag | ? | mr | p
+University of Central Florida | flag | ? | mr | p
+Florida International University | flag | ? | mr | p
+Georgia State University | flag | ? | mr | p
+University of Louisville | flag | ? | mr | p
+University of Maryland, Baltimore County (UMBC) | flag | ? | mr | p
+Michigan Technological University | flag | ? | mr | p
+Missouri University of Science and Technology | flag | ? | mr | p
+University of New Hampshire | flag | ? | mr | p
+Auburn University | flag | ? | mr | p
+University of Arkansas | flag | ? | mr | p
+Texas Tech University | flag | ? | mr | p
+University of North Texas | flag | ? | mr | p
+University of Texas at San Antonio | flag | ? | mr | p
+West Virginia University | flag | ? | mr | p
+University of Mississippi (Ole Miss) | flag | ? | mr | p
+Montana State University | flag | ? | mr | p
+University of Montana | flag | ? | mr | p
+New Mexico State University | flag | ? | mr | p
+North Dakota State University | flag | ? | mr | p
+University of North Dakota | flag | ? | mr | p
+Old Dominion University | flag | ? | mr | p
+University of Maine | flag | ? | mr | p
+University of Nevada, Reno | flag | ? | mr | p
+University of Wisconsin–Milwaukee | flag | ? | mr | p
+Utah State University | flag | ? | mr | p
+Northern Illinois University | flag | ? | mr | p
+Texas State University | flag | ? | mr | p
+University of Toledo | flag | ? | mr | p
+University of Wyoming | flag | ? | mr | p
+Wichita State University | flag | ? | mr | p
+University of Idaho | flag | ? | mr | p
+University of Alabama in Huntsville | flag | ? | mr | p
+University of Colorado Denver | flag | ? | mr | p
+University of Southern Mississippi | flag | ? | mr | p
+Loyola Marymount University | pri | ? | mr | p
+Chapman University | pri | ? | mr | p
+University of Denver | pri | ? | mr | p
+Saint Louis University | pri | ? | mr | p
+Loyola University Chicago | pri | ? | mr | p
+Marquette University | pri | ? | mr | p
+Creighton University | pri | ? | mr | p
+University of Dayton | pri | ? | mr | p
+Duquesne University | pri | ? | mr | p
+Hofstra University | pri | ? | mr | p
+Seton Hall University | pri | ? | mr | p
+University of Tulsa | pri | ? | mr | p
+Florida Institute of Technology | pri | ? | mr | p
+Catholic University of America | pri | ? | mr | p
+University of San Diego | pub | ? | mr | p
+Florida Atlantic University | pub | ? | mr | p
+University of Massachusetts Boston | pub | ? | mr | p
+University of Massachusetts Lowell | pub | ? | mr | p
+University of Nevada, Las Vegas | pub | ? | mr | p
+University at Albany (SUNY) | pub | ? | mr | p
+University of North Carolina at Charlotte | pub | ? | mr | p
+Ohio University | pub | ? | mr | p
+Miami University (Ohio) | pub | ? | mr | p
+University of Rhode Island | pub | ? | mr | p
+Boise State University | pub | ? | mr | p
+University of North Carolina at Greensboro | pub | ? | mr | p
+University of Louisiana at Lafayette | pub | ? | mr | p
+Kennesaw State University | pub | ? | mr | p
+Georgia Southern University | pub | ? | mr | p
+Augusta University | pub | ? | mr | p
+University of South Alabama | pub | ? | mr | p
+Oakland University | pub | ? | mr | p
+Florida A&M University | pub | ? | mr | p
+Texas A&M University–Corpus Christi | pub | ? | mr | p
+East Carolina University | pub | ? | mr | p
+North Carolina A&T State University | pub | ? | mr | p
+Morgan State University | pub | ? | mr | p
+Marshall University | pub | ? | mr | p
+University of Tennessee at Chattanooga | pub | ? | mr | p
+Louisiana Tech University | pub | ? | mr | p
+University of New Orleans | pub | ? | mr | p
+Bowling Green State University | pub | ? | mr | p
+University of Akron | pub | ? | mr | p
+Wright State University | pub | ? | mr | p
+Cleveland State University | pub | ? | mr | p
+Central Michigan University | pub | ? | mr | p
+Ball State University | pub | ? | mr | p
+Southern Illinois University Carbondale | pub | ? | mr | p
+University of Missouri–Kansas City | pub | ? | mr | p
+South Dakota State University | pub | ? | mr | p
+University of Alaska Fairbanks | pub | ? | mr | p
+University of Massachusetts Dartmouth | pub | ? | mr | p
+Emerson College | spr | u | mr | p
+The New School (Parsons School of Design) | spr | u | mr | p
+Pratt Institute | spr | u | mr | p
+Berklee College of Music | spr | u | mr | p
+University of Texas at El Paso | flag | u | mr | p
+St. John's University | lac | u | mr | p
+Hampden-Sydney College | lac | u | mr | p
+Morehouse College | lac | u | mr | p
+Hope College | lac | u | mr | p
+Calvin University | lac | u | mr | p
+University of Puget Sound | lac | u | mr | p
+Willamette University | lac | u | mr | p
+Trinity University | lac | u | mr | p
+Southwestern University | lac | u | mr | p
+Rollins College | lac | u | mr | p
+Ursinus College | lac | u | mr | p
+Muhlenberg College | lac | u | mr | p
+Wheaton College (Massachusetts) | lac | u | mr | p
+Ohio Wesleyan University | lac | u | mr | p
+Wofford College | lac | u | mr | p
+Millsaps College | lac | u | mr | p
+Washington College | lac | u | mr | p
+St. Mary's College of Maryland | lac | u | mr | p
+Cornell College | lac | u | mr | p
+Coe College | lac | u | mr | p
+Illinois Wesleyan University | lac | u | mr | p
+Washington & Jefferson College | lac | u | mr | p
+Concordia College | lac | u | mr | p
+Monmouth College | lac | u | mr | p
+Albion College | lac | u | mr | p
+Eckerd College | lac | u | mr | p
+Bentley University | pri | u | mr | p
+DePaul University | pri | u | mr | p
+Elon University | pri | u | mr | p
+Pace University | pri | u | mr | p
+Fairfield University | pri | u | mr | p
+Gonzaga University | pri | u | mr | p
+Seattle University | pri | u | mr | p
+Hult International Business School | pri | u | mr | p
+Embry-Riddle Aeronautical University | pri | u | mr | p
+Clarkson University | pri | u | mr | p
+Kettering University | pri | u | mr | p
+Rose-Hulman Institute of Technology | pri | u | mr | p
+School of the Art Institute of Chicago | pri | u | mr | p
+Savannah College of Art and Design (SCAD) | pri | u | mr | p
+Wentworth Institute of Technology | pri | u | mr | p
+Milwaukee School of Engineering | pri | u | mr | p
+Quinnipiac University | pri | u | mr | p
+Ithaca College | pri | u | mr | p
+Marist University | pri | u | mr | p
+Suffolk University | pri | u | mr | p
+Bryant University | pri | u | mr | p
+Providence College | pri | u | mr | p
+Xavier University | pri | u | mr | p
+Butler University | pri | u | mr | p
+Drake University | pri | u | mr | p
+Bradley University | pri | u | mr | p
+Valparaiso University | pri | u | mr | p
+University of St. Thomas | pri | u | mr | p
+University of the Pacific | pri | u | mr | p
+University of Redlands | pri | u | mr | p
+Saint Mary's College of California | pri | u | mr | p
+Mercer University | pri | u | mr | p
+Belmont University | pri | u | mr | p
+University of Tampa | pri | u | mr | p
+Nova Southeastern University | pri | u | mr | p
+Lynn University | pri | u | mr | p
+Johnson & Wales University | pri | u | mr | p
+Saint Joseph's University | pri | u | mr | p
+Loyola University Maryland | pri | u | mr | p
+Loyola University New Orleans | pri | u | mr | p
+University of Portland | pri | u | mr | p
+Whitworth University | pri | u | mr | p
+Pacific Lutheran University | pri | u | mr | p
+Adelphi University | pri | u | mr | p
+Long Island University | pri | u | mr | p
+Fairleigh Dickinson University | pri | u | mr | p
+Stetson University | pri | u | mr | p
+Illinois State University | pub | u | mr | p
+Western Michigan University | pub | u | mr | p
+Rowan University | pub | u | mr | p
+Kent State University | pub | u | mr | p
+Portland State University | pub | u | mr | p
+University of Memphis | pub | u | mr | p
+Northern Arizona University | pub | u | mr | p
+New Mexico Tech | pub | u | mr | p
+South Dakota Mines | pub | u | mr | p
+The College of New Jersey | pub | u | mr | p
+James Madison University | pub | u | mr | p
+College of Charleston | pub | u | mr | p
+Appalachian State University | pub | u | mr | p
+UNC Wilmington | pub | u | mr | p
+Towson University | pub | u | mr | p
+Western Kentucky University | pub | u | mr | p
+Middle Tennessee State University | pub | u | mr | p
+Tennessee Tech University | pub | u | mr | p
+Arkansas State University | pub | u | mr | p
+Troy University | pub | u | mr | p
+University of North Florida | pub | u | mr | p
+Florida Gulf Coast University | pub | u | mr | p
+University of West Florida | pub | u | mr | p
+Eastern Michigan University | pub | u | mr | p
+Grand Valley State University | pub | u | mr | p
+University of Michigan–Dearborn | pub | u | mr | p
+Southern Illinois University Edwardsville | pub | u | mr | p
+Missouri State University | pub | u | mr | p
+University of Northern Iowa | pub | u | mr | p
+University of Nebraska Omaha | pub | u | mr | p
+University of South Dakota | pub | u | mr | p
+University of Colorado Colorado Springs | pub | u | mr | p
+Southern Utah University | pub | u | mr | p
+Western Washington University | pub | u | mr | p
+University of Texas Rio Grande Valley | pub | u | mr | p
+Sam Houston State University | pub | u | mr | p
+Lamar University | pub | u | mr | p
+Prairie View A&M University | pub | u | mr | p
+East Texas A&M University | pub | u | mr | p
+SUNY College of Environmental Science and Forestry | pub | u | mr | p
+SUNY Geneseo | pub | u | mr | p

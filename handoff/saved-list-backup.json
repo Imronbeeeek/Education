@@ -1,0 +1,33 @@
+{
+  "custom": [],
+  "done": {},
+  "satPick": "dec",
+  "saved": [
+    "us1",
+    "us6",
+    "us12",
+    "ca1",
+    "ca2",
+    "es1",
+    "hk1",
+    "hk2",
+    "hk3",
+    "cn3",
+    "cn6",
+    "tr1",
+    "tr3",
+    "fr1",
+    "it3",
+    "qa1",
+    "qa2"
+  ],
+  "sit": {
+    "fnd": "no",
+    "hist": "s1",
+    "sat": "0",
+    "w": "5.5"
+  },
+  "skip": {},
+  "tiers": {},
+  "v": 2
+}

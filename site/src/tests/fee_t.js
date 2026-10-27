@@ -1,0 +1,41 @@
+const { chromium } = require('playwright');
+const SP = (process.env.SHOTS || require('os').tmpdir());
+(async () => {
+  const b = await chromium.launch({executablePath: process.env.CHROMIUM_PATH || undefined});
+  const html = require('fs').readFileSync(require('path').join(__dirname,'..','..','index.html'),'utf8');
+  const doc = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body style="margin:0">'+html+'</body></html>';
+  for (const [w,h,name] of [[1280,900,'d'],[390,844,'m']]) {
+    const ctx = await b.newContext({viewport:{width:w,height:h}});
+    const p = await ctx.newPage(); const errs=[]; p.on('pageerror',e=>errs.push(e.message));
+    await p.setContent(doc,{waitUntil:'load'}); await p.waitForTimeout(400);
+    const r = {};
+    await p.click('.tabbtn[data-tab="unis"]'); await p.waitForTimeout(200);
+    r.before = await p.evaluate(()=>document.querySelector('#uCount').textContent);
+    await p.click('#fBtn'); await p.waitForTimeout(100); await p.click('[data-tog="free"]'); await p.waitForTimeout(200);
+    r.free = await p.evaluate(()=>document.querySelector('#uCount').textContent);
+    await p.click('[data-tog="free"]'); await p.waitForTimeout(150);
+    await p.fill('#q','common app'); await p.waitForTimeout(200); r.capp = await p.evaluate(()=>document.querySelector('#uCount').textContent); await p.fill('#q',''); await p.waitForTimeout(150);
+    await p.evaluate(()=>{const e=document.querySelector('#cg-Qatar'); window.scrollTo(0, e.getBoundingClientRect().top + scrollY - (innerWidth>640?90:10));});
+    await p.click('#it-qa2 summary .nm'); await p.waitForTimeout(150);
+    r.qa2 = await p.evaluate(()=>[document.querySelector('#it-qa2 .dates .fee').textContent, document.querySelector('#it-qa1 .dates .fee').textContent]);
+    const el = await p.$('#it-qa2'); await el.screenshot({path:`${SP}/f-${name}-row.png`});
+    await p.click('.tabbtn[data-tab="list"]'); await p.waitForTimeout(250);
+    r.fees = await p.evaluate(()=>[document.querySelector('#fees h3').textContent, document.querySelectorAll('#fees tbody tr').length]);
+    const fe = await p.$('#fees'); await fe.screenshot({path:`${SP}/f-${name}-fees.png`});
+    await p.click('[data-freeonly]'); await p.waitForTimeout(250);
+    r.freeonly = await p.evaluate(()=>[document.querySelector('#uCount').textContent, document.querySelector('[data-tog="free"]').getAttribute('aria-pressed')]);
+    await p.click('.tabbtn[data-tab="list"]'); await p.waitForTimeout(250);
+    await p.selectOption('[data-appst="qa1"]','sent'); await p.waitForTimeout(200);
+    r.sum = await p.evaluate(()=>document.querySelector('#slSum').textContent);
+    r.persist = await p.evaluate(()=>document.querySelector('[data-appst="qa1"]').value);
+    const sl = await p.$('#shortlist'); const bb = await sl.boundingBox();
+    await p.evaluate(y=>window.scrollTo(0,y), bb.y + await p.evaluate(()=>scrollY) - 120); await p.waitForTimeout(100);
+    await p.screenshot({path:`${SP}/f-${name}-apps.png`});
+    await p.click('[data-gofees]'); await p.waitForTimeout(300);
+    r.gofees = await p.evaluate(()=>!document.querySelector('[data-panel="list"]').hidden);
+    r.sw = await p.evaluate(()=>document.documentElement.scrollWidth);
+    console.log(name, errs, JSON.stringify(r));
+    await ctx.close();
+  }
+  await b.close();
+})();

@@ -1,0 +1,309 @@
+us1 | route | Columbia University – School of General Studies | fee | v | Opens 1 Dec · Priority Early Action 15 J
+us2 | ivy | Massachusetts Institute of Technology (MIT) | fee | s | EA 1 Nov 2026 · RD 5 Jan 2027
+us2b | ivy | California Institute of Technology (Caltech) | fee | v | REA 1 Nov 2026 (materials by 6 Nov; test
+us3 | ivy | Harvard University | fee | s | REA 1 Nov 2026 · RD 1 Jan 2027
+us3b | ivy | Yale University | fee | s | REA 1 Nov 2026 · RD 2 Jan 2027
+us3c | ivy | Princeton University | fee | s | REA 1 Nov 2026 · RD 1 Jan 2027
+us3d | ivy | Stanford University | fee | s | REA 1 Nov 2026 · RD 5 Jan 2027
+us4 | ivy | University of Pennsylvania | fee | s | ED 1 Nov 2026 · RD 5 Jan 2027
+us4b | ivy | Cornell University | fee | s | ED 1 Nov 2026 · RD 2 Jan 2027
+us4c | ivy | Brown University | fee | s | ED 1 Nov 2026 · RD 5 Jan 2027
+us4d | ivy | Dartmouth College | fee | s | ED 1 Nov 2026 (no ED II) · RD 1–2 Jan 20
+us4e | ivy | Columbia College & Columbia Engineering | fee | s | ED 1 Nov 2026 · RD 1 Jan 2027
+us5 | ivy | University of Chicago | fee | s | EA and ED I 2 Nov 2026 · ED II and RD 4 
+us5b | ivy | Duke University | fee | s | ED ~2 Nov 2026 (lists differ: 2–4 Nov) ·
+us5c | ivy | Northwestern University | fee | v | ED 1 Nov 2026 · RD 4 Jan 2027 (decisions
+us5d | ivy | Johns Hopkins University | fee | v | ED I 1 Nov 2026 · ED II and RD 2 Jan 202
+us5e | ivy | Rice University | fee | v | ED I 1 Nov 2026 · ED II and RD 4 Jan 202
+us5f | ivy | Vanderbilt University | fee | s | ED I 1 Nov 2026 · ED II and RD 1 Jan 202
+us5g | ivy | Georgetown University | fee | s | Early Action 1 Nov 2026 · RD 10 Jan 2027
+us5h | ivy | Carnegie Mellon University | fee | v | ED 1 Nov 2026 · RD 5 Jan 2027
+us5i | pri | Other private universities (selective and mid-selective) | - | - | EA 1 Nov · RD 1–15 Jan 2027
+us6 | ivy | New York University | fee | s | ED I 1 Nov 2026 · ED II and RD 5 Jan 202
+us6b | ivy | University of Southern California | - | v | Early Action or new Early Decision 1 Nov
+us6c | ivy | Northeastern University | fee | s | EA/ED 1 Nov 2026 · RD 1 Jan 2027 (third-
+us6d | spr | Boston University | fee | s | ED I ~2 Nov 2026 · ED II and RD 5 Jan 20
+us6e | ivy | Tufts University | fee | v | ED I 2 Nov 2026 · ED II and RD 4 Jan 202
+us6f | spr | Boston College | - | s | ED I 1 Nov · ED II and RD ~2–4 Jan 2027 
+us7 | lac | More liberal arts colleges | - | - | RD 1–15 Jan 2027
+us8 | flag | University of California, Berkeley | - | v | UC application 1–30 Nov 2026 (no early r
+us8b | flag | University of California, Los Angeles (UCLA) | - | v | UC application 1–30 Nov 2026 (no early r
+us8c | flag | University of California, San Diego | - | v | UC application 1–30 Nov 2026 (no early r
+us8d | flag | University of California, Davis | - | v | UC application 1–30 Nov 2026 (no early r
+us9 | flag | University of Illinois Urbana-Champaign | fee | s | EA 1 Nov 2026 (tentative) · RD ~5 Jan 20
+us10 | flag | Purdue University | fee | v | EA 1 Nov 2026 (decisions 15 Jan) · RD 15
+us10b | flag | Georgia Institute of Technology | fee | s | EA 2 Nov 2026 (non-Georgia applicants) ·
+us10c | flag | University of Texas at Austin | fee | s | Priority 15 Oct 2026 · regular 1 Dec 202
+us11 | flag | University of Michigan | fee | s | EA 1 Nov 2026 · RD 1 Feb 2027
+us11b | flag | Other large public research universities | - | - | Most 1 Nov–1 Feb 2027
+us12 | flag | Arizona State University | fee | p | International first-year: priority deadl
+us13 | pri | Other four-year universities (~2,600) | - | - | Rolling to spring 2027
+us14 | route | Community colleges (2+2 transfer) | - | - | Rolling · fall ~1 Jun 2027
+us1b | route | Yale University – Eli Whitney Students Program | fee | - | Transfer Common App opens late Nov · dea
+us1d | route | Minerva University | fee | v | Early Action (binding optional) 1 Nov · 
+us5j | ivy | Washington University in St. Louis | fee | v | ED I and EA 2 Nov 2026 · ED II and RD 4 
+us5k | ivy | University of Notre Dame | fee | v | Restrictive Early Action 1 Nov (decision
+us5l | spr | Emory University | fee | v | ED I 1 Nov 2026 · ED II and RD 1 Jan 202
+us5m | spr | University of Rochester | fee | v | ED I 1 Nov · ED II and RD 5 Jan; send ev
+us5n | spr | Case Western Reserve University | fee | v | ED I and EA 1 Nov · ED II and RD 15 Jan 
+us5o | spr | Tulane University | fee | s | ED I 1 Nov · EA ~10–15 Nov (sources diff
+us5p | spr | Brandeis University | - | s | ED I ~1–3 Nov · RD 1 or 15 Jan 2027 (sou
+us5q | spr | George Washington University | - | v | ED I 1 Nov · ED II and RD 5 Jan 2027 (RD
+us5r | spr | Rensselaer Polytechnic Institute (RPI) | - | v | ED I 1 Nov · EA 1 Dec · ED II 5 Jan · RD
+us5s | spr | Stevens Institute of Technology | - | p | ED I 15 Nov · EA 1 Dec · ED II and RD 5 
+us5t | spr | Worcester Polytechnic Institute (WPI) | - | - | EA I 1 Nov · EA II / RD 15 Jan 2027
+us5u | spr | Syracuse University | - | s | ED I and new EA 1 Nov · ED II and RD 5 J
+us5v | spr | Drexel University | - | v | Early Action (non-binding; check date) ·
+us5w | pri | Illinois Institute of Technology | fee | v | ED 1 Nov · EA 15 Nov (extended 15 Dec) ·
+us11c | flag | University of Virginia | - | v | ED and EA 1 Nov 2026 · RD 5 Jan 2027 (no
+us11d | flag | University of North Carolina at Chapel Hill | - | s | EA 15 Oct 2026 · RD 15 Jan 2027
+us11e | flag | University of Wisconsin–Madison | fee | v | EA 1 Nov (materials by 10 Nov; decisions
+us11f | flag | University of Washington (Seattle) | fee | v | 15 Nov 2026 for autumn 2027 (test scores
+us11g | flag | University of Maryland, College Park | - | v | EA 1 Nov 2026 · regular 20 Jan 2027 · la
+us11h | flag | Ohio State University | fee | p | International first-year (Autumn 2026 cy
+us11i | flag | Penn State (University Park) | fee | v | EA 1 Nov · priority 30 Nov 2026 · rollin
+us11j | flag | Rutgers University–New Brunswick | - | p | Fall 2026 cycle: EA 1 Nov · RD 1 Dec (al
+us11k | flag | University of Minnesota Twin Cities | - | p | EA I 1 Nov (decision by 31 Jan) · EA II 
+us11l | flag | Indiana University Bloomington | - | v | EA 1 Nov (best admission and scholarship
+us11m | flag | Michigan State University | - | v | Fall 2027 application open: EA 1 Nov (de
+us11n | flag | University of Pittsburgh | - | v | Rolling admission; apply by 15 Dec for s
+us11o | flag | Stony Brook University (SUNY) | - | v | EA 1 Nov (priority for honors) · RD 15 J
+us11p | flag | University at Buffalo (SUNY) | - | p | International first-year (fall 2026 cycl
+us11q | flag | Binghamton University (SUNY) | - | v | EA 1 Nov (other materials by 1 Dec; deci
+us11r | flag | University of Massachusetts Amherst | - | v | EA 5 Nov (application and documents) · R
+us11s | flag | University of Connecticut | - | v | ED 1 Nov (binding) · priority 1 Dec (mer
+us11t | flag | Texas A&M University | - | v | Fall 2027 (College Station): opens 1 Aug
+us11u | flag | University of Texas at Dallas | fee | v | Opens 1 Aug · priority (admission and sc
+us11v | flag | University of Houston | - | - | Rolling · fall international ~1 Apr–1 Ma
+us11w | flag | University of Florida | - | v | New Early Decision 15 Oct (binding; mate
+us11x | flag | Florida State University | - | v | New Early Decision 15 Oct (Early Action 
+us11y | flag | University of Georgia | - | s | Early action mid/late Oct 2026 (sources 
+us11z | flag | Virginia Tech | - | v | 2026–27: EA 15 Nov (records by 1 Dec) · 
+us12b | flag | University of Arizona | - | p | Regular decision ~1 Apr (fall 2026 cycle
+us12c | flag | George Mason University | - | - | Rolling · fall international ~1 Apr 2027
+us12d | route | Conditional-admission universities | - | - | Rolling · fall ~1 May 2027
+us12e | route | January 2027 (spring) start | - | - | Typical international spring deadlines 1
+u_wake | spr | Wake Forest University | - | v | 2026–27: ED I 15 Nov · ED II and RD 1 Ja
+u_lehigh | spr | Lehigh University | - | s | ED I 1 Nov 2026 · ED II and RD ~1 Jan 20
+u_villa | spr | Villanova University | - | s | EA and ED I 1 Nov · ED II and RD ~15 Jan
+u_miami | spr | University of Miami | - | v | EA and ED I 1 Nov · ED II and RD 5 Jan
+u_pepp | spr | Pepperdine University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_scu | spr | Santa Clara University | - | s | Early Action 1 Nov (notified late Dec) ·
+u_ford | spr | Fordham University | - | v | EA and ED I 1 Nov · ED II and RD ~3 Jan 
+u_amer | spr | American University | fee | v | EA and ED I 1 Nov · ED II and RD 15 Jan 
+u_smu | spr | Southern Methodist University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_baylor | spr | Baylor University | - | - | EA 1 Nov · RD ~1 Feb 2027 (typical; conf
+u_tcu | spr | Texas Christian University | - | - | EA 1 Nov · RD ~1 Feb 2027 (typical; conf
+u_howard | spr | Howard University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_babson | spr | Babson College | - | - | EA/ED 1 Nov · RD ~1–5 Jan 2027 (typical;
+u_emerson | spr | Emerson College | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_risd | spr | Rhode Island School of Design (RISD) | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_newsch | spr | The New School (Parsons School of Design) | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_pratt | spr | Pratt Institute | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_berklee | spr | Berklee College of Music | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_rit | pri | Rochester Institute of Technology | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_clark | pri | Clark University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_bentley | pri | Bentley University | - | - | EA/ED 1 Nov · RD ~1–5 Jan 2027 (typical;
+u_lmu | pri | Loyola Marymount University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_usd | pri | University of San Diego | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_usfca | pri | University of San Francisco | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_chap | pri | Chapman University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_denver | pri | University of Denver | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_slu | pri | Saint Louis University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_luc | pri | Loyola University Chicago | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_depaul | pri | DePaul University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_marq | pri | Marquette University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_creig | pri | Creighton University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_dayton | pri | University of Dayton | fee | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_duq | pri | Duquesne University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_elon | pri | Elon University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_hofstra | pri | Hofstra University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_pace | pri | Pace University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_stjohns | pri | St. John's University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_seton | pri | Seton Hall University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_fair | pri | Fairfield University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_gonz | pri | Gonzaga University | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_seattleu | pri | Seattle University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_tulsa | pri | University of Tulsa | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_hult | pri | Hult International Business School | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_erau | pri | Embry-Riddle Aeronautical University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_fit | pri | Florida Institute of Technology | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_clarkson | pri | Clarkson University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_kett | pri | Kettering University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_rose | pri | Rose-Hulman Institute of Technology | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_saic | pri | School of the Art Institute of Chicago | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_scad | pri | Savannah College of Art and Design (SCAD) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_williams | lac | Williams College | fee | v | ED 15 Nov (decision by 14 Dec) · RD 4–5 
+u_amherst | lac | Amherst College | fee | s | ED ~15 Nov (sources differ: 7 or 15 Nov)
+u_swat | lac | Swarthmore College | fee | v | 2026–27: Fall ED 15 Nov · Winter ED and 
+u_pomona | lac | Pomona College | fee | v | ED I 8 Nov · ED II and RD 8 Jan
+u_bowdoin | lac | Bowdoin College | fee | p | Last cycle: ED I 15 Nov · ED II and RD 5
+u_cmc | lac | Claremont McKenna College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_colby | lac | Colby College | fee | s | ED I 15 Nov · ED II and RD ~3–4 Jan 2027
+u_hmc | lac | Harvey Mudd College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_midd | lac | Middlebury College | - | s | ED I 1 or 15 Nov (sources differ) · ED I
+u_carleton | lac | Carleton College | fee | s | ED I 15 Nov · ED II and RD 15 Jan
+u_grinnell | lac | Grinnell College | fee | s | ED I 15 Nov · ED II 5 Jan · RD 15 Jan 20
+u_davidson | lac | Davidson College | fee | s | ED I 15 Nov · ED II ~5 Jan · RD ~12 Jan 
+u_hamilton | lac | Hamilton College | - | v | ED I 15 Nov 2026 · ED II and RD 4 Jan 20
+u_haverford | lac | Haverford College | - | v | ED 15 Nov · ED II 5 Jan · RD 10 Jan
+u_vassar | lac | Vassar College | fee | v | ED I 15 Nov · ED II and RD 1 Jan
+u_wesleyan | lac | Wesleyan University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_colgate | lac | Colgate University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_bates | lac | Bates College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_wlu | lac | Washington and Lee University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_richmond | lac | University of Richmond | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_cc | lac | Colorado College | fee | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_pitzer | lac | Pitzer College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_skid | lac | Skidmore College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_denison | lac | Denison University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_berea | lac | Berea College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_mac | lac | Macalester College | fee | v | ED I 1 Nov · ED II 1 Jan · RD 15 Jan
+u_oberlin | lac | Oberlin College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_kenyon | lac | Kenyon College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_bucknell | lac | Bucknell University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_lafayette | lac | Lafayette College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_union | lac | Union College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_trinity | lac | Trinity College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_conn | lac | Connecticut College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_dickinson | lac | Dickinson College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_fandm | lac | Franklin & Marshall College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_gettys | lac | Gettysburg College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_whitman | lac | Whitman College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_oxy | lac | Occidental College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_reed | lac | Reed College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_furman | lac | Furman University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_rhodes | lac | Rhodes College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_bard | lac | Bard College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_soka | lac | Soka University of America | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_sewanee | lac | Sewanee: The University of the South | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_centre | lac | Centre College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_lawrence | lac | Lawrence University | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_beloit | lac | Beloit College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_knox | lac | Knox College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_earlham | lac | Earlham College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_wooster | lac | The College of Wooster | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_stolaf | lac | St. Olaf College | fee | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_allegheny | lac | Allegheny College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_lfc | lac | Lake Forest College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_juniata | lac | Juniata College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_gustavus | lac | Gustavus Adolphus College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_luther | lac | Luther College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_augie | lac | Augustana College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_hendrix | lac | Hendrix College | - | - | ED I ~1–15 Nov · ED II / RD ~1–15 Jan 20
+u_uci | flag | University of California, Irvine | - | v | UC application 1–30 Nov 2026 (no early r
+u_ucsb | flag | University of California, Santa Barbara | - | v | UC application 1–30 Nov 2026 (no early r
+u_ucsc | flag | University of California, Santa Cruz | - | v | UC application 1–30 Nov 2026 (no early r
+u_ucr | flag | University of California, Riverside | - | v | UC application 1–30 Nov 2026 (no early r
+u_ucm | flag | University of California, Merced | - | v | UC application 1–30 Nov 2026 (no early r
+u_cub | flag | University of Colorado Boulder | - | v | EA 15 Nov (decision by 1 Feb) · RD 15 Ja
+u_csu | flag | Colorado State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_mines | flag | Colorado School of Mines | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_udel | flag | University of Delaware | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_usf | flag | University of South Florida | - | - | Priority ~1 Dec–15 Jan · final ~1 Mar 20
+u_ucf | flag | University of Central Florida | - | - | Priority ~1 Dec–15 Jan · final ~1 Mar 20
+u_fiu | flag | Florida International University | - | - | Priority ~1 Dec–15 Jan · final ~1 Mar 20
+u_gsu | flag | Georgia State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uhm | flag | University of Hawaii at Manoa | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uic | flag | University of Illinois Chicago | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_uiowa | flag | University of Iowa | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_isu | flag | Iowa State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ku | flag | University of Kansas | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ksu | flag | Kansas State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uky | flag | University of Kentucky | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_louis | flag | University of Louisville | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_lsu | flag | Louisiana State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_umbc | flag | University of Maryland, Baltimore County (UMBC) | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_mtu | flag | Michigan Technological University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_wayne | flag | Wayne State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_mizzou | flag | University of Missouri | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_mst | flag | Missouri University of Science and Technology | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_unl | flag | University of Nebraska–Lincoln | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_unh | flag | University of New Hampshire | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_njit | flag | New Jersey Institute of Technology | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_unm | flag | University of New Mexico | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ncsu | flag | North Carolina State University | - | v | 2026–27 catalog: EA 1 Nov (notified 31 J
+u_uc | flag | University of Cincinnati | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ou | flag | University of Oklahoma | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uo | flag | University of Oregon | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_osu_or | flag | Oregon State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_temple | flag | Temple University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_sc | flag | University of South Carolina | - | - | ~1 Dec 2026 (typical; confirm)
+u_clem | flag | Clemson University | - | - | ~1 Dec 2026 (typical; confirm)
+u_utk | flag | University of Tennessee, Knoxville | - | - | EA 1 Nov · RD ~15 Dec 2026 (typical; con
+u_ua | flag | University of Alabama | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_auburn | flag | Auburn University | - | - | EA 1 Nov · RD ~1 Feb 2027 (typical; conf
+u_uab | flag | University of Alabama at Birmingham (UAB) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uark | flag | University of Arkansas | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uta | flag | University of Texas at Arlington | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ttu | flag | Texas Tech University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_unt | flag | University of North Texas | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_utsa | flag | University of Texas at San Antonio | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_utep | flag | University of Texas at El Paso | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_utah | flag | University of Utah | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uvm | flag | University of Vermont | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_wm | flag | William & Mary | - | - | EA/ED 1 Nov · RD ~1–5 Jan 2027 (typical;
+u_vcu | flag | Virginia Commonwealth University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_wsu | flag | Washington State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_wvu | flag | West Virginia University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_sdsu | pub | San Diego State University | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_calpoly | pub | Cal Poly San Luis Obispo | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_sjsu | pub | San José State University | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_csulb | pub | California State University, Long Beach | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_sfsu | pub | San Francisco State University | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_cpp | pub | Cal Poly Pomona | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_csuf | pub | California State University, Fullerton | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_csun | pub | California State University, Northridge | - | - | Cal State application 1 Oct–1 Dec 2026 (
+u_fau | pub | Florida Atlantic University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ilstu | pub | Illinois State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_umb | pub | University of Massachusetts Boston | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uml | pub | University of Massachusetts Lowell | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_wmich | pub | Western Michigan University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_unlv | pub | University of Nevada, Las Vegas | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_rowan | pub | Rowan University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_albany | pub | University at Albany (SUNY) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_baruch | pub | Baruch College (CUNY) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ccny | pub | City College of New York (CUNY) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_hunter | pub | Hunter College (CUNY) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uncc | pub | University of North Carolina at Charlotte | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ohiou | pub | Ohio University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_miamioh | pub | Miami University (Ohio) | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con
+u_kent | pub | Kent State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_okstate | pub | Oklahoma State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_pdx | pub | Portland State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uri | pub | University of Rhode Island | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_memphis | pub | University of Memphis | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_nau | pub | Northern Arizona University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_olemiss | flag | University of Mississippi (Ole Miss) | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_msstate | flag | Mississippi State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_montstate | flag | Montana State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_umt | flag | University of Montana | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_nmsu | flag | New Mexico State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ndsu | flag | North Dakota State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_und | flag | University of North Dakota | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_odu | flag | Old Dominion University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_maine | flag | University of Maine | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_unr | flag | University of Nevada, Reno | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uwm | flag | University of Wisconsin–Milwaukee | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_usu | flag | Utah State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_niu | flag | Northern Illinois University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_txst | flag | Texas State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_toledo | flag | University of Toledo | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uwyo | flag | University of Wyoming | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_wichita | flag | Wichita State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uidaho | flag | University of Idaho | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_boise | pub | Boise State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uah | flag | University of Alabama in Huntsville | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ucden | flag | University of Colorado Denver | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_usm | flag | University of Southern Mississippi | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_uncg | pub | University of North Carolina at Greensboro | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_ull | pub | University of Louisiana at Lafayette | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_kennesaw | pub | Kennesaw State University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_gaso | pub | Georgia Southern University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_augusta | pub | Augusta University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_southal | pub | University of South Alabama | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_oakland | pub | Oakland University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_famu | pub | Florida A&M University | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_tamucc | pub | Texas A&M University–Corpus Christi | - | - | Rolling · priority ~1 Dec–1 Feb · intern
+u_byu | spr | Brigham Young University | - | - | Priority ~1 Nov · final ~15 Dec 2026 (la
+u_cua | pri | Catholic University of America | - | - | EA 1 Nov · RD ~15 Jan 2027 (typical; con

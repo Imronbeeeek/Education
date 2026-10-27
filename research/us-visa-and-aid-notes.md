@@ -1,0 +1,60 @@
+# US research notes (Oct 2026)
+## Visa
+- Uzbekistan NOT on Proclamation 10998 lists (eff 1 Jan 2026; 19 full + 19 partial incl F/J; Turkmenistan only immigrant). Sources: NAFSA https://www.nafsa.org/regulatory-information/proclamation-december-16-2025-travel-ban-effective-january-1-2026 ; CRS https://www.congress.gov/crs-product/IN12631 ; Fragomen.
+- Feb 2026 State: visa restrictions on individuals at 2 Uzbek visa-facilitation firms (illegal immigration) https://www.state.gov/releases/office-of-the-spokesperson/2026/02/imposition-of-visa-restrictions-on-uzbekistanis-facilitating-illegal-immigration-to-the-united-states
+- Fees: MRV $185, SEVIS I-901 $350, Visa Integrity Fee $250 collected at issuance at some posts since ~May 2026 (BU ISSO https://www.bu.edu/isso/2026/05/19/visa-integrity-fee/)
+- Interview in country of nationality/residence (DOS 6 Sep 2025, modified 10 Oct 2025). Tashkent only post. Wait ~1.5 months (Sept 2026, secondary scholarshipsads)
+- Social media: list handles 5 yrs on DS-160; set public (June 2025 guidance) (Shorelight https://shorelight.com/student-stories/us-visa-social-media-vetting)
+- D/S fixed-period rule published 17 Jul 2026, blocked by D. Mass. preliminary injunction 14 Sep 2026 (Presidents' Alliance v DHS); D/S continues. (Auburn https://wire.auburn.edu/content/announcements/2026/09/21093802-announcement.php ; globalimmigrationblog)
+- Separate SEVP CPT guidance Aug 2026 remains.
+- OPT: USCIS director said intent to eliminate OPT (Jan 2026); STEM OPT proposed 24 mo; status uncertain.
+- F-1 refusals worldwide 35% 2025 (Shorelight "Beyond the Interview" via ICEF https://monitor.icef.com/2026/04/visa-rejections-climb-in-the-us-for-international-students-from-key-markets-including-india/); Asia 41%.
+- Uzbekistan B1/B2 refusal 64.41% FY2024 (kun.uz https://kun.uz/en/news/2025/06/25/us-rejects-nearly-65-of-visa-applications-from-citizens-of-uzbekistan). No official F-1 by country.
+- Open Doors 2025: 1,310 Uzbek students in US 2024/25 (787 UG), rank 77 https://opendoorsdata.org/wp-content/uploads/2026/01/OD_Uzbekistan_Fact-Sheet-2025.pdf
+## Aid
+- Need-blind intl + full need: Harvard, Yale, Princeton, MIT, Amherst, Dartmouth (Class 2026+), Bowdoin (2022-23+), Notre Dame (2029+), Brown (2029+), W&L (Oct 2024+). (secondary lists: studyinternational, karangupta)
+- Need-aware full need: Colby (official), Colgate (official), Grinnell, Northwestern, Rice...
+- Merit auto intl: USF (San Francisco) up to $27k, 15 Jan 2027 https://... ; Pitt up to $10k/yr by 1 Feb https://financialaid.pitt.edu/types-of-aid/scholarships/international-student-scholarships/ ; GWU Presidential Academic Scholarship auto https://undergraduate.admissions.gwu.edu/international-student-aid ; American EGL full ride (intl) ~Dec 1; BU, LMU, Alabama, Clark auto merit.
+- USC Trustee (full tuition)/Presidential (half): apply by EA 1 Nov (portfolio majors 1 Dec), intl eligible, no extra app https://admission.usc.edu/scholarship-grid
+- Vanderbilt Ingram/CV/Chancellor's: full tuition, 1 Dec 2026 (secondary says intl eligible)
+- Morehead-Cain (UNC): intl via nomination/apply, UNC EA 15 Oct; Robertson: small number intl
+- Tulane: Paul Tulane Award (full tuition, intl eligible - secondary), Stamps for intl (max 5)
+- El-Yurt Umidi 2026/27: 500 quotas, 167 bachelor; apply 3–24 Apr 2026 online; QS/THE top-300 or approved list; age ≤30; IELTS 6.0+ (unconditional offer may exempt); admission letter (conditional allowed in some cases); covers tuition, visa, insurance, flights, rent/living, books; full-tuition admits to top-100 → auto award w/o competition (2025 decree); return work 5 yrs after bachelor. Sources: isft.uz https://isft.uz/en/news/265 ; borderless https://borderless.so/scholarships/el-yurt-umidi/el-yurt-umidi-scholarship ; ApplyBoard https://assist.applyboard.com/hc/en-us/articles/49161544371725-El-Yurt-Umidi-Scholarship-2026-2027-Approved-ApplyBoard-Partner-Universities ; talimtelekanali 2025 decree https://talimtelekanali.uz/en/ozbekiston-respublikasi-prezidentining-el-yurt-umidi-stipendiyasi-joriy-etiladi-13-05-2025/
+- Columbia: need-aware intl, meets 100% need for CC/SEAS (official intl page https://undergrad.admissions.columbia.edu/node/1434). GS: scholarships open to intl via supplement; avg intl package ~$32k (blog); GS does not meet full need.
+- Cornell need-aware intl (finaid.cornell.edu intl page). Penn, Stanford need-aware intl, full need (secondary). Duke need-aware intl, full need. UChicago, Northwestern, WashU need-aware full need (handout). Caltech need-aware intl. JHU aid for intl (need-aware).
+- Emory: small number of intl need-based packages; must apply RD and answer yes; CSS by ~Feb 5/16; only first-year aid recipients eligible later (official https://studentaid.emory.edu/undergraduate/apply/new-students/international.html)
+- Georgetown: limited need-based for intl via CSS (secondary)
+- Michigan: intl not eligible for aid; very limited scholarships (official KB https://teamdynamix.umich.edu/TDClient/154/Portal/KB/ArticleDet?ID=7451)
+- Haverford: limited intl aid, meets 100% need; no aid later if not first year; ED1 15 Nov 2026, ED2 5 Jan 2027, RD 10 Jan 2027 (official https://www.haverford.edu/node/87986)
+- Macalester: ~95% need-blind; full need. Vassar full need intl (secondary). Davidson full need intl; Belk Scholarship: full cost + $6k, 8/yr, nomination (counselor up to 2 or admission staff), apply by 15 Nov (official https://www.davidson.edu/Belk)
+- Berea: no tuition for anyone; intl first-year room/board covered; work 10-15h/wk; intl deadline ~Dec 15? (secondary)
+- Minerva: tuition $29,800, COA $56,200 (Class of 2030); private-donor need aid + work study (official https://www.minerva.edu/undergraduate/financial-aid)
+- Alabama intl merit: same as OOS; 2026: Crimson Legends $6k (1200-1250), Capstone $8k (1260-1290), Collegiate $10k (1300-1320), top tier (1420+) higher; Presidential Elite (4.0+, 1600/36) full tuition+; deadline Dec 4 2026 for fall 2027 (secondary) https://afford.ua.edu/scholarships/international/
+- ASU NAMU intl merit up to ~$14.5k (EducationUSA older); tiers Dean's $13.5k etc https://admission.asu.edu/namu
+- Iowa State International Merit: Achievement $5–10k/yr (≤$40k), Distinction $2–4k; Feb 15 priority, May 1 final; OneApp (official https://www.iastate.edu/admission-and-aid/admissions/international-admissions/international-merit-scholarships)
+- UT Dallas AES auto by Dec 1 priority; amounts vary https://enroll.utdallas.edu/affordability/freshman-scholarships
+- Mississippi State: auto academic scholarships intl, min GPA 3.30; $12–19k/yr (secondary); agent-contract students ineligible https://www.sfa.msstate.edu/scholarships/international-scholarships
+- Truman State intl merit $1k–10k/yr (secondary)
+- Rochester intl merit $10k–full tuition (secondary); Case Western merit incl full-tuition (Squire, A.W. Smith); RIT $14–27k (secondary); Drexel $10–28k (secondary)
+- Syracuse intl merit at admission (official https://financialaid.syr.edu/?p=3114) $5–30k (secondary); Fordham Presidential/Dean's intl (official https://fordham.edu/info/21251/fordham_scholarships_and_grants/8283/international_student_scholarships); Baylor auto intl merit (secondary)
+- Northeastern: no need aid intl; International Scholars Award up to $28k/yr auto (official https://studentfinance.northeastern.edu/applying-for-aid/international-students/)
+- Brandeis: need-sensitive intl; Wien International Scholarship; must apply before admission (official https://www.brandeis.edu/student-financial-services/forms-links/guides/international-financial-aid-information-26-27.html)
+- USF (San Francisco) merit up to $27k auto by Jan 15 2027; Pitt up to $10k by Feb 1; GWU Presidential auto
+- Minnesota Global Excellence: auto for intl F-1 fall admits; full or half the difference res/non-res tuition (secondary)
+- Kentucky International Ambassador: $3k–16k/yr, competitive, 2.5 GPA (official https://studentsuccess.uky.edu/financial-aid-and-scholarships/international-student-undergraduate-scholarships)
+- Oklahoma State International Achievement Freshmen: $5k–15k/yr auto with admission; top $15k for 3.75–4.0 + scores (official https://go.okstate.edu/scholarships-financial-aid/types-of-aid/scholarships-and-grants/international-scholarships)
+- Kansas: KU intl awards by GPA, Access $8k (3.25–3.49), Achievement $12k (3.70–3.84), May 1 intl deadline (secondary borderless; check eligibility)
+- K-State intl freshman $6k/yr (EducationUSA listing)
+- Cincinnati International Outreach Award $5k–15k/yr Uptown; no full ride/need for intl; Dec 1 (official https://admissions.uc.edu/information/international/finance/scholarship.html)
+- Beloit intl merit up to $45k/yr cap; avg intl $35k; need considered; no full ride (secondary borderless)
+- Northwestern official: need-aware intl, only first-year applicants get aid, meets 100% need https://admissions.northwestern.edu/tuition-aid/international-student-aid
+- Rice: need-aware intl (admission+aid), meets need; intl not eligible for Rice Investment (secondary)
+- Sewanee: >$500k need aid intl/yr; $5k–full COA; 7 Global Scholarships/yr (official https://new.sewanee.edu/admission-aid/application-process/application-review/international-applicant/international-aid/)
+- Rhodes: $2.4M to intl admits last year; merit up to $37k/yr; need-aware (official https://www.rhodes.edu/admission-aid/international-student-admission/international-student-financial-aid)
+- Lehigh: limited need-based for intl, need-aware; CSS Profile ($25) or ISAFA if fee hardship; Certificate of Finances; no extra funding later (official https://lehigh.edu/admissions/international-students)
+- Grinnell: meets 100% need for intl (need-aware); $41M to intl over 4 yrs; merit only if can cover room/board (official https://www.applyweb.com/grinnell/instructi.html ; alumni.grinnell.edu)
+- Colorado College: 100% need intl (secondary)
+- Oregon: UO Excellence auto $15–20k/yr; ICSP $7–27k tuition (need, service) (secondary)
+- Oregon State Provost's Scholarship for Excellence $6k/yr (3.5 GPA) (secondary)
+- WSU International Academic Award $2–4k/yr waiver (secondary)
+- Utah: small intl awards (Nagoya $4k), check

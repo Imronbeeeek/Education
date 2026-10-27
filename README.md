@@ -64,6 +64,10 @@
 | [`strategy/16-usa-deep-dive-oct-2026.md`](strategy/16-usa-deep-dive-oct-2026.md) | USA only: 441 universities with details plus an index of 1,434 more; aid for international students at every one (need-blind, full need, merit, free tuition); full-ride routes; El-Yurt Umidi; 2026–27 F-1 visa rules for Uzbek citizens; how to stand out |
 | [`strategy/17-us-merit-check-oct-2026.md`](strategy/17-us-merit-check-oct-2026.md) | Merit scholarships for international students checked one by one at 251 US universities: 211 confirmed, 15 better than expected, 11 corrected to little or no aid, 14 still not confirmed; largest awards and full rides; sources for each |
 | [`site/index.html`](site/index.html) | Personal website, only places you can apply to now or after one step (closed entries, Jordan and medicine-only schools were removed; the country files and strategy/15 explain why): **Home** (next tasks, deadlines, list summary, best countries), **Universities** (Browse, Countries, Guide), **My list** (application tracker, balance, fees), **Plan** (Tasks, Timeline) ([live page](https://claude.ai/artifact/9GGSnY86Wd3Dy6C3iCUVTz)) |
+| [`site/src/`](site/src/README.md) | The website's building blocks: data files, page code, build script (`sh site/src/build.sh`), generators, the merit table and tests |
+| [`research/`](research/) | Raw research notes and source lists used to build the site (US visa and aid notes; Tier 1–3 deadline sources) |
+| [`handoff/`](handoff/HANDOFF.md) | Handoff for a new Claude session: full history, decisions, open items, the owner's requests word for word, saved-list backup |
+| [`CLAUDE.md`](CLAUDE.md) | Short brief that Claude Code loads automatically: who, preferences, hard rules, how to build, test and publish |
 
 ## Method & reliability
 - Rules were researched in October 2026 against official university and government pages, mostly via search-engine extracts. Several official sites (anabin, Nuffic, universityadmissions.se, Maastricht, MOFA Korea) were not directly reachable from the research environment.
